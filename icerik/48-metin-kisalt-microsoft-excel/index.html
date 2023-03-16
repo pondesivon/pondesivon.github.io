@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title></title>
+    <title>Metin Kısalt - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,10 +32,17 @@
        <br>
        <div class="row">
         <div class="col">                
-			<h1></h1>
-			<hr /><p class="lead"></p><hr />
+			<h1>Metin Kısalt - Microsoft Excel</h1>
+			<hr /><p class="lead">Verilen metinden parametrede belirtilen sayı kadar parça alır ve sonuna üç nokta ekleyerek yazdırır.</p><hr />
 
-			
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Function MetinKisalt(metin As String, uzunluk As Byte)
+    MetinKisalt = Mid(metin, 1, uzunluk) & "..."
+End Function
+</code></pre>
 
 			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
   </div>

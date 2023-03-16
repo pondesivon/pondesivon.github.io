@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title></title>
+    <title>GUID Oluştur - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,10 +32,48 @@
        <br>
        <div class="row">
         <div class="col">                
-			<h1></h1>
-			<hr /><p class="lead"></p><hr />
+			<h1>GUID Oluştur - Microsoft Excel</h1>
+			<hr /><p class="lead">Excel VBA ile GUID (Globally Unique Indentifier) oluşturmaya yarayan bir koddur.</p><hr />
 
-			
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Declare Function CoCreateGuid Lib "OLE32.DLL" (pGuid As GUID) As Long
+
+Private Type GUID
+    Data1 As Long
+    Data2 As Integer
+    Data3 As Integer
+    Data4(0 To 7) As Byte
+End Type
+
+Public Function CreateGUID() As String
+    Dim G As GUID
+
+    With G
+        If (CoCreateGuid(G) = 0) Then
+        CreateGUID = _
+            String$(8 - Len(Hex$(.Data1)), "0") & Hex$(.Data1) & _
+            String$(4 - Len(Hex$(.Data2)), "0") & Hex$(.Data2) & _
+            String$(4 - Len(Hex$(.Data3)), "0") & Hex$(.Data3) & _
+            IIf((.Data4(0) < &H10), "0", "") & Hex$(.Data4(0)) & _
+            IIf((.Data4(1) < &H10), "0", "") & Hex$(.Data4(1)) & _
+            IIf((.Data4(2) < &H10), "0", "") & Hex$(.Data4(2)) & _
+            IIf((.Data4(3) < &H10), "0", "") & Hex$(.Data4(3)) & _
+            IIf((.Data4(4) < &H10), "0", "") & Hex$(.Data4(4)) & _
+            IIf((.Data4(5) < &H10), "0", "") & Hex$(.Data4(5)) & _
+            IIf((.Data4(6) < &H10), "0", "") & Hex$(.Data4(6)) & _
+            IIf((.Data4(7) < &H10), "0", "") & Hex$(.Data4(7))
+        End If
+    End With
+End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.cpearson.com/excel/CreateGUID.aspx" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.cpearson.com/excel/CreateGUID.aspx</a>
+</div>
 
 			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
   </div>
