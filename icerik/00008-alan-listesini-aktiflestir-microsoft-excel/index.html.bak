@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Klasör Yolunu Kontrol Et, Eğer Yoksa Klasör Oluştur – Microsoft Excel</title>
+    <title>Alan Listesini Aktifleştir - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,30 +32,23 @@
        <br>
        <div class="row">
         <div class="col">                
-			<h1>Klasör Yolunu Kontrol Et, Eğer Yoksa Klasör Oluştur – Microsoft Excel</h1>
-			<hr /><p class="lead">Aşağıdaki VBA kodu verilen bir klasör yolunun var olup olmadığını <code>Scripting.FileSystemObject</code> aracılığıyla kontrol ediyor. Eğer klasör yoksa oluşturuyor.</p><hr />
+			<h1>Alan Listesini Aktifleştir - Microsoft Excel</h1>
+			<hr /><p class="lead">Eğer bir özet tablo varsa ve bu özet tablonun alan listesi sağ tarafta gözükmüyorsa bunu aktifleştirmek için aşağıdaki işlem yapılabilir.</p><hr />
 
-<div class="alert alert-primary"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Sub KlasorYolunuKontrolEtYoksaKlasorOlustur(klasorYolu As String)
-    With CreateObject("Scripting.FileSystemObject")
-        If Not .FolderExists(klasorYolu) Then .CreateFolder klasorYolu
-    End With
-End Sub
-</code></pre>
-
-<div class="alert alert-primary"><strong>Kullanım</strong></div>
-<pre><code class="language-vb">
-Sub KullanimOrnegi()
-    KlasorYolunuKontrolEtYoksaKlasorOlustur "D:\OrnekKlasor"
-End Sub
-</code></pre>
-
-<div class="alert alert-primary"><strong>Yararlanılan Kaynaklar</strong></div>
-<div class="list-group">
-    <a href="https://stackoverflow.com/a/43661302" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/a/43661302</a>
-    <a href="http://www.vbaexpress.com/forum/showthread.php?7866-Check-for-folder-create-if-it-does-not-exist" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.vbaexpress.com/forum/showthread.php?7866-Check-for-folder-create-if-it-does-not-exist</a>
-</div>
+<div class="alert alert-primary"><strong>İşlemler</strong></div>
+<!-- Liste -->
+<ul class="list-group">
+    <li class="list-group-item">
+        <p class="text-danger"><strong>Özet Tabloyu Aktifleştir</strong></p>
+        Özet tablonun herhangi bir yerine tıklayın.
+    </li>
+    <li class="list-group-item">
+        <p class="text-danger"><strong>Alan Listesi Seçeneğini Bul</strong></p>
+        Özet tablo sekmeleri tıklayınca görünür hale geldi. Buradan <strong>Seçenekler</strong> &gt;&gt;&gt; <strong>Alan Listesi</strong> seçeneklerini takip ediyoruz.
+        
+<a href="img/alan-listesini-aktiflestir-microsoft-excel-1.png"><img class="img-fluid d-block" src="img/alan-listesini-aktiflestir-microsoft-excel-1.png" alt="" /></a>
+    </li>
+</ul>			
 
 			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
   </div>
@@ -65,7 +58,5 @@ End Sub
 <!-- JS-->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/prism.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
 </body>
 </html>

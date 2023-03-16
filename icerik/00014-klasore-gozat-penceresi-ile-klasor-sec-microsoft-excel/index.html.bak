@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Dosya Seç Ve Tam Yolunu A1 Hücresine Yazdır – Microsoft Excel</title>
+    <title>Klasöre Gözat Penceresi İle Klasör Seç – Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,56 +32,69 @@
        <br>
        <div class="row">
         <div class="col">                
-			<h1>Dosya Seç Ve Tam Yolunu A1 Hücresine Yazdır – Microsoft Excel</h1>
-			<hr /><p class="lead">Dosya açma penceresi üzerinden seçilen dosyanın tam yolunu A1 hücresine yazdıran bir VBA kodudur.</p><hr />
+			<h1>Klasöre Gözat Penceresi İle Klasör Seç – Microsoft Excel</h1>
+			<hr /><p class="lead">Aşağıdaki VBA kodu “Klasöre Gözat” penceresini açıyor ve seçilen klasörün yolunu mesaj olarak ekrana yazdırıyor.</p><hr />
 
 <div class="alert alert-primary"><strong>Kod</strong></div>
 <pre><code class="language-vb">
-Option Explicit
-
-Sub DosyaSecVeTamYolunuA1HucresineYazdir()
-    Dim yol As String
+Sub KlasoreGozatPenceresiniAcSecilenYoluMesajOlarakGoster()
+    Dim kaynak As String
+    Dim klasor As Object
+    Dim mesaj  As String
     
-    Application.FileDialog(msoFileDialogOpen).Show
-    yol = Application.FileDialog(msoFileDialogOpen).SelectedItems(1)
+    mesaj = "Listeleme işleminin yapılacağı klasörü seçin."
+    Set klasor = CreateObject("Shell.Application"). _
+                 BrowseForFolder(0, mesaj, 50, &H0)
     
-    Range("A1").Value = yol
+    If Not klasor Is Nothing Then
+        kaynak = klasor.Self.Path
+        MsgBox kaynak
+    End If
 End Sub
 </code></pre>
 
 <div class="alert alert-primary"><strong>Kod (Açıklamalı)</strong></div>
 <pre><code class="language-vb">
-Option Explicit
-
-Sub DosyaSecVeTamYolunuA1HucresineYazdir()
-    '--------------------------------------------------
-    'Seçilen dosyanın tam yolunun saklanacağı değişken.
-    '--------------------------------------------------
-    Dim yol As String
+Sub KlasoreGozatPenceresiniAcSecilenYoluMesajOlarakGoster()
+    Dim kaynak As String
+    Dim klasor As Object
+    Dim mesaj  As String
     
     '--------------------------------------------------
-    'Dosya seçme penceresini aç.
+    'Klasöre Gözat penceresinde
+    'gösterilecek mesajı belirledik.
     '--------------------------------------------------
-    Application.FileDialog(msoFileDialogOpen).Show
+    mesaj = "Listeleme işleminin yapılacağı klasörü seçin."
     
     '--------------------------------------------------
-    'Eğer dosya açma penceresinden bir dosya seçimi
-    'yapılmışsa bu dosyanın tam yolunu "yol"
-    'isimli değişkene aktar.
+    'Klasöre Gözat penceresinin açılmasını sağlayan kod.
     '--------------------------------------------------
-    yol = Application.FileDialog(msoFileDialogOpen).SelectedItems(1)
+    Set klasor = CreateObject("Shell.Application"). _
+                 BrowseForFolder(0, mesaj, 50, &H0)
     
     '--------------------------------------------------
-    'A1 hücresine tam yolu yazdır.
+    'Eğer klasor nesnesinin bir karşılığı varsa işlem yap.
+    'Direkt pencere üzerinden klasör seçimi yapabildiğimiz
+    'gibi alt kısımda klasör isminin yazıldığı alandan
+    'elle müdahale ederek de klasör ismi yazabiliyoruz.
+    'Bu yüzden olmayan bir klasör ismi girme ihtimaline
+    'karşı bu kontrolü yapmakta fayda var.
     '--------------------------------------------------
-    Range("A1").Value = yol
+    If Not klasor Is Nothing Then
+        
+        '--------------------------------------------------
+        'Klasörün tam yolunu aldık, kaynak
+        'isimli değişkene yazdırdık.
+        '--------------------------------------------------
+        kaynak = klasor.Self.Path
+        
+        '--------------------------------------------------
+        'Klasör tam yolunu mesaj olarak göster.
+        '--------------------------------------------------
+        MsgBox kaynak
+    End If
 End Sub
 </code></pre>
-
-<div class="alert alert-primary"><strong>Yararlanılan Kaynaklar</strong></div>
-<div class="list-group">
-    <a href="http://software-solutions-online.com/2014/03/11/excel-vba-open-file-dialog/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://software-solutions-online.com/2014/03/11/excel-vba-open-file-dialog/</a>
-</div>
 
 			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
   </div>
@@ -89,8 +102,7 @@ End Sub
 </div>
 
 <!-- JS-->
-<script src="../../js/bootstrap.min.js"><script src="../../js/prism.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script> src="../../js/prism.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
 </body>
 </html>

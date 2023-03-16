@@ -63,8 +63,7 @@ Aslında bu hata mantıksız bir hata değil, işin bir de şu yönü var: Sın�
 </div>
 
 <!-- JS-->
-<script src="../../js/bootstrap.min.js"><script src="../../js/prism.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script> src="../../js/prism.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
 </body>
 </html>

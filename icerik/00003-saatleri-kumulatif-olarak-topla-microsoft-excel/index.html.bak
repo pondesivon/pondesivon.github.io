@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Hücre Biçimini Tarih Yap – Microsoft Excel</title>
+    <title>Saatleri Kümülatif Olarak Topla - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -29,28 +29,25 @@
 
     <!-- Page content-->
     <div class="container">
-       <br>
-       <div class="row">
+     <br>
+     <div class="row">
         <div class="col">                
-			<h1>Hücre Biçimini Tarih Yap – Microsoft Excel</h1>
-			<hr /><p class="lead">Aşağıdaki VBA kodu seçilen alanın biçimini <code>gg.aa.yyyy</code> biçiminde tarih formatına dönüştürmektedir.</p><hr />
+           <h1>Saatleri Kümülatif Olarak Topla - Microsoft Excel</h1>
+           <hr /><p class="lead">Saat toplama ile ilgili değişik bir bilgiyi arşive eklemek istiyorum, saat topladığımızda mod almadan toplayacak, yani <strong>12+17=5 (mod 24)</strong> değil de <strong>29</strong> olacak. Nasıl yapıldığını görelim.</p><hr />
 
-<div class="alert alert-primary"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Sub SecilenAlaninBiciminiTarihYap()
-    Selection.NumberFormat = "dd/mm/yyyy"
-End Sub
-</code></pre>
 
-			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
-  </div>
-</div>
+           <div class="alert alert-primary"><strong>Senaryo</strong></div>
+           <p>Excelde saatleri toplamak istiyorsunuz. Örneğin 16:00 ve 04:00 gibi iki saatin toplamı bize 20:00 değerini döndürecektir. Bununla birlikte bu sayılara bir de 05:00 sayısını eklersek bize 25:00 gibi bir sonuç döndürmez, mod 24'e göre değeri olan 01:00 sonucunu döndürür. Biz 25:00 sonucunu istiyoruz. Nasıl yapabiliriz?</p>
+
+           <div class="alert alert-primary"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">=METNEÇEVİR(TOPLA(A1:A3);"[s]:nn")</code></pre>
+<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+       </div>
+   </div>
 </div>
 
 <!-- JS-->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/prism.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
 </body>
 </html>

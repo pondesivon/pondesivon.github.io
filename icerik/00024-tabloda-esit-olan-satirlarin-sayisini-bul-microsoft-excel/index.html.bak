@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Klasör Yolunu Kontrol Et, Eğer Yoksa Klasör Oluştur – Microsoft Excel</title>
+    <title>Tabloda Eşit Olan Satırların Sayısını Bul - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,30 +32,23 @@
        <br>
        <div class="row">
         <div class="col">                
-			<h1>Klasör Yolunu Kontrol Et, Eğer Yoksa Klasör Oluştur – Microsoft Excel</h1>
-			<hr /><p class="lead">Aşağıdaki VBA kodu verilen bir klasör yolunun var olup olmadığını <code>Scripting.FileSystemObject</code> aracılığıyla kontrol ediyor. Eğer klasör yoksa oluşturuyor.</p><hr />
+			<h1>Tabloda Eşit Olan Satırların Sayısını Bul - Microsoft Excel</h1>
+			<hr /><p class="lead">A ve B sütunlarındaki değerlerden hareket ediyor. Tabloda aynı satırda bulunan ve değerleri birbirine eşit olan kaç değerin olduğunu göstermeye yarıyor.</p><hr />
 
-<div class="alert alert-primary"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Sub KlasorYolunuKontrolEtYoksaKlasorOlustur(klasorYolu As String)
-    With CreateObject("Scripting.FileSystemObject")
-        If Not .FolderExists(klasorYolu) Then .CreateFolder klasorYolu
-    End With
-End Sub
+<div class="alert alert-primary"><strong>Veri</strong></div>
+<p>A ve B sütunlarındaki değerlerden hareket ediyor. Tabloda aynı satırda bulunan ve değerleri birbirine eşit olan kaç değerin olduğunu göstermeye yarıyor.</p>
+
+<p><a class="btn btn-outline-primary btn-sm" target="_blank" href="doc/veri-seti-tabloda-esit-olan-satirlar.html" rel="noopener">tabloda eşit olan satırlar veri seti</a></p>
+
+<div class="alert alert-primary"><strong>Formül (Normal)</strong></div>
+<pre><code class="language-excel-formula">
+=TOPLA.ÇARPIM(--(A1:A5=B1:B5))
 </code></pre>
 
-<div class="alert alert-primary"><strong>Kullanım</strong></div>
-<pre><code class="language-vb">
-Sub KullanimOrnegi()
-    KlasorYolunuKontrolEtYoksaKlasorOlustur "D:\OrnekKlasor"
-End Sub
+<div class="alert alert-primary"><strong>Formül (Dizi)</strong></div>
+<pre><code class="language-excel-formula">
+=TOPLA((A1:A5=B1:B5)+0)
 </code></pre>
-
-<div class="alert alert-primary"><strong>Yararlanılan Kaynaklar</strong></div>
-<div class="list-group">
-    <a href="https://stackoverflow.com/a/43661302" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/a/43661302</a>
-    <a href="http://www.vbaexpress.com/forum/showthread.php?7866-Check-for-folder-create-if-it-does-not-exist" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.vbaexpress.com/forum/showthread.php?7866-Check-for-folder-create-if-it-does-not-exist</a>
-</div>
 
 			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
   </div>
@@ -65,7 +58,5 @@ End Sub
 <!-- JS-->
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/prism.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
 </body>
 </html>
