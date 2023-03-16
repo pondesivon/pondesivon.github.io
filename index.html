@@ -42,14 +42,26 @@
           <hr />
           <p class="lead">Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı kişisel veri tabanı, alternatif not defteri.</p>
           <hr />
-          <table class="table table-secondary _table-sm table-striped table-bordered table-hover">
+
+
+<div class="input-group mb-3">
+  <input class="form-control _form-control-lg bg-light" type="text" id="konu" onkeypress="konuFiltre()" aria-describedby="basic-addon3">
+  <div class="input-group-append">
+    <span class="input-group-text bg-secondary text-light" id="basic-addon2">Tabloda Ara</span>
+  </div>
+</div>
+
+          <table id="tablo" class="table table-secondary _table-sm table-striped table-bordered table-hover">
             <thead>
-              <th scope="col">Sıra</th>
-              <th scope="col">Konu</th>
+              <tr>
+                <th scope="col">Sıra</th>
+                <th scope="col">
+                  Konu
+              </tr>
             </thead>
             <tbody>
               <tr>
-			  <th scope="row">50</th>
+			          <th scope="row">50</th>
                 <td>
                   <a href="icerik/50-alan-birlestir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Alan Birleştir - Microsoft Excel</a>
                 </td>
@@ -355,6 +367,7 @@
     <!-- JS-->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/prism.js"></script>
+    <script src="js/doc.js"></script>
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
 		 crossorigin="anonymous"></script>
   </body>
