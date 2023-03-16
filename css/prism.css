@@ -52,7 +52,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
-	margin: .5em 0;
+	/* margin: .5em 0; */
 	overflow: auto;
 }
 
@@ -241,7 +241,7 @@ pre[class*="language-"].line-numbers > code {
 			padding-right: 0.8em;
 			text-align: right;
 		}
-
+/*
 .token.tab:not(:empty),
 .token.cr,
 .token.lf,
@@ -262,6 +262,7 @@ pre[class*="language-"].line-numbers > code {
 	content: '\21E5';
 }
 
+
 .token.cr:before {
 	content: '\240D';
 }
@@ -280,14 +281,16 @@ pre[class*="language-"].line-numbers > code {
 .token a {
 	color: inherit;
 }
+*/
+
 div.code-toolbar {
 	position: relative;
 }
 
 div.code-toolbar > .toolbar {
 	position: absolute;
-	top: .3em;
-	right: .2em;
+	top: -0.35em;
+	right: 0.5em;
 	transition: opacity 0.3s ease-in-out;
 	opacity: 0;
 }
