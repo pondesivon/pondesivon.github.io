@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Satırlardaki İstenmeyen Karakterleri Düzelt – Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Satırlardaki İstenmeyen Karakterleri Düzelt – Microsoft Excel</h1>
+			<hr /><p class="lead">İstenmeyen karakterlerin listesi ve hemen yanındaki sütunda düzeltme karakterlerinin listesi verildiğinde, bu listeden hareketle A sütunundaki verilerde düzeltme işlemi yapıyor.</p><hr />
+
+<div class="alert alert-primary"><strong>Veri</strong></div>
+<p>D ve E sütunlarında listelenmiş olan karakter listesi örneği aşağıda verilmiştir.</p>
+
+<p><a class="btn btn-outline-primary btn-sm" target="_blank" href="doc/veri-seti-istenmeyen-karakterler.html" rel="noopener">istenmeyen karakterler veri seti</a></p>
+
+<div class="alert alert-primary"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub IstenmeyenKarakterleriDuzelt()
+    On Error Resume Next
+    Dim i, j As Integer
+    Dim snc As Integer
+    
+    For i = 1 To [A65536].End(xlUp).Row
+        For j = 1 To [D65536].End(xlUp).Row
+            snc = Application. _
+                  WorksheetFunction. _
+                  Find(Range("D" & j), _
+                  Range("A" & i), 1)
+            
+            If IsNumeric(snc) Then
+                Range("A" & i) = Application. _
+                                 WorksheetFunction. _
+                                 Substitute(Range("A" & i), _
+                                 Range("D" & j), _
+                                 Range("E" & j))
+            End If
+        Next
+    Next
+End Sub
+</code></pre>
+
+<div class="alert alert-primary"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub IstenmeyenKarakterleriDuzelt()
+    '--------------------------------------------------
+    'Formül tabanlı metodların hata vermesi
+    'durumunda sonraki satırdan devam etmesini
+    'istiyoruz, bu yüzden bu kodu ekledik.
+    'Amaç da şu: Eğer düzeltilecek bir şey
+    'yoksa formül parametre kaynaklı bir
+    'hata verecek, kodun çalışması yarıda
+    'kesilecek, gerek yok.
+    '--------------------------------------------------
+    On Error Resume Next
+    
+    '--------------------------------------------------
+    'Döngüler için kullanılacak
+    'değişkenleri tanımladık.
+    '--------------------------------------------------
+    Dim i, j As Integer
+    
+    '--------------------------------------------------
+    'Şart ifadesi için kullanacağımız bir
+    'kod parçası çok uzun olduğundan
+    'sonucunu değişkene atayıp şart
+    'ifadesinde bu değişkeni kullanmak
+    'için tanımladığımız değişken.
+    '--------------------------------------------------
+    Dim sonuc As Integer
+    
+    '--------------------------------------------------
+    'A sütunundaki tablonun son satırını
+    'bul, o satıra kadar döngü çalıştır.
+    '--------------------------------------------------
+    For i = 1 To [A65536].End(xlUp).Row
+        
+        '--------------------------------------------------
+        'Kapsayıcı döngümüz A sütunundaki listede
+        'her hücreyi seçecek şekilde çalışıyor.
+        'Önce hücre seçilecek, sonra da karakter
+        'kontrolü yapılacak.
+        'D sütununda düzeltilmesini istediğimiz
+        'karakterler var, bu listedeki her
+        'karakter için kontrol yapıyoruz.
+        '--------------------------------------------------
+        For j = 1 To [D65536].End(xlUp).Row
+            
+            '--------------------------------------------------
+            'Eğer seçilen hücrede istenmeyen
+            'karakter varsa Find formülü sayı
+            'değeri döndürecek. Aslında bu
+            'karakterin bulunduğu indeks
+            'numarasını verecek, olmasaydı
+            'hata verecekti. Sayı değeri
+            'döndürünce anlıyoruz ki,
+            'değiştirilmesi gereken
+            'karakter var.
+            '--------------------------------------------------
+            sonuc = Application. _
+                    WorksheetFunction. _
+                    Find(Range("D" & j), _
+                    Range("A" & i), 1)
+            
+            '--------------------------------------------------
+            'Eğer sonuc değişkenine bir sayı
+            'atanabilmişse şart bölümü çalışacak.
+            '--------------------------------------------------
+            If IsNumeric(sonuc) Then
+                
+                '--------------------------------------------------
+                'Substitute formülüyle hücredeki istenmeyen
+                'karakteri E sütununda yerine geçmesini
+                'istediğimiz karakterle değiştiriyoruz.
+                '--------------------------------------------------
+                Range("A" & i) = Application. _
+                                 WorksheetFunction. _
+                                 Substitute(Range("A" & i), _
+                                 Range("D" & j), _
+                                 Range("E" & j))
+            End If
+        Next
+    Next
+End Sub
+
+</code></pre>
+
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+</body>
+</html>

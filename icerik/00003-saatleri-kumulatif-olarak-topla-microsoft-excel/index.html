@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Saatleri Kümülatif Olarak Topla - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+     <br>
+     <div class="row">
+        <div class="col">                
+           <h1>Saatleri Kümülatif Olarak Topla - Microsoft Excel</h1>
+           <hr /><p class="lead">Saat toplama ile ilgili değişik bir bilgiyi arşive eklemek istiyorum, saat topladığımızda mod almadan toplayacak, yani <strong>12+17=5 (mod 24)</strong> değil de <strong>29</strong> olacak. Nasıl yapıldığını görelim.</p><hr />
+
+
+           <div class="alert alert-primary"><strong>Senaryo</strong></div>
+           <p>Excelde saatleri toplamak istiyorsunuz. Örneğin 16:00 ve 04:00 gibi iki saatin toplamı bize 20:00 değerini döndürecektir. Bununla birlikte bu sayılara bir de 05:00 sayısını eklersek bize 25:00 gibi bir sonuç döndürmez, mod 24'e göre değeri olan 01:00 sonucunu döndürür. Biz 25:00 sonucunu istiyoruz. Nasıl yapabiliriz?</p>
+
+           <div class="alert alert-primary"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">=METNEÇEVİR(TOPLA(A1:A3);"[s]:nn")</code></pre>
+<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+       </div>
+   </div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+</body>
+</html>
