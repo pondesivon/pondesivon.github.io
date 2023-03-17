@@ -1,4 +1,4 @@
-body    { overflow-y:scroll; }
+body    { overflow-y:scroll }
 
 /* satır  */
 .str { border-bottom:1px solid #ddd; padding:10px }
