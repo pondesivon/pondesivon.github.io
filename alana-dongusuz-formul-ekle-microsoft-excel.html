@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Alana Döngüsüz Formül Ekle - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Alana Döngüsüz Formül Ekle - Microsoft Excel</h1>
+			<hr /><p class="lead">Formüller her ne kadar daha çok güvenebileceğimiz sonuçlar verse de konu performans olduğunda makro vazgeçilmez oluyor. İkisinin kombinasyonunu yapalım. Aşağıdaki kod seçtiğiniz alana duruma göre formüllerin kendisini ya da formüllerin sonuçlarını getirebilir.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub AlanaDonguKullanmadanFormulEkle()
+    Application.ScreenUpdating = False
+    
+    With Sheets("tablo").Range("A1:K200000")
+        .FormulaR1C1 = _
+            "=IF(VLOOKUP(RC1,datagen!R1C1:R100000C11,1)=RC1, " & _
+            "VLOOKUP(RC1,datagen!R1C1:R100000C11,2),""N/A"")"
+        .Value = .Value
+    End With
+    
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub AlanaDonguKullanmadanFormulEkle()
+    '--------------------------------------------------
+    'Ekran güncellemesini kapat.
+    '--------------------------------------------------
+    Application.ScreenUpdating = False
+    
+    '--------------------------------------------------
+    'Düşeyara sonuçlarını "tablo" sayfasında
+    'A1:K200000 arasında listele.
+    '--------------------------------------------------
+    With Sheets("tablo").Range("A1:K200000")
+        
+        '--------------------------------------------------
+        'Formülü ayarladık.
+        '--------------------------------------------------
+        .FormulaR1C1 = _
+            "=IF(VLOOKUP(RC1,datagen!R1C1:R100000C11,1)=RC1, " & _
+            "VLOOKUP(RC1,datagen!R1C1:R100000C11,2),""N/A"")"
+        
+        '--------------------------------------------------
+        'Formülün kendisini değil de değerlerini ekliyoruz.
+        'Eğer aşağıdaki kodu iptal edersek formülün kendisi hücrelere eklenir.
+        '--------------------------------------------------
+        .Value = .Value
+    End With
+    
+    '--------------------------------------------------
+    'Sonuçları görmek için ekran
+    'güncellemesini tekrardan aktifleştir.
+    '--------------------------------------------------
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

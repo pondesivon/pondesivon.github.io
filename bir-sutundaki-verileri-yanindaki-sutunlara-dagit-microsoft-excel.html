@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Bir Sütundaki Verileri Yanındaki Sütunlara Dağıt - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Bir Sütundaki Verileri Yanındaki Sütunlara Dağıt - Microsoft Excel</h1>
+           <hr /><p class="lead">A sütunundaki toplam veri sayısı, verilen sütuna bölünüyor ve bu sonuç tam sayı olacak şekilde yukarı yuvarlanıyor. Böylelikle son sütun verilen sayıdan düşük olsa bile sıkıntı çıkmıyor. Her sütuna düşecek veri sayısını belirledikten sonra A sütunundaki veriler sırayla yanındaki sütunlara dağıtılıyor.
+</p><hr /><div class="alert alert-info"><strong>Not</strong></div>
+Kodu aşağıdaki bilgilere uygun olarak çalıştırın. En temizi boş bir sayfada çalıştırmak. Bir yerden sonra ayarlamalar çok sıkıcı olmaya başladığından dolayı bu ayarları yapmadım. Yaparsam güncellerim.
+
+<ul>
+    <li>Veriler sütunun başından başlasın. Eğer A sütunundaysa A1’den, B sütunuysa B1’den vs.</li>
+    <li>Sütun başlığı olmasın. Olması kodun çalışmasına engel değil ama kafa karıştırabilir.</li>
+    <li>Sütunda ilgili veriler dışında hiçbir şey olmasın. Bu da kodun çalışmasına engel değil ama son sütunda boşluklar olursa ve verilen alandan sonra da devam eden veriler varsa onları da ekliyor, gereksiz fazlalık oluyor.</li>
+</ul>
+
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BirSutundakiVerileriSutunlaraDagit(alan As Range, sutunSayisi As Integer)
+    
+    Dim i                        As Long
+    Dim mesaj                    As Variant
+    Dim alanSutunAdi             As String
+    Dim hedefSutunlar            As Range
+    Dim sutunBasinaEklenecekVeri As Long
+        
+    alanSutunAdi = Left(alan.Address(0, 0), 1)
+    
+    If alan.Columns.Count > 1 Then Exit Sub
+        
+    sutunBasinaEklenecekVeri = _
+        WorksheetFunction.RoundUp(alan.Rows.Count / sutunSayisi, 0)
+    
+    Set hedefSutunlar = _
+        Columns(alan.Column + 1).Resize(, sutunSayisi).EntireColumn
+    
+    If WorksheetFunction.CountA(hedefSutunlar) <> 0 Then
+        mesaj = MsgBox(hedefSutunlar.Address & _
+                    " sütunları içinde veri tespit edildi ve silinecek. " & _
+                    "Devam edilsin mi?", _
+                    vbYesNo, _
+                    "UYARI")
+                    
+        If mesaj = vbYes Then
+            GoTo devam
+        Else
+            MsgBox "İşlem iptal edildi. Herhangi bir işlem yapılmadı."
+            Exit Sub
+        End If
+    End If
+
+
+devam:
+    hedefSutunlar.Clear
+    
+    For i = 1 To sutunSayisi
+        Range(alanSutunAdi & "1:" & alanSutunAdi & sutunBasinaEklenecekVeri).Offset(0, i).Value = _
+        Range(alanSutunAdi & ((i - 1) * sutunBasinaEklenecekVeri + 1) & ":" & alanSutunAdi & i * sutunBasinaEklenecekVeri).Value
+    Next
+End Sub
+
+Sub Kullan()
+    BirSutundakiVerileriSutunlaraDagit Range("F1:F1000"), 5
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BirSutundakiVerileriSutunlaraDagit(alan As Range, sutunSayisi As Integer)
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak.
+    '--------------------------------------------------
+    Dim i As Long
+    
+    '--------------------------------------------------
+    'Eğer etkilenecek sütunda veri varsa
+    'değişiklik yapılıp yapılmayacağını MsgBox
+    'ile soracağız, cevabı da bu değişken
+    'aracılığı ile alacağız.
+    '--------------------------------------------------
+    Dim mesaj As Variant
+    
+    '--------------------------------------------------
+    'Sub yordamda parametre olarak verilen
+    'alan isimli Range tipli değişkenin
+    'sütun adını öğrenmek için kullanacağız.
+    '(A, B, K, M, AC gibi sütun adları çıkacak.)
+    '--------------------------------------------------
+    Dim alanSutunAdi As String
+    
+    '--------------------------------------------------
+    'Verilerin ekleneceği sütunlarla ilgili
+    'işlem yapacağız, bu sütunlara da
+    'bu değişkenle müdahale edeceğiz.
+    '--------------------------------------------------
+    Dim hedefSutunlar As Range
+    
+    '--------------------------------------------------
+    'Alandaki verileri sütunlara dağıtmak için
+    'hesap yapacağız ve ona göre verileri böleceğiz.
+    'Bu hesabın sonucunu da bu değişkene aktaracağız.
+    '--------------------------------------------------
+    Dim sutunBasinaEklenecekVeri As Long
+        
+    '--------------------------------------------------
+    'Eğer verilen alanın sütun sayısı
+    '1'den fazlaysa kod çalışmasın.
+    '--------------------------------------------------
+    If alan.Columns.Count > 1 Then Exit Sub
+    
+    '--------------------------------------------------
+    'Verilen alanın sütun ismini öğrendik.
+    'Biz zaten tek sütun için çalıştığımızdan
+    'alanın tek bir sütunu ve dolayısıyla
+    'tek bir adı olacak.
+    '--------------------------------------------------
+    alanSutunAdi = Left(alan.Address(0, 0), 1)
+    
+    '--------------------------------------------------
+    'Alandaki toplam veri sayısını,
+    'verdiğimiz sütun sayısına bölüyoruz.
+    'Bu sayı küsüratlı çıkarsa üste yuvarlıyoruz.
+    'Böylelikle eksik veri gelmesini önlemiş oluyoruz.
+    '
+    'Sonuç olarak da her sütuna kaç veri
+    'düşeceğini belirlemiş oluyoruz.
+    '--------------------------------------------------
+    sutunBasinaEklenecekVeri = _
+        WorksheetFunction.RoundUp(alan.Rows.Count / sutunSayisi, 0)
+    
+    '--------------------------------------------------
+    'Sütunlara dağıtma işlemi parametrede verilen alanın
+    'bir sağındaki sütundan itibaren başlayacak. Buna
+    'göre etkilenen sütunlar üzerinde kontrol yapmak için
+    'etkilenecek bu alanları dinamik olarak belirliyoruz.
+    '--------------------------------------------------
+    Set hedefSutunlar = _
+        Columns(alan.Column + 1).Resize(, sutunSayisi).EntireColumn
+    
+    '--------------------------------------------------
+    'Eğer etkilenecek sütunlarda veri varsa silinip
+    'silinmeyeceğini soruyoruz. Eğer evet cevabı
+    'gelirse eski veriler silinecek ve yerine
+    'yenileri yazılacak. Hayır cevabı gelirse
+    'hiçbir şey yapılmayacak.
+    '--------------------------------------------------
+    If WorksheetFunction.CountA(hedefSutunlar) <> 0 Then
+        
+        '--------------------------------------------------
+        'Gösterilecek mesajı ayarladık.
+        '--------------------------------------------------
+        mesaj = MsgBox(hedefSutunlar.Address & _
+                    " sütunları içinde veri tespit edildi ve silinecek. " & _
+                    "Devam edilsin mi?", _
+                    vbYesNo, _
+                    "UYARI")
+                    
+        If mesaj = vbYes Then
+            '--------------------------------------------------
+            'Eğer evet cevabı gelirse bu noktadan bir zıplama
+            'yapacak ve kod "devam" isimli referans noktasından
+            'itibaren çalışmaya devam edecek.
+            '--------------------------------------------------
+            GoTo devam
+        Else
+            
+            '--------------------------------------------------
+            'Hayır cevabı gelmişse bir değişiklik yapılmadığı
+            'ile ilgili mesaj gelecek ve yordamdan çıkılacak.
+            '--------------------------------------------------
+            MsgBox "İşlem iptal edildi. Herhangi bir işlem yapılmadı."
+            Exit Sub
+        End If
+    End If
+
+devam:
+    
+    '--------------------------------------------------
+    'Etkilenecek sütunları veri karışıklığını
+    'önlemek amacıyla temizledik ve kullanıma
+    'hazır hale getirdik.
+    '--------------------------------------------------
+    hedefSutunlar.Clear
+    
+    '--------------------------------------------------
+    'Parametrede verilen sütun sayısı
+    'kadar işlem yaptırıyoruz.
+    '--------------------------------------------------
+    For i = 1 To sutunSayisi
+        
+        '--------------------------------------------------
+        'Olayı kısaca şu:
+        'Etkilenecek sütunu ve ana veride eklenecek
+        'kısmı dinamik olarak seçiyor ve ekliyor.
+        '
+        'Eşitliğin Sol Tarafı:
+        'Ana verinin sütununun 1 sağından itibaren sütun sütun
+        'kaydırılıyor ve ekleme sayısı kadar alanın değeri için
+        'atama yapılıyor.
+        '
+        'Eşitliğin Sağ Tarafı:
+        'Hesaplanan ekleme sayısı kadar satır grup grup,
+        've yukarıdan aşağıya doğru olacak şekilde seçiliyor.
+        'Sol tarafta belirlenen ilgili sütuna aktarılıyor.
+        '--------------------------------------------------
+        Range(alanSutunAdi & "1:" & alanSutunAdi & sutunBasinaEklenecekVeri).Offset(0, i).Value = _
+        Range(alanSutunAdi & ((i - 1) * sutunBasinaEklenecekVeri + 1) & ":" & alanSutunAdi & i * sutunBasinaEklenecekVeri).Value
+    Next
+End Sub
+
+Sub Kullan()
+    
+    '--------------------------------------------------
+    'Parametre olunca parametre bilgisi de vermemiz gerektiğinden
+    'doğrudan kullanamadık. Başka bir yordamda parametre bilgileri
+    'verip bu yordamı çalıştırdığımızda işlem gerçekleşiyor.
+    'F1:F1000 alanı 5 sütuna bölünüyor.
+    '--------------------------------------------------
+    BirSutundakiVerileriSutunlaraDagit Range("F1:F1000"), 5
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.excel.web.tr/threads/makro-ile-yuvarlama.143324/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.excel.web.tr/threads/makro-ile-yuvarlama.143324/</a>
+    <a href="https://stackoverflow.com/questions/10811121/detect-if-range-is-empty" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/10811121/detect-if-range-is-empty</a>
+    <a href="https://stackoverflow.com/questions/15974367/get-a-first-column-range-from-a-range-in-excel-vba" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/15974367/get-a-first-column-range-from-a-range-in-excel-vba</a>
+    <a href="https://www.automateexcel.com/vba/activecell-row-column/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.automateexcel.com/vba/activecell-row-column/</a>
+    <a href="https://www.mrexcel.com/board/threads/vba-function-that-returns-the-column-name-of-a-range.468661/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/board/threads/vba-function-that-returns-the-column-name-of-a-range.468661/</a>
+    <a href="https://stackoverflow.com/questions/15974367/get-a-first-column-range-from-a-range-in-excel-vba/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/15974367/get-a-first-column-range-from-a-range-in-excel-vba/</a>
+    <a href="https://stackoverflow.com/questions/10106465/excel-column-number-from-column-name/31272350" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/10106465/excel-column-number-from-column-name/31272350</a>
+    <a href="https://stackoverflow.com/questions/26111825/vba-select-columns-using-numbers" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/26111825/vba-select-columns-using-numbers</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

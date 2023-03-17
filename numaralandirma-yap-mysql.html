@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Numaralandırma Yap - MySQL</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Numaralandırma Yap - MySQL</h1>
+           <hr /><p class="lead">MySQL ile sorgu kullanarak tablolarınıza sıra numarası verme işlemi yapan alternatif bir sorgu örneğine göz atalım.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<p>Bazen sorgulama işlerimizi kolaylaştırmak için sorgu kullanarak 1’den başlayıp sorgu sayımıza kadar artan bir sütunu ekleyebiliriz. SQL Server’da <code>DENSE_RANK</code> fonksiyonu kullanarak bu işlemi kolayca yapabiliyoruz ama MySQL için çok az daha zahmetli oluyor.</p>
+
+<div class="alert alert-info"><strong>Sorgu</strong></div>
+<p>Aşağıdaki MySQL komutları tablodaki sütunların en soluna bir sütun ekler ve 1’den başlayıp birer birer artan numaralar verir.</p>
+
+<p>Aşağıdaki komutların hepsini çalıştırırsanız bir veri tabanı ve bir tablo oluşturur. Bu tablo üzerinde numaralandırma yapar.</p>
+<pre><code class="language-sql">
+/*---------------------------------------------
+Veri tabanı oluştur. 
+---------------------------------------------*/
+CREATE DATABASE IF NOT EXISTS syData;
+USE syData;
+
+/*---------------------------------------------
+Tablo oluştur.
+---------------------------------------------*/
+CREATE TABLE `deneme`
+(
+id INT NOT NULL,
+sutun VARCHAR(50)
+);
+
+INSERT INTO deneme(id, sutun) VALUES(1,'a');
+INSERT INTO deneme(id, sutun) VALUES(1,'b');
+INSERT INTO deneme(id, sutun) VALUES(2,'d');
+INSERT INTO deneme(id, sutun) VALUES(2,'c');
+INSERT INTO deneme(id, sutun) VALUES(3,'e');
+INSERT INTO deneme(id, sutun) VALUES(4,'f');
+
+/*---------------------------------------------
+Sıra Numarası Veren Sorgu
+---------------------------------------------*/
+SELECT 
+@i:=@i+1 AS sayac, 
+t.*
+FROM 
+deneme AS t,
+(SELECT @i:=0) AS foo
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://stackoverflow.com/questions/1895110/row-number-in-mysql" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://stackoverflow.com/questions/1895110/row-number-in-mysql</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

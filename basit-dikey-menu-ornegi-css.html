@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Basit Dikey Menü Örneği - CSS</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Basit Dikey Menü Örneği - CSS</h1>
+           <hr /><p class="lead">CSS ile bir dikey menü oluşturma örneğine göz atalım.
+</p><hr /><div class="alert alert-info"><strong>Ekran Görüntüsü</strong></div>
+
+<a class="img-fluid d-block" href="doc/basit-dikey-menu-ornegi-css-1.png"><img src="doc/basit-dikey-menu-ornegi-css-1.png" alt="" /></a>
+
+<div class="alert alert-info"><strong>Dosyalar</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>index.html</strong></p>
+        <p>Dikey menünün bulunduğu dosya.</p>
+<pre><code class="language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;title&gt;Basit Dikey Menü Örneği&lt;/title&gt;
+	&lt;link rel="stylesheet" type="text/css" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;ul class="dikey_menu"&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Ana Sayfa&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Hakkımızda&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;Referans&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="#"&gt;İletişim&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>style.css</strong></p>
+        <p>Stil dosyası.</p>
+<pre><code class="language-css">
+.dikey_menu {
+	list-style-type:none;
+	margin:0px auto;
+	padding:2px;
+}
+
+.dikey_menu a {
+	display:block;
+	color:#595959;
+	background-color:#e2e2e2;
+	border-radius:3px;
+	border:1px solid #454545;
+	width:120px;
+	padding:5px 10px;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.dikey_menu a:hover {
+	font-weight:bold;
+	color:#FFFFFF;
+	background-color:#81807e;
+}
+
+.dikey_menu li {
+	margin:0px 0px 2px 0px;
+}
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>style.css (Açıklamalı)</strong></p>
+        <p>Açıklamaların da bulunduğu stil dosyası.</p>
+<pre><code class="language-css">
+/* --------------------------------------------------
+index.html dosyasında &lt;ul&gt; etiketi içine 
+yazdığımız  "dikey_menu" adlı class için 
+css ayarlarını yapıyoruz.
+-------------------------------------------------- */
+.dikey_menu {
+
+	/* --------------------------------------------------
+	&lt;ul&gt; ve &lt;li&gt; etiketlerini  kullanarak  
+	maddelerden oluşan bir liste yapmış oluyoruz. 
+
+	Başındaki madde işaretlerini 
+	kaldırmak için bunu kullandık.
+	-------------------------------------------------- */
+	list-style-type:none;
+
+	margin:0px auto;
+
+	padding:2px;
+}
+
+
+
+/* --------------------------------------------------
+dikey_menu sınıfındaki bağlantılar 
+için css ayarlarını yapıyoruz. 
+-------------------------------------------------- */
+.dikey_menu a {
+	
+	/* --------------------------------------------------
+	Menülerin alt alta görünmesini sağlıyoruz.
+	-------------------------------------------------- */
+	display:block;
+
+	/* --------------------------------------------------
+	Bağlantının yazı rengini belirledik.
+	-------------------------------------------------- */
+	color:#595959;
+
+	/* --------------------------------------------------
+	dikey_menu sınıfındaki bağlantıların 
+	arka plan rengini belirledik.
+	-------------------------------------------------- */
+	background-color:#e2e2e2;
+
+	/* --------------------------------------------------
+	Kenarlık yaptık.
+	-------------------------------------------------- */
+	border:1px solid #454545;
+
+	/* --------------------------------------------------
+	Kenarları yuvarlatılmış dikdörtgen 
+	yapmak için bu kodu kullandık.
+	-------------------------------------------------- */
+	border-radius:3px;
+
+
+	/* --------------------------------------------------
+	Menünün genişliğini ayarladık.
+	-------------------------------------------------- */
+	width:120px;
+
+	padding:5px 10px;
+
+	/* --------------------------------------------------
+	Bağlantıların yazı tipi varsayılan 
+	olarak altı çizili olur. 
+	
+	Bunu kaldırmak için bu kodu kullandık.
+	-------------------------------------------------- */
+	text-decoration:none;
+
+	/* --------------------------------------------------
+	Yazıyı kalın yapıyor.
+	-------------------------------------------------- */
+	font-weight:bold;
+}
+
+
+
+/* --------------------------------------------------
+dikey_menu sınıfı içinde  işaretçiyi bağlantı 
+üzerine getirdiğimizde olacakları belirliyoruz.
+-------------------------------------------------- */
+.dikey_menu a:hover {
+	
+	/* --------------------------------------------------
+	Yazı yine kalın kalsın.
+	-------------------------------------------------- */
+	font-weight:bold;
+
+	/* --------------------------------------------------
+	İşaretçi bağlantı üstüne geldiği 
+	zaman yazı rengi beyaza dönüşsün. 
+	-------------------------------------------------- */
+	color:#FFFFFF;
+
+	/* --------------------------------------------------
+	İşaretçi bağlantı üstüne geldiği 
+	zaman arka plan rengi koyu gri olsun.
+	-------------------------------------------------- */
+	background-color:#81807e;
+}
+
+
+
+/* --------------------------------------------------
+dikey_menu sınıfı içinde 
+&lt;li&gt; etiketi ile ilgili
+özellikleri belirliyoruz.
+-------------------------------------------------- */
+.dikey_menu li {
+
+	/* --------------------------------------------------
+	Bağlantılar arasındaki boşluğu belirledik.
+	-------------------------------------------------- */
+	margin:0px 0px 2px 0px;
+}
+</code></pre>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
+<p><a class="btn btn-warning" target="_blank" href="doc/basit-dikey-menu-ornegi-css.zip" rel="noopener">basit-dikey-menu-ornegi-css.zip</a></p>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

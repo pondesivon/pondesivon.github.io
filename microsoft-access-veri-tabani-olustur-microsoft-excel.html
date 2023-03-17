@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Microsoft Access Veri Tabanı Oluştur - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Microsoft Access Veri Tabanı Oluştur - Microsoft Excel</h1>
+           <hr /><p class="lead">İstenilen klasöre, istenilen isimde boş bir Microsoft Access veri tabanı oluşturmak için kullanılabilecek VBA kodudur.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub MsAccessVeriTabaniOlustur()
+    Dim kayitYolu      As String
+    Dim accessDosyaAdi As String
+    Dim tamDosyaYolu   As String
+    Dim AccessNesnesi  As Object
+    Dim nesne          As Object
+    
+    Set nesne = CreateObject("WScript.Shell").SpecialFolders
+    kayitYolu = nesne("desktop")
+    
+    accessDosyaAdi = "yeni access veri tabanı.accdb"
+    tamDosyaYolu = kayitYolu & Application.PathSeparator & accessDosyaAdi
+    
+    Set AccessNesnesi = CreateObject("ADOX.CATALOG")
+    
+    AccessNesnesi.Create "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+    "Data Source=" & tamDosyaYolu
+    
+    If Err Then
+        MsgBox Err.Description & "  ", vbExclamation, "HATA"
+        Exit Sub
+    End If
+    
+    Set AccessNesnesi = Nothing
+    kayitYolu = vbNullString
+    accessDosyaAdi = vbNullString
+    tamDosyaYolu = vbNullString
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub MsAccessVeriTabaniOlustur()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim kayitYolu      As String
+    Dim accessDosyaAdi As String
+    Dim tamDosyaYolu   As String
+    Dim AccessNesnesi  As Object
+    Dim nesne          As Object
+    
+    '--------------------------------------------------
+    'Burada oluşturulacak Access dosyasının kaydedileceği
+    'tam yolu belirliyoruz. Ben kodun daha esnek olması
+    'açısından özel klasör ayarı ile yaptım ama siz
+    'isterseniz direkt kayitYolu değişkenine tam KLASÖR
+    'yolunu string olarak atayabilirsiniz.
+    '
+    'Örnek:
+    'kayitYolu = "C:\Dosyalar\VeriTabanlari"
+    '--------------------------------------------------
+    Set nesne = CreateObject("WScript.Shell").SpecialFolders
+    kayitYolu = nesne("desktop")
+    
+    '--------------------------------------------------
+    'Veri tabanının adını belirledik.
+    '--------------------------------------------------
+    accessDosyaAdi = "yeni access veri tabanı.accdb"
+    
+    '--------------------------------------------------
+    'Klasör yolundan ve dosya adından
+    'tam yolu oluşturduk.
+    '--------------------------------------------------
+    tamDosyaYolu = kayitYolu & Application.PathSeparator & accessDosyaAdi
+    
+    '--------------------------------------------------
+    'Access veri tabanı oluşturma işlemine başladık.
+    'Yeni bir ADOX.CATALOG nesnesi oluşturuyoruz.
+    '--------------------------------------------------
+    Set AccessNesnesi = CreateObject("ADOX.CATALOG")
+    
+    '--------------------------------------------------
+    'Bağlantı metnini kullanarak yeni bir
+    'veri tabanı oluşturuyoruz. Bu bağlantı
+    'metinleri versiyonlara göre değişiklik
+    'gösterebiliyor. Haberiniz olsun, çalışmazsa
+    'excel, access [versiyon] connection strings
+    'şeklinde anahtar kelime türeterek
+    'aratabilirsiniz.
+    '--------------------------------------------------
+    AccessNesnesi.Create "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+    "Data Source=" & tamDosyaYolu
+    
+    '--------------------------------------------------
+    'Hata olursa mesaj göster.
+    '--------------------------------------------------
+    If Err Then
+        MsgBox Err.Description & "  ", vbExclamation, "HATA"
+        Exit Sub
+    End If
+    
+    '--------------------------------------------------
+    'Değişkenleri sıfırlama, temizleme,
+    'boşaltma işlemi yaptık.
+    '--------------------------------------------------
+    Set AccessNesnesi = Nothing
+    kayitYolu = vbNullString
+    accessDosyaAdi = vbNullString
+    tamDosyaYolu = vbNullString
+End Sub
+</code></pre>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

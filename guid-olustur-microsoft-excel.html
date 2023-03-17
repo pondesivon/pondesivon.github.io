@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>GUID Oluştur - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>GUID Oluştur - Microsoft Excel</h1>
+			<hr /><p class="lead">Excel VBA ile GUID (Globally Unique Indentifier) oluşturmaya yarayan bir koddur.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Declare Function CoCreateGuid Lib "OLE32.DLL" (pGuid As GUID) As Long
+
+Private Type GUID
+    Data1 As Long
+    Data2 As Integer
+    Data3 As Integer
+    Data4(0 To 7) As Byte
+End Type
+
+Public Function CreateGUID() As String
+    Dim G As GUID
+
+    With G
+        If (CoCreateGuid(G) = 0) Then
+        CreateGUID = _
+            String$(8 - Len(Hex$(.Data1)), "0") & Hex$(.Data1) & _
+            String$(4 - Len(Hex$(.Data2)), "0") & Hex$(.Data2) & _
+            String$(4 - Len(Hex$(.Data3)), "0") & Hex$(.Data3) & _
+            IIf((.Data4(0) < &H10), "0", "") & Hex$(.Data4(0)) & _
+            IIf((.Data4(1) < &H10), "0", "") & Hex$(.Data4(1)) & _
+            IIf((.Data4(2) < &H10), "0", "") & Hex$(.Data4(2)) & _
+            IIf((.Data4(3) < &H10), "0", "") & Hex$(.Data4(3)) & _
+            IIf((.Data4(4) < &H10), "0", "") & Hex$(.Data4(4)) & _
+            IIf((.Data4(5) < &H10), "0", "") & Hex$(.Data4(5)) & _
+            IIf((.Data4(6) < &H10), "0", "") & Hex$(.Data4(6)) & _
+            IIf((.Data4(7) < &H10), "0", "") & Hex$(.Data4(7))
+        End If
+    End With
+End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.cpearson.com/excel/CreateGUID.aspx" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.cpearson.com/excel/CreateGUID.aspx</a>
+</div>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>DefType İle Değişken Tanımla - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>DefType İle Değişken Tanımla - Microsoft Excel</h1>
+           <hr /><p class="lead"><code>DefType</code> ifadesi ile değişken tanımlanması ve bu değişkenlerin kullanılmasıyla ilgili örnek bir makro kodudur.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+<p class="text-danger"><strong>Özet</strong></p>
+Şimdi bu <code>DefType</code> statement biraz değişik bir şey, özetlemeye çalışayım. Kabaca bir harfi ya da bir harf aralığını bir değişken türüne <code>DefType</code> ile atıyoruz. O harfle ya da harf aralığındaki bir harf ile başlayan değişkenler, fonksiyonlar, prosedürler atanan veri tipinden değer üreteceği varsayılarak çalıştırılıyor.
+</li>
+	<li class="list-group-item">
+<p class="text-danger"><strong>Örnek</strong></p>
+<pre><code class="language-vb">
+'Double
+'G harfini double değişkeni için atadık. 
+'g harfi ile başlayan değişkenler double gibi işlem görür. 
+'g ile başlayan fonksiyon sonuç olarak double değer
+'döndürülecekmiş gibi düşünülür.
+DefDbl G
+
+'String
+'Burada da harf aralığı nasıl atanır bunu görüyoruz. 
+'S-Z ve arasındaki (muhtemelen ingiliz alfabesindeki) 
+'harflerle başlayan değişkenler, fonksiyonlar, 
+'prosedürler, string tipte düşünülür.
+DefStr S-Z
+</code></pre>
+</li>
+	<li class="list-group-item">
+<p class="text-danger"><strong>Kapsamı</strong></p>
+Modül seviyesinde çalışırlar. Yani bunları mesela bir Sub yordam içine yazamıyoruz.
+</li>
+	<li class="list-group-item">
+<p class="text-danger"><strong>Option Explicit İstisnası</strong></p>
+<code>Option Explicit</code> ile çalışmaz.
+</li>
+</ul>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+DefBool A
+DefByte B
+DefInt C
+DefLng D
+DefCur E
+DefSng F
+DefDbl G
+DefDate H
+DefStr S-Z
+DefObj J
+DefVar K
+
+Sub DefIleDegiskenTanimla()
+    aDegisken = True
+    bDegisken = 1
+    cDegisken = 123
+    dDegisken = 4879
+    eDegisken = 120#
+    fDegisken = 908
+    gDegisken = 0.390874
+    hDegisken = DateTime.Now
+    sDegisken = "Merhaba Dünya!"
+    tDegisken = "Selam"
+    kDegisken = Array("qwe", "asd", "zxc")
+    
+    MsgBox aDegisken & vbCrLf & _
+           bDegisken & vbCrLf & _
+           fDegisken & vbCrLf & _
+           hDegisken & vbCrLf & _
+           gDegisken & vbCrLf & _
+           sDegisken & vbCrLf & _
+           tDegisken & vbCrLf & _
+           kDegisken(1)
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+'--------------------------------------------------
+'Boolean
+'--------------------------------------------------
+DefBool A
+
+'--------------------------------------------------
+'Byte
+'--------------------------------------------------
+DefByte B
+
+'--------------------------------------------------
+'Integer
+'--------------------------------------------------
+DefInt C
+
+'--------------------------------------------------
+'Long
+'--------------------------------------------------
+DefLng D
+
+'--------------------------------------------------
+'Currency
+'--------------------------------------------------
+DefCur E
+
+'--------------------------------------------------
+'Single
+'--------------------------------------------------
+DefSng F
+
+'--------------------------------------------------
+'Double
+'--------------------------------------------------
+DefDbl G
+
+'--------------------------------------------------
+'Date
+'--------------------------------------------------
+DefDate H
+
+'--------------------------------------------------
+'String
+'--------------------------------------------------
+DefStr S-Z
+
+'--------------------------------------------------
+'Object
+'--------------------------------------------------
+DefObj J
+
+'--------------------------------------------------
+'Variant
+'--------------------------------------------------
+DefVar K
+
+Sub DefIleDegiskenTanimla()
+    '--------------------------------------------------
+    'Değişkenlerimizi yukarıdaki DefType harflerine
+    'dikkat ederek oluşturduk ve atamalarını yaptık.
+    '--------------------------------------------------
+    aDegisken = True
+    bDegisken = 1
+    cDegisken = 123
+    dDegisken = 4879
+    eDegisken = 120#
+    fDegisken = 908
+    gDegisken = 0.390874
+    hDegisken = DateTime.Now
+    sDegisken = "Merhaba Dünya!"
+    tDegisken = "Selam"
+    kDegisken = Array("qwe", "asd", "zxc")
+    
+    '--------------------------------------------------
+    's ve t ile başlayan değişkenlerin
+    'ikisi de string değeri sorunsuz
+    'bir şekilde döndürüyor.
+    '
+    'Dizi değişkeni yazdırma da
+    'son satırda görülebilir.
+    '--------------------------------------------------
+    MsgBox aDegisken & vbCrLf & _
+           bDegisken & vbCrLf & _
+           fDegisken & vbCrLf & _
+           hDegisken & vbCrLf & _
+           gDegisken & vbCrLf & _
+           sDegisken & vbCrLf & _
+           tDegisken & vbCrLf & _
+           kDegisken(1)
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://docs.microsoft.com/en-us/office/vba/language/concepts/getting-started/deftype-statements" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/en-us/office/vba/language/concepts/getting-started/deftype-statements</a>
+    <a href="https://bettersolutions.com/vba/variables/deftype.htm" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://bettersolutions.com/vba/variables/deftype.htm</a>
+    <a href="https://www.oreilly.com/library/view/vb-vba/1565923588/1565923588_ch07-493-fm2xml.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.oreilly.com/library/view/vb-vba/1565923588/1565923588_ch07-493-fm2xml.html</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

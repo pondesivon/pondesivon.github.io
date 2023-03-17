@@ -1,3 +1,7 @@
 body    { overflow-y:scroll; }
-.satir { border-bottom:1px solid #ddd; padding:10px }
-.baglanti { text-decoration: none; }
+
+/* satır  */
+.str { border-bottom:1px solid #ddd; padding:10px }
+
+/* bağlantı  */
+.bgl { text-decoration: none; }

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Basit Flat Kullanıcı Girişi Tasarımı - CSS</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Basit Flat Kullanıcı Girişi Tasarımı - CSS</h1>
+           <hr /><p class="lead">CSS ile yapılmış basit bir flat kullanıcı girişi ekranı örneği aşağıda verilmiştir.
+</p><hr /><div class="alert alert-info"><strong>Ekran Görüntüsü</strong></div>
+<a class="img-fluid d-block" href="doc/basit-flat-kullanici-girisi-tasarimi-css-1.png"><img src="doc/basit-flat-kullanici-girisi-tasarimi-css-1.png" alt="" /></a>
+<br>
+<div class="alert alert-info"><strong>Dosyalar</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>index.html</strong></p>
+        <p>Kullanıcı girişi ekranının bulunduğu sayfa.</p>
+<pre><code class="language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;title&gt;Basit Flat Kullanıcı Girişi&lt;/title&gt;
+	&lt;meta charset="utf-8"&gt;
+	&lt;link rel="stylesheet" type="text/css" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="giris_ana"&gt;
+		&lt;div class="baslik"&gt;Kullanıcı Girişi&lt;/div&gt;
+		&lt;form method="post"&gt;
+			&lt;span class="etiket"&gt;Kullanıcı Adı&lt;/span&gt;
+			&lt;input type="text" class="textbox" name="giris_kullanici_adi" /&gt; 
+			&lt;span class="etiket"&gt;Şifre&lt;/span&gt;
+			&lt;input type="password" class="textbox" name="giris_sifre" /&gt;
+			&lt;br /&gt;
+			&lt;input type="submit" value="Giriş Yap" name="giris_onayla" class="giris_onayla" /&gt;
+		&lt;/form&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Stil dosyası.</strong></p>
+        <p>Stil dosyası.</p>
+<pre><code class="language-css">
+body {
+	background:#f6f6f6;
+	font-family:"Arial";
+}
+
+.giris_ana {
+	position:absolute;
+	top:50%;
+	left:50%;
+	width:260px;
+	height:280px;
+	padding:20px;
+	margin-left:-150px;
+	margin-top:-150px;
+	box-shadow:0px 0px 10px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:0px 0px 10px rgba(50, 50, 50, 0.5);
+	-webkit-box-shadow:0px 0px 10px rgba(50, 50, 50, 0.5);
+}
+
+.giris_ana .baslik {
+	font-size:20px;
+	margin-bottom:10px;
+	background-color:#61ac53;
+	color:#fff;
+	width:115.5%;
+	font-weight:bold;
+	display:block;
+	margin:-20px 20px 20px -20px;
+	padding:20px 0px 20px 0px;
+	text-align:center;
+}
+
+.textbox {
+	padding:5px;
+	border:1px solid #ccc;
+	border-radius:3px;
+	display:block;
+	width:95%;
+}
+
+.etiket {
+	margin-top:20px;
+	padding-bottom:5px;
+	display:block;
+	color:#61ac53;
+	font-weight:bold;
+}
+
+.giris_onayla {
+	padding:15px;
+	width:100%;
+	margin-top:15px;
+	background-color:#55b14e;
+	color:#ffffff;
+	font-weight:bold;
+	cursor:pointer;
+	float:right;
+}
+
+.giris_onayla:hover {
+	background-color:#94c691;
+}
+</code></pre>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
+
+<p><a class="btn btn-warning" target="_blank" href="doc/basit-flat-kullanici-girisi-tasarimi-css.zip" rel="noopener">basit-flat-kullanici-girisi-tasarimi-css.zip</a></p>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

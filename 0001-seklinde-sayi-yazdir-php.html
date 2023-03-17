@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>0001 Şeklinde Sayı Yazdır - PHP</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>0001 Şeklinde Sayı Yazdır - PHP</h1>
+           <hr /><p class="lead">Herhangi bir kaydın değerleri sabit dijitler üzerinden tutuluyorsa ve siz de bu şekilde değerler üretmek istiyorsanız aşağıdaki kod parçası işinizi görebilir.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<p>Sabit dijit derken ne kastediliyor?</p>
+
+<p>Şu şekilde yapılar:<br>
+000<br>
+001<br>
+002<br>
+…<br>
+057<br>
+…<br>
+100<br>
+</p>
+
+<p>Gördüğünüz gibi yukarıdaki örnekte sabit üç dijit olacak şekilde numaralandırma yapılmış. PHP ile bu şekilde kullanabilmek için <code>str_pad()</code> fonksiyonunu kullanacağız.</p>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-php">
+&lt;?php
+	$sayi  = 37;
+	$dijit = 8;
+	
+	//--------------------------------------------------
+	//Sonuç olarak bize 00000037 sonucunu döndürecektir.
+	//--------------------------------------------------
+	$yeni_bicim = str_pad($sayi, $dijit, 0, STR_PAD_LEFT);
+?&gt;
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://stackoverflow.com/questions/10769681/incrementing-numbers-starting-from-0000-in-php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://stackoverflow.com/questions/10769681/incrementing-numbers-starting-from-0000-in-php</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

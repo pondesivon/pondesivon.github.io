@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Ürünün Geliş Tarihlerini Sondan Başa Listele - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Ürünün Geliş Tarihlerini Sondan Başa Listele - Microsoft Excel</h1>
+			<hr /><p class="lead">A sütununda ürünlerin ve B sütununda da tarihlerin bulunduğu listede E1 hücresindeki ürün bilgisi kriterinden hareketle tarihleri sondan başa listeleme işlemi yapıyor.</p><hr />
+
+<div class="alert alert-info"><strong>Veri</strong></div>
+<p>Formülü malzeme sayıları veri setine göre çalıştıracağız. Veri setine aşağıdaki bağlantıdan ulaşabilirsiniz.</p>
+
+<p><a class="btn btn-outline-primary btn-sm" target="_blank" href="doc/veri-seti-meyveler-ve-gelis-tarihleri.html" rel="noopener">meyveler ve geliş tarihleri veri seti</a></p>
+
+<div class="alert alert-info"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">
+=METNEÇEVİR(EĞER(SATIR(A1)>EĞERSAY($A$2:$A$37;$E$1);"";BÜYÜK(EĞER($A$2:$A$37=$E$1;B$2:B$37);SATIR(A1)));"gg.aa.yyyy")
+</code></pre>
+
+<p class="text-danger"><strong>Kullanım</strong></p>
+<ol>
+    <li>Listenin <code>A</code> ve <code>B</code> sütununda olduğundan, kriter bilgisinin de <code>E</code> sütununda olduğundan emin olun.</li>
+    <li>Formülü filtreleme yapılmasını istediğiniz yere yapıştırın.</li>
+    <li><kbd>F2</kbd> tuşuna basın.</li>
+    <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> klavye kısayolunu kullanarak dizi formülü olarak yeniden hesaplatın.</li>
+    <li>Formülün son halini gerektiği kadar aşağıya doğru kopyalayın.</li>
+</ol>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<pre><code class="language-excel-formula">
+'--------------------------------------------------
+'Formülün son halini tarih biçimine çeviriyoruz. 
+'Aksi halde hücreleri yeniden biçimlendirmemiz 
+'gerekiyor.
+'--------------------------------------------------
+=METNEÇEVİR
+(
+    '--------------------------------------------------
+    'Biçimlendirme olayını saymazsak olay bir EĞER 
+    'formülü üzerinde dönüyor. Bu kapsayıcı EĞER 
+    'formülü şu işi yapıyor: Bizim çalıştığımız
+    'filtrelenmiş verinin dışına çıkılırsa işlem 
+    'yapılmamasını sağlıyor. Aksi durumda ise verilen 
+    'kritere göre ürünlerin geliş tarihini büyükten 
+    'küçüğe (sondan başa) sıralayacak şekilde listeliyor.
+    'Yani asıl formülün düzgün bir şekilde çalışabilmesi
+    'için kontrol görevini üstleniyor.
+    '--------------------------------------------------
+    EĞER
+    (
+        '--------------------------------------------------
+        'Burada şartımızı belirliyoruz. Önemli bir kısım.
+        'Eğer benim 30 satırlık bir verim varsa ve filtre
+        'sonucunda 5 tane veri kalıyorsa 5'ten sonraki
+        'sayılar için yapılacak işlemler benim için 
+        'anlamsız oluyor. Bu yüzden bunun önüne geçmek
+        'istiyorum.
+        '
+        'Nasıl yapabilirim?
+        'Şimdi biz formülü bir yere yazıp aşağı doğru
+        'kopyalıyoruz. Kopyaladıkça filtre verileri de
+        'sırayla eklenmeye başlıyor. Eğer ben filtrelenmiş
+        'verilerin toplam sayısını bulabilirsem ve bunu da
+        'birden başlayıp birer birer artan bir sayaçla
+        'kontrol edebilirsem formülün nerede durması 
+        'gerektiğini bilebilirim. İşte bunu yapabilmek için
+        'EĞERSAY ve SATIR formüllerinden faydalanarak bir
+        'şart yazdık. EĞERSAY ile filtrelenmiş verilerin
+        'toplam sayısını buluyoruz. SATIR(A1) formülü ile
+        'de ana formülü 1'den başlayarak kontrol ettiriyoruz.
+        'Formül her aşağı kopyalandığında bu sayı birer birer
+        'artacak ve (yukarıdaki örneğe göre) 6 olduğu zaman
+        'işlem yapılmamasını gerektiğini bileceğim.
+        '--------------------------------------------------
+        SATIR(A1)>EĞERSAY($A$2:$A$37;$E$1);
+
+        '--------------------------------------------------
+        'Eğer yukarıdaki şart doğruysa boş geç.
+        '--------------------------------------------------
+        "";
+
+        '--------------------------------------------------
+        'BÜYÜK formülü ilk parametresindeki EĞER dizi formülü
+        'sonucunda oluşmuş dizi içeriğini büyükten küçüğe
+        'doğru sıralamaya yarıyor. BÜYÜK formülü iki 
+        'parametreden oluşuyor ve ilk parametrede sıralama
+        'yapılacak diziyi giriyoruz, ikinci parametrede de 
+        'dizideki kaçıncı en büyük veriyi seçeceğimizi 
+        'belirtiyoruz. İkinci parametrenin başlangıç değeri
+        'bir formül, SATIR(A1) formülü.
+        '
+        'Bu SATIR(A1) formülü BÜYÜK formülü her aşağıya doğru 
+        'kopyalandığında sırasıyla birinci, ikinci, 
+        'üçüncü, vs. değeri getirmemize yardımcı olacak.
+        'Bizim ana formülümüz de her aşağıya doğru 
+        'kopyalandığında en sondaki tarihten en baştaki 
+        'tarihe kadar tarih getirme işlemi yapacak.
+        '
+        'Ayrıca BÜYÜK formülünün verileri alt alta sıralamak
+        'gibi bir güzelliği de var. Normalde ilk parametredeki
+        'eğer şartını dizi formülü olarak çalıştırırsanız
+        'yine ilgili verileri gösterir ama diğer verileri de
+        'YANLIŞ olarak gösterir. EĞER formülü ile listelenmiş
+        'veride şartı sağlayan veriler bir tarih sayısı iken
+        'diğer veriler bu şekilde değil. Böylelikle sayı olanlar
+        'normal bir şekilde listelenirken diğer veriler hata
+        'vereceek ve onlar da en altta kalacaklar.
+        '--------------------------------------------------
+        BÜYÜK
+        (
+            EĞER
+            (
+                $A$2:$A$37=$E$1;
+                B$2:B$37
+            );
+            SATIR(A1)
+        )
+    );
+    
+    '--------------------------------------------------
+    'METNEÇEVİR formülünün ikinci parametresi.
+    'Sonuç metnimizi gg.aa.yyyy şeklinde biçimlendirmek
+    'istediğimizi bu parametreyle belirtiyoruz.
+    '--------------------------------------------------
+    "gg.aa.yyyy"
+)
+</code></pre>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

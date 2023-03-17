@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Uzantı Listesine Göre Dosya Listele – Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Uzantı Listesine Göre Dosya Listele – Microsoft Excel</h1>
+			<hr /><p class="lead">Bir klasördeki dosyaları verilen uzantı listesindeki uzantılara göre A sütununda listeliyor. Eğer dosyanın uzantısı uzantı listesindeki öğelerden birisiyle eşleşiyorsa listeye dahil ediliyor.</p><hr />
+
+<div class="alert alert-primary"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Sub UzantiListesineGoreDosyaListele()
+    'Değişken Tanımlamaları
+    Dim fso       As Object
+    Dim klasor    As Object
+    Dim yol       As String
+    Dim uzantilar As Variant
+    Dim dosya     As Object
+    Dim j         As Integer
+    Dim sayac     As Long
+    
+    
+    'Listeye Dahil Edilecek Uzantılar
+    uzantilar = Array(".xls", ".xlsx", ".xlsm", ".pdf", ".docx", _
+                      ".png", ".txt", ".jpg", ".rar", ".zip", _
+                      ".mp4", ".xml", ".json", ".sql", ".part")
+                      
+    'Değişken Tanımlamaları
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    yol = "C:\"
+    sayac = 1
+    Set klasor = fso.Getfolder(yol)
+    
+    'Alan Temizleme İşlemi
+    Range("A:A").Clear
+    
+    'Döngü İle Dosya Tespit İşlemi
+    For Each dosya In klasor.Files
+        For j = LBound(uzantilar) To UBound(uzantilar)
+            If dosya.Name Like "*" & uzantilar(j) Then
+                Range("A" & sayac) = dosya.Name
+                sayac = sayac + 1
+            End If
+        Next
+    Next
+End Sub
+</code></pre>
+
+<div class="alert alert-primary"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Sub UzantiListesineGoreDosyaListele()
+    'Değişken Tanımlamaları
+    Dim fso       As Object
+    Dim klasor    As Object
+    Dim yol       As String
+    Dim uzantilar As Variant
+    Dim dosya     As Object
+    Dim j         As Integer
+    Dim sayac     As Long
+    
+    '--------------------------------------------------
+    'Listeye Dahil Edilecek Uzantılar
+    'Listelenmesini istediğimiz dosya uzantılarını
+    'bir dizi üzerinde listeledik ve klasördeki
+    'dosyaları kontrol ederken de yine bu
+    'diziden faydalanacağız.
+    '--------------------------------------------------
+    uzantilar = Array(".xls", ".xlsx", ".xlsm", ".pdf", ".docx", _
+                      ".png", ".txt", ".jpg", ".rar", ".zip", ".mp4", _
+                      ".xml", ".json", ".sql", ".part")
+                      
+    
+    '--------------------------------------------------
+    'Listeleme için kullanılacak nesnemizi ayarlıyoruz.
+    '--------------------------------------------------
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    '--------------------------------------------------
+    'Klasör yolunu tanımlıyoruz.
+    'Siz de bu yolu ihtiyacınıza göre değiştirin.
+    '--------------------------------------------------
+    yol = "C:\"
+    
+    '--------------------------------------------------
+    'A sütununa listeleme yaparken satır numarasını
+    'belirlemek için kullanacağımız değişkeni ayarladık.
+    '--------------------------------------------------
+    sayac = 1
+    
+    '--------------------------------------------------
+    'Klasör ayarlamasını yaptık.
+    'Yukarıda oluşturduğumuz fso nesnesi ve yol
+    'bilgisini ayarladıktan sonra klasör ayarını
+    'yapabilir hale geldik.
+    '--------------------------------------------------
+    Set klasor = fso.Getfolder(yol)
+    
+    '--------------------------------------------------
+    'Yeni bir listeleme işlemi başlamadan önce
+    'A sütunundaki tüm verileri temizliyoruz.
+    'Bu potansiyel bir karışıklığın önüne de
+    'geçmek için önemli. Örneğin "sebzeler"
+    'klasöründe 10 dosya var ve "meyveler"
+    'klasöründe de 5 dosya var. Eğer siz
+    '--------------------------------------------------
+    Range("A:A").Clear
+    
+    '--------------------------------------------------
+    'Döngü İle Dosya Tespit İşlemi
+    'Klasördeki her dosya için işlem yapılacak.
+    '--------------------------------------------------
+    For Each dosya In klasor.Files
+    
+        '--------------------------------------------------
+        'Her bir dosyayı dizideki bütün
+        'uzantılar için kontrol et.
+        '--------------------------------------------------
+        For j = LBound(uzantilar) To UBound(uzantilar)
+            
+            '--------------------------------------------------
+            'Eğer uzantıda eşleşme olursa işlem yap.
+            '--------------------------------------------------
+            If dosya.Name Like "*" & uzantilar(j) Then
+                
+                '--------------------------------------------------
+                'Sıradaki boş alana dosyanın adını ekle.
+                '--------------------------------------------------
+                Range("A" & sayac) = dosya.Name
+                
+                '--------------------------------------------------
+                'sayac değişkenini 1 artırdık.
+                'Böylelikle döngü çalışmaya devam ettikçe
+                'A sütununda sonraki boş satır seçilecek.
+                '--------------------------------------------------
+                sayac = sayac + 1
+            End If
+        Next
+    Next
+End Sub
+</code></pre>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

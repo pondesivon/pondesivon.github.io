@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Klasördeki Ses Dosyalarının Toplam Süresini Bul - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Klasördeki Ses Dosyalarının Toplam Süresini Bul - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir klasör içinde bulunan ses dosyalarının toplam sayısını ve süresini veren alternatif bir makro kodudur.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub KlasordekiSesDosyalarininToplamSuresiniBul()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim objShell            As Object
+    Dim objKlasor           As Object
+    Dim objKlasorOge        As Object
+    Dim klasor              As Variant
+    Dim klasor_yolu         As String
+    Dim i                   As Integer
+    Dim toplam_dosya_sayisi As Integer
+    Dim toplam_sure         As Date
+    
+    '--------------------------------------------------
+    'Alan Temizleme
+    '--------------------------------------------------
+    Columns("A:B").Clear
+    Range("A1").Select
+    
+    '--------------------------------------------------
+    'Hazırlık
+    '--------------------------------------------------
+    klasor = "C:\arsiv\ses-dosyalari"
+    klasor_yolu = Dir$(klasor & "\*.*")
+    
+    Set objShell = CreateObject("Shell.Application")
+    Set objKlasor = objShell.Namespace(klasor)
+    
+    i = 0
+    toplam_sure = 0
+    
+    '--------------------------------------------------
+    'Listeleme
+    '--------------------------------------------------
+    Do While klasor_yolu <> ""
+        ActiveCell.Offset(i, 0) = klasor_yolu
+        Set objKlasorOge = objKlasor.ParseName(klasor_yolu)
+        
+        ActiveCell.Offset(i, 1) = objKlasor.GetDetailsOf(objKlasorOge, 27)
+        toplam_sure = toplam_sure + ActiveCell.Offset(i, 1)
+        
+        i = i + 1
+        klasor_yolu = Dir$()
+    Loop
+    
+    '--------------------------------------------------
+    'Bilgilendirme
+    '--------------------------------------------------
+    ActiveCell.Offset(i + 1, 0) = "Toplam Dosya Sayısı = " & i
+    ActiveCell.Offset(i + 1, 1) = "Toplam Süre = " & toplam_sure
+    ActiveCell.Offset(i + 1, 1) = Format(ActiveCell.Offset(i + 1, 1), "ss:dd:nn")
+    
+    '--------------------------------------------------
+    'Değişken Temizleme
+    '--------------------------------------------------
+    Set objKlasorOge = Nothing
+    Set objKlasor = Nothing
+    Set objShell = Nothing
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub KlasordekiSesDosyalarininToplamSuresiniBul()
+
+    '--------------------------------------------------
+    'Shell.Application nesnesi oluşturmak
+    've buradan klasör ayarını yapmak
+    'için kullanılacak olan değişken.
+    '--------------------------------------------------
+    Dim objShell            As Object
+    
+    '--------------------------------------------------
+    'Bunu da ilgili klasördeki dosyalardan
+    'bilgi çekmek için kullanacağız. Ana
+    'klasörümüzü ayarlıyoruz bu değişkenle.
+    '--------------------------------------------------
+    Dim objKlasor           As Object
+    
+    '--------------------------------------------------
+    'Klasörün içindeki dosyalara
+    'ulaşmak ve bilgi çekmek için
+    'kullanacağımız değişken.
+    '--------------------------------------------------
+    Dim objKlasorOge        As Object
+    
+    '--------------------------------------------------
+    'Klasörümüzün yolunu bu değişkene ekliyoruz.
+    'String ifade girişi yapıyoruz.
+    '--------------------------------------------------
+    Dim klasor              As Variant
+    
+    '--------------------------------------------------
+    'klasor değişkenindeki değere göre
+    'kod çalıştıracağız ve sonucu bu
+    'değişkene atayacağız.
+    '--------------------------------------------------
+    Dim klasor_yolu         As String
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak değişken.
+    '--------------------------------------------------
+    Dim i                   As Integer
+    
+    '--------------------------------------------------
+    'Raporlama için toplam dosya sayısını tutan değişken.
+    '--------------------------------------------------
+    Dim toplam_dosya_sayisi As Integer
+    
+    '--------------------------------------------------
+    'Raporlama için süre bilgisini tutan değişken.
+    '--------------------------------------------------
+    Dim toplam_sure         As Date
+    
+    '--------------------------------------------------
+    'İlk önce temizliğimizi güzelce yapıyoruz.
+    'Yeniden çalıştırdığımızda karışıklık
+    'olmasının önüne geçmiş bulunuyoruz böylelikle.
+    '--------------------------------------------------
+    Columns("A:B").Clear
+    Range("A1").Select
+    
+    '--------------------------------------------------
+    'Değişkenlere gerekli atamaları yapıyoruz.
+    '--------------------------------------------------
+    klasor = "C:\arsiv\ses-dosyalari"
+    klasor_yolu = Dir$(klasor & "\*.*")
+    
+    Set objShell = CreateObject("Shell.Application")
+    Set objKlasor = objShell.Namespace(klasor)
+    
+    i = 0
+    toplam_sure = 0
+    
+    '--------------------------------------------------
+    'Klasördeki tüm dosyaları incele.
+    'Tüm dosyalar incelenene kadar
+    'döngü devam etsin, aksi halde dursun.
+    '--------------------------------------------------
+    Do While klasor_yolu <> ""
+        
+        '--------------------------------------------------
+        'A sütunundaki son boş hücreye dosya
+        'ismini aşağıdaki kodlar aracılığıyla
+        'yazdırıyoruz.
+        '--------------------------------------------------
+        ActiveCell.Offset(i, 0) = klasor_yolu
+        Set objKlasorOge = objKlasor.ParseName(klasor_yolu)
+        
+        '--------------------------------------------------
+        'A sütunundaki son boş hücreye dosya
+        'süresini aşağıdaki kodlar aracılığıyla
+        'yazdırıyoruz. 27 sayısı süreyi veriyor ama
+        'bu sanırım dosyadan dosyaya değişebiliyor.
+        'Parametre listesini döngüyle yazdırabilir
+        've buna göre size uygun parametrenin sayısını
+        'seçebilirsiniz.
+        '--------------------------------------------------
+        ActiveCell.Offset(i, 1) = objKlasor.GetDetailsOf(objKlasorOge, 27)
+        toplam_sure = toplam_sure + ActiveCell.Offset(i, 1)
+        
+        i = i + 1
+        klasor_yolu = Dir$()
+    Loop
+    
+    '--------------------------------------------------
+    'Burada da toplam dosya sayısını
+    've toplam süre bilgisini A ve B
+    'sütunlarındaki verinin sonuna yazdırdık.
+    '--------------------------------------------------
+    ActiveCell.Offset(i + 1, 0) = "Toplam Dosya Sayısı = " & i
+    ActiveCell.Offset(i + 1, 1) = "Toplam Süre = " & toplam_sure
+    ActiveCell.Offset(i + 1, 1) = Format(ActiveCell.Offset(i + 1, 1), "ss:dd:nn")
+    
+    '--------------------------------------------------
+    'Değişken temizliği yapıyoruz.
+    '--------------------------------------------------
+    Set objKlasorOge = Nothing
+    Set objKlasor = Nothing
+    Set objShell = Nothing
+End Sub
+</code></pre>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
