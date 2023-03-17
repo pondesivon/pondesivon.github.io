@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Makro Yüzünden Açılmayan Dosyayı Aç - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Makro Yüzünden Açılmayan Dosyayı Aç - Microsoft Excel</h1>
+           <hr /><p class="lead">Normalde çalışan dosyaya makro ekledim ve kaydettim. Çalıştırınca da başka bir makro ile çakıştı ve dosyayı kilitledi. Tabii sonra kaç kez kapatıp açmayı denedim ama her seferinde dosya kilitleniyordu. Bu sorunun çözümü için bir alternatif buldum.
+</p><hr /><div class="alert alert-info"><strong>Olay</strong></div>
+<p>Mesele deneme tahtası olarak kullandığım bir excel dosyasına ikinci bir Auto_Open yordamını ekleyip kaydetmiş bulunmam sebep oldu. İkisi çakışınca tabii, dosyayı her açışımda kilitleniyordu.</p>
+
+<div class="alert alert-info"><strong>Sonuçsuz Kalan Denemeler</strong></div>
+<p>Bunları da özellikle yazıyorum, belki farklı durumlar için işinize yarayabilir.</p>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Dosyayı Yeniden Açmaya Çalışmak</strong></p>
+        <p>Olmadı, her açtığımda dosya laaak diye kilitleniyordu. Zorla kapatıyordum.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Farklı Dosya Açarak VBA Penceresini Açmak</strong></p>
+        <p>Bunu yaptıktan sonra asıl dosyayı açarım, oradan da fazla kodu silerim diyordum ama o da yemedi. VBA penceresinde onlarca pencere açılmaya çalışıyormuş gibi görünüyordu.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Otomatik Kurtarılmış Dosyayı Farklı Kaydetmek</strong></p>
+        <p>Farklı bir dosya açtığımda yine asıl dosya için kurtarma seçenekleri ve kurtarılmış dosyalar çıkmıştı. Bunu yaptım, dosyayı yine kilitledi.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Excel Ayarlarını Değiştirmek</strong></p>
+        <p>Güvenlik ayarlarını değiştirdim, makrolar hiç çalışmasın diye ama sanırım kullandığım dosyaya zaten izin vermiş olduğumdan bu da işe yaramadı. Gerçi bunu çok kurcalamadım, benim beceriksizliğim de söz konusu olabilir.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Farklı Bir Sürümde Açmak</strong></p>
+        <p>Benim bilgisayarımda excel 2016 ingilizce vardı, bir de onun üzerinden açayım dedim. Veeee, eureka! Tabii o dosyayı 2016 sürümünde ilk defa açtığımdan dolayı, makro var hacı, kısıtladım, istiyorsan aç bildirimi geldi. İşte aradığım fikir buydu. Gerçi böyle birden fazla sürümde ofis programı herkeste olmaz. Şimdi buna göre çözümü yazayım.</p>
+    </li>
+</ul>
+
+<div class="alert alert-info"><strong>Çözüm</strong></div>
+<p>Microsoft Excel üzerinde, standart ayar olarak, eğer dış kaynaktan indirilmiş bir Microsoft Excel dosyası varsa ve makro içeriyorsa dosyayı açar ama makroları devre dışı bırakır, bildirimle de size haber verir. Siz de isteğinize göre açar veya devre dışı bırakırsınız. Sonraki açılmalarda da bu seçiminiz excel tarafından hatırlanır. Bu standart ayarı değiştirmediğinizi varsayarak bir çözüm hazırladım. Eğer bu şekilde değilse Microsoft Excel ayarlarından güven merkezini kullanarak değişiklik yapabilirsiniz.</p>
+
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Microsoft Excel Uygulamasını Kapat</strong></p>
+        <p>Aslında çok sıkıntı da olmaz diye düşünüyorum ama en temizi tüm excel dosyalarını ve uygulamasını kapatmak olacak diye düşünüyorum.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Web Tarayıcı İşlemleri</strong></p>
+        <p>Şimdi kullandığınız web tarayıcısını açın ve bozuk olan excel dosyanızı tarayıcınızdaki sekmelerin dizildiği çubuğun üzerine sürükleyin. Bunu yaptığınızda dosya kaydetme penceresi açılacak ve size dosyayı indirip indirmek istemediğinizi soracak. İndirin! Evet, doğru anladın, dosyayı indir.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>İndirilen Dosyayı Aç</strong></p>
+        <p>Şimdi gidin ve indirdiğiniz Microsoft Excel dosyasını açın. Sonuç? Sanki dosyayı internetten indirmişiz gibi oldu ve excel de güvenlik önlemi olarak ilk başta makroları bir devre dışı bıraktı. Bu da kilitlenme yaşamadan VBA penceresine geçiş yapabileceğim anlamına geliyor.</p>
+    </li>
+</ul>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Durum Çubuğunda Geri Sayım Yap - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Durum Çubuğunda Geri Sayım Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Verdiğimiz başlangıç zamanına ve atlama aralığına göre geri sayım yapan bir makro örneğidir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub DurumCubugundaGeriSayimYap()
+    '© K.-M. Buss
+    Dim sayac          As Integer
+    Dim dc             As Boolean
+    Dim baslama_zamani As Integer
+    Dim atlama_araligi As Integer
+    
+    dc = Application.DisplayStatusBar
+    baslama_zamani = 5
+    atlama_araligi = 1
+    
+    For sayac = baslama_zamani To 0 Step -atlama_araligi
+        Application.StatusBar = sayac & " saniye kaldı."
+        Application.Wait Now + TimeSerial(0, 0, atlama_araligi)
+    Next
+    
+    Application.StatusBar = False
+    Application.DisplayStatusBar = dc
+    
+    MsgBox "Geri sayım bitti.", vbOKOnly, "Bilgi"
+End Sub
+</code></pre>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

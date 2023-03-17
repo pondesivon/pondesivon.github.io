@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Döngü İle Hücrelere Yorum Satırı Ekle - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Döngü İle Hücrelere Yorum Satırı Ekle - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir ya da birden fazla açıklama satırını ilgili satıra veya sütuna dağıtmak isterseniz Range(“A1:E5”).NoteText tarzı bir mantıkla hareket etmek beni yarı yolda bıraktı. Ben de alternatif arayışına girdim ve Offset ile yapılmış bir çözüm buldum.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Sub DonguIleHucrelereYorumSatiriEkle()
+    Dim alan        As Range
+    Dim i           As Long
+    Dim aciklamalar As Variant
+    
+    aciklamalar = Array("Açıklama1", "Açıklama2", "Açıklama3", _
+                        "Açıklama4", "Açıklama5", "Açıklama6", _
+                        "Açıklama7", "Açıklama8", "Açıklama9", _
+                        "Açıklama10")
+                        
+    Set alan = Range("A1")
+    
+    For i = 1 To 10
+        alan.Offset(i - 1, 0).NoteText aciklamalar(i - 1)
+    Next i
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Sub DonguIleHucrelereYorumSatiriEkle()
+    
+    '--------------------------------------------------
+    'Hareket noktası olarak kullanacağımız
+    'alanı atayacağımız değişken.
+    '--------------------------------------------------
+    Dim alan        As Range
+    
+    '--------------------------------------------------
+    'Döngü ile yorum satırı eklemek
+    'için kullanılacak sayaç değişkeni.
+    '--------------------------------------------------
+    Dim i           As Long
+    
+    '--------------------------------------------------
+    'Farklı açıklamalarımızın ekleyeceğimiz
+    'sıraya göre bulunduğu dizi değişkeni.
+    '--------------------------------------------------
+    Dim aciklamalar As Variant
+    
+    '--------------------------------------------------
+    'Açıklamaları dizi olarak sırayla tanımladık.
+    '--------------------------------------------------
+    aciklamalar = Array("Açıklama1", "Açıklama2", "Açıklama3", _
+                        "Açıklama4", "Açıklama5", "Açıklama6", _
+                        "Açıklama7", "Açıklama8", "Açıklama9", _
+                        "Açıklama10")
+    
+    '--------------------------------------------------
+    'Yorum satırı dinamik olarak alan seçme
+    'işleminde sıkıntı çıkardığından dolayı
+    'Offset ile ilerleyeceğiz, yani alan seçip
+    'o alana göre sağdaki, soldaki, üstteki,
+    'alttaki diğer alanlara referans vereceğiz.
+    'Bu yüzden hareket için kullanılacak alanı tanımladık.
+    '--------------------------------------------------
+    Set alan = Range("A1")
+    
+    '--------------------------------------------------
+    'Döngü ile açıklamaları ekletiyoruz.
+    'Dikkat ederseniz hareket için
+    'kullandığımız alanı da döngüye dahil ettik.
+    '--------------------------------------------------
+    For i = 1 To 10
+        alan.Offset(i - 1, 0).NoteText aciklamalar(i - 1)
+    Next i
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.vbforums.com/showthread.php?413328-Excel-VBA-How-To-Read-Write-Edit-Cell-COMMENTS-RESOLVED" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.vbforums.com/showthread.php?413328-Excel-VBA-How-To-Read-Write-Edit-Cell-COMMENTS-RESOLVED</a>
+</div>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

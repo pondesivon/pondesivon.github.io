@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Çalışma Kitabında Auto_Open İle Açılış Ayarı Yap - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Çalışma Kitabında Auto_Open İle Açılış Ayarı Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Merhaba, bu yazıda excel çalışma sayfası açılırken excel uygulamasında ve excel penceresinde olmasını istediğimiz varsayılanları makro ile ayarlayacağız.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub Auto_Open()
+    AcilisUygulamaIslemleri
+    AcilisCalismaSayfasiIslemleri
+    AcilisPencereIslemleri
+End Sub
+
+
+Sub AcilisUygulamaIslemleri()
+    Application.Visible = True
+    
+    Application.StatusBar = ThisWorkbook.Name & " Merhaba " & Application.UserName
+    Application.CommandBars.ActiveMenuBar.Enabled = True
+    Application.DisplayFullScreen = False
+    Application.Caption = "Açılış Excel Uygulaması"
+    
+    Application.CommandBars("Full Screen").Enabled = True
+    Application.CommandBars("Formatting").Visible = True
+    Application.CommandBars("Standard").Visible = True
+    
+End Sub
+
+Sub AcilisPencereIslemleri()
+    With ActiveWindow
+        .DisplayWorkbookTabs = True
+        .Caption = "Açılış İşlemleri Pencere"
+    End With
+End Sub
+
+Sub AcilisCalismaSayfasiIslemleri()
+    Dim dosya_adi As String
+    
+    dosya_adi = ThisWorkbook.Name
+
+    If dosya_adi = ActiveWindow.Caption Then
+        Windows(dosya_adi).Activate
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub Auto_Open()
+    '--------------------------------------------------
+    'Class bilgilerine göre gruplandırdığımız
+    've Sub yordam olarak düzenlediğimiz kodları
+    'Auto_Open ile çağırıyoruz.
+    '
+    'Makronun bulunduğu excel dosyası her
+    'açıldığında bu kodlar da çalışacak.
+    '--------------------------------------------------
+    AcilisUygulamaIslemleri
+    AcilisCalismaSayfasiIslemleri
+    AcilisPencereIslemleri
+End Sub
+
+
+Sub AcilisUygulamaIslemleri()
+    
+    '--------------------------------------------------
+    'Excel uygulamasının yani ana pencerenin görünüp
+    'gizlenmesini sağlıyor. UserForm uygulamalarında
+    'işe yarayabiliyor.
+    '--------------------------------------------------
+    Application.Visible = True
+    
+    '--------------------------------------------------
+    'Durum çubuğuna istenilen yazının yazılmasını sağlıyor.
+    '--------------------------------------------------
+    Application.StatusBar = ThisWorkbook.Name & " Merhaba " & Application.UserName
+        
+    Application.CommandBars.ActiveMenuBar.Enabled = True
+    
+    '--------------------------------------------------
+    'Uygulamanın tam ekran olarak açılıp açılmayacağını belirleyebiliriz.
+    '--------------------------------------------------
+    Application.DisplayFullScreen = False
+    
+    '--------------------------------------------------
+    'Excel uygulamasının başlığını belirledik.
+    '--------------------------------------------------
+    Application.Caption = "Açılış Excel Uygulaması"
+    
+    '--------------------------------------------------
+    'CommandBar (menü) ve pencere görünümlerini ayarlıyoruz.
+    '--------------------------------------------------
+    Application.CommandBars("Full Screen").Enabled = True
+    Application.CommandBars("Formatting").Visible = True
+    Application.CommandBars("Standard").Visible = True
+    
+End Sub
+
+Sub AcilisPencereIslemleri()
+    
+    '--------------------------------------------------
+    'Aktif pencerede ayar yapıyoruz.
+    '--------------------------------------------------
+    With ActiveWindow
+        '--------------------------------------------------
+        'Sayfalar arasında geçiş yapmamızı sağlayan sekmelerin
+        '(Tab) görünüp görünmemesi seçeneğini ayarladık.
+        '--------------------------------------------------
+        .DisplayWorkbookTabs = True
+        
+        '--------------------------------------------------
+        'Aktif pencerenin başlık kısmını
+        'kendi istediğimiz yazıyla değiştirdik.
+        '
+        'Dikkat! Eğer excel uygulaması için de
+        'başlık belirlenmişse ve bu uygulama içinde
+        'açılan excel penceresi tam ekransa excel
+        'penceresinin Caption değeri görünür.
+        '--------------------------------------------------
+        .Caption = "Açılış İşlemleri Pencere"
+    End With
+End Sub
+
+Sub AcilisCalismaSayfasiIslemleri()
+    Dim dosya_adi As String
+    
+    '--------------------------------------------------
+    'Açtığımız dosya adından hareketle
+    'aktifleştirmek için önce dosya adını alıyoruz.
+    '--------------------------------------------------
+    dosya_adi = ThisWorkbook.Name
+
+    '--------------------------------------------------
+    'Dosyayı aktifleştiriyoruz.
+    '--------------------------------------------------
+    If dosya_adi = ActiveWindow.Caption Then
+        Windows(dosya_adi).Activate
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Not</strong></div>
+Kodlar sadece excel uygulaması ve çalışma kitabı için görünse de çok farklı kodlar da Auto_Open içinde çalıştırılabilir, bu durum sizi yanıltmasın.
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

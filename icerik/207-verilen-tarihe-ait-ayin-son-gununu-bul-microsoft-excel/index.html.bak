@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Verilen Tarihe Ait Ayın Son Gününü Bul - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Verilen Tarihe Ait Ayın Son Gününü Bul - Microsoft Excel</h1>
+           <hr /><p class="lead">SERİAY formülünden faydalanarak verilen tarihe ait ayın son gününü nasıl bulabileceğimizi görelim.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>SERİAY Formülünün Çalışma Mantığı</strong></p>
+        <p><code>SERİAY</code> formülü ayın son gününü döndürür ve iki parametre alır: Birincisi tarih parametresi, ikincisi de sayı parametresi. Sayı parametresi de şu işe yarıyor: Verilen tarihten kaç ay öncesi veya sonrası için son gün bulunmak isteniyorsa bunu pozitif ya da negatif bir sayı olarak veriyoruz, formül de ona göre ekleme veya çıkarma yapıyor. Sonuç olarak da bir tarih sayısı döndürüyor.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Bugünün Tarihi İçin Ayın Son Gününü Bulmak</strong></p>
+        <p>Görüldüğü üzere formülde <code>METNEÇEVİR</code> de kullandık. Bunun sebebi de, yukarıda da belirttiğimiz gibi, sonucun bir tarih sayısı olması. Yani biz <code>METNEÇEVİR</code> kullanarak sonuç olarak çıkan tarih sayısını (örneğin <code>43708</code>) kolayca anlaşılabilecek bir tarih biçimine çevirdik (<code>43708</code> --- <code>14.08.2019</code>).</p>
+
+<p>Dikkat edilmesi gereken ikinci nokta da ikinci parametreye 0 değerini vermiş olmamız. Bu da şu anlama geliyor: <code>SERİAY</code> formülü madem ikinci parametrede belirlenen sayıya göre ekleme çıkarma yapıp ayın son gününü veriyor, ben de bunu 0 yaparım ve böylece verilen tarihe ait ayın son gününü bulmuş olurum.</p>
+
+<pre><code class="language-excel-formula">=METNEÇEVİR(SERİAY(BUGÜN();0);"gg.aa.yyyy")</code></pre>
+
+<pre><code class="language-excel-formula">=METNEÇEVİR(SERİAY(ŞİMDİ();0);"gg.aa.yyyy")</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Verilen Tarihten Bir Ay Öncesinin Veya Sonrasının Son Günü</strong></p>
+        <p>Görüldüğü üzere işlemler bir ay öncesi ve sonrası için yapıldı ama sayıları isteğinize göre de seçebilirsiniz.</p>
+<pre><code class="language-excel-formula">=METNEÇEVİR(SERİAY(BUGÜN();-1);"gg.aa.yyyy")</code></pre>
+
+<pre><code class="language-excel-formula">=METNEÇEVİR(SERİAY(BUGÜN();1);"gg.aa.yyyy")</code></pre>
+    </li>
+</ul>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

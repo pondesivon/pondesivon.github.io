@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Seçili Hücrenin Sütun İsmini Al - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Seçili Hücrenin Sütun İsmini Al - Microsoft Excel</h1>
+           <hr /><p class="lead">Excel penceresinde sol tarafta satırlar (1, 2, 3, 4, …), üst tarafta da sütunlar (A, B, C, D, …) bulunuyor. Bir hücreye, alana vs. ait sütun isimlerini harf olarak almak için kullanılabilir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Function GecerliHucreninSutunIsminiAl()
+    GecerliHucreninSutunIsminiAl = Left(ActiveCell.Address(0, 0), 1)
+End Function
+
+Function SutunIsminiAl(alan As Range)
+    SutunIsminiAl = Left(alan.Address(0, 0), 1)
+End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Direkt geçerli hücreye yazıp çalıştırılınca sonuç
+'veriyor.
+'
+'Eğer bu hücreyi kullanarak başka hücrelere
+'kopyalarsanız ilk hücredeki sonucu veriyor.
+'
+'Yenilemek için ilgili hücrelere F2, çift tık vs.
+'ile girip tekrardan çıkmak gerekiyor.
+'--------------------------------------------------
+Function GecerliHucreninSutunIsminiAl()
+    GecerliHucreninSutunIsminiAl = Left(ActiveCell.Address(0, 0), 1)
+End Function
+
+'--------------------------------------------------
+'Alanın ilk hücresinin sütun ismini veriyor.
+'--------------------------------------------------
+Function SutunIsminiAl(alan As Range)
+    SutunIsminiAl = Left(alan.Address(0, 0), 1)
+End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.mrexcel.com/board/threads/vba-function-that-returns-the-column-name-of-a-range.468661/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/board/threads/vba-function-that-returns-the-column-name-of-a-range.468661/</a>
+</div>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

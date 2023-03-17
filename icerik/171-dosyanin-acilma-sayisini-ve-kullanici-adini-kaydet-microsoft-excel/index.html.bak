@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Dosyanın Açılma Sayısını ve Kullanıcı Adını Kaydet - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Dosyanın Açılma Sayısını ve Kullanıcı Adını Kaydet - Microsoft Excel</h1>
+           <hr /><p class="lead">Öncelikle kayıt yapılacak sayfanın varlığı kontrol ediliyor. Yoksa oluşturuluyor ve dosya her açıldığında sayacı ve açan kullanıcı bilgisini güncelleyerek mesaj olarak bildiriyor. Bunları yaptıktan hemen sonra da çalışma kitabını kaydediyor.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Workbook_Open()
+    SayfaKontrol
+    
+    Dim ws As Worksheet
+    
+    Set ws = Worksheets("calismaKitabiData")
+    ws.Range("A1").Value = ws.Range("A1").Value + 1
+    ws.Range("B1") = Application.UserName
+    
+    MsgBox "Dosyanın Açılma Sayısı: " & ws.Range("A1").Value & vbCrLf & _
+    "En Son Açan Kullanıcı: " & ws.Range("B1"), , "BİLGİ"
+    ThisWorkbook.Save
+End Sub
+
+'--------------------------------------------------
+'Kayıtları tutacağımız sayfanın olup
+'olmadığını kontrol etmeye yarayan makro.
+'--------------------------------------------------
+Private Sub SayfaKontrol()
+    Dim sayfa_adi As String
+    Dim syf       As Worksheet
+    Dim sayac     As Byte
+    
+    sayfa_adi = "calismaKitabiData"
+    
+    For Each syf In ThisWorkbook.Sheets
+        If syf.Name = sayfa_adi Then
+            Exit Sub
+        Else
+            sayac = sayac + 1
+        End If
+    Next
+    
+    If sayac > 0 Then
+        Sheets.Add
+        ActiveSheet.Name = sayfa_adi
+        ActiveSheet.Visible = False
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Workbook_Open()
+
+    '--------------------------------------------------
+    'İlk önce sayfa var mı yok mu
+    'kontrol et, yoksa oluştur bir tane.
+    '--------------------------------------------------
+    SayfaKontrol
+    
+    '--------------------------------------------------
+    'Bizim calismaKitabiData sayfasını
+    'değişkene atayarak kodun gereksiz
+    'yere uzamasını önlemek için Worksheet
+    'tipinde değişken oluşturdum.
+    '--------------------------------------------------
+    Dim ws As Worksheet
+    
+    '--------------------------------------------------
+    'ws değişkenimize sayfamızı atadık.
+    'Böylelikle her seferinde
+    'Worksheets("calismaKitabiData")
+    'yazmak yerine ws yazıp geçeceğim.
+    '--------------------------------------------------
+    Set ws = Worksheets("calismaKitabiData")
+    
+    '--------------------------------------------------
+    'Sayaç güncellemesini yap.
+    '--------------------------------------------------
+    ws.Range("A1").Value = ws.Range("A1").Value + 1
+    
+    '--------------------------------------------------
+    'Kullanıcı güncellemesini yap.
+    '--------------------------------------------------
+    ws.Range("B1") = Application.UserName
+    
+    '--------------------------------------------------
+    'Kitap açıldığında güncellenmiş bilgileri
+    'kullanıcıya mesaj olarak göster.
+    '--------------------------------------------------
+    MsgBox "Dosyanın Açılma Sayısı: " & ws.Range("A1").Value & vbCrLf & _
+    "En Son Açan Kullanıcı: " & ws.Range("B1"), , "BİLGİ"
+    
+    '--------------------------------------------------
+    'Bu işlemlerin hemen ardından kitabı
+    'kaydet, sonra hata olmasın.
+    '--------------------------------------------------
+    ThisWorkbook.Save
+End Sub
+
+'--------------------------------------------------
+'Kayıtları tutacağımız sayfanın olup
+'olmadığını kontrol etmeye yarayan makro.
+'--------------------------------------------------
+Private Sub SayfaKontrol()
+
+    '--------------------------------------------------
+    'Kayıt yapacağımız sayfanın ismini
+    'belirledikten sonra bu değişkene atayacağız.
+    '--------------------------------------------------
+    Dim sayfa_adi As String
+    
+    '--------------------------------------------------
+    'For Each döngüsü için kullanacağız bu değişkeni.
+    'Sayfaları kontrol edeceğiz tek tek.
+    '--------------------------------------------------
+    Dim syf       As Worksheet
+    
+    '--------------------------------------------------
+    'Sayfanın var olup olmadığını bu
+    'sayaç değişkenimizle öğreneceğiz.
+    '--------------------------------------------------
+    Dim sayac     As Byte
+    
+    '--------------------------------------------------
+    'Sayfa adını belirledik.
+    '--------------------------------------------------
+    sayfa_adi = "calismaKitabiData"
+    
+    '--------------------------------------------------
+    'Değişkene başlangıç değeri atadık.
+    '--------------------------------------------------
+    sayac = 0
+    
+    '--------------------------------------------------
+    'Şimdi mevcut sayfaları tek tek kontrol edeceğiz.
+    '--------------------------------------------------
+    For Each syf In ThisWorkbook.Sheets
+    
+    '--------------------------------------------------
+    'Sayfamız varsa çalışacak şart.
+    '--------------------------------------------------
+    If syf.Name = sayfa_adi Then
+    
+            '--------------------------------------------------
+            'Sayfamız varsa işlem yapmaya gerek yok demektir,
+            'kodun çalışmasına gerek kalmadığından Sub
+            'yordamdan çıkış yapabiliriz.
+            '--------------------------------------------------
+            Exit Sub
+        
+        '--------------------------------------------------
+        'Eğer sayfa yoksa bu kısım çalışacak.
+        '--------------------------------------------------
+        Else
+        
+            '--------------------------------------------------
+            'Sayacı 1 artırdık. Eğer Else kısmı çalışmamış
+            'olsaydı sayac sıfır olarak kalacaktı. Sayacın
+            'artması istediğimiz isimde sayfanın mevcut
+            'olmadığının bir göstergesi.
+            '--------------------------------------------------
+            sayac = sayac + 1
+        End If
+    Next
+    
+    
+    '--------------------------------------------------
+    'Madem sayac değişkeni sayfanın olmadığını
+    'anlamamıza yardımcı oldu, o halde sayfa
+    'oluşturalım.
+    '--------------------------------------------------
+    If sayac > 0 Then
+    
+        '--------------------------------------------------
+        'Sayfa oluşturma kodu.
+        '--------------------------------------------------
+        Sheets.Add
+        
+        '--------------------------------------------------
+        'Sayfamıza yukarıda belirlediğimiz
+        'ismi verdik. Tabii dinamik oldu
+        'değişken olarak verince.
+        '--------------------------------------------------
+        ActiveSheet.Name = sayfa_adi
+        
+        '--------------------------------------------------
+        'Sayfanın görünür olmasına gerek
+        'duymadığımdan dolayı gizledim.
+        '--------------------------------------------------
+        ActiveSheet.Visible = False
+    End If
+End Sub
+</code></pre>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
