@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Bir Klasördeki Dosyayı Başka Bir Klasöre Kopyala - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Bir Klasördeki Dosyayı Başka Bir Klasöre Kopyala - Microsoft Excel</h1>
+           <hr /><p class="lead">CopyFile metodunu kullanarak bir klasördeki dosyanın farklı bir klasöre kopyalanmasını sağlayacağız. İşlemin nasıl yapıldığını görelim.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Sub BirKlasordekiDosyayiBaskaBirKlasoreKopyala()
+    Dim fso As Object
+    
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    fso.CopyFile "C:\kaynak klasör\örnek metin belgesi.txt", _
+                 "C:\hedef klasör\örnek metin belgesi.txt"
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BirKlasordekiDosyayiBaskaBirKlasoreKopyala()
+    Dim fso As Object
+    
+    '--------------------------------------------------
+    'Scripting.FileSystemObject tipinde bir
+    'nesne örneği oluşturduk.
+    '--------------------------------------------------
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    '--------------------------------------------------
+    'CopyFile metodu ile dosyayı kopyaladık.
+    'İlk parametre olarak kopyalanacak dosyamızın tam yolunu verdik.
+    'İkinci parametre olarak da kopyalayacağımız yerin tam yolunu verdik.
+    '
+    'Burada dikkat etmeniz gereken nokta şu.
+    'Kopyalayacağımız yerin tam yolunu verirken sadece klasör
+    'adını yazıp bırakmayın, yoksa hata verebilir. Hedef
+    'yolu şu şekillerde verebilirsiniz.
+    '
+    '"C:\hedef klasör\"
+    'Sonunda \ işareti var, dikkat. Bu durumda kopyalama sonucu
+    'oluşturulacak dosya, kaynak dosyanın adı ile oluşturulacak.
+    '
+    '"C:\hedef klasör\dosya adı.accdb" (dosyanın tam yolu)
+    'Yeni dosyanın tam yolunu vererek kopyalıyoruz.
+    'Burada şöyle bir detay da var, biz nasıl farklı klasör
+    'yolu verebiliyorsak farklı bir dosya adıyla ve hatta sıkıntı
+    'çıkarmıyorsa farklı bir uzantıyla bile kopyalayabiliriz.
+    '--------------------------------------------------
+    fso.CopyFile "C:\kaynak klasör\örnek metin belgesi.txt", _
+                 "C:\hedef klasör\örnek metin belgesi.txt"
+End Sub
+</code></pre>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

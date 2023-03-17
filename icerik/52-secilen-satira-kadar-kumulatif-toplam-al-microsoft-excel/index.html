@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Seçilen Satıra Kadar Kümülatif Toplam Al - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Seçilen Satıra Kadar Kümülatif Toplam Al - Microsoft Excel</h1>
+           <hr /><p class="lead">A sütununda seçilen satıra kadar olan sayıların kümülatif toplamını alan ve seçili hücrenin yanına (B sütununa) yazan bir koddur.</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    Static EskiHucre As Range
+    On Error Resume Next
+    
+    If Intersect(Target, [A:A]) Is Nothing Or Target.Count > 1 Then Exit Sub
+    
+    Dim kumulatifToplam As Long
+    kumulatifToplam = WorksheetFunction.Sum(Range("A1:" & Target.Address))
+    
+    If Target.Offset(0, 1).Value = "" Then
+        Target.Offset(0, 1).Value = kumulatifToplam
+        EskiHucre.Value = ""
+        Set EskiHucre = Target.Offset(0, 1)
+    Else
+        EskiHucre.Interior.ColorIndex = xlColor1
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    '--------------------------------------------------
+    'Seçim değiştiğinde bir önceki hücreyi eski
+    'haline getirebilmek için onun bilgisini
+    'saklamak gerekiyor. Bu değişkeni bunun
+    'için kullanacağız.
+    '--------------------------------------------------
+    Static EskiHucre As Range
+    
+    '--------------------------------------------------
+    'Bir hata olursa sonraki satırdan devam et.
+    '--------------------------------------------------
+    On Error Resume Next
+    
+    '--------------------------------------------------
+    'Eğer yapılan seçim A sütunu dışındaysa veya
+    'seçilen alandaki toplam hücre sayısı 1'den
+    'büyükse kod çalışmasın, yordamdan çık.
+    '--------------------------------------------------
+    If Intersect(Target, [A:A]) Is Nothing Or Target.Count > 1 Then Exit Sub
+    
+    '--------------------------------------------------
+    'Kümülatif toplamı saklayacağımız
+    'değişkeni tanımladık.
+    '--------------------------------------------------
+    Dim kumulatifToplam As Long
+    
+    '--------------------------------------------------
+    'A sütununda seçilen satıra kadar olan alan için
+    'kümülatif toplamı hesaplıyoruz.
+    '--------------------------------------------------
+    kumulatifToplam = WorksheetFunction.Sum(Range("A1:" & Target.Address))
+    
+    '--------------------------------------------------
+    'Eğer seçili hücrenin bir sağındaki hücre
+    'boşsa içindeki kodlar çalışsın.
+    '--------------------------------------------------
+    If Target.Offset(0, 1).Value = "" Then
+        
+        '--------------------------------------------------
+        'Kümülatif toplamı B sütununda
+        'ilgili yere yazdır.
+        '--------------------------------------------------
+        Target.Offset(0, 1).Value = kumulatifToplam
+        
+        '--------------------------------------------------
+        'Bir önceki hücre değeri artık bizim için
+        'kullanılmayacağından dolayı bu hücredeki
+        'değeri temizliyoruz.
+        '--------------------------------------------------
+        EskiHucre.Value = ""
+        
+        '--------------------------------------------------
+        'Mevcut hücre bilgilerini de yeni bir atama yaparak
+        'saklıyoruz. Mevcut hücre de eski hücre olduğu zaman
+        'bu bilgi işimize yarayacak.
+        '--------------------------------------------------
+        Set EskiHucre = Target.Offset(0, 1)
+    Else
+        
+        '--------------------------------------------------
+        'Eğer şart sağlanmadıysa hücre rengini değiştir.
+        '--------------------------------------------------
+        EskiHucre.Interior.ColorIndex = xlColor1
+    End If
+End Sub
+</code></pre>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

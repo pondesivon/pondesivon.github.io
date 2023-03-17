@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Aktif Çalışma Sayfasını Sayfa İsmiyle Ayrı Bir Dosyaya Kaydet - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Aktif Çalışma Sayfasını Sayfa İsmiyle Ayrı Bir Dosyaya Kaydet - Microsoft Excel</h1>
+           <hr /><p class="lead">Seçili çalışma sayfasını ayrı bir <code>xlsx</code> dosyası olarak kaydetmek için kullanılabilecek alternatif bir koddur.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub AktifCalismaSayfasiniSayfaIsmiyleAyriBirDosyaOlarakKaydet()
+    Dim kaynakCalismaKitabiAd       As String
+    Dim kaynakCalismaKitabiSayfaAdi As String
+    Dim kaynakCalismaKitabiYol      As String
+    
+    Dim hedefCalismaKitabiAd        As String
+    Dim hedefCalismaKitabiYol       As String
+    
+    Dim hedefSayfa                  As Object
+    Dim a                           As Long
+    
+    kaynakCalismaKitabiAd = ActiveWorkbook.Name
+    kaynakCalismaKitabiSayfaAdi = ActiveWorkbook.ActiveSheet.Name
+    kaynakCalismaKitabiYol = ActiveWorkbook.Path
+    
+    Workbooks.Add
+    
+    hedefCalismaKitabiAd = ActiveWorkbook.Name
+    Set hedefSayfa = Workbooks(hedefCalismaKitabiAd)
+    
+    Workbooks(kaynakCalismaKitabiAd).Activate
+    ActiveSheet.Copy After:=hedefSayfa.Sheets(hedefSayfa.Sheets.Count)
+    
+'    For a = 1 To hedefSayfa.Sheets.Count - 1
+'        Application.DisplayAlerts = False
+'        hedefSayfa.Sheets(1).Delete
+'    Next
+    
+    hedefCalismaKitabiYol = _
+        kaynakCalismaKitabiYol & _
+        Application.PathSeparator & _
+        kaynakCalismaKitabiSayfaAdi
+    
+    On Error Resume Next
+    hedefSayfa.SaveAs Filename:=hedefCalismaKitabiYol
+    
+    If Err.Number = 1004 Then
+        hedefSayfa.Close
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub AktifCalismaSayfasiniSayfaIsmiyleAyriBirDosyaOlarakKaydet()
+    
+    '--------------------------------------------------
+    'Excel dosya isminin tanımlanacağı değişken.
+    '--------------------------------------------------
+    Dim kaynakCalismaKitabiAd As String
+    
+    '--------------------------------------------------
+    'Excel dosyasındaki seçili sayfanın tanımlanacağı değişken.
+    '--------------------------------------------------
+    Dim kaynakCalismaKitabiSayfaAdi As String
+    
+    '--------------------------------------------------
+    'Excel dosyasının yolunun tanımlanacağı değişken.
+    '--------------------------------------------------
+    Dim kaynakCalismaKitabiYol As String
+    
+    '--------------------------------------------------
+    'Yeni kaydedilecek dosyanın ismi.
+    '--------------------------------------------------
+    Dim hedefCalismaKitabiAd As String
+    
+    '--------------------------------------------------
+    'Yeni kaydedilecek dosya için yol.
+    '--------------------------------------------------
+    Dim hedefCalismaKitabiYol As String
+    
+    '--------------------------------------------------
+    'Kaydedeceğimiz sayfayı atayacağımız değişken.
+    '--------------------------------------------------
+    Dim hedefSayfa As Object
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak.
+    '--------------------------------------------------
+    Dim a As Long
+    
+    '--------------------------------------------------
+    'Değişken atamalarını yapıyoruz.
+    'Çalışma kitabının adını aldık.
+    '--------------------------------------------------
+    kaynakCalismaKitabiAd = ActiveWorkbook.Name
+    
+    '--------------------------------------------------
+    'Çalışma sayfasının adını atadık.
+    '--------------------------------------------------
+    kaynakCalismaKitabiSayfaAdi = ActiveWorkbook.ActiveSheet.Name
+    
+    '--------------------------------------------------
+    'Çalışma kitabının yolunu aldık.
+    '--------------------------------------------------
+    kaynakCalismaKitabiYol = ActiveWorkbook.Path
+    
+    '--------------------------------------------------
+    'Yeni bir çalışma kitabı oluşturduk.
+    '--------------------------------------------------
+    Workbooks.Add
+    
+    '--------------------------------------------------
+    'Yeni çalışma kitabı ile ilgili ayarlamalar yapıyoruz.
+    'Yeni çalışma kitabının ismini ayarladık.
+    'Bir üstteki kodda çalışma kitabını oluşturmuştuk.
+    'Bu oluşturma işleminden sonra aktif çalışma
+    'sayfası otomatik olarak yeni oluşturulan çalışma
+    'kitabı oldu.
+    '--------------------------------------------------
+    hedefCalismaKitabiAd = ActiveWorkbook.Name
+    
+    '--------------------------------------------------
+    'Yeni çalışma kitabını değişkene atadık.
+    '--------------------------------------------------
+    Set hedefSayfa = Workbooks(hedefCalismaKitabiAd)
+    
+    '--------------------------------------------------
+    'Ana çalışma kitabına geri odaklandık.
+    '--------------------------------------------------
+    Workbooks(kaynakCalismaKitabiAd).Activate
+    
+    '--------------------------------------------------
+    'Aktif çalışma sayfasındaki sayfayı yeni
+    'çalışma kitabına kopyaladık. Yeni çalışma
+    'kitabındaki sayfaların sonuna ekleyecek şekilde yaptık.
+    '--------------------------------------------------
+    ActiveSheet.Copy After:=hedefSayfa.Sheets(hedefSayfa.Sheets.Count)
+    
+    '--------------------------------------------------
+'    'Bir önceki kodda sayfamızı en sona kopyalamıştık.
+'    'Eğer diğer sayfaların olmasını istemiyorsanız
+'    'bu döngü ile o sayfaları sildirebilirsiniz.
+'    For a = 1 To hedefSayfa.Sheets.Count - 1
+'        Application.DisplayAlerts = False
+'        hedefSayfa.Sheets(1).Delete
+'    Next
+    '--------------------------------------------------
+    
+    '--------------------------------------------------
+    'Yeni çalışma kitabı için kayıt yolu belirledik.
+    '--------------------------------------------------
+    hedefCalismaKitabiYol = kaynakCalismaKitabiYol & _
+                            Application.PathSeparator & _
+                            kaynakCalismaKitabiSayfaAdi
+    
+    '--------------------------------------------------
+    'Hata olursa sonraki satırdan devam etsin.
+    'Bu noktada şöyle bir durum var. Eğer bu makroyu
+    'kayıtlı bir çalışma sayfasından değil de excel
+    'kısayolundan açtıysanız yol konusunda sıkıntı
+    'çıkacaktır. Çünkü direkt olarak excel uygulamasının
+    'çalıştığı yolu kaynak olarak göstermeye çalışacaktır.
+    'Bu da erişim sıkıntısına sebep olacaktır.
+    'Bunun için önlem alıyoruz.
+    '--------------------------------------------------
+    On Error Resume Next
+    
+    '--------------------------------------------------
+    'Sayfayı farklı kaydetmeye çalışıyoruz.
+    'Eğer hata olursa bir sonraki satırdan
+    'devam edecek.
+    '--------------------------------------------------
+    hedefSayfa.SaveAs Filename:=hedefCalismaKitabiYol
+    
+    '--------------------------------------------------
+    'Hata numarası verilen hata ise çalış.
+    '--------------------------------------------------
+    If Err.Number = 1004 Then
+        
+        '--------------------------------------------------
+        'Eğer 1004 numaralı hata meydana geldiyse
+        'yeni oluşturulan çalışma kitabını kapat.
+        '
+        'Bu noktada şöyle bir şey olacaktır.
+        'Kod çalışma kitabını kapatmayı dener ama
+        'eğer o sayfa bir değişiklik yapılmışsa
+        'kayıt etmek ister misiniz penceresini açar.
+        'Böylelikle kaydetme imkanı da olur.
+        '--------------------------------------------------
+        hedefSayfa.Close
+    End If
+End Sub
+</code></pre>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

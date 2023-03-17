@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Pondesivon - Kişisel Veri Tabanı</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Pondesivon</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="hakkinda.html">Hakkında</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page content-->
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p></p>
+          <h1>Pondesivon - Kişisel Veri Tabanı</h1>
+          <hr />
+          <p class="lead">Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı kişisel veri tabanı, alternatif not defteri.</p>
+          <hr />
+
+
+<div class="input-group mb-3">
+  <input class="form-control _form-control-lg bg-light" type="text" id="konu" onkeypress="konuFiltre()" aria-describedby="basic-addon3">
+  <div class="input-group-append">
+    <span class="input-group-text bg-secondary text-light" id="basic-addon2">Tabloda Ara</span>
+  </div>
+</div>
+
+          <table id="tablo" class="table table-secondary _table-sm table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Sıra</th>
+                <th scope="col">
+                  Konu
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">51</th>
+                <td>
+                  <a href="icerik/51-formullerdeki-dolar-isaretlerini-temizle-microsoft-excel/index.html" class="list-group-item list-group-item-action">Formüllerdeki Dolar İşaretlerini Temizle - Microsoft Excel</a>
+                </td>
+              </tr>
+
+              <tr>
+			          <th scope="row">50</th>
+                <td>
+                  <a href="icerik/50-alan-birlestir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Alan Birleştir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">49</th>
+                <td>
+                  <a href="icerik/49-verilen-sayiya-gore-ay-ismini-getir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Verilen Sayıya Göre Ay İsmini Getir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">48</th>
+                <td>
+                  <a href="icerik/48-metin-kisalt-microsoft-excel/index.html" class="list-group-item list-group-item-action">Metin Kısalt - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">47</th>
+                <td>
+                  <a href="icerik/47-alternatif-karekok-fonksiyonu-microsoft-excel/index.html" class="list-group-item list-group-item-action">Alternatif Karekök Fonksiyonu - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">46</th>
+                <td>
+                  <a href="icerik/46-formulun-ingilizce-karsiligini-getir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Formülün İngilizce Karşılığını Getir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">45</th>
+                <td>
+                  <a href="icerik/45-guid-olustur-microsoft-excel/index.html" class="list-group-item list-group-item-action">GUID Oluştur - Microsoft Excel</a>
+                </td>
+              </tr>			
+              <tr>
+                <th scope="row">44</th>
+                <td>
+                  <a href="icerik/44-internet-explorer-application-ile-web-sitesi-ac-microsoft-excel/index.html" class="list-group-item list-group-item-action">Internet Explorer Application İle Web Sitesi Aç - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">43</th>
+                <td>
+                  <a href="icerik/43-calisma-kitabinin-bulundugu-yolu-ver-microsoft-excel/index.html" class="list-group-item list-group-item-action">Çalışma Kitabının Bulunduğu Yolu Ver - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">42</th>
+                <td>
+                  <a href="icerik/42-word-dosyasi-olustur-icine-metin-yaz-ve-kaydet-microsoft-excel/index.html" class="list-group-item list-group-item-action">Word Dosyası Oluştur, İçine Metin Yaz Ve Kaydet - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">41</th>
+                <td>
+                  <a href="icerik/41-b-sutununa-veri-girildiginde-a-sutununa-tarih-yazdir-microsoft-excel/index.html" class="list-group-item list-group-item-action">B Sütununa Veri Girildiğinde A Sütununa Tarih Yazdır - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">40</th>
+                <td>
+                  <a href="icerik/40-inputbox-uzerinden-gelen-veriyi-alt-alta-yazdir-microsoft-excel/index.html" class="list-group-item list-group-item-action">InputBox Üzerinden Gelen Veriyi Alt Alta Yazdır - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">39</th>
+                <td>
+                  <a href="icerik/39-calisma-sayfalarini-yeni-sayfada-baglanti-vererek-listele-microsoft-excel/index.html" class="list-group-item list-group-item-action">Çalışma Sayfalarını Yeni Sayfada Bağlantı Vererek Listele - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">38</th>
+                <td>
+                  <a href="icerik/38-belli-uzantili-resim-dosyalarini-sec-microsoft-excel/index.html" class="list-group-item list-group-item-action">Belli Uzantılı Resim Dosyalarını Seç - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">37</th>
+                <td>
+                  <a href="icerik/37-isim-soyisim-metnini-duzenle-microsoft-excel/index.html" class="list-group-item list-group-item-action">İsim Soyisim Metnini Düzenle - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">36</th>
+                <td>
+                  <a href="icerik/36-urunun-gelis-tarihlerini-sondan-basa-listele-microsoft-excel/index.html" class="list-group-item list-group-item-action">Ürünün Geliş Tarihlerini Sondan Başa Listele - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">35</th>
+                <td>
+                  <a href="icerik/35-formul-kopyala-microsoft-excel/index.html" class="list-group-item list-group-item-action">Formül Kopyala - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">34</th>
+                <td>
+                  <a href="icerik/34-calisma-sayfasina-resim-ekle-microsoft-excel/index.html" class="list-group-item list-group-item-action">Çalışma Sayfasına Resim Ekle - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">33</th>
+                <td>
+                  <a href="icerik/33-alana-dongusuz-formul-ekle-microsoft-excel/index.html" class="list-group-item list-group-item-action">Alana Döngüsüz Formül Ekle - Microsoft Excel</a>
+                </td>
+              </tr>              
+              <tr>
+                <th scope="row">32</th>
+                <td>
+                  <a href="icerik/32-a-sutununda-yinelenen-kayit-girisini-engelle-microsoft-excel/index.html" class="list-group-item list-group-item-action">A Sütununda Yinelenen Kayıt Girişini Engelle - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">31</th>
+                <td>
+                  <a href="icerik/31-tarih-degerine-deger-ekle-microsoft-excel/index.html" class="list-group-item list-group-item-action">Tarih Değerine Değer Ekle - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">30</th>
+                <td>
+                  <a href="icerik/30-scroll-yaptir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Scroll Yaptır - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">29</th>
+                <td>
+                  <a href="icerik/29-autofilter-filtresini-iptal-et-microsoft-excel/index.html" class="list-group-item list-group-item-action">AutoFilter Filtresini İptal Et - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">28</th>
+                <td>
+                  <a href="icerik/28-tema-rengine-gore-hucre-saydir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Tema Rengine Göre Hücre Saydır - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">27</th>
+                <td>
+                  <a href="icerik/27-sayinin-ondalikli-kismini-al-microsoft-excel/index.html" class="list-group-item list-group-item-action">Sayının Ondalıklı Kısmını Al - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">26</th>
+                <td>
+                  <a href="icerik/26-aktif-hucrenin-bulundugu-satiri-veya-sutunu-sec-microsoft-excel/index.html" class="list-group-item list-group-item-action">Aktif Hücrenin Bulunduğu Satırı Veya Sütunu Seç - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">25</th>
+                <td>
+                  <a href="icerik/25-aktif-hucreye-bugunun-tarihini-ekle-microsoft-excel/index.html" class="list-group-item list-group-item-action">Aktif Hücreye Bugünün Tarihini Ekle - Microsoft Excel</a>
+                </td>
+              </tr>              
+              <tr>
+                <th scope="row">24</th>
+                <td>
+                  <a href="icerik/24-tabloda-esit-olan-satirlarin-sayisini-bul-microsoft-excel/index.html" class="list-group-item list-group-item-action">Tabloda Eşit Olan Satırların Sayısını Bul - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">23</th>
+                <td>
+                  <a href="icerik/23-dosya-sec-ve-tam-yolunu-a1-hucresine-yazdir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Dosya Seç Ve Tam Yolunu A1 Hücresine Yazdır – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">22</th>
+                <td>
+                  <a href="icerik/22-web-sitesi-baglantisi-ac-microsoft-excel/index.html" class="list-group-item list-group-item-action">Web Sitesi Bağlantısı Aç - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">21</th>
+                <td>
+                  <a href="icerik/21-evaluate-kullanim-ornekleri-microsoft-excel/index.html" class="list-group-item list-group-item-action">Evaluate Kullanım Örnekleri - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">20</th>
+                <td>
+                  <a href="icerik/20-satirlardaki-istenmeyen-karakterleri-duzelt-microsoft-excel/index.html" class="list-group-item list-group-item-action">Satırlardaki İstenmeyen Karakterleri Düzelt – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">19</th>
+                <td>
+                  <a href="icerik/19-tus-kombinasyonu-ile-saat-ve-tarih-yazdir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Tuş Kombinasyonu İle Saat Ve Tarih Yazdır - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">18</th>
+                <td>
+                  <a href="icerik/18-hucre-bicimini-tarih-yap-microsoft-excel/index.html" class="list-group-item list-group-item-action">Hücre Biçimini Tarih Yap – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">17</th>
+                <td>
+                  <a href="icerik/17-klasorden-resim-tasi-microsoft-excel/index.html" class="list-group-item list-group-item-action">Klasörden Resim Taşı – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">16</th>
+                <td>
+                  <a href="icerik/16-klasor-yolunu-kontrol-et-eger-yoksa-klasor-olustur-microsoft-excel/index.html" class="list-group-item list-group-item-action">Klasör Yolunu Kontrol Et, Eğer Yoksa Klasör Oluştur – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">15</th>
+                <td>
+                  <a href="icerik/15-formul-metnini-calistirmadan-hucreye-yazdir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Formül Metnini Çalıştırmadan Hücreye Yazdır – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">14</th>
+                <td>
+                  <a href="icerik/14-klasore-gozat-penceresi-ile-klasor-sec-microsoft-excel/index.html" class="list-group-item list-group-item-action">Klasöre Gözat Penceresi İle Klasör Seç – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">13</th>
+                <td>
+                  <a href="icerik/13-uzanti-listesine-gore-dosya-listele-microsoft-excel/index.html" class="list-group-item list-group-item-action">Uzantı Listesine Göre Dosya Listele – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">12</th>
+                <td>
+                  <a href="icerik/12-yazi-renklerinin-hex-karsiligi-microsoft-excel/index.html" class="list-group-item list-group-item-action">Yazı Renklerinin HTML Renk Karşılığı - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">11</th>
+                <td>
+                  <a href="icerik/11-facebook-web-sitesine-giris-yap-microsoft-excel/index.html" class="list-group-item list-group-item-action">Facebook Web Sitesine Giriş Yap – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">10</th>
+                <td>
+                  <a href="icerik/10-bos-hucreleri-tespit-et-microsoft-excel/index.html" class="list-group-item list-group-item-action">Boş Hücreleri Tespit Et - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">9</th>
+                <td>
+                  <a href="icerik/9-dolgu-secenegini-kullanarak-artan-sayilar-uret-microsoft-excel/index.html" class="list-group-item list-group-item-action">Dolgu Seçeneğini Kullanarak Artan Sayılar Üret - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <td>
+                  <a href="icerik/8-alan-listesini-aktiflestir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Alan Listesini Aktifleştir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>
+                  <a href="icerik/7-aktif-hucrenin-satir-sutun-degerini-ver-microsoft-excel/index.html" class="list-group-item list-group-item-action">Aktif Hücrenin Satır Ve Sütun Değerini Ver – Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>
+                  <a href="icerik/6-inputbox-ile-calisma-kitabi-ac-microsoft-excel/index.html" class="list-group-item list-group-item-action">InputBox İle Çalışma Kitabı Aç - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>
+                  <a href="icerik/5-cozucu-eklentisini-aktiflestir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Çözücü Eklentisini Aktifleştir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>
+                  <a href="icerik/4-gelistirici-sekmesini-aktiflestir-microsoft-excel/index.html" class="list-group-item list-group-item-action">Geliştirici Sekmesini Aktifleştir - Microsoft Excel</a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>
+                  <a href="icerik/3-saatleri-kumulatif-olarak-topla-microsoft-excel/index.html" class="list-group-item list-group-item-action">Saatleri Kümülatif Olarak Topla - Microsoft Excel</a>
+                </td>
+              </tr>
+              <th scope="row">2</th>
+              <td>
+                <a href="icerik/2-ayin-ilk-gununu-bul-microsoft-excel/index.html" class="list-group-item list-group-item-action">Ayın İlk Gününü Bul - Microsoft Excel</a>
+              </td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>
+                  <a href="icerik/1-301-yonlendirmesi-yap-htaccess/index.html" class="list-group-item list-group-item-action">301 Yönlendirmesi Yap - htaccess</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- JS-->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/doc.js"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+		 crossorigin="anonymous"></script>
+  </body>
+</html>
