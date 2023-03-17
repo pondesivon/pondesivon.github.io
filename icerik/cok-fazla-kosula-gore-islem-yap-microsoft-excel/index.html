@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Çok Fazla Koşula Göre İşlem Yap - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Çok Fazla Koşula Göre İşlem Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Eğer if içinde And, Or gibi operatörlerle çok fazla koşul girmek gerekiyorsa buna alternatif olarak ne yapılabilir sorusuna alternatif bir cevap hazırladım.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub CokFazlaKosulaGoreIslemYap()
+    Dim dizi    As Variant
+    Dim d       As Variant
+    Dim kontrol As Boolean
+    
+    dizi = Array( _
+            1, 2, 3, 4, 5, 6, 7, 8, 10, _
+            11, 12, 14, 15, 16, 17, 18, 19, 20, _
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30)
+    
+    kontrol = False
+    
+    For Each d In dizi
+devamEt:
+        If (d = 15) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 15"
+        ElseIf (d = 13) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 13"
+        ElseIf (d = 56) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 56"
+        Else
+        On Error GoTo devamEt
+        End If
+    Next
+    
+    If (kontrol = False) Then
+        MsgBox "Koşula uyan hiçbir değer bulunamadı."
+    End If
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub CokFazlaKosulaGoreIslemYap()
+
+    '--------------------------------------------------
+    'Koşul sonuçlarımızı yazdıracağımız değişken.
+    '--------------------------------------------------
+    Dim dizi    As Variant
+    
+    '--------------------------------------------------
+    'For Each döngüsünde kullanacağımız dizi
+    'elemanını temsil edecek olan değişken.
+    '--------------------------------------------------
+    Dim d       As Variant
+    
+    '--------------------------------------------------
+    'Koşulun sağlanıp sağlanmadığını kontrol
+    'etmek için kullanacağımız değişken.
+    'Eğer hiçbir koşul sağlanmamışsa işimize
+    'yarayacak.
+    '--------------------------------------------------
+    Dim kontrol As Boolean
+    
+    
+    '--------------------------------------------------
+    'Burada If bloklarında kullanacağımız değerleri
+    'yazdık. Ben 30 değerlik bir dizi oluşturdum.
+    '--------------------------------------------------
+    dizi = Array( _
+            1, 2, 3, 4, 5, 6, 7, 8, 10, _
+            11, 12, 14, 15, 16, 17, 18, 19, 20, _
+            21, 22, 23, 24, 25, 26, 27, 28, 29, 30)
+
+    '--------------------------------------------------
+    'Değişkene başlangıç değeri atadık.
+    '--------------------------------------------------
+    kontrol = False
+    
+    '--------------------------------------------------
+    'Şimdi koşulları For Each yardımıyla
+    'tek tek kontrol edeceğiz. Burada Select Case
+    'alternatifi eminim bir çoğunuzun aklına geldi
+    'ama asıl amaç if içindeki kalabalığı azaltmaktı.
+    'Dizi yerine Collection vs. de kullanılabilir.
+    '--------------------------------------------------
+    For Each d In dizi
+devamEt:
+        If (d = 15) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 15"
+        ElseIf (d = 13) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 13"
+        ElseIf (d = 56) Then
+            kontrol = True
+            MsgBox "Koşula uyan değer bulundu: 56"
+        Else
+        On Error GoTo devamEt
+        End If
+    Next
+    
+    '--------------------------------------------------
+    'Eğer 30 koşulumuzdan hiçbiri sağlanmadıysa
+    'kontrol isimli değişkenimiz false olarak
+    'kalacağından dolayı bu kısım çalışacak.
+    '--------------------------------------------------
+    If (kontrol = False) Then
+        MsgBox "Koşula uyan hiçbir değer bulunamadı."
+    End If
+End Sub
+</code></pre>
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

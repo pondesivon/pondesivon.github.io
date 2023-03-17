@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Basit Session Sınıfı Örneği - PHP</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Basit Session Sınıfı Örneği - PHP</h1>
+           <hr /><p class="lead">PHP session işlemleri için yazılmış basit bir session sınıfı örneğidir.
+</p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>SessionManagement.php</strong></p>
+<pre><code class="language-php">
+&lt;?php
+	class SessionManagement {
+		public function session_baslat() {
+			return session_start();
+		}
+		
+		public function session($par) {
+			if(isset($_SESSION[$par])) {
+				return $_SESSION[$par];
+			} else {
+				return false;
+			}
+		}
+		
+		public function session_olustur($par) {
+			foreach($par as $anahtar=&gt;$deger) {
+				$_SESSION[$anahtar] = $deger;
+			}
+		}
+
+		public function session_sifirla() {
+			return session_unset();
+		}
+		
+		public function session_bitir() {
+			return session_destroy();
+		}
+	}
+?&gt;
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>index.php</strong></p>
+<pre><code class="language-php">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;title&gt;&lt;/title&gt;
+	&lt;meta charset="utf-8" /&gt;
+&lt;/head&gt;
+ 
+&lt;body&gt;
+ 
+	&lt;?php
+		require_once("SessionManagement.php");
+		
+		//--------------------------------------------------
+		//Sınıfın örneğini oluştur.
+		//--------------------------------------------------
+		$oturum = new SessionManagement();
+		
+		//--------------------------------------------------
+		//Oturumu başlat.
+		//--------------------------------------------------
+		$oturum-&gt;session_baslat();
+
+		//--------------------------------------------------
+		//Oturum ile ilgili değişkenleri ayarla.
+		//--------------------------------------------------
+		$s_dizi = array("anahtar_1" =&gt; "deger_1",
+						"anahtar_2" =&gt; "deger_2",
+					    //...
+					    "anahtar_n" =&gt; "deger_n"
+					   );
+		
+		//--------------------------------------------------
+		//Oturumu oluştur.
+		//--------------------------------------------------
+		$oturum-&gt;session_olustur($s_dizi);
+		
+		//--------------------------------------------------
+		//Oturum değişkenlerinin değerlerini sıfırla.
+		//--------------------------------------------------
+		$oturum-&gt;session_sifirla();
+		
+		//--------------------------------------------------
+		//Oturumu sonlandır.
+		//--------------------------------------------------
+		$oturum-&gt;session_bitir();
+	?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
+
+<p><a class="btn btn-warning" target="_blank" href="doc/basit-session-sinifi-ornegi-php.zip" rel="noopener">basit-session-sinifi-ornegi-php.zip</a></p>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.ogretiyor.com/set/131/bbsy" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.ogretiyor.com/set/131/bbsy</a>
+</div>
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

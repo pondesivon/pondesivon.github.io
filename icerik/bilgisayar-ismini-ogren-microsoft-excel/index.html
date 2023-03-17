@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Bilgisayar İsmini Öğren - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Bilgisayar İsmini Öğren - Microsoft Excel</h1>
+           <hr /><p class="lead">Excel VBA üzerinde kullanılan API’lerden faydalanarak kullandığımız bilgisayarın ismini öğrenmeye çalışalım.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<p>Öncelikle kullandığım excel versiyonu için (Microsoft Excel 2007 – 32 bit) kodu görelim. Kodun sade şekli anlaşılması için faydalı olabilir.</p>
+
+<pre><code class="language-vb">
+Option Explicit
+
+Private Declare Function bilgisayarIsminiOgren Lib "kernel32" _
+    Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+
+Sub BilgisayarIsminiMesajOlarakGoster()
+    Dim bilgisayarAdi As String * 256
+    
+    Call bilgisayarIsminiOgren(bilgisayarAdi, 256)
+    
+    MsgBox Left(bilgisayarAdi, InStr(1, bilgisayarAdi, Chr(0)) - 1)
+End Sub
+</code></pre>
+
+<p>Gel gelelim bu fonksiyon deklarasyonunu 64 bit için biraz değiştirmek gerekiyor. Şimdi de hem excel hem de VBA sürümleri için dinamik olarak kullanılabilecek deklarasyon ile bu kodu görelim.</p>
+
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Deklarasyon Kısmı
+'--------------------------------------------------
+#If VBA7 Then
+     #If Win64 Then
+        Private Declare PtrSafe Function bilgisayarIsminiOgren Lib "kernel32" Alias _
+            "GetComputerNameA" (ByVal lpBuffer As String, nSize As LongPtr)
+     #Else
+        Private Declare Function bilgisayarIsminiOgren Lib "kernel32" _
+          Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+     #End If
+#Else
+    Private Declare Function bilgisayarIsminiOgren Lib "kernel32" _
+        Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+#End If
+
+'--------------------------------------------------
+'Kod Ve Kullanım Kısmı
+'--------------------------------------------------
+Sub BilgisayarIsminiMesajOlarakGoster()
+    Dim bilgisayarAdi As String * 256
+    
+    Call bilgisayarIsminiOgren(bilgisayarAdi, 256)
+    
+    MsgBox Left(bilgisayarAdi, InStr(1, bilgisayarAdi, Chr(0)) - 1)
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Hash ile if (#if) kabaca şu işe yarıyor:
+'Biz yaptığımız tanımlamaları derleme anına göre
+'seçmek istiyoruz ve bu tarz bir tanımlamayı
+'yapmada bu if işimize yarıyor.
+'
+'Burada kullanılan excel sürümünün içine
+'gömülü VBA'nın sürümüne göre işlem yapacağız.
+'--------------------------------------------------
+#If VBA7 Then
+     
+      '--------------------------------------------------
+      'Eğer kullandığınız excel 64 bit ise bu kısım çalışacak.
+      'Eğer 32 bit excel kullanıyorsanız aşağıdaki fonksiyon
+      'komple kırmızı renk olacak.
+      '--------------------------------------------------
+      #If Win64 Then
+        Private Declare PtrSafe Function bilgisayarIsminiOgren Lib "kernel32" Alias _
+            "GetComputerNameA" (ByVal lpBuffer As String, nSize As LongPtr)
+        
+     #Else
+        
+        '32 bit excel için fonksiyon deklarasyonu yapıyoruz.
+        Private Declare Function bilgisayarIsminiOgren Lib "kernel32" _
+          Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+          
+     #End If
+
+#Else
+
+    '--------------------------------------------------
+    'Eğer VBA sürümü 6 ve daha eski sürümler ise
+    'direkt aşağıdaki deklarasyonu kullan.
+     '--------------------------------------------------
+     Private Declare Function bilgisayarIsminiOgren Lib "kernel32" _
+        Alias "GetComputerNameA" (ByVal lpBuffer As String, nSize As Long) As Long
+#End If
+
+Sub BilgisayarIsminiMesajOlarakGoster()
+    
+    '--------------------------------------------------
+    'Bilgisayar adını atayacağımız değişkeni 256 
+    'karakter kapasiteli olacak şekilde ayarladık.
+    '
+    'Bunu yapmamızın nedeni deklare ettiğimiz fonksiyon
+    'ile alakalı. Eğer kapasitesini belirtmeseydik
+    'hata verecekti.
+    '
+    'Alternatif olarak şu da yapılabilirdi:
+    'Dim bilgisayarAdi As String
+    'bilgisayarAdi = Space(100)
+    '
+    'String tanımlama yaptık ama 100 boşluk
+    'ekleyerek bir nevi kapasitesini belirtmiş olduk.
+    Dim bilgisayarAdi As String * 256
+    
+    'Yukarıda deklarasyonunu yaptığımız fonksiyonun
+    'parametrelerini girdik ve çağırdık.
+    '
+    'Şimdi ikinci 256 sayısı nereden geldi, onu da
+    '(anladığım kadarıyla) açıklayayım.
+    'İlk parametre ile kapasiteyi ikinci parametreyle
+    'boyutu belirliyoruz.
+    '
+    'Boyut da şu şekilde özetlenebilir:
+    'Biz 256 karakter kapasiteli (kapasiteyi biz verdik)
+    'string değişkene kaç karakterlik atama yapılmasını
+    'istediğimizi belirliyoruz. Dikkat edilmesi gereken
+    'nokta da şu: Bu sayı bilgisayar isminden en az
+    'bir fazla olmalı ki sonuç olarak
+    'boş bir şey çıkmasın,
+    'bilgisayar ismi çıkabilsin.
+    '
+    '256 karakter kapasiteli bir değişkende boyut
+    'olarak da 256 girdik, başka sayı da girebilirdik.
+    'Çok da sıkıntı değil. Ama bilgisayar isminin
+    '256 karakterden düşük olması çok yüksek bir
+    'ihtimal olduğundan bilgisayar ismini rahatlıkla
+    'alabiliyoruz.
+    '--------------------------------------------------
+    Call bilgisayarIsminiOgren(bilgisayarAdi, 256)
+    
+    '--------------------------------------------------
+    'Bilgisayar ismini mesaj olarak göster.
+    '--------------------------------------------------
+    MsgBox Left(bilgisayarAdi, InStr(1, bilgisayarAdi, Chr(0)) - 1)
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.experts-exchange.com/questions/26917060/GetComputerNameA-for-Excel-2010-64-bit.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.experts-exchange.com/questions/26917060/GetComputerNameA-for-Excel-2010-64-bit.html</a>
+    <a href="https://stackoverflow.com/questions/16524705/32-bit-excel-macro-not-working-with-64-bit" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/16524705/32-bit-excel-macro-not-working-with-64-bit</a>
+    <a href="https://docs.microsoft.com/tr-tr/office/vba/Language/Reference/User-Interface-Help/declare-statement" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/tr-tr/office/vba/Language/Reference/User-Interface-Help/declare-statement</a>
+    <a href="https://www.access-programmers.co.uk/forums/showthread.php?t=297245" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.access-programmers.co.uk/forums/showthread.php?t=297245</a>
+    <a href="https://codekabinett.com/rdumps.php?Lang=2&targetDoc=windows-api-declaration-vba-64-bit" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://codekabinett.com/rdumps.php?Lang=2&targetDoc=windows-api-declaration-vba-64-bit</a>
+    <a href="https://stackoverflow.com/questions/26822004/declare-ptrsafe-compatibility-in-excel" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/26822004/declare-ptrsafe-compatibility-in-excel</a>
+    <a href="http://www.excelforum.com/excel-new-users-basics/1001593-ptrsafe-attribute-for-64-bit-system-print.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.excelforum.com/excel-new-users-basics/1001593-ptrsafe-attribute-for-64-bit-system-print.html</a>
+    <a href="https://social.msdn.microsoft.com/Forums/office/en-US/7bd86d12-d8d4-4787-9516-a0390276c744/excel-vba-declare-ptrsafe-function?forum=exceldev" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://social.msdn.microsoft.com/Forums/office/en-US/7bd86d12-d8d4-4787-9516-a0390276c744/excel-vba-declare-ptrsafe-function?forum=exceldev</a>
+    <a href="https://www.techonthenet.com/excel/formulas/space.php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.techonthenet.com/excel/formulas/space.php</a>
+    <a href="https://stackoverflow.com/questions/6325486/if-else-end-if-what-do-the-hash-signs-mean-in-vba" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/6325486/if-else-end-if-what-do-the-hash-signs-mean-in-vba</a>
+    <a href="https://www.mrexcel.com/forum/excel-questions/50786-vba-command-get-computer-name.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/forum/excel-questions/50786-vba-command-get-computer-name.html</a>
+    <a href="https://renenyffenegger.ch/notes/development/languages/VBA/Win-API/index" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://renenyffenegger.ch/notes/development/languages/VBA/Win-API/index</a>
+    <a href="https://access-programmers.co.uk/forums/showthread.php?t=154604" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://access-programmers.co.uk/forums/showthread.php?t=154604</a>
+    <a href="https://pinvoke.net/default.aspx/kernel32/GetComputerNameEx.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://pinvoke.net/default.aspx/kernel32/GetComputerNameEx.html</a>
+</div>
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

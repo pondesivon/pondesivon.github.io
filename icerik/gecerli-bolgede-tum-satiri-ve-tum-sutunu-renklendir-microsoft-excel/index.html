@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Geçerli Bölgede Tüm Satırı ve Tüm Sütunu Renklendir - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Geçerli Bölgede Tüm Satırı ve Tüm Sütunu Renklendir - Microsoft Excel</h1>
+           <hr /><p class="lead">Örneğin boş bir alanda bir renk değişimi olmazken bir tabloya ait hücre seçildiğinde, o tablodaki hücreye ait satır ve sütunun arka plan rengi değişiyor. Ana olay bu, yani renklendirme bir bölge ile sınırlı kalıyor. Eğer birden fazla hücre seçilmişse de çalışmıyor.
+</p><hr /><div class="alert alert-info"><strong>Ekran Görüntüsü</strong></div>
+<a class="img-fluid d-block" href="doc/gecerli-bolgede-tum-satiri-ve-tum-sutunu-renklendir-microsoft-excel-1.gif"><img src="doc/gecerli-bolgede-tum-satiri-ve-tum-sutunu-renklendir-microsoft-excel-1.gif" alt="" /></a>
+<br>
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+    Cells.Interior.ColorIndex = 0
+    
+    If IsEmpty(Target) Or Target.Cells.Count > 1 Then Exit Sub
+    
+    Application.ScreenUpdating = False
+    
+    With ActiveCell
+        Range(Cells(.Row, .CurrentRegion.Column), _
+        Cells(.Row, .CurrentRegion.Columns.Count + .CurrentRegion.Column - 1)). _
+        Interior.ColorIndex = 8
+        
+        Range(Cells(.CurrentRegion.Row, .Column), _
+        Cells(.CurrentRegion.Rows.Count + .CurrentRegion.Row - 1, .Column)). _
+        Interior.ColorIndex = 8
+    End With
+    
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    
+    '--------------------------------------------------
+    'Öncelikle sayfadaki arkaplan
+    'renklerini komple bir temizleyelim.
+    '--------------------------------------------------
+    Cells.Interior.ColorIndex = 0
+    
+    '--------------------------------------------------
+    'Eğer hücre boşsa ya da seçilen hücre
+    'sayısı 1'den büyükse yordamdan çık.
+    '--------------------------------------------------
+    If IsEmpty(Target) Or Target.Cells.Count > 1 Then Exit Sub
+    
+    '--------------------------------------------------
+    'Seçim değiştiğinde gerçekleşecek değişiklikler
+    'kullanıcı tarafından görünmemesi için ekran
+    'güncellemesini kapattık.
+    '--------------------------------------------------
+    Application.ScreenUpdating = False
+    
+    '--------------------------------------------------
+    'Seçilen hücreyle ilgili bir şeyler yapacağız.
+    '--------------------------------------------------
+    With ActiveCell
+        
+        '--------------------------------------------------
+        'Burada, karmaşık gibi görünse de,
+        'şu şekilde bir kullanım var:
+        '
+        'Range(Cells(1, 1), Cells(3, 3))
+        'Alternatif bir Range kullanımı.
+        'Range("A1:C3") anlamına geliyor yukarıdaki örnek.
+        'Böylelikle Cells kardeşimizin avantajlarını da
+        'kullanabiliyoruz.
+        '
+        '.Row
+        'Bizim seçili hücrenin exceldeki satır karşılığı.
+        'Burada sütunlara işlem yapılacağından satır değeri
+        'aynen eklenmiş.
+        '
+        '.CurrentRegion.Column
+        'Bizim seçtiğimiz hücre normalde
+        'Microsoft Excel'in hangi sütununda?
+        '
+        '.CurrentRegion.Columns.Count
+        'Seçtiğimiz hücreye ait veri
+        'grubunda toplam kaç sütun var?
+        '
+        'Örnek verecek olursak burada Range("E3:G3") alanını
+        'seçmiş gibi olduk. Tek satırlık bir seçim söz konusu.
+        '
+        'İşte bunun arka plan rengini değiştirdik.
+        '--------------------------------------------------
+        Range(Cells(.Row, .CurrentRegion.Column), _
+              Cells(.Row, .CurrentRegion.Columns.Count + .CurrentRegion.Column - 1)). _
+              Interior.ColorIndex = 8
+              
+        '--------------------------------------------------
+        '.Row
+        'Bizim seçili hücrenin exceldeki sütun karşılığı.
+        'Burada da satırlara işlem yapılacağından sütun
+        'değeri aynen eklenmiş.
+        '
+        '.CurrentRegion.Row
+        'Bizim seçtiğimiz hücre normalde
+        'excel'in hangi satırında?
+        '
+        '.CurrentRegion.Columns.Count
+        'Seçtiğimiz hücreye ait veri
+        'grubunda toplam kaç satır var?
+        '
+        'Örnek verecek olursak burada Range("D10:D20")
+        'alanını seçmiş gibi olduk. Tek sütunluk bir
+        'seçim söz konusu. Artık sütundaki veri grubunda
+        'kaç satır varsa ona göre çalışacak.
+        '
+        'İşte bunun arka plan rengini değiştirdik.
+        '--------------------------------------------------
+        Range(Cells(.CurrentRegion.Row, .Column), _
+              Cells(.CurrentRegion.Rows.Count + .CurrentRegion.Row - 1, .Column)). _
+              Interior.ColorIndex = 8
+    End With
+    
+    '--------------------------------------------------
+    'Güncellemeleri görebilmek için ekran
+    'güncellemesini tekrardan eski hale getirdik.
+    '--------------------------------------------------
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

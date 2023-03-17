@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Belli Uzantılı Resim Dosyalarını Seç - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Belli Uzantılı Resim Dosyalarını Seç - Microsoft Excel</h1>
+			<hr /><p class="lead">Aşağıdaki kodlar resim seçmek için <code>FileDialog</code> penceresinde sacece <code>jpg</code>, <code>bmp</code>, <code>png</code>, <code>jpeg</code>, <code>ico</code>, <code>gif</code> uzantılı dosyaları gösteriyor ve bunlardan bir tanesini seçmenize imkan tanıyor.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Sub BelliUzantiliResimleriSecVeTamYolunuAl()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim kaynak_dosya_yolu As String
+    Dim hedef_klasor As String
+    Dim dosya_diyalog As FileDialog
+    Dim dosya_filtre As FileDialogFilters
+    
+    '--------------------------------------------------
+    'FileDialog penceresi için ayarlama yap.
+    '--------------------------------------------------
+    Set dosya_diyalog = Application.FileDialog(msoFileDialogOpen)
+    
+    With dosya_diyalog
+        .AllowMultiSelect = False
+        .Title = "Bir resim seçin."
+        .Filters.Clear
+        .InitialView = msoFileDialogViewDetails
+        Set dosya_filtre = .Filters
+    
+        '--------------------------------------------------
+        'Dosya filtresini ayarla.
+        '--------------------------------------------------
+        With dosya_filtre
+            .Clear
+            .Add "Resim Dosyaları", "*.jpg,*.png,*.bmp,*.jpeg,*.ico,*.gif"
+        End With
+    
+        '--------------------------------------------------
+        'Eğer uygun bir dosya seçilmişse tam yolu mesaj olarak göster.
+        '--------------------------------------------------
+        If .Show = -1 Then
+          kaynak_dosya_yolu = _
+              Application.FileDialog(msoFileDialogOpen).SelectedItems(1)
+          MsgBox kaynak_dosya_yolu
+        End If
+    End With
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BelliUzantiliResimleriSecVeTamYolunuAl()
+
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim kaynak_dosya_yolu As String
+    Dim hedef_klasor      As String
+    Dim dosya_diyalog     As FileDialog
+    Dim dosya_filtre      As FileDialogFilters
+    
+    '--------------------------------------------------
+    'dosya_diyalog değişkenimize atama yapıyoruz.
+    '--------------------------------------------------
+    Set dosya_diyalog = Application.FileDialog(msoFileDialogOpen)
+    
+    With dosya_diyalog
+    
+        '--------------------------------------------------
+        'Birden fazla dosya seçmeye izin vermiyoruz.
+        '--------------------------------------------------
+        .AllowMultiSelect = False
+    
+        '--------------------------------------------------
+        'FileDialog penceresinin başlığını yazdık.
+        '--------------------------------------------------
+        .Title = "Bir resim seçin."
+    
+        '--------------------------------------------------
+        'Önceden belirlenmiş filtre bilgilerini temizledik.
+        '--------------------------------------------------
+        .Filters.Clear
+    
+        '--------------------------------------------------
+        'FileDialog penceresindeki dosyaların görünümünü belirledik.
+        '--------------------------------------------------
+        .InitialView = msoFileDialogViewDetails
+    
+        '--------------------------------------------------
+        'dosya_filtre değişkeni için atama yapıyoruz.
+        '--------------------------------------------------
+        Set dosya_filtre = .Filters
+    
+        '--------------------------------------------------
+        'Filtre için ayarlama yapıyoruz.
+        '--------------------------------------------------
+        With dosya_filtre
+        
+            '--------------------------------------------------
+            'Temizlik işlemini yapıyoruz.
+            '--------------------------------------------------
+            .Clear
+    
+            '--------------------------------------------------
+            'İstediğimiz uzantıları ekliyoruz.
+            'İlk önce uzantı listemiz için başlık
+            'belirliyoruz, sonra da uzantılarımızı yazıyoruz.
+            '--------------------------------------------------
+            .Add "Resim Dosyaları", "*.jpg,*.png,*.bmp,*.jpeg,*.ico,*.gif"
+        End With
+        
+        '--------------------------------------------------
+        'Şu anda dosya_diyalog değişkeni için kullanılan With
+        'içindeyiz. dosya_diyalog.Show = -1 yani daha uzun
+        'haliyle aşağıdaki gibi olan kod şu manaya geliyor:
+        'Application.FileDialog(msoFileDialogOpen).Show = -1
+        'Eğer FileDialog penceresinde eylem butonuna basılırsa
+        '("Aç" butonu) -1 değeri döndürüyor. Eğer iptal butonuna
+        'basılırsa 0 değerini döndürüyor. Bu değer Long tipinde.
+        '
+        'Bu kod için -1 yerine True değeri de koyulabilir.
+        'Hatta hiçbir şey koyulmayabilir de. If kısmı zaten
+        'en nihayetinde tek bir mantıksal (bool) değere
+        'ulaşmaya çalışıyor. dosya_dialog.Show da bir
+        'bool değer ürettiğinden dolayı bir şeye 
+        'eşitlemesek de if kısmı çalışacak.
+        '
+        'Neyse, bu -1 olayı biraz daha çetrefilli,
+        'meraklı kardeşlerimizi şu web bağlantısına
+        'alalım ve açıklamayı da çok uzatmayalım:
+        'https://stackoverflow.com/a/14462348
+        '--------------------------------------------------
+        If .Show = -1 Then
+
+            '--------------------------------------------------
+            'Eğer dosya seçilmiş ve eylem butonuna (Aç)
+            'basılmışsa seçilen dosyanın tam yolunu al.
+            '--------------------------------------------------
+            kaynak_dosya_yolu = _
+                Application.FileDialog(msoFileDialogOpen).SelectedItems(1)
+            
+            '--------------------------------------------------
+            'Tam yolu mesaj olarak göster.
+            '--------------------------------------------------
+            MsgBox kaynak_dosya_yolu
+        End If
+    End With
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://stackoverflow.com/questions/41044456/application-filedialog-show-1" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/41044456/application-filedialog-show-1</a>
+    <a href="https://docs.microsoft.com/tr-tr/office/vba/api/Office.FileDialog.Show" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/tr-tr/office/vba/api/Office.FileDialog.Show</a>
+    <a href="https://docs.microsoft.com/tr-tr/office/vba/api/overview/library-reference/filedialog-members-office" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/tr-tr/office/vba/api/overview/library-reference/filedialog-members-office</a>
+    <a href="https://stackoverflow.com/questions/14462272/why-is-true-equal-to-1" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/14462272/why-is-true-equal-to-1</a>
+</div>
+
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

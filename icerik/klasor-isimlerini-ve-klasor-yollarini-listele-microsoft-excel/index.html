@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Klasör İsimlerini Ve Klasör Yollarını Listele - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Klasör İsimlerini Ve Klasör Yollarını Listele - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir klasörün içindeki klasörleri (daha alt klasörler dahil değil) listelemeye yarayan bir VBA kodu alternatifidir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub KlasorIsimleriniVeKlasorYollariniListele()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim objFSO       As Object
+    Dim objKlasor    As Object
+    Dim objAltKlasor As Object
+    Dim i            As Integer
+    Dim mesajSonuc   As Variant
+    
+    '--------------------------------------------------
+    'Hazırlık
+    '--------------------------------------------------
+    Columns("A:B").Clear
+    
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objKlasor = objFSO.GetFolder("C:\arsiv\ornek-klasor")
+    i = 1
+    
+    On Error GoTo islemiIptalEt
+    Application.EnableCancelKey = xlErrorHandler
+    
+    '--------------------------------------------------
+    'Onay
+    '--------------------------------------------------
+    mesajSonuc = _
+        MsgBox("Klasörler listelenecek, devam edilsin mi?", _
+               VbMsgBoxStyle.vbOKCancel, _
+               "UYARI")
+    
+    '--------------------------------------------------
+    'Listeleme
+    '--------------------------------------------------
+    If mesajSonuc = VbMsgBoxResult.vbOK Then
+        Cells(1, 1) = "KLASÖR ADI"
+        Cells(1, 2) = "KLASÖR YOLU"
+    
+        For Each objAltKlasor In objKlasor.subfolders
+            Cells(i + 1, 1) = objAltKlasor.Name
+            Cells(i + 1, 2) = objAltKlasor.Path
+            i = i + 1
+        Next
+    Else
+        MsgBox "Listeleme işlemini iptal ettiniz."
+    End If
+    
+islemiIptalEt:
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub KlasorIsimleriniVeKlasorYollariniListele()
+    
+    '--------------------------------------------------
+    'Scripting.FileSystemObject nesnesi için
+    'atama yapacağımız değişken bu olacak.
+    '--------------------------------------------------
+    Dim objFSO       As Object
+      
+    '--------------------------------------------------
+    'Klasör nesnesini ve yolumuzu ayarlamak
+    'için bu değişkeni kullanacağız.
+    '--------------------------------------------------
+    Dim objKlasor    As Object
+    
+    '--------------------------------------------------
+    'Seçtiğimiz klasörün içindeki klasörler
+    'için kullanacağımız değişken de bu.
+    '--------------------------------------------------
+    Dim objAltKlasor As Object
+    
+    
+    '--------------------------------------------------
+    'Döngü için kullanacağız.
+    '--------------------------------------------------
+    Dim i            As Integer
+    
+    '--------------------------------------------------
+    'Başlamadan önce yazdırılacak alanı temizliyoruz.
+    '--------------------------------------------------
+    Dim mesajSonuc   As Variant
+    
+    '--------------------------------------------------
+    'Yazdırma yapılacak alanı temizliyoruz.
+    '--------------------------------------------------
+    Columns("A:B").Clear
+    
+    '--------------------------------------------------
+    'Nesne oluşturma ve değişkenlere
+    'değer atama işlemlerini yaptırıyoruz.
+    '--------------------------------------------------
+    Set objFSO = CreateObject("Scripting.FileSystemObject")
+    Set objKlasor = objFSO.GetFolder("C:\arsiv\ornek-klasor")
+    i = 1
+    
+    '--------------------------------------------------
+    'Bu kodu yazan dayı ya da teyze anladığım kadarıyla
+    'içinde çok fazla dosya/klasör bulunan klasörlerde
+    'performans sıkıntısı yaşadığından dolayı gerektiğinde
+    'iptal etmek için bu tarz bir iptal etme seçeneği
+    'eklemiş.
+    '--------------------------------------------------
+    On Error GoTo islemiIptalEt
+    Application.EnableCancelKey = xlErrorHandler
+    
+    '--------------------------------------------------
+    'Başlatma işlemini onaylamak için mesaj kutusunu
+    'kullanıyoruz. Eğer OK tuşuna basılırsa işlem
+    'başlatılacak.
+    '--------------------------------------------------
+    mesajSonuc = _
+        MsgBox("Klasörler listelenecek, devam edilsin mi?", _
+               VbMsgBoxStyle.vbOKCancel, _
+               "UYARI")
+    
+    '--------------------------------------------------
+    'Listeleme işlemine onay verilmişse çalış.
+    '--------------------------------------------------
+    If mesajSonuc = VbMsgBoxResult.vbOK Then
+        
+        '--------------------------------------------------
+        'Sonuç iki sütunlu bir tablo olacak.
+        'Tablomuzun başlıklarını belirledik.
+        '--------------------------------------------------
+        Cells(1, 1) = "KLASÖR ADI"
+        Cells(1, 2) = "KLASÖR YOLU"
+        
+        
+        '--------------------------------------------------
+        'Belirlediğimiz klasör içindeki her klasör
+        'için çalışacak bir For Each döngüsü yazdık.
+        '--------------------------------------------------
+        For Each objAltKlasor In objKlasor.subfolders
+        
+            '--------------------------------------------------
+            'İlk sütuna ilgili klasörün sadece ismini yazdırdık.
+            '--------------------------------------------------
+            Cells(i + 1, 1) = objAltKlasor.Name
+            
+            '--------------------------------------------------
+            'İkinci sütuna da klasörün tam yolunu yazdırdık.
+            '--------------------------------------------------
+            Cells(i + 1, 2) = objAltKlasor.Path
+            
+            '--------------------------------------------------
+            'İşlem bittikten sonra sayacımızı 1 artırıyoruz.
+            '--------------------------------------------------
+            i = i + 1
+        Next
+    Else
+    
+        '--------------------------------------------------
+        'Eğer işleme onay verilmemişse bir bilgi mesajı göster.
+        '--------------------------------------------------
+        MsgBox "Listeleme işlemini iptal ettiniz."
+    End If
+    
+islemiIptalEt:
+End Sub
+</code></pre>
+			<hr><a href="../../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
