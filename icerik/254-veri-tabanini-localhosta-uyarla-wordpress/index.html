@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Veri Tabanını localhost'a Uyarla - WordPress</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Veri Tabanını localhost'a Uyarla - WordPress</h1>
+           <hr /><p class="lead">Bu yazıda wordpress sitenizi localhost'ta çalıştırmak isterseniz veri tabanında yapmanız gereken değişiklikleri göstermeye çalışacağım.
+</p><hr /><div class="alert alert-info"><strong>Yedekleme İşlemi</strong></div>
+<p>Bu işlemi yapmadan önce yedekleme yapmanız şiddetle tavsiye olunur. Öngörülemeyen durumlarda veri kaybı yaşamamak için yedeğinizi mutlaka almalısınız.</p>
+
+<div class="alert alert-info"><strong>Olay</strong></div>
+<p>Eski sitem kapandıktan sonra wordpress sistemini localhost'a aktarabilir miyim? düşüncesiyle bu işe giriştim ve aşağıdaki komutlarla localhost'ta çalışacak wordpress sistemi için veri tabanında gerekli güncellemeleri yaptım.</p>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <p class="text-danger"><strong>Sorguyu Yeniden Düzenle</strong></p>
+        <p>Aşağıdaki MySQL komutlarında tablo ön eklerini, veri tabanı isimlerini ve veri tabanında kayıtlı olan site adını girin.</p>
+    </li>
+    <li class="list-group-item">
+        <p class="text-danger"><strong>localhost Bilgisi Ayarı</strong></p>
+        <p>Ayrıca localhost için de eğer varsayılandan farklı port kullanıyorsanız bunu da değiştirmeniz gerekecektir. Bunları yaptıktan sonra komutları çalıştırın. Wordpress veri tabanı localhost için çalışmaya hazır hale gelecektir.</p>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>Sorgu</strong></div>
+<pre><code class="language-sql">
+/* --------------------------------------------------
+wp_options Tablosu
+-------------------------------------------------- */
+UPDATE wp_options 
+SET    option_value = replace(option_value, 'mevcut-alan-adi', 'localhost-alan-adi') 
+WHERE  option_name = 'home' 
+OR     option_name = 'siteurl';
+
+
+/* --------------------------------------------------
+wp_posts Tablosu
+-------------------------------------------------- */
+UPDATE wp_posts 
+SET    guid = replace(guid, 'mevcut-alan-adi', 'localhost-alan-adi');
+
+UPDATE wp_posts 
+SET    post_content = replace(post_content, 'mevcut-alan-adi', 'localhost-alan-adi');
+
+
+/* --------------------------------------------------
+wp_postmeta Tablosu
+-------------------------------------------------- */
+UPDATE wp_postmeta 
+SET    meta_value = replace(meta_value, 'mevcut-alan-adi', 'localhost-alan-adi');
+</code></pre>
+
+<div class="alert alert-info"><strong>Sorgu (Açıklamalı)</strong></div>
+<pre><code class="language-sql">
+/* --------------------------------------------------
+Önce WordPress'in alan adını ve başlangıç adresini
+düzenleyerek işe başlıyoruz. Bunu da WordPress'in
+ayarlarını değiştirerek yapabiliriz. Bunu da sorgu
+ile yapmamız gerekiyorsa işlemi ayar bilgilerinin
+saklandığı wp_options tablosu üzerinden yapmamız
+gerekiyor.
+
+Ayar kısmında iki parametre bizim için önem 
+kazanıyor: home ve siteurl.
+
+Bu sorgu ile tablodaki verilerden home ve 
+siteurl parametrelerini düzenliyoruz.
+-------------------------------------------------- */
+UPDATE wp_options 
+SET    option_value = replace(option_value, 'mevcut-alan-adi', 'localhost-alan-adi') 
+WHERE  option_name = 'home' 
+OR     option_name = 'siteurl';
+
+
+/* --------------------------------------------------
+İçerik bilgilerinin saklandığı wp_posts tablosunda
+da değişiklik yapmak gerekiyor. İlk olarak benzersiz
+bağlantı adreslerini yeni alan adı bilgisine göre
+yeniden güncellemekle işe başlıyoruz.
+-------------------------------------------------- */
+UPDATE wp_posts 
+SET    guid = replace(guid, 'mevcut-alan-adi', 'localhost-alan-adi');
+
+
+/* --------------------------------------------------
+İçeriklerin bünyesinde barındırdığı iç bağlantıları
+da güncellemek şart. Bu içerikler kullanıcılar 
+tarafından hazırlandığından ve WordPress sisteminde
+herhangi bir ayara tabii olmadığından dolayı bu
+güncelleme de önemli.
+-------------------------------------------------- */
+UPDATE wp_posts 
+SET    post_content = replace(post_content, 'mevcut-alan-adi', 'localhost-alan-adi');
+
+
+/* --------------------------------------------------
+Gönderilerle ilgili bilgilerin saklandığı wp_postmeta
+tablosunda da gerekli güncellemeleri yapmayı ihmal
+etmiyoruz.
+-------------------------------------------------- */
+UPDATE wp_postmeta 
+SET    meta_value = replace(meta_value, 'mevcut-alan-adi', 'localhost-alan-adi');
+</code></pre>
+
+<div class="alert alert-info"><strong>Kullanım</strong></div>
+<pre><code class="language-sql">
+/* --------------------------------------------------
+wp_options Tablosu
+-------------------------------------------------- */
+UPDATE wp_options 
+SET    option_value = replace(option_value, 'https://ornekwordpresssitesi.com', 'http://localhost:4040/YerelSite') 
+WHERE  option_name = 'home' 
+OR     option_name = 'siteurl';
+
+
+/* --------------------------------------------------
+wp_posts Tablosu
+-------------------------------------------------- */
+UPDATE wp_posts 
+SET    guid = replace(guid, 'https://ornekwordpresssitesi.com', 'http://localhost:4040/YerelSite');
+
+UPDATE wp_posts 
+SET    post_content = replace(post_content, 'https://ornekwordpresssitesi.com', 'http://localhost:4040/YerelSite');
+
+
+/* --------------------------------------------------
+wp_postmeta Tablosu
+-------------------------------------------------- */
+UPDATE wp_postmeta 
+SET    meta_value = replace(meta_value, 'https://ornekwordpresssitesi.com', 'http://localhost:4040/YerelSite');
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.hostinger.com/tutorials/wordpress/how-to-change-wordpress-urls-in-mysql-database-using-phpmyadmin" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.hostinger.com/tutorials/wordpress/how-to-change-wordpress-urls-in-mysql-database-using-phpmyadmin</a>
+</div>
+			<hr><a href="../../index.html" class="btn btn-success">Ana Sayfaya Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
