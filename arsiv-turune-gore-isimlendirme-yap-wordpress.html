@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Arşiv Türüne Göre İsimlendirme Yap - WordPress</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Arşiv Türüne Göre İsimlendirme Yap - WordPress</h1>
+           <hr /><p class="lead">archive.php dosyası aracılığıyla listelenecek gönderilere belirlenen kritere göre başlık ataması ypıyor. Kategori ise kategori, tarih ise (günlük, aylık, yıllık arşivler) tarih gibi.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-php">
+&lt;?php
+	if(is_category()) {
+		single_cat_title();
+	} elseif(is_author()) {
+		the_post();
+		echo "Yazar Arşivi: " . get_the_author();
+		rewind_posts();
+	} elseif(is_tag()) {
+		single_tag_title();
+	} elseif(is_day()) {
+		echo "Günlük Arşiv: " . get_the_date();
+	} elseif(is_month()) {
+		echo "Aylık Arşiv: " . get_the_date('F Y');
+	} elseif(is_year()) {
+		echo "Yıllık Arşiv: " . get_the_date('Y');
+	} else {
+		echo "Arşiv: ";
+	}
+?&gt;
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+
+<pre><code class="language-php">
+&lt;?php
+	//--------------------------------------------------
+	//Eğer kategori arşivi listeleniyorsa bu kısım çalışsın.
+	//--------------------------------------------------
+	if(is_category()) {
+		single_cat_title();
+
+	//--------------------------------------------------
+	//Eğer yazar arşivleri listeleniyorsa bu kısım çalışsın.
+	//--------------------------------------------------
+	} elseif(is_author()) {
+
+		//--------------------------------------------------
+		//Şimdi bu fonksiyonun tam olarak olayını çözemedim ama
+		//şu işe yarıyor: Döngüyle filan gönderi listeliyoruz ya,
+		//gönderinin ayarlamasını, sonraki gönderinin getirilmesini,
+		//'in the loop' özelliğini true değerine eşitlemeyi sağlıyormuş.
+
+		//Buradaki olayı da şu: Eğer sitenizde farklı yazarlar varsa
+		//gönderi listelemelerindeki potansiyel hataların önüne geçmek
+		//için bu kod yazıldı. Bir nevi garantiye alma işlemi.
+		//--------------------------------------------------
+		the_post();
+
+		//--------------------------------------------------
+		//"Şu" yazarın arşivi şeklinde yazdırıyoruz.
+		//--------------------------------------------------
+		echo "Author Archives: " . get_the_author();
+
+		//--------------------------------------------------
+		//Bu fonksiyon da anladığım kadarıyla şu işi yapıyor.
+		//Bir nevi çalıştırdığımız döngüyü sıfırlıyor, başa döndürüyor.
+		//Yukarıda yazılmış olan the_post() için de temizlik yapıyor.
+		//--------------------------------------------------
+		rewind_posts();
+
+	//--------------------------------------------------
+	//Eğer etiketse etiket ismini yazdır, köpek!
+	//--------------------------------------------------
+	} elseif(is_tag()) {
+		single_tag_title();
+
+	//--------------------------------------------------
+	//Günlük arşivler için başlık ataması yaptık.
+	//--------------------------------------------------
+	} elseif(is_day()) {
+		echo "Daily Archives: " . get_the_date();
+
+	//--------------------------------------------------
+	//Aylık arşivler için başlık ataması yaptık.
+	//Mesela 2020 yılının 7. ayı gibi.
+	//--------------------------------------------------
+	} elseif(is_month()) {
+		echo "Monthly Archives: " . get_the_date('F Y');
+
+	//--------------------------------------------------
+	//Yıllık arşivler için başlık ataması yaptık.
+	//--------------------------------------------------
+	} elseif(is_year()) {
+		echo "Yearly Archives: " . get_the_date('Y');
+
+	//--------------------------------------------------
+	//Yukarıdaki durumlara uymuyorsa arşiv diye yabışdır gitsin!
+	//--------------------------------------------------
+	} else {
+		echo "Archives: ";
+	}
+?&gt;
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://core.trac.wordpress.org/browser/tags/4.8/src/wp-includes/query.php#L804" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://core.trac.wordpress.org/browser/tags/4.8/src/wp-includes/query.php#L804</a>
+    <a href="https://developer.wordpress.org/reference/functions/the_post/#uses" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://developer.wordpress.org/reference/functions/the_post/#uses</a>
+    <a href="https://codex.wordpress.org/Function_Reference/rewind_posts" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://codex.wordpress.org/Function_Reference/rewind_posts</a>
+    <a href="https://youtu.be/3fgEgzPx7QM?list=PLpcSpRrAaOaqMA4RdhSnnNcaqOVpX7qi5" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://youtu.be/3fgEgzPx7QM?list=PLpcSpRrAaOaqMA4RdhSnnNcaqOVpX7qi5</a>
+    <a href="https://stackoverflow.com/questions/21702679/can-anybody-explain-the-loop-of-wordpress" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/21702679/can-anybody-explain-the-loop-of-wordpress</a>
+    <a href="https://stackoverflow.com/questions/23729847/wordpress-difference-between-rewind-posts-wp-reset-postdata-and-wp-reset-q" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/23729847/wordpress-difference-between-rewind-posts-wp-reset-postdata-and-wp-reset-q</a>
+    <a href="https://wordpress.stackexchange.com/questions/253704/why-is-it-necessary-to-call-rewind-posts-when-using-the-loop-more-than-once" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://wordpress.stackexchange.com/questions/253704/why-is-it-necessary-to-call-rewind-posts-when-using-the-loop-more-than-once</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

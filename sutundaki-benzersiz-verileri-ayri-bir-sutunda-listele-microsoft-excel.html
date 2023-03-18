@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Sütundaki Benzersiz Verileri Ayrı Bir Sütunda Listele - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Sütundaki Benzersiz Verileri Ayrı Bir Sütunda Listele - Microsoft Excel</h1>
+           <hr /><p class="lead">A sütundaki tekrarlı veri içeren satırları döngü aracılığıyla inceler, benzersiz verileri B sütununa yazdırır.
+</p><hr /><div class="alert alert-info"><strong>Veri</strong></div>
+<p>Tekrarlı veri içeren örnek bir veri setine aşağıdaki bağlantıdan ulaşabilirsiniz.</p>
+
+<p><a class="btn btn-outline-primary btn-sm" target="_blank" href="doc/veri-seti-tekrar-eden-veriler.html" rel="noopener">tekrar eden veriler veri seti</a></p>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BenzersizVerileriAyriBirSutundaListele()
+    Dim i     As Long
+    Dim sayac As Long
+    
+    sayac = 1
+    
+    Columns("B").Clear
+    
+    For i = 1 To [A1048576].End(xlUp).Row
+        If WorksheetFunction.CountIf(Range("A1:A" & i), Range("A" & i)) = 1 Then
+            Range("B" & sayac) = Range("A" & i)
+            sayac = sayac + 1
+        End If
+    Next
+
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub BenzersizVerileriAyriBirSutundaListele()
+    Dim i     As Long
+    Dim sayac As Long
+    
+    '--------------------------------------------------
+    'B sütunundaki ilk boş satırın
+    'tespitinde kullanılacak değişken.
+    '--------------------------------------------------
+    sayac = 1
+    
+    '--------------------------------------------------
+    'Benzersiz verileri listelemeden
+    'önce B sütununu temizle.
+    '--------------------------------------------------
+    Columns("B").Clear
+    
+    '--------------------------------------------------
+    'A sütunundaki veriler için işlem yap.
+    '--------------------------------------------------
+    For i = 1 To [A1048576].End(xlUp).Row
+        
+        '--------------------------------------------------
+        'Her yeni satıra geçtikçe o satıraki
+        'veri için kontrol yapmak istiyoruz.
+        '
+        'Bunu ilerlediğimiz alana kadar sürekli
+        'kontrol ederek yapacağız. Nasıl?
+        '
+        'Şimdi arama şu şekilde olacak:
+        'A1 hücresi verisini A1:A1 alanında,
+        'A2 hücresi verisini A1:A2 alanında,
+        '...
+        'A345 hücresi verisini A1:A345 alanında arayacağız.
+        'Bu böyle sonuncu hücreye kadar devam edecek.
+        '
+        'Peki bu şekilde aramanın faydası ne?
+        'Öncelikle hiçbir hücreyi es geçmeden
+        'kontrol etmiş oluyoruz. CountIf fonksiyonunu
+        'ilerlediği hücreye kadar çalıştırıyoruz,
+        'böylece daha az alanı kontrol ettiğinden
+        'iş biraz daha hızlı oluyor.
+        'Zaten gelinen hücrede birden fazla veri
+        'tespit edilmişse daha fazla hücreye de
+        'bakmaya gerek yok, değil mi?
+        '
+        'Bu şekilde aramanın ana faydası da şu:
+        'Şimdi bir sütunda bütün verilerin birden
+        'fazla kez tekrar ettiğini varsayalım.
+        'Her seferinde bütün sütunu kontrol edersek
+        'hep birden fazla veri çıkacak ve işimize
+        'yaramayacak. Biz bu şekilde geldiğimiz
+        'satıra kadar alanı kontrol ettirerek
+        'bir nevi CountIf fonksiyonunu kandırmış
+        'oluyoruz.
+        '--------------------------------------------------
+        If WorksheetFunction.CountIf(Range("A1:A" & i), Range("A" & i)) = 1 Then
+            
+            '--------------------------------------------------
+            'sayac değişkeni ile B sütunundaki ilk boş satıra
+            'ilgili değeri yazdırıyoruz. Eğer döngüde kullanılan
+            'i değişkenini kullansaydık aralarda boşluklar
+            'olacaktı. Bunun olmasını istemediğimiz için
+            'B sütununda ayrı bir değişkenle (sayac) takip yaptık.
+            '--------------------------------------------------
+            Range("B" & sayac) = Range("A" & i)
+            sayac = sayac + 1
+        End If
+    Next
+
+End Sub
+</code></pre>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>301 Yönlendirmesi Yap - htaccess</title>
+    <title>post Türünde Ve Yayımlanmış Olan İçeriklerin Sayısını Bul - WordPress</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -32,49 +32,23 @@
     <div class="container">
        <br>
        <div class="row">
-        <div class="col">                
-         <h1>301 Yönlendirmesi Yap - htaccess</h1>
-         <hr /><p class="lead">Web sitesinde .htaccess dosyasıyla 301 yönlendirmesi yapmak için kullanılabilecek bir alternatiftir.</p><hr />
-
-         <div class="alert alert-primary"><strong>Kod</strong></div>
-
-<pre><code class="language-apacheconf">Options +FollowSymlinks
-RewriteEngine on
-ReWriteCond %{HTTP_HOST} ^(www.)?yonlendirilecek-site.com$ [NC]
-ReWriteRule ^(.*)$ http://acilmasini-istedigimiz-site.com/$1 [R=301,L]</code></pre> 
-
-
-        <div class="alert alert-primary"><strong>Kod (Açıklamalı)</strong></div>
-<pre><code class="language-apacheconf">Options +FollowSymlinks
-RewriteEngine on
-
-#----------------------------------------
-#Aşağıdaki satır şu anlama geliyor:
-#Siteye www. ile ya da www. olmadan
-#girilmesi halinde işlem yapılacak.
-#Dikkat edin, adrese http türevleri
-#ya da www eklemedik.
-#----------------------------------------
-ReWriteCond %{HTTP_HOST} ^(www.)?yonlendirilecek-site.com$ [NC]
-
-
-#----------------------------------------
-#Ziyaretçi siteye www ile de girse
-#www olmadan da girse www olmayan
-#adrese gönder.
-#----------------------------------------
-ReWriteRule ^(.*)$ http://acilmasini-istedigimiz-site.com/$1 [R=301,L]
+        <div class="col">
+           <h1>post Türünde Ve Yayımlanmış Olan İçeriklerin Sayısını Bul - WordPress</h1>
+           <hr /><p class="lead">WordPress web sitesinde türü "post" olan ve yayımlanmış durumda olan kaç tane içeriğin olduğunu bulmaya yarayan MySQL sorgusu alternatifidir.
+</p><hr /><div class="alert alert-info"><strong>Sorgu</strong></div>
+<pre><code class="language-sql">
+SELECT COUNT(ID) as 'toplam' from wp_posts
+WHERE post_status="publish" AND post_type="post";
 </code></pre>
-        <hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>
 </div>
 
 <!-- JS-->
 <script src="js/bootstrap.min.js"></script>
-<script src="js/prism.js">
-</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script> src="js/prism.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
      crossorigin="anonymous"></script>
 </body>
 </html>

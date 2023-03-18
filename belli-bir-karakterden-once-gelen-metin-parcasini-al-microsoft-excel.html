@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Belli Bir Karakterden Önce Gelen Metin Parçasını Al - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Belli Bir Karakterden Önce Gelen Metin Parçasını Al - Microsoft Excel</h1>
+           <hr /><p class="lead">Elimizdeki bir string ifadedeki (metin) bir karakteri sınır kabul ederek ona göre metnin sağ tarafını kırpar. Örneğin, “1-2-3-4-5” string ifadesinde biz üçüncü tireden önceki metin parçasını almak istiyoruz, yani “1-2-3” kısmını. İşte formül bu şekilde belli bir metinsel ifadeden önceki metnin getirilmesini sağlamaktadır.
+</p><hr /><div class="alert alert-info"><strong>Ekran Görüntüsü</strong></div>
+<a class="img-fluid d-block" href="doc/belli-bir-karakterden-once-gelen-metin-parcasini-al-microsoft-excel-1.png"><img src="doc/belli-bir-karakterden-once-gelen-metin-parcasini-al-microsoft-excel-1.png" alt="" /></a>
+<br>
+<div class="alert alert-info"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">
+=PARÇAAL(YERİNEKOY(A2;B2;C2;D2);1;BUL(C2;YERİNEKOY(A2;B2;C2;D2);1)-1)
+</code></pre>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Formülün Çalışma Mantığı</strong></p>
+        <p>Formül temelde <code>PARÇAAL</code> fonksiyonunun metinden bir metin parçasını alması üzerine kurulu. Eğer verdiğimiz karakterin sayısı metinde birden fazla ise bunu ayırt edebilmek için ilgili karakteri formül kullanarak işaretliyoruz. Sonra bu işaretlenmiş karakterin yerini bulduruyoruz. <code>PARÇAAL</code> formülü de baştan başlayıp bu işaretlenmiş karakterin bulunduğu yere kadar olan kısmı alıyor ve sonuç olarak yazdırıyor.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sınırı Belirle</strong></p>
+        <p>"1-2-3-4-5" metninde üçüncü tireden önceki metni almak istediğimizi varsayalım. Yani sonuç olarak "1-2-3" sonucunu elde etmek istiyoruz. Bunu yapmak için ilk önce üçüncü tireyi işaretliyoruz. İşaretleme karakterinin metinde olmayan bir karakter olması gerekiyor.</p>
+
+        <p>İşaretleme işlemini <code>YERİNEKOY</code> fonksiyonu ile yapacağız. İşaret olarak kullandığımız karakteri göstererek kolayca sonuca ulaşabileceğiz.</p>
+
+<pre><code class="language-excel-formula">
+YERİNEKOY(A2;B2;C2;D2)
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>İşaret Karakterinin Sırasını Bul</strong></p>
+        <p>İşaretlemeyi <code>PARÇAAL</code> formülü için hazırlamıştık. Verdiğimiz benzersiz (metinde olmayan) karakteri <code>BUL</code> formülü ile rahatça bulabilmemizi sağlayacak. Biz zaten metni baştan başlayarak böleceğiz ama başlangıçtan itibaren kaç karakter alınacak, nasıl alınacak sorusu kritik nokta. Aşağıdaki formül parçası da kaç karakter alınacağını bulmaya yarıyor.</p>
+
+<pre><code class="language-excel-formula">
+BUL(C2;YERİNEKOY(A2;B2;C2;D2);1)-1
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+<p>Normal metnimiz A2 hücresinde fakat bu haliyle işimize yaramadığı için işaretleyerek bu metni YERİNEKOY(A2;B2;C2;D2) haline getirdik. PARÇAAL fonksiyonunun ilk parametresine de bu yeni halini yazdırdık.</p>
+
+<p>PARÇAAL formülünün ikinci parametresi olan başlangıç sayısı parametresine 1 yazdık, çünkü biz metni en başından itibaren almak istiyoruz.</p>
+
+<p>PARÇAAL formülünün üçüncü parametresine de başlangıç sayısından itibaren kaç karakter alacağımızın bilgisini girdik. BUL fonksiyonunu işaret karakterini bulmak için kullandık, bu işimizi kolaylaştırdı.</p>
+
+<p>Bu işlemler sonucunda birden fazla aynı karakterin bulunduğu metinde, istediğimiz sıradaki karakterden bölme işlemi yaparak metnin ilgili parçasını alabildik.</p>
+
+<pre><code class="language-excel-formula">
+=PARÇAAL(YERİNEKOY(A2;B2;C2;D2);1;BUL(C2;YERİNEKOY(A2;B2;C2;D2);1)-1)
+</code></pre>      
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz:</p>
+
+<p><a class="btn btn-warning" target="_blank" href="doc/belli-bir-karakterden-once-gelen-metin-parcasini-al-microsoft-excel.zip" rel="noopener">belli-bir-karakterden-once-gelen-metin-parcasini-al-microsoft-excel.zip</a></p>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

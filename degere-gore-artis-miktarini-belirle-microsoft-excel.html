@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Değere Göre Artış Miktarını Belirle - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Değere Göre Artış Miktarını Belirle - Microsoft Excel</h1>
+           <hr /><p class="lead">Sütunun ilgili satırındaki değere bakan ve bu değere göre artış miktarını belirleyen formül alternatifidir.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<p>Sütundaki sayı değerlerine bakarak artış miktarının belirlenmesi gerekiyor. Sayının dahil olduğu aralığa göre işlem yapılacak.</p>
+
+<table class="table table-bordered table-sm">
+<tbody><tr>
+<td>Aralık</td>
+<td>Artış Miktarı</td>
+</tr>
+<tr class="alt">
+<td>0 – 4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>5 – 9</td>
+<td>1</td>
+</tr>
+<tr class="alt">
+<td>10 – 19</td>
+<td>2</td>
+</tr>
+<tr>
+<td>20 – 39</td>
+<td>3</td>
+</tr>
+<tr class="alt">
+<td>40 – 69</td>
+<td>4</td>
+</tr>
+<tr>
+<td>60 – 79</td>
+<td>5</td>
+</tr>
+<tr class="alt">
+<td>80 – 100</td>
+<td>6</td>
+</tr>
+<tr>
+<td>&gt;100</td>
+<td>7</td>
+</tr>
+</tbody></table>
+
+<div class="alert alert-info"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">
+=ARA(B2;{0;5;10;20;40;60;80;100};{0;1;2;3;4;5;6;7})
+</code></pre>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Aranan Değer Bilgisini Hazırla</strong></p>
+        <p><code>ARA</code> formülünün kontrol edeceği bilgiyi giriyoruz. Bu bilgiye göre formül işlem yapacak.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Aranan Vektörü Hazırla</strong></p>
+        <p><code>ARA</code> formülü için gerekli olan parametreleri hazırla. İlk parametrede aralıkların üst sınırlarını dizi olarak ekledik. Böylelikle formül eğer bu sınırda veya sınırın altında bir değere denk gelirse ona göre işlem yapabilecek.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç Vektörünü Hazırla</strong></p>
+        <p><code>ARA</code> formülü için gereken ikinci diziyi tanımladık. Verilen sayının aralığı kontrol edilecek, buna göre artış miktarı belirlenecek. İşte artış miktarlarının tutulduğu dizi bu dizi oluyor.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+        <p><code>B2</code> formülündeki bilgi aranan vektör dizisinde aranacak, hangi aralığa denk geliyorsa (<code>B2</code> hücresinde verilen sayıya göre aranan vektör dizisindeki en yakın sayıyı bulacak) ona göre sonuç vektör dizisinde karşılık gelen elemanı sonuç olarak döndürecek.</p>
+
+        <p>Örneğin <code>B2</code> hücresindeki sayı 95 ise aranan vektör dizisindeki sayılara bakılacak ve buna en yakın olan sayı seçilecek (100) ve sonuç vektör dizisinde karşılık gelen sayı (artış miktarı) döndürülecek (yani 6).</p>
+
+<pre><code class="language-excel-formula">
+=ARA(B2;{0;5;10;20;40;60;80;100};{0;1;2;3;4;5;6;7})
+</code></pre>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz:</p>
+<p><a class="btn btn-warning" target="_blank" href="doc/degere-gore-artis-miktarini-belirle-microsoft-excel.zip" rel="noopener">degere-gore-artis-miktarini-belirle-microsoft-excel.zip</a></p>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

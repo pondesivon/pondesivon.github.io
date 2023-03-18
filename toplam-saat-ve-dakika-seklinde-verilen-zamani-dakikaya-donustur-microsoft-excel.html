@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Toplam Saat Ve Dakika Şeklinde Verilen Zamanı Dakikaya Dönüştür - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Toplam Saat Ve Dakika Şeklinde Verilen Zamanı Dakikaya Dönüştür - Microsoft Excel</h1>
+           <hr /><p class="lead">127:41 gibi bir saatler toplamı ve dakika bilgisi olan bir zamanı dakika olarak yazdırmaya yarayan formül alternatifidir.
+</p><hr /><div class="alert alert-info"><strong>Formül</strong></div>
+<pre><code class="language-excel-formula">
+=METNEÇEVİR(SAYIYAÇEVİR(METNEÇEVİR(A1;"[s]")) * 60 + DAKİKA(A1);"########")
+</code></pre>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Saat Bilgisini Ayıkla</strong></p>
+        <p>İşin en problemli kısmı. Şimdi bunu <code>SAAT</code> formülüyle çekmeye çalışınca mod alarak sonuç üretiyor. Halbuki biz toplam saat bilgisini olduğu gibi almak istiyoruz. Bunu da metni biçimlendirerek alıyoruz.</p>
+<pre><code class="language-excel-formula">
+METNEÇEVİR(A1;"[s]")
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Saat Bilgisini Dakikaya Dönüştür</strong></p>
+        <p>Toplam saat bilgisini dakikaya dönüştürmek için 60 sayısıyla çarpıyoruz.</p>
+<pre><code class="language-excel-formula">
+SAYIYAÇEVİR(METNEÇEVİR(A1;"[s]")) * 60
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Dakika Bilgisini Ayıkla</strong></p>
+        <p>Dakika bilgisini ayıklamak daha kolay, çünkü dakika kısmında saat bilgisinde olduğu gibi eklemeli artış durumu yok.</p>
+<pre><code class="language-excel-formula">
+DAKİKA(A1)
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Dakikaları Topla</strong></p>
+        <p>Toplam dakika bilgisini bulmak için sonuçları topla.</p>
+<pre><code class="language-excel-formula">
+SAYIYAÇEVİR(METNEÇEVİR(A1;"[s]")) * 60 + DAKİKA(A1)
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonucu Biçimlendir</strong></p>
+        <p>Hücreye önceden farklı bir biçimlendirme uygulanmışsa bu sonucu düzgün bir biçimde yazdırılmamasına sebep olabilir. Doğru sonuç üretse bile yanlış olduğu düşünülebilir. Bunun olmamasını garantilemek için yine <code>METNEÇEVİR</code> formülünü kullanıyoruz.</p>
+<pre><code class="language-excel-formula">
+=METNEÇEVİR(SAYIYAÇEVİR(METNEÇEVİR(A1;"[s]")) * 60 + DAKİKA(A1);"########")
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+        <p>Veriyi formülle alırken hücrede göründüğü gibi almaması durumuna karşı <code>METNEÇEVİR</code> formülünden sıkça faydalandık ve verinin olması gerektiği gibi olması durumunu garantiye aldık. Sonucu da yine yazdırılacak hücrede yapılmış bir biçimlendirme durumuna karşı <code>METNEÇEVİR</code> ile istediğimiz gibi yazdırdık.</p>
+<pre><code class="language-excel-formula">
+=METNEÇEVİR(SAYIYAÇEVİR(METNEÇEVİR(A1;"[s]")) * 60 + DAKİKA(A1);"########")
+</code></pre>
+    </li>
+</ul>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

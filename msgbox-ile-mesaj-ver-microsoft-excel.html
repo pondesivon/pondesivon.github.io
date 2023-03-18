@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>MsgBox İle Mesaj Ver - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>MsgBox İle Mesaj Ver - Microsoft Excel</h1>
+           <hr /><p class="lead">Microsoft Excel VBA ile daha etkili ve fonksiyonel mesaj kutuları oluşturmak için yapılabileceklere göz atalım.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Düz Mesaj</strong></p>
+<pre><code class="language-vb">
+'Mesaj Örneği
+MsgBox "Mesaj"
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Başlığı Olan Mesaj</strong></p>
+<pre><code class="language-vb">
+'Başlığı Olan Bir Mesaj Örneği
+MsgBox "Bu bir mesaj içeriğidir.", , "Değişik Başlık"
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Mesajları Detaylandır</strong></p>
+        <p>Mesaj butonlarını kullanarak kullanıcıya daha ayrıntılı ve belli cevapları alabileceğimiz mesajlar oluşturabiliriz. Bu arada birkaç tanesini atlamış olabilirim. Ehe.</p>
+
+<pre><code class="language-vb">
+Option Explicit
+
+MsgBox "Bu bir mesaj içeriğidir.", vbYesNoCancel, "Değişik Başlık"
+
+'Özel Mesajlar
+
+'-------------------------------------------
+'vbAbortRetryIgnore
+'Butonlar | Durdur - Yeniden Dene - Yoksay
+'-------------------------------------------
+
+'-------------------------------------------
+'vbApplicationModal
+'Butonlar | Tamam
+'-------------------------------------------
+
+'-------------------------------------------
+'vbCritical
+'Butonlar | Tamam
+'Mesajın yanında hata ikonu gösteriyor
+'ve windows hata sesi çıkarıyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbExclamation
+'Butonlar | Tamam
+'Mesajın yanında ünlem ikonu gösteriyor
+'ve windows uyarı sesi çıkarıyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbInformation
+'Butonlar | Tamam
+'Mesajın yanında bilgi ikonu gösteriyor
+'ve windows uyarı sesi çıkarıyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbMsgBoxHelpButton
+'Butonlar | Tamam - Yardım
+'-------------------------------------------
+
+'-------------------------------------------
+'vbMsgBoxRight
+'Butonlar | Tamam
+'Mesaj başlığını ve içeriğini sağa hizalıyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbMsgBoxRtlReading
+'Butonlar | Tamam
+'Mesaj penceresi düzenini sağdan sola
+'olacak şekilde hizalıyor. Arapça vs.
+'için işe yarayabilir.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbOKCancel
+'Butonlar | Tamam - İptal
+'-------------------------------------------
+
+'-------------------------------------------
+'vbOKOnly
+'Butonlar | Tamam
+'-------------------------------------------
+
+'-------------------------------------------
+'vbQuestion
+'Butonlar | Tamam
+'Mesajın yanında soru ikonu gösteriyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbRetryCancel
+'Butonlar | Yeniden Dene - İptal
+'-------------------------------------------
+
+'-------------------------------------------
+'vbSystemModal
+'Butonlar | Tamam
+'Mesaj penceresinin sol üst köşesinde simge görünüyor.
+'-------------------------------------------
+
+'-------------------------------------------
+'vbYesNo
+'Butonlar | Evet - Hayır
+'-------------------------------------------
+
+'-------------------------------------------
+'vbYesNoCancel
+'Butonlar | Evet - Hayır - İptal
+'-------------------------------------------
+
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Daha Fazla Detay Ver</strong></p>
+        <p>Örneğin Evet – Hayır şeklinde iki cevabın verilebileceği bir soru sormak istiyoruz. Mesaj penceresinde de hem içeriğin yanında soru ikonu görünsün hem de iki cevap şıkkını sunsun. Koda bakalım.</p>
+
+<pre><code class="language-vb">
+MsgBox "Bu bir soru mudur?", vbYesNoCancel + vbQuestion, "Birini seçin:"
+</code></pre>
+    </li>
+</ul>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.java2s.com/Code/VBA-Excel-Access-Word/Language-Basics/CheckMsgBoxresult.htm" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.java2s.com/Code/VBA-Excel-Access-Word/Language-Basics/CheckMsgBoxresult.htm</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

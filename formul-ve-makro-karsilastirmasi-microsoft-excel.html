@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Formül ve Makro Karşılaştırması - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Formül ve Makro Karşılaştırması - Microsoft Excel</h1>
+           <hr /><p class="lead">Excel kullanıcıları bu karşılaştırmayı illaki yapmışlardır. Sanmıyorum ama, yapmamışlarsa bile mutlaka bir tercih durumu söz konusu olmuştur. Gelin bu iki önemli aracı karşılaştıralım.
+</p><hr /><ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Kullanım</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Hazırdır. Yani ofis programı yüklendiği, excel’i açtınız, hooop şappadanak kullanmaya başlayabilirsiniz. Yani hazır bir şeyi kullanırsınız.</li>
+	<li><strong>Makro</strong>
+Eğer hazır bir işi almadıysanız sizin yazmanız gerekir. Yani hem üretirsiniz hem kullanırsınız. Tabii bazen kullanamazsınız, o konu başka bir konu.
+
+Bu arada hemen potansiyel bir yanlış anlaşılmanın önüne geçeyim. Formülleri de siz yazarsınız ama o formüllerin çalışmasını sağlayan kodu siz yazmadığınızdan dolayı… Hah anladınız değil mi, öyle yani.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Üşengeçliğe Hizmet</strong></p>
+Şimdi bunu bir sistem kurma olarak değil de tek seferlik bir işi halletmek olarak düşünerek karşılaştıralım.
+<ul>
+	<li><strong>Formül</strong>
+Eğer formülleri iyi biliyorsanız yazarsınız, sonuçları alır ve geçersiniz. Hadi örnek de vereyim, örneğin bugünün tarihini ve saatini öğrenmek için excel kullanacaksam ve özel bir durum da yoksa VBA ile uğraşmam.</li>
+	<li><strong>Makro</strong>
+Tek seferlik işlerde biraz daha uğraştırıcı olabilir. Her seferinde VBA penceresini aç, sub yordam aç, kod yaz, çalışmasın, çalışsın vs. derken biraz daha uğraştırabilir.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Performans</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Formüller arttıkça çalışma kitabını kastırmaya başlarlar. Hele de fonksiyonlar oynak (volatile) ise ooo bekle dur. Ha performansı artırabilecek çeşitli birkaç teknik var ama yine de sıkıntı.</li>
+	<li><strong>Makro</strong>
+Formüllerle karşılaştırıldığında tam bir performans canavarıdır.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Ulaşılabilirlik</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Yukarıda da bahsettiğimiz gibi, bunlar zaten excel’in varsayılanı olduğundan excel bulduğunuz yerde bunları da bulabilirsiniz, ekstradan bir şey yapmanıza gerek yoktur.</li>
+	<li><strong>Makro</strong>
+Eğer yazdığınız makroların başka yerlerde de çalıştırabilmek istiyorsanız bunları ulaşılabilir kılacak birkaç şey yapmanız gerekiyor. (Kodları yanınızda taşımak, frm, frx dosyalarını export edip bir yerlere upload etmek, USB ile yanınızda taşımak gibi.)</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Güvenilirlik</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Excel formülleri Microsoft firması gibi uluslararası, güvenilirliğini kanıtlamış bir firmanın uzman kişileri tarafından hazırlanmıştır. Ayrıca milyonlarca kişi tarafından kullanılıyor ve bu da çok daha fazla test edilme imkanı bulduğu anlamına geliyor.</li>
+	<li><strong>Makro</strong>
+Öncelikle bunu bir korkutucu unsur olarak düşünmeyin. Siz de Microsoft formüllerine denk bir formül yazabilirsiniz fakat her ne kadar iyi yazarsanız yazın yukarıdaki kadar bir onaylanmışlık yakalamanız zordur. Ayrıca hazırladığınız kodda belki de düşünmediğiniz bir nokta ileride başınızı ağrıtabilir. Tabii dediğim gibi bu sizi korkutmasın, kafası çalışan vatandaş her türlü üstesinden geliyor, rahat olun.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Kayıt İşleri</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Excel’in varsayılan (ileride de değişmezse) kayıt uzantısı .xlsx şeklindedir. Formül yazıp kaydettiğiniz zaman yine aynı uzantı ile kayıt yapabilirsiniz.</li>
+	<li><strong>Makro</strong>
+Eğer dosyanızın yazdığınız makroyu da içermesini istiyorsanız ve .xlsx uzantısı ile kaydetmeye çalışırsanız sıkıntı çıkaracaktır. Bunun için .xlsm uzantısını seçmelisiniz. (Makrolu kayıtlar için detaya girmedim, maksat farkı belirtmek.)</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Esneklik</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Formüllerle makro yazamazsınız ve formülün yapabildikleri ile sınırlı kalırsınız. Formül ne kadar iyi olursa olsun bu böyledir. Zaten makro da burada devreye girer.</li>
+	<li><strong>Makro</strong>
+Formül yazmaktan tutun, basit/karmaşık programlar hazırlamaya formüllerden çoook çok daha fazlasını makrolarla yapabilirsiniz.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Kodlamak ya da Kodlamamak</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Formül yazarken kodlama yapmış olmazsınız, programlama mantığını kullanarak bir şey yapıyor olabilirsiniz ama bu kod yazdığınız anlamına gelmez.</li>
+	<li><strong>Makro</strong>
+VBA yani Visual Basic for Applications, yaaani biz Excel'de çalıştığımızdan Excel için özelleştirilmiş Visual Basic oluyor bu. Evet, bildiğiniz kod yazarsınız.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Anlaşılabilirlik</strong></p>
+Öncelikle ikisini de yeteri kadar zorlaştırabileceğimizi belirteyim.
+<ul>
+	<li><strong>Formül</strong>
+Formüller eğer ne yaptığı iyi bir şekilde öğrenilmezse makrolara göre daha zor görünebiliyor. Hatta ilk aşamalarda bir çok kişi işi formül yerine makro ile yapmayı tercih edebiliyor bu yüzden.</li>
+	<li><strong>Makro</strong>
+Makronun zorluğu da var elbette ama programlama öğrenirken yaşanabilecek sorunlarla aynı. Özellikle kişi yapması gereken şey ile ilgili hiçbir fikri yoksa kod yazma işi gözünde çok büyüyebiliyor.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Kullanım Kısıtları</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Formül yazma ile ilgili ciddi bir kısıt yoktur. Yani sizden istekte bulunan kişi makro olsun vs. diye şart koşabilir tabii ama asıl kısım makroda zaten.</li>
+	<li><strong>Makro</strong>
+Şimdi yukarıda makronun kod yazma olduğunu belirtmiştik. Formülle yapacağınız her şey çalışma kitabı ile sınırlı kalır ama ne olduğunu bilmeden çalıştırdığınız bir makro bırakın çalışma kitabını bilgisayarınıza ve hatta eğer varsa ağdaki diğer bilgisayarlara bile çok fena şeyler yapabilir. İsteyen kişinin bundan başı yanmış olabilir ve kesinlikle makro kullanmamanızı isteyebilir.</li>
+</ul>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Geri Alma Muhabbeti</strong></p>
+<ul>
+	<li><strong>Formül</strong>
+Formülle yaptığınız bir değişikliği rahatlıkla geri alabilirsiniz.</li>
+	<li><strong>Makro</strong>
+Makro ile yapılan değişikliği geri almak… Çok sıkıntı, hatta neredeyse bir çoğumuz için imkansız gibi bir şey. En temizi hiç bulaşmamak.</li>
+</ul>
+    </li>
+</ul>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

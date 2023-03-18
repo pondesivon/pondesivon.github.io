@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>ol Ve li Etiketleri Oluştur, div İçine Ekle - Javascript</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>ol Ve li Etiketleri Oluştur, div İçine Ekle - Javascript</h1>
+           <hr /><p class="lead">Bir html dosyasındaki div’in içine ol ve li etiketlerinden oluşan elementleri oluşturur, bu elementlere özellik atar ve içine bir şeyler yazdırdıktan sonra listeletir.
+</p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>dosya.js</strong></p>
+<pre><code class="language-js">
+function diziListele() {
+	var dizi = [];
+	var sayac = 0;
+	
+	var liste = document.createElement('ol');
+	liste.setAttribute("id", "array-lst");
+	document.getElementById("content").appendChild(liste);
+	
+	for(var i=10; i&lt;=100; i+=10) {
+		dizi[sayac] = i;
+
+		var listeOgesi = document.createElement('li');
+		listeOgesi.setAttribute("id", "oge-" + sayac);
+		sayac++;
+		listeOgesi.innerHTML = i + ". değer";
+		document.getElementById("array-lst").appendChild(listeOgesi);
+	}
+}
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>dosya (açıklamalı).js</strong></p>
+<pre><code class="language-js">
+function diziListele() {
+	var dizi = [];
+	var sayac = 0;
+	
+	//--------------------------------------------------
+	//Element oluşturduk.
+	//--------------------------------------------------
+	var liste = document.createElement('ol');
+	
+	//--------------------------------------------------
+	//Elemente id değerini verdik. (Attribute)
+	//--------------------------------------------------
+	liste.setAttribute("id", "array-lst");
+	
+	//--------------------------------------------------
+	//liste isimli elementi id değeri "content" olan 
+	//elemente alt eleman olarak ekle. 
+	//Yani div'in içine ol etiketi ekledik.
+	//--------------------------------------------------
+	document.getElementById("content").appendChild(liste);
+	
+	for(var i=10; i&lt;=100; i+=10) {
+		dizi[sayac] = i;
+		
+		//--------------------------------------------------
+		//ol elementine diziyi eklemek için li etiketlerini
+		//kullanacağız. li elementini oluşturduk.
+		//--------------------------------------------------
+		var listeOgesi = document.createElement('li');
+		
+		//--------------------------------------------------
+		//li elementi için birden fazla attribute ayarladık.
+		//--------------------------------------------------
+		listeOgesi.setAttribute("id", "oge-" + sayac);
+		listeOgesi.setAttribute("class", "stil1");
+		sayac++;
+		
+		//--------------------------------------------------
+		//&lt;li&gt;&lt;/li&gt; etiketleri içine bir şeyler 
+		//yazdırmak için bunu kullandık.
+		//--------------------------------------------------
+		listeOgesi.innerHTML = i + ". değer";
+		
+		//--------------------------------------------------
+		//Şimdi döngü ile &lt;li&gt;Değerler&lt;/li&gt; şeklinde elementleri
+		//düzenledik ama bizim istediğimiz ol etiket içinde de
+		//listelenmesi gerekiyor. Yukarıda zaten "array-lst" id
+		//değerine sahip bir ol elementi oluşturmuştuk. Şimdi
+		//döngü ile sırayla oluşturulan li elementini yine 
+		//sırayla eklenmesini sağlayalım.
+		//--------------------------------------------------
+		document.getElementById("array-lst").appendChild(listeOgesi);
+	}
+}
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>index.html</strong></p>
+<pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Javascript - div İçine Element Ekle&lt;/title&gt;
+	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="diziListele()"&gt;
+	&lt;div id="content"&gt;
+	
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    </li>
+</ul>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz:</p>
+
+<p><a class="btn btn-warning" target="_blank" href="doc/ol-ve-li-etiketleri-olustur-div-icine-ekle-javascript.zip" rel="noopener">ol-ve-li-etiketleri-olustur-div-icine-ekle-javascript.zip</a></p>
+
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

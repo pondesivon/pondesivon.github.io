@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Kod İle TextBox Oluştur - CSharp</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Kod İle TextBox Oluştur - CSharp</h1>
+           <hr /><p class="lead">Sayı parametresine göre ilgili form nesnesine alt alta sıralanacak şekilde TextBox ekleyen alternatif bir C# kodunu görelim.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre data-line="20-41, 43-47"><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CSharpKodIleTextBoxNesnesiOlustur
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        void KodIleTextBoxNesnesiOlustur(int sayi = 1)
+        {
+            int aralik = 5;
+            int textBoxSayac = 1;
+
+            for (int i = 0; i &lt; sayi; i++)
+            {
+                TextBox textBox = new TextBox();
+                textBox.Name = "textBox" + textBoxSayac;
+                textBox.Top = 0 + aralik;
+                textBox.Left = 20;
+                textBox.Width = 100;
+                textBox.Text = "textBox Nesnesi " + textBoxSayac;
+                textBox.Font = new Font("Arial", 13.5f, FontStyle.Regular);
+                textBox.Size = new Size(300, textBox.Width);
+
+                this.Controls.Add(textBox);
+
+                aralik = aralik + 30;
+                textBoxSayac = textBoxSayac + 1;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.AutoScroll = true;
+            KodIleTextBoxNesnesiOlustur(100);
+        }
+    }
+}
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre data-line="20-93, 95-111"><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CSharpKodIleTextBoxNesnesiOlustur
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        void KodIleTextBoxNesnesiOlustur(int sayi = 1)
+        {
+            //--------------------------------------------------
+            //TextBox nesneleri alt alta dizileceği zaman arada
+            //ne kadar boşluk kalması gerektiğini bu değişkenle
+            //belirliyoruz. Başlangıç değerini de 5 olarak atadık.
+            //--------------------------------------------------
+            int aralik = 5;
+
+            //--------------------------------------------------
+            //TextBox nesnelerini isimlendirirken (Name özelliğine
+            //atama yapıyoruz) değişik isim vermek için sayılardan
+            //faydalanıyoruz. Bu değişken de Name isimlendirmesi
+            //için kullanılıyor.
+            //--------------------------------------------------
+            int textBoxSayac = 1;
+
+            //--------------------------------------------------
+            //TextBox nesnelerini oluşturacak döngüyü tanımla.
+            //--------------------------------------------------
+            for (int i = 0; i &lt; sayi; i++)
+            {
+
+                //--------------------------------------------------
+                //Yeni TextBox nesnesi örneği oluştur.
+                //--------------------------------------------------
+                TextBox textBox = new TextBox();
+
+                //--------------------------------------------------
+                //Nesnenin ismini ayarla.
+                //--------------------------------------------------
+                textBox.Name = "textBox" + textBoxSayac;
+
+                //--------------------------------------------------
+                //Nesne form alanında ne kadar üstte olacak?
+                //Değer sıfır olduğunda formun kenar kısmına
+                //değiyor.
+                //--------------------------------------------------
+                textBox.Top = 0 + aralik;
+
+                //--------------------------------------------------
+                //Oluşturulacak TextBox örneği Form nesnesinin
+                //sol kısmından ne kadar uzakta olacak?
+                //--------------------------------------------------
+                textBox.Left = 20;
+
+                //--------------------------------------------------
+                //TextBox nesne örneğinin genişliğini ayarla.
+                //--------------------------------------------------
+                textBox.Width = 300;
+
+                //--------------------------------------------------
+                //TextBox nesne örneğinin "metnini" ayarla.
+                //Name özelliği ile alakası yok bunun.
+                //--------------------------------------------------
+                textBox.Text = "textBox Nesnesi " + textBoxSayac;
+
+                //--------------------------------------------------
+                //Yazı özelliklerini ayarla.
+                //--------------------------------------------------
+                textBox.Font = new Font("Arial", 13.5f, FontStyle.Regular);
+
+                //--------------------------------------------------
+                //Oluşturulan textBox örneğini Form nesnesine ekle.
+                //--------------------------------------------------
+                this.Controls.Add(textBox);
+
+                //--------------------------------------------------
+                //Değişkenlere yeni değerler ata.
+                //--------------------------------------------------
+                aralik = aralik + 30;
+                textBoxSayac = textBoxSayac + 1;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //--------------------------------------------------
+            //Eğer TextBox nesneleri çok sayıdaysa bir yerden
+            //sonra Form nesnesinden taşacaktır. Taşan nesneleri
+            //görebilmek için Form nesnesinin AutoScroll özelliğini
+            //aktifleştirdik. Böylelikle form üzerinde mouse 
+            //yardımıyla aşağı yukarı gezinti yapabileceğiz.
+            //--------------------------------------------------
+            this.AutoScroll = true;
+
+            //--------------------------------------------------
+            //Oluşturulan metodu kullanarak Form nesnesine
+            //istenilen sayıda TextBox ekle.
+            //--------------------------------------------------
+            KodIleTextBoxNesnesiOlustur(100);
+        }
+    }
+}
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://www.gorselprogramlama.com/kod-ile-textbox-olusturma-c-net/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.gorselprogramlama.com/kod-ile-textbox-olusturma-c-net/</a>
+</div>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
