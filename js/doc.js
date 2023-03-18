@@ -37,7 +37,7 @@ function loadXMLDoc() {
     };
 
     // employee.xml is the external xml file
-    xmlhttp.open("GET", "../icerik.xml", true);
+    xmlhttp.open("GET", "https://pondesivon.github.io/icerikler.xml", true);
     xmlhttp.send();
 }
 
