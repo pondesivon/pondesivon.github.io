@@ -25,6 +25,7 @@ function konuFiltre() {
   }
 }
 
+/*
 function loadXMLDoc() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
@@ -62,6 +63,7 @@ function empDetails(xml) {
     // Print the xml data in table form
     document.getElementById("icerik-liste").innerHTML = liste;
 }
+*/
 
 function loadXMLDoc(sayfaNo=1) {
     var xmlhttp = new XMLHttpRequest();
@@ -81,7 +83,7 @@ function loadXMLDoc(sayfaNo=1) {
 
 var aktifSayfa;
 
-function empDetails(xml, sayfaNo=5) {
+function empDetails(xml, sayfaNo=40) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
@@ -115,6 +117,10 @@ function empDetails(xml, sayfaNo=5) {
 
   }
 
-  function idAta() {
+  function oncekiSayfa() {
+
+  }
+
+  function sonrakiSayfa() {
 
   }
