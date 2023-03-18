@@ -50,9 +50,9 @@ function empDetails(xml) {
     // Start to fetch the data by using TagName 
     for (i = 0; i < x.length; i++) {
         liste += '<li class="str"><a class="bgl" href="'
-              + x[i].attr("baglanti")
+              + x[i].getAttribute("baglanti")
               + '">'
-              + x[i].attr("baslik")
+              + x[i].getAttribute("baslik")
               + "</a></li>";
     }
 
