@@ -5,3 +5,5 @@ body    { overflow-y:scroll }
 
 /* bağlantı  */
 .bgl { text-decoration: none; }
+
+.sinir { border: 3px solid #dc3545; padding: 15px; border-radius: 10px; font-size: 28px }
