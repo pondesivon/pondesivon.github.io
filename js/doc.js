@@ -79,21 +79,27 @@ function loadXMLDoc(sayfaNo=1) {
     xmlhttp.send();
 }
 
-function empDetails(xml, sayfaNo=1) {
+var aktifSayfa;
+
+function empDetails(xml, sayfaNo=5) {
     var i;
+    var sayi;
     var xmlDoc = xml.responseXML;
     var liste = "<ol>";
     var x = xmlDoc.getElementsByTagName("Icerik");
 
+    sayi = 20;
+
     // Start to fetch the data by using TagName 
-    for (i = sayfaNo; i < sayfaNo+20; i++) {
-        liste += '<li class="str"><a class="bgl" href="'
+    for (i = sayfaNo*sayi; i < sayfaNo*sayi + sayi; i++) {
+        liste += '<li start="' + i + '" class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
     }
 
+/*
     var sayfa;
     for (i = 0; i < x.length/20; i++) {
       sayfa+= '<a onclick="' + "idAta()" + '" class="bgl" id="' + "syf-" + i + '" href="' + '#' + '"'
@@ -103,6 +109,7 @@ function empDetails(xml, sayfaNo=1) {
     }    
 
         liste+= "<hr>" + sayfa;
+*/
     // Print the xml data in table form
     document.getElementById("icerik-liste").innerHTML = liste;
 
