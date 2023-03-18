@@ -58,6 +58,17 @@ function empDetails(xml) {
 
     liste+= "</ol>";
 
+    var sayfa;
+    for (i = 0; i < x.length/20; i++) {
+    sayfa += '<a class="bgl" href="'
+          + '#'
+          + '">'
+          + i
+          + "</a><br>";
+    }
+
+    liste+= "<hr>" + sayfa; 
+
     // Print the xml data in table form
     document.getElementById("icerik-liste").innerHTML = liste;
 }
