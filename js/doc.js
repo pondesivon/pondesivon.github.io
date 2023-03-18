@@ -24,3 +24,40 @@ function konuFiltre() {
     input.select();
   }
 }
+
+function loadXMLDoc() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+
+        // Request finished and response 
+        // is ready and Status is "OK"
+        if (this.readyState == 4 && this.status == 200) {
+            empDetails(this);
+        }
+    };
+
+    // employee.xml is the external xml file
+    xmlhttp.open("GET", "../icerik.xml", true);
+    xmlhttp.send();
+}
+
+function empDetails(xml) {
+    var i;
+    var xmlDoc = xml.responseXML;
+    var liste = "<ol>";
+    var x = xmlDoc.getElementsByTagName("Icerik");
+
+    // Start to fetch the data by using TagName 
+    for (i = 0; i < x.length; i++) {
+        liste += '<li class="str"><a class="bgl" href="'
+              + x[i].getAttributeValue("baglanti")
+              + '">'
+              + x[i].getAttributeValue("baslik")
+              + "</a></li>";
+    }
+
+    liste+= "</ol>";
+
+    // Print the xml data in table form
+    document.body.innerHTML = table;
+}
