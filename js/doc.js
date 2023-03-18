@@ -59,5 +59,5 @@ function empDetails(xml) {
     liste+= "</ol>";
 
     // Print the xml data in table form
-    document.body.innerHTML = liste;
+    document.getElementById("icerik-liste").innerHTML = liste;
 }
