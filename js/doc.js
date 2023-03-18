@@ -59,9 +59,6 @@ function empDetails(xml) {
     liste+= "</ol>";
 
 
-
-
-
     // Print the xml data in table form
     document.getElementById("icerik-liste").innerHTML = liste;
 }
@@ -99,7 +96,7 @@ function empDetails(xml, sayfaNo=1) {
 
     var sayfa;
     for (i = 0; i < x.length/20; i++) {
-    sayfa += '<a '+ "onclick=loadXMLDoc("+ document.getElementById('syf-' + i).getAttribute('id') +")" +' class="bgl" id="' + "syf-" + i + '" href="'
+    sayfa += '<a onclick=' + loadXMLDoc(+ document.getElementById('syf-' + i).getAttribute('id') +")" +' class="bgl" id="' + "syf-" + i + '" href="'
           + '#'
           + '">'
           + i+1
