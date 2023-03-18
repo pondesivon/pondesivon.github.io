@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Son Kullanılan Dosyalar Listesine Dosya Ekle - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,26 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Son Kullanılan Dosyalar Listesine Dosya Ekle - Microsoft Excel</h1>
+           <hr /><p class="lead">Tam yolu verilen bir dosyayı dosya gezgininin "Hızlı Erişim" klasöründe, "Son kullanılan dosyalar" listesine ekler.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Declare Sub SHAddToRecentDocs Lib "shell32.dll" (ByVal uFlags As Long, ByVal pv As String)
+
+Sub SonKullanilanDosyalarListesineDosyaEkle()
+    Dim eklenecek As String
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    eklenecek = "C:\falan dizin\filan dosya.txt"
+    SHAddToRecentDocs 2, eklenecek
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://docs.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shaddtorecentdocs" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shaddtorecentdocs</a>
+</div>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

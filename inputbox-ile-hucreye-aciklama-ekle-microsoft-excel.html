@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>InputBox İle Hücreye Açıklama Ekle - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,51 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>InputBox İle Hücreye Açıklama Ekle - Microsoft Excel</h1>
+           <hr /><p class="lead">InputBox aracılığıyla hücreye açıklama ekleme işlemi yapar. Eğer önceden eklenmiş bir açıklama varsa bu açıklamanın altına ekleyerek işlem yapar.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub InputBoxIleHucreyeAciklamaEkle()
     
-    On Error Resume Next
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim girdi           As Variant
+    Dim aciklama        As Variant
+    Dim aciklamaUzunluk As Long
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
+    '--------------------------------------------------
+    'Değişken atamalarını yap.
+    '--------------------------------------------------
+    girdi = InputBox("Hücreye eklenecek açıklamayı giriniz: ", _
+                "Açıklama Girişi")
+    aciklama = ActiveCell.NoteText
+    aciklamaUzunluk = Len(aciklama)
     
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
+    '--------------------------------------------------
+    'Açıklama ekleme işlemini yap.
+    '--------------------------------------------------
+    If aciklamaUzunluk > 0 Then
+        ActiveCell.NoteText _
+            Text:=vbCrLf & vbCrLf & girdi, _
+            Start:=aciklamaUzunluk + 1
     Else
-        CalismaKitabiAcikMi = False
+        ActiveCell.NoteText Text:=girdi
     End If
-End Function
+    
+    '--------------------------------------------------
+    'Yorum kutusunu otomatik olarak boyutlandır.
+    '--------------------------------------------------
+    ActiveCell.Comment.Shape.TextFrame.AutoSize = True
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+	<a href="https://www.extendoffice.com/documents/excel/1572-excel-autosize-comments.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.extendoffice.com/documents/excel/1572-excel-autosize-comments.html</a>
+</div>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

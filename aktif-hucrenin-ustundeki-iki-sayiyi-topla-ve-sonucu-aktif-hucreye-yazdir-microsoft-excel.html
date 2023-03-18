@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Aktif Hücrenin Üstündeki İki Sayıyı Topla Ve Sonucu Aktif Hücreye Yazdır - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,22 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Aktif Hücrenin Üstündeki İki Sayıyı Topla Ve Sonucu Aktif Hücreye Yazdır - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücreyi son eleman olarak kabul edersek, sondan bir önceki ve sondan iki önceki sayılar toplanıyor, çıkan sonuç aktif hücreye yazdırılıyor.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub AktifHucreninUstundekiIkiSayiyiToplaVeSonucuAktifHucreyeYazdir()
+    Dim deger1 As Long
+    Dim deger2 As Long
     
-    On Error Resume Next
+    deger1 = ActiveCell.Offset(-1, 0).value
+    deger2 = ActiveCell.Offset(-2, 0).value
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    ActiveCell.value = deger1 + deger2
+End Sub
+
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

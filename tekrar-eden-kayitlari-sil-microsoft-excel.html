@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Tekrar Eden Kayıtları Sil - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,27 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Tekrar Eden Kayıtları Sil - Microsoft Excel</h1>
+           <hr /><p class="lead">A sütununda tekrar eden kayıtların olup olmadığını kontrol eden ve eğer tekrar eden kayıt bulursa ilgili satırı temizleyen VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub TekrarEdenKayitlariSil()
+    Dim i           As Long
+    Dim kayitSayisi As Long
     
-    On Error Resume Next
+    For i = 1 To [A1048576].End(3).Row
+        kayitSayisi = WorksheetFunction.CountIf([A:A], Cells(i, 1))
+        
+        If kayitSayisi > 1 Then
+            Columns(1).Replace What:=Cells(x, 1), Replacement:=""
+        End If
+    Next
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    Columns(1).SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+    MsgBox "Tekrar eden kayıtlar silindi ve benzersiz kayıtlar listelendi.", vbInformation
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

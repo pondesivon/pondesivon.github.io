@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çalışma Kitabı Açıldığında Saate Göre Mesaj Göster - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,54 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çalışma Kitabı Açıldığında Saate Göre Mesaj Göster - Microsoft Excel</h1>
+           <hr /><p class="lead">Belli saat dilimlerinden hareket ederek ona göre mesaj gösterilmesini sağlayan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub Auto_Open()
+    Dim saat As Byte
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
+    saat = Hour(Time)
+    If (saat < 9) Then
+        Call Saat09
+    ElseIf (saat < 15) Then
+        Call Saat15
+    ElseIf (saat < 20) Then
+        Call Saat20
     Else
-        CalismaKitabiAcikMi = False
+        Call Mesaj
     End If
-End Function
+End Sub
+
+Sub Saat09()
+    MsgBox "Günaydın!" & _
+    vbCrLf & "--------------------" & _
+    vbCrLf & vbCrLf & _
+    "Zaman: " & Now
+End Sub
+
+Sub Saat15()
+    MsgBox "Tünaydın!" & _
+    vbCrLf & "--------------------" & _
+    vbCrLf & vbCrLf & _
+    "Zaman: " & Now
+End Sub
+
+Sub Saat20()
+    MsgBox "İyi akşamlar!" & _
+    vbCrLf & "--------------------" & _
+    vbCrLf & vbCrLf & _
+    "Zaman: " & Now
+End Sub
+
+Sub Mesaj()
+    MsgBox "Merhaba!" & _
+    vbCrLf & "--------------------" & _
+    vbCrLf & vbCrLf & _
+    "Zaman: " & Now
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

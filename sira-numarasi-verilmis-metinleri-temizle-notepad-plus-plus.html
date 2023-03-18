@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Sıra Numarası Verilmiş Metinleri Temizle - Notepad Plus Plus</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,24 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
-</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Option Explicit
+           <h1>Sıra Numarası Verilmiş Metinleri Temizle - Notepad Plus Plus</h1>
+           <hr /><p class="lead">Video 1, Video 2, Video 3 şeklinde etiketler arasına eklenmiş bilgileri silme işlemine imkan veren düzenli ifade alternatifini görelim.
+</p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
+Aşağıdaki gibi bir ifadede Video 1, Video 2 gibi ifadeleri silmek istiyoruz.
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+<pre><code class="language-html">
+&lt;div class="col-lg-3"&gt;
+	&lt;div class="panel panel-group"&gt;Video 1&lt;/div&gt;
+	&lt;div class="panel panel-group"&gt;Video 2&lt;/div&gt;
+	&lt;div class="panel panel-group"&gt;Video 3&lt;/div&gt;
+	&lt;div class="panel panel-group"&gt;Video 4&lt;/div&gt;
+	&lt;div class="panel panel-group"&gt;Video 5&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="alert alert-info"><strong>Düzenli İfade</strong></div>
+<pre><code class="language-regexp">
+Video [0-9]{0,2}
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

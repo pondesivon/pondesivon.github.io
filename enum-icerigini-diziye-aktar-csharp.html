@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Enum İçeriğini Diziye Aktar - CSharp</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,39 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Enum İçeriğini Diziye Aktar - CSharp</h1>
+           <hr /><p class="lead">Bir enum listesini diziye aktarmaya yarayan alternatif bir C# kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Option Explicit
+<pre data-line="11-20, 22-27"><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+namespace CSharpEnumIceriginiDiziyeAktar
+{
+    class OrnekSinif
+    {
+        enum Gunler
+        {
+            Pazartesi,
+            Sali,
+            Carsamba,
+            Persembe,
+            Cuma,
+            Cumartesi,
+            Pazar
+        }
+
+        public string[] EnumIceriginiDiziyeAktar()
+        {
+            string[] dizi = Enum.GetNames(typeof(Gunler));
+
+            return dizi;
+        }
+    }
+}
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

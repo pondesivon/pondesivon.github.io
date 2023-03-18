@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Çalışma Kitabını Mesaj Kutusu İle Kapat - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Çalışma Kitabını Mesaj Kutusu İle Kapat - Microsoft Excel</h1>
+           <hr /><p class="lead">Önceden oluşturulmuş bir çalışma kitabını kapatma işleminin mesaj kutusundan gelen sonuca göre yapıldığı VBA kodu alternatifidir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Parametre Listesi
+'uygulamayiKapat: Çalışma kitabı kapatıldıktan
+'sonra Microsoft Excel uygulamasının da
+'kapatılıp kapatılmayacağını belirlemeye yarıyor.
+'--------------------------------------------------
+Sub CalismaKitabiniMesajKutusuIleKapat(Optional uygulamayiKapat As Boolean = True)
+    
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim mesajMetni    As String
+    Dim ayirmaMetni   As String
+    Dim calismaKitabi As Workbook
+    Dim sonuc         As Variant
+    
+    '--------------------------------------------------
+    'Atamalar
+    '--------------------------------------------------
+    Set calismaKitabi = ActiveWorkbook
+    
+    ayirmaMetni = Application.WorksheetFunction.Rept("-", 80)
+    
+    mesajMetni = ayirmaMetni & vbCrLf _
+        & calismaKitabi.Name & vbCrLf & ayirmaMetni & vbCrLf & vbCrLf _
+        & "Dosya kapatılacak. Dosyanın kaydedilmesini istiyor musunuz?"
+    
+    sonuc = MsgBox(mesajMetni, vbYesNoCancel, "Çıkış İşlemi")
+    
+    Application.DisplayAlerts = False
+    
+    '--------------------------------------------------
+    'Çalışma kitabını mesajla kapat.
+    '--------------------------------------------------
+    If (sonuc = vbYes) Then
+        ActiveWorkbook.Save
+    End If
+    
+    '--------------------------------------------------
+    'Microsoft Excel uygulamasını kapat.
+    '--------------------------------------------------
+    If (sonuc = vbYes Or sonuc = vbNo) Then
+        If (uygulamayiKapat = False) Then
+            ActiveWorkbook.Close
+        Else
+            Application.Quit
+        End If
+    End If
+End Sub
+
+'--------------------------------------------------
+'Parametresiz Kullanım Örneği
+'--------------------------------------------------
+Sub OrnekKullanim1()
+    CalismaKitabiniMesajKutusuIleKapat
+End Sub
+
+'--------------------------------------------------
+'Parametreli Kullanım Örneği
+'--------------------------------------------------
+Sub OrnekKullanim2()
+    CalismaKitabiniMesajKutusuIleKapat "False"
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Parametre Listesi
+'uygulamayiKapat: Çalışma kitabı kapatıldıktan
+'sonra Microsoft Excel uygulamasının da
+'kapatılıp kapatılmayacağını belirlemeye yarıyor.
+'
+'Parametrenin öntanımlı bir değeri var. İstenirse
+'parametreye değer vermeden de kullanım
+'yapılabiliyor.
+'--------------------------------------------------
+Sub CalismaKitabiniMesajKutusuIleKapat(Optional uygulamayiKapat As Boolean = True)
+    
+    '--------------------------------------------------
+    'Mesaj kutusunda gösterilecek metni
+    'bu değişkene atıyoruz.
+    '--------------------------------------------------
+    Dim mesajMetni    As String
+    
+    '--------------------------------------------------
+    'Mesaj metninin daha düzenli olabilmesini sağlamak
+    'için kullanılan bir değişken. Kod ile doğrudan
+    'bir alakası yok. Metin kalabalığını azaltmak
+    'amacıyla kullanılıyor.
+    '--------------------------------------------------
+    Dim ayirmaMetni   As String
+    
+    '--------------------------------------------------
+    'Kapatılacak çalışma kitabının atandığı değişken.
+    '--------------------------------------------------
+    Dim calismaKitabi As Workbook
+    
+    '--------------------------------------------------
+    'Oluşturulacak mesaj kutusundan gelecek sonucun
+    'saklandığı değişken. Bu sonuca göre kapatma
+    'işlemi yapılacak.
+    '--------------------------------------------------
+    Dim sonuc         As Variant
+    
+    '--------------------------------------------------
+    'Kapatılacak çalışma kitabını değişkene ata.
+    '--------------------------------------------------
+    Set calismaKitabi = ActiveWorkbook
+    
+    '--------------------------------------------------
+    'Mesaj kutusunda kullanılacak metni daha
+    'düzenli bir şekilde göstermek için metni tire
+    'karakterlerinden oluşan bir metin grubuyla
+    'ayıracağız.
+    '--------------------------------------------------
+    ayirmaMetni = Application.WorksheetFunction.Rept("-", 80)
+    
+    '--------------------------------------------------
+    'Mesaj metnini oluştur ve değişkene aktar.
+    '--------------------------------------------------
+    mesajMetni = ayirmaMetni & vbCrLf _
+        & calismaKitabi.Name & vbCrLf & ayirmaMetni & vbCrLf & vbCrLf _
+        & "Dosya kapatılacak. Dosyanın kaydedilmesini istiyor musunuz?"
+    
+    '--------------------------------------------------
+    'Mesaj kutusunu oluştur ve kullanıcının mesaj
+    'kutusundaki butonlardan birine tıklayarak
+    'oluşturacağı sayı değerini bir değişkene aktar.
+    'Burada "sonuc" isimli değişkene atama yapılıyor.
+    '--------------------------------------------------
+    sonuc = MsgBox(mesajMetni, vbYesNoCancel, "Çıkış İşlemi")
+    
+    '--------------------------------------------------
+    'Microsoft Excel uygulaması tarafından
+    'çıkarılan uyarı pencerelerini gösterme.
+    '--------------------------------------------------
+    Application.DisplayAlerts = False
+    
+    '--------------------------------------------------
+    'Çalışma kitabını mesajla kapat.
+    '--------------------------------------------------
+    If (sonuc = vbYes) Then
+        
+        '--------------------------------------------------
+        'Eğer kayıt işlemine onay verilmişse
+        'çalışma kitabını kaydet.
+        '--------------------------------------------------
+        ActiveWorkbook.Save
+    End If
+    
+    '--------------------------------------------------
+    'Yes, No ve Cancel (Evet, Hayır, İptal) olmak
+    'üzere üç butonlu olarak düzenlediğimiz mesaj
+    'kutusunda üç durum var:
+    '
+    'Yes    Tuşu: Çalışma kitabını kaydet.
+    'No     Tuşu: Çalışma kitabını kaydetme.
+    'Cancel Tuşu: Hiçbir şey yapma.
+    '
+    'Yes ve No tuşlarında çalışma kitabı kesin
+    'kapatılacak. Gel gelelim Cancel tuşunda
+    'bu işlemin olmaması lazım. Çünkü kodun
+    'bu kısmına gelindiğinde eğer bir kontrol
+    'yapılmazsa bütün tuşlar için Microsoft Excel
+    'uygulaması kapatılmaya çalışılıyor ve bu da
+    'istenmeyen durumlara sebebiyet verebiliyor.
+    'Bu sebepten dolayı Microsoft Excel uygulamasının
+    'kapatılması işlemini vbYes ve vbNo sonuçlarıyla
+    'sınırlayarak işlem yapıyoruz.
+    '--------------------------------------------------
+    If (sonuc = vbYes Or sonuc = vbNo) Then
+        
+        '--------------------------------------------------
+        'Sub yordamın parametresinden gelen sonuca göre
+        'işlem yap. Eğer değer False ise uygulamayı
+        'kapatma, True ise kapat.
+        '--------------------------------------------------
+        If (uygulamayiKapat = False) Then
+            ActiveWorkbook.Close
+        Else
+            Application.Quit
+        End If
+    End If
+End Sub
+
+'--------------------------------------------------
+'Parametresiz Kullanım Örneği
+'--------------------------------------------------
+Sub OrnekKullanim1()
+    CalismaKitabiniMesajKutusuIleKapat
+End Sub
+
+'--------------------------------------------------
+'Parametreli Kullanım Örneği
+'--------------------------------------------------
+Sub OrnekKullanim2()
+    CalismaKitabiniMesajKutusuIleKapat "False"
+End Sub
+</code></pre>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

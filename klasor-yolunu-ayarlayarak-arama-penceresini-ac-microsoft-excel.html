@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Klasör Yolunu Ayarlayarak Arama Penceresini Aç - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,45 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Klasör Yolunu Ayarlayarak Arama Penceresini Aç - Microsoft Excel</h1>
+           <hr /><p class="lead">Microsoft Windows arama penceresini istenilen klasörde arama yapmaya hazır bir halde açan alternatif bir VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Private Declare Function ShellExecute Lib "shell32.dll" _
+    Alias "ShellExecuteA" ( _
+    ByVal hwnd As Long, _
+    ByVal lpOperation As String, _
+    ByVal lpFile As String, _
+    ByVal lpParameters As String, _
+    ByVal lpDirectory As String, _
+    ByVal nShowCmd As Long) As Long
+
+Private Const SW_SHOWNORMAL = 1
+
+Sub FindAllFiles()
+    Dim aramaKlasoru As String
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    '--------------------------------------------------
+    'Arama yapılacak klasörü belirle.
+    '--------------------------------------------------
+    aramaKlasoru = "D:\"
+
+    ShellExecute _
+        0, _
+        "find", _
+        aramaKlasoru, _
+        vbNullString, _
+        vbNullString, _
+        SW_SHOWNORMAL
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecutea" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://docs.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecutea</a>
+</div>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

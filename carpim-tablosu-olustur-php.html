@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çarpım Tablosu Oluştur - PHP</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,51 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çarpım Tablosu Oluştur - PHP</h1>
+           <hr /><p class="lead">PHP - HTML ile yapılmış bir çarpım tablosu örneğidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Option Explicit
+<pre data-line="27-39"><code class="language-php">
+&lt;!doctype html&gt; 
+&lt;html&gt;
+	&lt;head&gt;
+		&lt;meta charset=utf-8&gt; 
+		&lt;title&gt;
+			PHP - Çarpım Tablosu Oluştur
+		&lt;/title&gt;
+		&lt;style type="text/css"&gt;
+			.tablo-stil {
+				font-family: 'Consolas', 'Courier New';
+				border: 1px dotted; #666;
+			}
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+			.satir {
+				padding: 10px;
+				border: 1px dotted #666;
+			}
+
+			.satir:hover {
+				background-color: #cdcdcd;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	
+	&lt;body&gt;
+		&lt;h1&gt;Çarpım Tablosu&lt;/h1&gt;
+		&lt;?php
+			echo "&lt;table class='tablo-stil'&gt;";
+			for ($i=1; $i&lt;=10; $i++)
+			{
+				echo "&lt;tr&gt;";
+				for ($j=1; $j&lt;=10; $j++)
+				{
+					echo "&lt;td class='satir'&gt;" . "   $j x $i = " . $j * $i . "  &lt;br&gt;" . "&lt;/td&gt;";
+				}
+				echo "&lt;/tr&gt;";
+			}
+			echo "&lt;/table&gt;";
+		?&gt;
+	&lt;/body&gt;
+&lt;html&gt;
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

@@ -34,33 +34,13 @@
        <div class="row">
         <div class="col">
            <h1>Aktif Hücrenin Bir Üstündeki Hücreyi Seç - Microsoft Excel</h1>
-           <hr /><p class="lead">Enter tuşu varsayılan olarak bir satır altta bulunan hücreyi seçiyor. Bunun tam tersi şekilde çalışan bir makro örneğidir. Bu arada Enter tuşu davranışına müdahale etmiyoruz. Sub yordam sadece.
+           <hr /><p class="lead">Seçili hücrenin bir üstündeki hücreyi kod ile seçmeye yarar. Eğer ilk satırdaysa işlem yapmaz.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Sub BirUsttekiHucreyeGit()
-    If (ActiveCell.Row <> 1) Then
-        ActiveCell.Offset(-1, 0).Select
-    End If
-End Sub
-</code></pre>
-
-<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
-<pre><code class="language-vb">
-Option Explicit
-
-Sub BirUsttekiHucreyeGit()
-
-    '--------------------------------------------------
-    'Satır numarası 1 olduğunda Offset kodu hata verecek
-    'çünkü 0. satır yok. Bu yüzden if koşulunu ekledik.
-    '--------------------------------------------------
-    If (ActiveCell.Row <> 1) Then
-    
-        '--------------------------------------------------
-        'Aktif hücrenin bir satır üstündeki hücreyi seç.
-        '--------------------------------------------------
+Sub AktifHucreninBirUstundekiHucreyiSec()
+    If ActiveCell.Row > 1 Then
         ActiveCell.Offset(-1, 0).Select
     End If
 End Sub

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çalışma Kitabını Belli Bir Süre Sonunda İmha Et - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,37 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çalışma Kitabını Belli Bir Süre Sonunda İmha Et - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen süre kadar zaman geçtiğinde çalışma kitabını imha etmeye yarayan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+'--------------------------------------------------
+'Dosya açıldığında imha etme sürecini başlat.
+'--------------------------------------------------
+Sub Auto_Open()
+    CalismaKitabiniBelliBirSureSonundaImhaEt
+End Sub
+
+'--------------------------------------------------
+'Çalışma kitabını imha et.
+'--------------------------------------------------
+Sub CalismaKitabiniImhaEt()
+    With ThisWorkbook
+        .Save
+        .ChangeFileAccess Mode:=xlReadOnly
+        Kill .FullName
+        .Close SaveChanges:=False
+    End With
+End Sub
+
+'--------------------------------------------------
+'Çalışma kitabını belli bir süre sonra imha et.
+'--------------------------------------------------
+Sub CalismaKitabiniBelliBirSureSonundaImhaEt()
+    Application.OnTime Now + TimeValue("00:00:10"), "CalismaKitabiniImhaEt"
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Arka Plan Rengine Göre Toplama İşlemi Yap - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,40 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Arka Plan Rengine Göre Toplama İşlemi Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Toplama işlemi yapılacak alan ve arka plan rengini verecek ilgili alan parametreleri verildiğinde bu arka plan renklerine sahip hücrelerdeki sayıları toplayan ve sonucunu yazdıran VBA kodudur. Kullanıcı tanımlı fonksiyon örneğidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Function ArkaPlanRengineGoreToplamaIslemiYap(aralik As Range, renkAlan As Range) As Double
+    Dim hucre        As Range
+    Dim geciciToplam As Double
+    Dim renkIndeks   As Integer
+    
+    renkIndeks = renkAlan.Cells(1, 1).Interior.ColorIndex
+    geciciToplam = 0
     
     On Error Resume Next
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
+    For Each hucre In aralik.Cells
+        If hucre <> "" Then
+            If hucre.Interior.ColorIndex = renkIndeks Then
+                geciciToplam = geciciToplam + hucre.value
+            End If
+        End If
+    Next
     
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
+    On Error GoTo 0
+    Set hucre = Nothing
+    
+    ArkaPlanRengineGoreTopla = geciciToplam
 End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Kullanım</strong></div>
+<pre><code class="language-plain-text">
+=ArkaPlanRengineGoreToplamaIslemiYap(J1:M8;J5)
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

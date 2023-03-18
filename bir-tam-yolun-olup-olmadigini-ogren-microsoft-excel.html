@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Bir Tam Yolun Olup Olmadığını Öğren - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,43 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Bir Tam Yolun Olup Olmadığını Öğren - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen tam yolun (dosya veya klasör) olup olmadığını kontrol etmeye yarayan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+'--------------------------------------------------
+'Fonksiyon
+'--------------------------------------------------
+Private Function TamYolunOlupOlmadiginiOgren(tamYol As String) As Boolean
+    Dim x As String
     
     On Error Resume Next
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
+    x = GetAttr(tamYol) And 0
     
     If Err = 0 Then
-        CalismaKitabiAcikMi = True
+        YolVarMi = True
     Else
-        CalismaKitabiAcikMi = False
+        YolVarMi = False
     End If
 End Function
+
+'--------------------------------------------------
+'Kullanım Örneği
+'--------------------------------------------------
+Sub OrnekKullanim()
+    Dim sonuc As Boolean
+    
+    sonuc = YolVarMi("C:\")
+    
+    If (sonuc = True) Then
+        MsgBox "Yol mevcut."
+    Else
+        MsgBox "Yol mevcut değil."
+    End If
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

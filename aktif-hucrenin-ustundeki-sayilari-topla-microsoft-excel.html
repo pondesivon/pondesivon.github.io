@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Aktif Hücrenin Üstündeki Sayıları Topla - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,45 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Aktif Hücrenin Üstündeki Sayıları Topla - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücrenin üstündeki sayıları toplayıp toplam sonucunu aktif hücreye yazdıran VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub AktifHucreninUstundekiSatirlariTopla()
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim i           As Long
+    Dim satirSayisi As Long
+    Dim aktifHucre  As Range
+    Dim toplam      As Double
     
-    On Error Resume Next
+    '---------------------------------------
+    'Değişkenlere değer ataması yap.
+    '---------------------------------------
+    toplam = 0
+    satirSayisi = 4
+    Set aktifHucre = ActiveCell
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
+    '---------------------------------------
+    'Toplama işlemini yap.
+    '---------------------------------------
+    If aktifHucre.Row > satirSayisi Then
+        For i = satirSayisi To 1 Step -1
+            toplam = toplam + ActiveCell.Offset(-i, 0).Value
+        Next
     Else
-        CalismaKitabiAcikMi = False
+        MsgBox "Aktif hücrenin satır sayısı, " & _
+        "verilen satır sayısından küçük."
     End If
-End Function
+    
+    '---------------------------------------
+    'Sonucu aktif hücreye yazdır.
+    '---------------------------------------
+    ActiveCell.Value = toplam
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

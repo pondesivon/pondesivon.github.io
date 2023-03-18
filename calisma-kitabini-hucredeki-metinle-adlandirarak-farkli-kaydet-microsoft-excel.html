@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çalışma Kitabını Hücredeki Metinle Adlandırarak Farklı Kaydet - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,25 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çalışma Kitabını Hücredeki Metinle Adlandırarak Farklı Kaydet - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir çalışma kitabını farklı kaydederken isim olarak verilen hücredeki metni kullanan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub CalismaKitabiniHucredekiMetinleAdlandirarakFarkliKaydet()
+    Dim hucreMetni As String
+
+    hucreMetni = Range("Sayfa1!F7")
+    ChDrive "C"
+    ChDir "C:\yedek"
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    ActiveWorkbook.SaveAs Filename:=(hucreMetni)
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Not</strong></div>
+<p>Bu tarz bir işlem yapılırken dosya adlandırma kurallarına uymanız ve uzantısını doğru bir şekilde girmeniz gerekmektedir. Aksi halde dosyayı olması gerektiği gibi kaydedemeyebilirsiniz.</p>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

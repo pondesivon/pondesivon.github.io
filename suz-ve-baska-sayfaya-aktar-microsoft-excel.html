@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Süz Ve Başka Sayfaya Aktar - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,48 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
-</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+           <h1>Süz Ve Başka Sayfaya Aktar - Microsoft Excel</h1>
+           <hr /><p class="lead">Verileri filtreledikten sonra bu filtrelenmiş verileri başka bir sayfaya aktaran VBA kodudur.
+</p><hr /><div class="alert alert-info"><strong>Veri</strong></div>
+<p>Süzme işlemini yapabileceğini örnek bir veri setine aşağıdaki bağlantıdan ulaşabilirsiniz.</p>
+
+<p><a class="btn btn-outline-primary btn-sm" target="_blank" href="doc/veri-seti-ogrenciler-ve-notlar.html" rel="noopener">öğrenciler ve notlar veri seti</a></p>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub SuzVeBaskaSayfayaAktar()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim kaynakSayfa As Worksheet
+    Dim hedefSayfa  As Worksheet
+    Dim suzmeMetni  As String
     
-    On Error Resume Next
+    '--------------------------------------------------
+    'Değer ataması yap.
+    '--------------------------------------------------
+    Set kaynakSayfa = Worksheets("ogrenciler")
+    Set hedefSayfa = Worksheets("rapor")
+    suzmeMetni = ">=70"
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
+    '--------------------------------------------------
+    'Sayfaları hazırla.
+    '--------------------------------------------------
+    hedefSayfa.Cells.Clear
+    kaynakSayfa.Range("A1").AutoFilter
     
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    '--------------------------------------------------
+    'Filtreleme işlemini yap.
+    '--------------------------------------------------
+    kaynakSayfa.Range("A1").AutoFilter Field:=2, Criteria1:=suzmeMetni
+    
+    '--------------------------------------------------
+    'Filtrelenmiş metni kopyala.
+    '--------------------------------------------------
+    kaynakSayfa.Range("A1").CurrentRegion.Copy hedefSayfa.Range("A1")
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

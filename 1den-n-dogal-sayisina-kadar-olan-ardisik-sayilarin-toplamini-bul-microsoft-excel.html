@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>1'den N Doğal Sayısına Kadar Olan Ardışık Sayıların Toplamını Bul - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,23 +33,20 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>1'den N Doğal Sayısına Kadar Olan Ardışık Sayıların Toplamını Bul - Microsoft Excel</h1>
+           <hr /><p class="lead">1'den başlayan ve bir N doğal sayısına kadar devam eden ardışık sayıların toplamını veren VBA kodudur. Kullanıcı tanımlı fonksiyon örneğidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Function BirdenNDogalSayisinaKadarOlanArdisikSayilarinToplaminiBul(sonSayi As Long) As Long
+    Dim sonuc As Long
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
+    If sonSayi > 0 Then
+        sonuc = (sonSayi * (sonSayi + 1)) / 2
+        BirdenNDogalSayisinaKadarOlanArdisikSayilarinToplaminiBul = sonuc
     Else
-        CalismaKitabiAcikMi = False
+        BirdenNDogalSayisinaKadarOlanArdisikSayilarinToplaminiBul = Err.Description
     End If
 End Function
 </code></pre>

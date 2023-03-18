@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Aktif Hücreyi Referans Alarak Üste Satır Ekle - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,26 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Aktif Hücreyi Referans Alarak Üste Satır Ekle - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücreyi baz alarak parametrede verilen sayı kadar satır ekleme işlemi yapan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub AktifHucreyiReferansAlarakUsteSatirEkle( _
+    Optional satirSayisi As Long = 1)
     
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
+    If CLng(satirSayisi) >= 1 Then
+        ActiveCell.Rows("1:" & satirSayisi).EntireRow.Select
+        Selection.Insert Shift:=xlDown
     End If
-End Function
+End Sub
+
+Sub OrnekKullanim()
+    AktifHucreyiReferansAlarakUsteSatirEkle
+    AktifHucreyiReferansAlarakUsteSatirEkle 1
+    AktifHucreyiReferansAlarakUsteSatirEkle 4
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

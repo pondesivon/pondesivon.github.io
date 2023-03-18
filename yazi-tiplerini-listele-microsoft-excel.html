@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Yazı Tiplerini Listele - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,63 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Yazı Tiplerini Listele - Microsoft Excel</h1>
+           <hr /><p class="lead">Windows/Fonts klasöründe bulunan yazı tiplerini A sütununa listeler. Listeleme esnasında hücrenin yazı tipi de hücrenin içinde yazan yazı tipiyle aynı olur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub YaziTipleriniListele()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim yaziTipleri As Variant
+    Dim x           As Integer
+    
+    '--------------------------------------------------
+    'Değişkenlere atama yap.
+    '--------------------------------------------------
+    x = 1
+    Set yaziTipleri = Application.CommandBars.FindControl(ID:=1728)
+    
     
     On Error Resume Next
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
+    '--------------------------------------------------
+    'Yazı tiplerini biçimlendirerek listele.
+    '--------------------------------------------------
+    Do
+        Cells(x + 1, 1) = yaziTipleri.List(x)
+        Cells(x + 1, 1).Font.Name = yaziTipleri.List(x)
+
+        If Err Then Exit Do
+        x = x + 1
+    Loop
     
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    On Error GoTo 0
+    
+    '--------------------------------------------------
+    'Tablo başlığını ve biçim ayarlarını yap.
+    '--------------------------------------------------
+    Range("A1") = "Yazı Tipleri Listesi " & "(" & x - 1 & ")"
+    
+    With Range("A1")
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .Font.Name = "Arial"
+        .Font.FontStyle = "Bold"
+        .Font.Size = 10
+        .Font.ColorIndex = 5
+        .Interior.ColorIndex = 15
+    End With
+    
+    '--------------------------------------------------
+    'Sütun genişliğini ayarla ve değişkenleri temizle.
+    '--------------------------------------------------
+    Columns("A:A").EntireColumn.AutoFit
+    
+    Set yaziTipleri = Nothing
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

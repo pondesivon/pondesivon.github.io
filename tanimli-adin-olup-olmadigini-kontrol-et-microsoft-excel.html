@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Tanımlı Adın Olup Olmadığını Kontrol Et - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,26 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
-</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+           <h1>Tanımlı Adın Olup Olmadığını Kontrol Et - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen ad tanımlı alanın olup olmadığını kontrol eden ve buna göre sonuç döndüren VBA kodudur. Kullanıcı tanımlı fonksiyon örneğidir.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<p>Ad tanımlı alanların listesine <code>Formüller</code> sekmesindeki <code>Tanımlı Adlar</code> bölümünde bulunan <code>Ad Yöneticisi</code> seçeneğinden ulaşılabilir. Burada tanımlı adların listesi yer almaktadır. Aşağıdaki kullanıcı tanımlı fonksiyon da kod aracılığıyla verilen metinle örtüşen bir isimlendirilmiş alan olup olmadığını kontrol edip buna göre sonuç döndürmeye yarıyor.</p>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Function TanimliAdinOlupOlmadiginiKontrolEt(alanIsmi As String) As Boolean
+    Dim isim As Object
     
-    On Error Resume Next
+    TanimliAdinOlupOlmadiginiKontrolEt = False
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
+    For Each isim In ActiveWorkbook.Names
+        If UCase(isim.Name) = UCase(alanIsmi) Then
+            TanimliAdinOlupOlmadiginiKontrolEt = True
+            Exit Function
+        End If
+    Next
 End Function
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

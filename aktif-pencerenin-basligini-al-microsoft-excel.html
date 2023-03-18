@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Aktif Pencerenin Başlığını Al - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,73 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Aktif Pencerenin Başlığını Al - Microsoft Excel</h1>
+           <hr /><p class="lead">API aracılığıyla aktif pencerenin başlığını öğrenmek için kullanılabilecek VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
+Private Declare Function GetForegroundWindow Lib "user32" () As Long
+
+Private Declare Function GetWindowTextLength Lib "user32" _
+Alias "GetWindowTextLengthA" (ByVal hwnd As Long) As Long
+
+Private Declare Function GetWindowText Lib "user32" _
+Alias "GetWindowTextA" (ByVal hwnd As Long, _
+ByVal lpString As String, ByVal cch As Long) As Long
+
+Private Declare Function GetParent Lib "user32" _
+(ByVal hwnd As Long) As Long
+
+'--------------------------------------------------
+'AktifPencereBasliginiAl
+'--------------------------------------------------
+Private Function AktifPencereBasliginiAl(ByVal ReturnParent As Boolean) As String
+   Dim i As Long
+   Dim j As Long
+
+   i = GetForegroundWindow
+
+
+   If ReturnParent Then
+      Do While i <> 0
+         j = i
+         i = GetParent(i)
+      Loop
+
+      i = j
+   End If
+
+   AktifPencereBasliginiAl = PencereBasliginiAl(i)
 End Function
+
+'--------------------------------------------------
+'PencereBasliginiAl
+'--------------------------------------------------
+Private Function PencereBasliginiAl(ByVal hwnd As Long) As String
+   Dim l As Long
+   Dim s As String
+
+   l = GetWindowTextLength(hwnd)
+   s = Space(l + 1)
+
+   GetWindowText hwnd, s, l + 1
+
+   PencereBasliginiAl = Left$(s, l)
+End Function
+
+'--------------------------------------------------
+'Kullanim
+'--------------------------------------------------
+Sub Kullanim()
+    MsgBox AktifPencereBasliginiAl(True)
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+	<a href="https://www.vbforums.com/showthread.php?57765-Active-window-title&p=252546&viewfull=1#post252546" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.vbforums.com/showthread.php?57765-Active-window-title&p=252546&viewfull=1#post252546</a>
+</div>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

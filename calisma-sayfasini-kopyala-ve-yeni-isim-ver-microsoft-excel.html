@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çalışma Sayfasını Kopyala Ve Yeni İsim Ver - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,48 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çalışma Sayfasını Kopyala Ve Yeni İsim Ver - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif çalışma sayfasını kopyalayan ve bu çalışma sayfasına yeni bir isim veren VBA kodu alternatifidir.
+
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub CalismaSayfasiniKopyalaVeYeniIsimVer()
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim i            As Integer
+    Dim yeniSayfaAdi As String
     
-    On Error Resume Next
+    '---------------------------------------
+    'Yeni sayfa adını gir.
+    '---------------------------------------
+    yeniSayfaAdi = InputBox("Oluşturulacak sayfanın adını giriniz:")
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
+    '---------------------------------------
+    'Yeni sayfa adının uygunluğunu kontrol et.
+    '---------------------------------------
+    If yeniSayfaAdi = "" Then
+        MsgBox "Sayfa adı girilmemiş."
+        Exit Sub
     End If
-End Function
+    
+    For i = 1 To Worksheets.Count
+        If Worksheets(i).Name = yeniSayfaAdi Then
+            MsgBox "Bu isimde bir sayfa daha önceden oluşturulmuş."
+            Exit Sub
+        End If
+    Next i
+    
+    '---------------------------------------
+    'Çalışma sayfasını kopyala ve yeni isim ver.
+    '---------------------------------------
+    ThisWorkbook.Sheets(ActiveSheet.Name).Copy _
+        After:=Sheets(Worksheets.Count)
+    
+    ActiveSheet.Name = yeniSayfaAdi
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

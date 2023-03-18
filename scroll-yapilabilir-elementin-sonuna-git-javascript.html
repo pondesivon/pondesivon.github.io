@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Scroll Yapılabilir Elementin Sonuna Git - Javascript</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,35 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Scroll Yapılabilir Elementin Sonuna Git - Javascript</h1>
+           <hr /><p class="lead">Eğer bir element kaydırma çubuğu ile kaydırılabilir bir özelliğe sahipse bu element için aşağı ilerletme özelliğini yapmaya yarayan javascript kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Option Explicit
+<pre><code class="language-js">
+//--------------------------------------------------
+// Class
+//--------------------------------------------------
+function scrollYapClass() {
+    var x = document.getElementsByClassName("sinif-adi")[0];
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    //Elementin sonuna git.
+    x.scrollTop += x.scrollHeight;
+
+    //Sayı vererek aşağı git.
+    //x.scrollTop += 100;        
+}
+
+//--------------------------------------------------
+// Id
+//--------------------------------------------------
+function scrollYapId() {
+    var x = document.getElementById("id-adi");
+
+    //Elementin sonuna git.
+    x.scrollTop += x.scrollHeight;
+
+    //Sayı vererek aşağı git.
+    //x.scrollTop += 100;
+}
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Aktif Hücrenin Satır Ve Sütun Bilgisini Yazdır - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Aktif Hücrenin Satır Ve Sütun Bilgisini Yazdır - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücrenin satır ve sütun bilgisini fonksiyonda verilen parametreye göre biçimlendiren ve bu şekilde yazdıran bir KTF (kullanıcı tanımlı fonksiyon) örneğidir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+		<pre><code class="language-vb">
+			Option Explicit
+
+			'--------------------------------------------------
+			'Fonksiyonun ürettiği sonuçlar.
+			'--------------------------------------------------
+			Enum SonucCiktisi
+			scSayi = 0
+			scSayiVeMetin = 1
+			scSayiVeMetinUzun = 2
+			End Enum
+
+			Function AktifHucreninSatirVeSutunBilgisiniYazdir(Optional cikti As SonucCiktisi = 0) As String
+
+			'--------------------------------------------------
+			'Değişkenler
+			'--------------------------------------------------
+			Dim satir As Long
+			Dim sutun As Long
+			
+			'--------------------------------------------------
+			'Satır ve sütun bilgisini ata.
+			'--------------------------------------------------
+			satir = ActiveCell.Row
+			sutun = ActiveCell.Column
+			
+			'--------------------------------------------------
+			'Fonksiyon parametresinde verilen
+			'değere göre sonuç üret.
+			'--------------------------------------------------
+			Select Case cikti
+			Case "0"
+			AktifHucreninSatirVeSutunBilgisi = satir & " | " & sutun
+			Case "1"
+			AktifHucreninSatirVeSutunBilgisi = "SAT " & satir & " | " & "SUT " & sutun
+			Case "2"
+			AktifHucreninSatirVeSutunBilgisi = "SATİR: " & satir & " | " & "SUTUN: " & sutun
+			Case Else
+			AktifHucreninSatirVeSutunBilgisi = satir & " | " & sutun
+			MsgBox "Olmayan bir seçenek seçildi. Varsayılan sonuç yazdırıldı."
+			End Select
+			End Function
+		</code></pre>
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+		<pre><code class="language-vb">
+			Option Explicit
+
+			'--------------------------------------------------
+			'Fonksiyonun ürettiği sonuçları bu Enum ile
+			'standartlaştırdık. Böylelikle kullanıcı
+			'alternatif bir sonuç üretmek istediği zaman
+			'bu standartlaştırılmış listeyi kullanarak
+			'işlem yapabilecek.
+			'--------------------------------------------------
+			Enum SonucCiktisi
+			scSayi = 0
+			scSayiVeMetin = 1
+			scSayiVeMetinUzun = 2
+			End Enum
+
+			Function AktifHucreninSatirVeSutunBilgisiniYazdir(Optional cikti As SonucCiktisi = 0) As String
+
+			'--------------------------------------------------
+			'Değişkenler
+			'Satır ve sütun bilgilerini ayrı
+			'değişkenlere tanımlanacak.
+			'--------------------------------------------------
+			Dim satir As Long
+			Dim sutun As Long
+			
+			'--------------------------------------------------
+			'Satır ve sütun bilgisini ata.
+			'--------------------------------------------------
+			satir = ActiveCell.Row
+			sutun = ActiveCell.Column
+			
+			'--------------------------------------------------
+			'Fonksiyon parametresinde verilen
+			'değere göre sonuç üret. Böylelikle
+			'daha esnek bir çıktı alabileceğiz.
+			'
+			'Bu arada fonksiyon aslında string
+			'bir sonuç üretiyor fakat bu string
+			'ifadenin biçimi değişiyor.
+			'--------------------------------------------------
+			Select Case cikti
+			Case "0"
+			
+			'--------------------------------------------------
+			'Eğer fonksiyondaki Enum parametresi 0 olarak
+			'ayarlanmışsa sadece sayılar ve bu sayıları
+			'[boşluk uzun çizgi boşluk] yani çift tırnaklar
+			'hariç " | " şeklinde ayıran bir ifade birleştirilip
+			'sonuç olarak döndürülecek.
+			'--------------------------------------------------
+			AktifHucreninSatirVeSutunBilgisi = satir & " | " & sutun
+			Case "1"
+			'--------------------------------------------------
+			'Satır ve sütun isimlerinin sonuca kısa
+			'isimlerle dahil edildiği bir sonuç üret.
+			'--------------------------------------------------
+			AktifHucreninSatirVeSutunBilgisi = "SAT " & satir & " | " & "SUT " & sutun
+			Case "2"
+			'--------------------------------------------------
+			'Satır ve sütun isimlerinin kısaltılmadan
+			'dahil edildiği bir sonuç üret.
+			'--------------------------------------------------
+			AktifHucreninSatirVeSutunBilgisi = "SATİR: " & satir & " | " & "SUTUN: " & sutun
+			Case Else
+			'--------------------------------------------------
+			'Yukarıdaki durumların aksi bir durum meydana
+			'geldiğinde aşağıdaki sonucu döndür.
+			'--------------------------------------------------
+			AktifHucreninSatirVeSutunBilgisi = satir & " | " & sutun
+			
+			'--------------------------------------------------
+			'Durumla ilgili bilgi ver.
+			'--------------------------------------------------
+			MsgBox "Olmayan bir seçenek seçildi. Varsayılan sonuç yazdırıldı."
+			End Select
+			End Function
+		</code></pre>
+			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

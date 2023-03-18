@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Klasör İçindeki Klasörlerin İsimlerini Listele - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,44 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Klasör İçindeki Klasörlerin İsimlerini Listele - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir klasörün tam yol bilgisi verildiğinde o klasör içindeki klasörlerin isimlerini listeleyen VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+Sub KlasorunIcindekiKlasorlerinIsimleriniListele()
+    '--------------------------------------------------
+    ' Değişkenler
+    '--------------------------------------------------
+    Dim fileSystemObject As Object
+    Dim anaKlasor        As Object
+    Dim altKlasorler     As Object
+    Dim klasor           As Object
+    Dim metin            As String
+    Dim sayac            As Long
     
-    On Error Resume Next
+    '--------------------------------------------------
+    ' Değer Atamaları
+    '--------------------------------------------------
+    sayac = 1
+    Set fileSystemObject = CreateObject("Scripting.FileSystemObject")
+    Set anaKlasor = fileSystemObject.GetFolder("C:\")
+    Set altKlasorler = anaKlasor.SubFolders
+        
+    '--------------------------------------------------
+    ' Listeleme İşlemi İçin İlgili Alanın Temizlenmesi
+    '--------------------------------------------------
+    Range("A:A").Clear
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    '--------------------------------------------------
+    ' Listeleme İşlemi
+    '--------------------------------------------------
+    For Each klasor In altKlasorler
+        Range("A" & sayac) = klasor.Name
+        sayac = sayac + 1
+    Next
+End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

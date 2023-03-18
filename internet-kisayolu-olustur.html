@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>İnternet Kısayolu Oluştur -  Web</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,34 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
-</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-vb">
-Option Explicit
-
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
-    
-    On Error Resume Next
-    
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+           <h1>İnternet Kısayolu Oluştur -  Web</h1>
+           <hr /><p class="lead">Bir web sitesine hızlıca ulaşabilmek için masaüstünüzde simge oluşturma ve bu simgeye tıklayarak gitme esası ile çalışan internet kısayolunun nasıl oluşturulabileceğini görelim.
+</p><hr /><div class="alert alert-info"><strong>İşlemler</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sürükle - Bırak Yöntemi</strong></p>
+<ol>
+<li>İlgili internet sitesini aç.</li>
+<li>Adres çubuğundan bağlantıyı seç.</li>
+<li>Mouse ile üzerine tıklayıp az biraz aşağı yukarı sürükleyin ve mouse tuşunu bırakmadan bu halde tutun.</li>
+<li><kbd>Win</kbd> + <kbd>D</kbd> kısayolu ile masaüstüne hızlıca ulaşın.</li>
+<li>Kısayolu istediğiniz yere bırakın.</li>
+</ol>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Dosya Oluşturma Yöntemi</strong></p>
+<ol>
+<li>Metin düzenleme programını açın. Notepad, Notepad++, Sublime Text, Atom Code Editor vs. herhangi birisi olabilir.</li>
+<li>Editöre istediğiniz bağlantıyı aşağıdaki biçime uygun şekilde ekleyin.
+<pre><code class="language-plain-text">
+[InternetShortcut]
+URL=http://www.siteadi.com/varsa-ozel-baglanti-metni
 </code></pre>
+</li>
+<li>Dosyayı <code>.url</code> uzantısıyla yeniden adlandırın ve kaydedin. İsimlendirmeyi yaparken en az üç karakter kullanmanızı tavsiye ederim. Çünkü ben başta iki harfli bir kelime ile isimlendirdim ama sorun çıkardı. Sonra asıl ismini ekledim, düzeldi. Sonraki denemelerde de 3 karakter ekleyince doğru çalıştığını fark ettim.</li>
+</ol>
+    </li>
+</ul>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</title>
+    <title>Çalışma Kitabındaki Sayfaların Koruma Durumunu Değiştir - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,37 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Çalışma Kitabının Açık Olup Olmadığını Öğren - Microsoft Excel</h1>
-           <hr /><p class="lead">Bir çalışma kitabının açık olup olmadığını programatik olarak öğrenmenize imkan tanıyan VBA kodu alternatifidir, kullanıcı tanımlı fonksiyon örneğidir.
+           <h1>Çalışma Kitabındaki Sayfaların Koruma Durumunu Değiştir - Microsoft Excel</h1>
+           <hr /><p class="lead">Çalışma kitabındaki bütün sayfalara verilen parola ile koruma ekleyen ve parola bilgisi verildiğinde bütün çalışma sayfalarının korumasını kaldıran VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Function CalismaKitabininAcikOlupOlmadiginiOgren(calismaKitabiAdi As String) As Boolean
-    Dim acikCalismaKitaplari As Workbook
+'---------------------------------------
+'Bütün sayfalara koruma ekle.
+'---------------------------------------
+Sub ButunSayfalaraKorumaEkle()
+    Dim calismaSayfasi As Worksheet
     
-    On Error Resume Next
+    For Each calismaSayfasi In Worksheets
+        calismaSayfasi.Protect ("r2354aDf")
+    Next
+End Sub
+
+'---------------------------------------
+'Bütün sayfaların korumasını kaldır.
+'---------------------------------------
+Sub ButunSayfalarinKorumasiniKaldir()
+    Dim calismaSayfasi As Worksheet
     
-    Set acikCalismaKitaplari = Workbooks(calismaKitabiAdi)
-    
-    If Err = 0 Then
-        CalismaKitabiAcikMi = True
-    Else
-        CalismaKitabiAcikMi = False
-    End If
-End Function
+    For Each calismaSayfasi In Worksheets
+        calismaSayfasi.Unprotect ("r2354aDf")
+    Next
+End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Not</strong></div>
+<p>Eğer önceden farklı bir parolayla korunmuş bir sayfa varsa koruma ve koruma kaldırma makrosu çalışmayabilir. Koruma makrosu çalışmış gibi görünse de korumalı sayfanın koruma durumuna etki etmeyecektir.</p>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>
