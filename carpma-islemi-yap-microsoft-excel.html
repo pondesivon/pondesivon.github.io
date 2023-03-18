@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Çarpma İşlemi Yap - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,24 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Çarpma İşlemi Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Çarpma işleminin yapılış biçimleriyle ilgili çeşitli alternatiflerin listelendiği VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub CarpmaIslemiYap()
+    Range("C:C").Clear
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    Range("C1") = Range("A1") * Range("B1")
+    Range("C2").Formula = "=(A2 * B2)"
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Cells(3, 3) = Cells(3, 1) * Cells(3, 2)
+    Cells(4, "C") = Cells(4, "A") * Cells(4, "B")
+    
+    [C5] = [A5] * [B5]
+    
+    Range("C6") = Application.WorksheetFunction.Product([A6], [B6])
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

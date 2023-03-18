@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Formül Dönüştür - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,34 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Formül Dönüştür - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir excel formülünü normal başvuru stili şeklinde veya R1C1 başvuru stili şeklinde dönüştüren VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+'Yeniden Duzenle
+Sub FormulDonustur()
+    On Error GoTo hata
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    MsgBox Application.ConvertFormula( _
+            Formula:=ActiveCell.Formula, _
+            fromReferenceStyle:=xlR1C1, _
+            toReferenceStyle:=xlA1), vbInformation, "Normal Başvuru"
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    z = Application.ConvertFormula( _
+            Formula:=ActiveCell.Formula, _
+            fromReferenceStyle:=xlA1, _
+            toReferenceStyle:=xlR1C1)
+    
+    MsgBox z, vbInformation, "R1C1 Stili"
+    
+    Data.SetText z
+    Data.PutInClipboard
+
+    Exit Sub
+hata:
+
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

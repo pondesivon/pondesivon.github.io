@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Hangi Gün Doğduğunu Öğren - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,32 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Hangi Gün Doğduğunu Öğren - Microsoft Excel</h1>
+           <hr /><p class="lead">Doğum tarihi bilgisi girildiğinde o günün hangi güne denk geldiğini mesaj olarak gösteren VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub HangiGunDogdugunuOgren()
+    Dim dogumTarihi As String
+    Dim mesaj       As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
+    dogumTarihi = InputBox( _
+        "Doğum tarihinizi giriniz: (Örnek: 01.04.1979)", _
+        "Doğum Tarihi Girişi")
+    
+    If IsDate(dogumTarihi) = True Then
+        mesaj = "Verilen Tarihe Ait Gün İsmi: " _
+            & WeekdayName(Weekday(dogumTarihi, 0), False, 0)
+    Else
+        mesaj = "İşlem gerçekleştirilemedi." & vbCrLf _
+            & vbCrLf & "Aşağıdaki sebeplerden birisi olabilir." _
+            & vbCrLf & " - Girilen veri tarih formatında değil." _
+            & vbCrLf & " - Bilinmeyen bir hata meydana geldi." _
+            & vbCrLf & " - İşlem iptal edildi."
     End If
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    MsgBox mesaj
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

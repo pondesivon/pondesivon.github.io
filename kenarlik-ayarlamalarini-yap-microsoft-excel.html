@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Kenarlık Ayarlamalarını Yap - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,33 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Kenarlık Ayarlamalarını Yap - Microsoft Excel</h1>
+           <hr /><p class="lead">Tablo için çeşitli kenarlık ayarlamalarının bulunduğu VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub KenarlikAyarlamalariniYap()
+    '---------------------------------------
+    'Tüm tablo için kenarlık ayarla.
+    '---------------------------------------
+    Range("A1:G" & [A1048576].End(xlUp).Row).Borders.LineStyle = 5
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '---------------------------------------
+    'Spesifik alanlar için kenarlık ve
+    'stil ayarlamaları yap.
+    '---------------------------------------
+    Range("A1:G1").Borders(xlEdgeBottom).Color = RGB(255, 0, 0)
+    Range("A1:G2").Borders.LineStyle = xlSlantDashDot
+    Range("A5:G8").Borders.LineStyle = xlDouble
+    Range("B10:E20").Borders.LineStyle = 1
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '---------------------------------------
+    'Satır yüksekliklerini ve
+    'sütun genişliklerini ayarla.
+    '---------------------------------------
+    Range("A1:G" & [A1048576].End(xlUp).Row).RowHeight = 25
+    Range("A1:G" & [A1048576].End(xlToRight).Column).ColumnWidth = 20
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Sistem Değişkenlerini Mesaj Olarak Göster - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,47 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Sistem Değişkenlerini Mesaj Olarak Göster - Microsoft Excel</h1>
+           <hr /><p class="lead">Windows sistem değişkenlerini mesaj olarak göstermeye yarayan VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub SistemDegiskenleriniMesajOlarakGoster()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim i          As Integer
+    Dim j          As Integer
+    Dim mesaj      As String
+    Dim koleksiyon As Collection
+
+    '--------------------------------------------------
+    'Değer ata.
+    '--------------------------------------------------
+    Set koleksiyon = New Collection
+    i = 1
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '--------------------------------------------------
+    'Koleksiyona veri ekle.
+    '--------------------------------------------------
+    While Environ(i) <> Empty
+        koleksiyon.Add Environ(i)
+        i = i + 1
+    Wend
+
+    '--------------------------------------------------
+    'Mesaj metnini oluştur.
+    '--------------------------------------------------
+    For j = 0 To koleksiyon.Count - 1
+        mesaj = mesaj & koleksiyon.Item(j + 1) & vbNewLine
+    Next
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '--------------------------------------------------
+    'Mesaj göster.
+    '--------------------------------------------------
+    MsgBox j & " adet sistem değişkeni bulundu."
+    MsgBox mesaj, , "Sistem Değişkenleri"
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

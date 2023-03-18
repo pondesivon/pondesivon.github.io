@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Seçili Hücrenin En Üstündeki Ve En Solundaki Hücreyi Renklendir - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,32 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Seçili Hücrenin En Üstündeki Ve En Solundaki Hücreyi Renklendir - Microsoft Excel</h1>
+           <hr /><p class="lead">Örneğin G50 hücresi seçiliyse, G sütununun en üstünde bulunan G1 hücresini ve 50. satırın en solunda bulunan A50 hücresini renklendiren VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim satir As Long
+    Dim sutun As Long
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '---------------------------------------
+    'Seçili hücrenin en üstündeki hücreyi seç.
+    '---------------------------------------
+    Range("A1:IV1").Interior.ColorIndex = xlNone
+    sutun = Target.Column
+    Cells(1, sutun).Interior.ColorIndex = 6
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '---------------------------------------
+    'Seçili hücrenin en solundaki hücreyi seç.
+    '---------------------------------------
+    Range("A:A").Interior.ColorIndex = xlNone
+    satir = Target.Row
+    Range("A" & satir).Interior.ColorIndex = 6
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

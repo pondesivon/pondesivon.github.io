@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Geçersiz Yol Karakterlerini Temizle - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,49 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Geçersiz Yol Karakterlerini Temizle - Microsoft Excel</h1>
+           <hr /><p class="lead">Dosya veya klasör ismi olarak kullanılacak bir metinde geçersiz karakterleri temizlemeya yarayan VBA kodu alternatifidir. Kullanıcı tanımlı fonksiyon örneğidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+'Yeni satır, tab karakterlerini Chr ile düzenle.
+Function GecersizYolKarakterleriniTemizle(metin$) As String
+    Dim i            As Long
+    Dim j            As Long
+    Dim dizi         As Variant
+    Dim karakter     As String
+    Dim yeniKarakter As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    dizi = Array("/", "\", "<", ">", _
+                 ":", "?", "|", "*", """", ".", _
+                 vbCrLf, vbTab, vbNewLine)
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    karakter = Empty
+    yeniKarakter = "-"
+            
+    For i = LBound(dizi) To UBound(dizi)
+        For j = 1 To Len(metin)
+        
+            karakter = Mid(metin, j, 1)
+            
+            If karakter = dizi(i) Then
+                metin = Replace(metin, karakter, yeniKarakter, 1)
+            End If
+            
+        Next
+    Next
+    
+    GecersizYolKarakterleriniTemizle = metin
+End Function
+
+Sub OrnekKullanim()
+    Dim metin As String
+    
+    metin = "Beni Oku: <hr> Etiketi " _
+    & """" & "Ne İşe Yarıyor?"
+    
+    MsgBox GecersizYolKarakterleriniTemizle(metin)
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

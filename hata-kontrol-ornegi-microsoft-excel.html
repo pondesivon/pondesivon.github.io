@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Hata Kontrol Örneği - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,48 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Hata Kontrol Örneği - Microsoft Excel</h1>
+           <hr /><p class="lead">Kod çalışırken hata meydana geldiğinde bu hata ile ilgili bilgileri düzenli bir şekilde mesaj olarak gösteren VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub HataKontrolOrnegi()
+    '---------------------------------------
+    'Hata meydana gelirse "HataKontrol:"
+    'satırından devam et.
+    '---------------------------------------
+    On Error GoTo HataKontrol
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim i      As Byte
+    Dim toplam As Long
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '---------------------------------------
+    'Örnek kod.
+    'i değeri Byte olarak tanımlandı fakat
+    'Byte kapasitesinden yüksek sayı verildi.
+    'Hata verecek.
+    '---------------------------------------
+    i = 1234
+    toplam = toplam + i
+
+'---------------------------------------
+'Hata numarasını ve hata tanımını
+'mesaj olarak göster.
+'---------------------------------------
+HataKontrol:
+    
+    Dim hataMesaji As String
+    hataMesaji = "" & _
+    "Hata Numarası: " & Err.Number & vbCrLf & _
+    String(50, "-") & vbCrLf & _
+    "Hata Tanımı: " & Err.Description & vbCrLf & _
+    String(50, "-") & vbCrLf
+
+    MsgBox hataMesaji, vbCritical + vbOK, "Hata!"
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

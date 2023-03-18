@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Aktif Hücreye Çift Tıklandığında Değer Nümerik İse Bir Artır - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,33 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Aktif Hücreye Çift Tıklandığında Değer Nümerik İse Bir Artır - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücreye çift tıklandığında bu hücredeki değer nümerik bir değer ise bu değeri bir artıran VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Private Sub Worksheet_BeforeDoubleClick( _
+    ByVal Target As Range, Cancel As Boolean)
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
+    On Error GoTo hata
+    Cancel = True
+    
+    If Target.Row = 1 Then Exit Sub
+    If Target.Column = 2 Then Exit Sub
+    
+    Application.EnableEvents = False
+    
+    If IsNumeric(Target.Value) Then
+        Target.Value = Target.Value + 1
     End If
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Application.EnableEvents = True
+    
+hata:
+    If Err.Number <> 0 Then
+        MsgBox Err.Number & vbCrLf & Err.Description
+    End If
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

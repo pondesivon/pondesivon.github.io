@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>InputBox Türleri - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,59 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>InputBox Türleri - Microsoft Excel</h1>
+           <hr /><p class="lead">InputBox türlerinin ayrı ayrı kod olarak verildiği VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub FormulInputBox()
+    Dim deger As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    deger = Application.InputBox("Bir formül girin:", Type:=0)
+    MsgBox deger
+End Sub
+
+Sub SayiInputBox()
+    Dim deger As Long
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    deger = Application.InputBox("Bir sayı girin:", Type:=1)
+    MsgBox deger
+End Sub
+
+Sub MetinInputBox()
+    Dim deger As String
+    
+    deger = Application.InputBox("Bir metinsel ifade girin:", Type:=2)
+    MsgBox deger
+End Sub
+
+Sub BoolInputBox()
+    Dim deger As Boolean
+    
+    deger = Application.InputBox("Bir mantıksal ifade girin:", Type:=4)
+    MsgBox deger
+End Sub
+
+Sub AlanInputBox()
+    Dim deger As Range
+    
+    deger = Application.InputBox("Bir hucre ya da alan girin:", Type:=8)
+    MsgBox deger
+End Sub
+
+Sub HataInputBox()
+    Dim deger As String
+    
+    deger = Application.InputBox("Bir metinsel ifade girin:", Type:=16)
+    MsgBox deger
+End Sub
+
+Sub DiziInputBox()
+    Dim deger As String
+    
+    deger = Application.InputBox("Bir dizi ifade girin:", Type:=64)
+    MsgBox deger
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

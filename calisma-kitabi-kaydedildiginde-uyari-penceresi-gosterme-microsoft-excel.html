@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Çalışma Kitabı Kaydedildiğinde Uyarı Penceresi Gösterme - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,26 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Çalışma Kitabı Kaydedildiğinde Uyarı Penceresi Gösterme - Microsoft Excel</h1>
+           <hr /><p class="lead">Çalışma kitabı kaydedilirken çıkabilen uyarı pencerelerini gizleyen VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
-    
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
-    
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+Private Sub Workbook_BeforeSave(ByVal SaveAsUI As Boolean, Cancel As Boolean)
+    Application.OnKey "^s", ""
+    Application.DisplayAlerts = False
+    ActiveWorkbook.Save
 End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Not</strong></div>
+<p>Özellikle <strong>Gizlilik Uyarısı</strong> penceresi (her ne kadar mantıklı bir uyarı olsa da) gereğinden çok fazla çıktığı için bu şekilde bir çözüm oldukça faydalı oluyor. </p>
+
+<p>Ayrıca bu kod <kbd>Ctrl</kbd> + <kbd>S</kbd> klavye kısayoluna özel çalışıyor.</p>
+
+<p><blockquote>Gizlilik uyarısı: Bu belge makrolar, ActiveX denetimleri, XML genişletme paketleri veya web bileşenleri içeriyor. Bunlar, belge denetçisi tarafından kaldırılamayan kişisel bilgiler olabilir.</blockquote></p>
+
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>İsim Ve Soyisim Bilgilerini Ayır - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,44 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>İsim Ve Soyisim Bilgilerini Ayır - Microsoft Excel</h1>
+           <hr /><p class="lead">A sütunundaki isim ve soyisim bilgilerini sırasıyla yanındaki sütunlara ayrı ayrı dağıtan VBA kodudur. Eğer isim sayısı birden fazlaysa bu isimler birleştirilip ikinci sütuna yazdırılırken soyad bilgisi ise üçüncü sütuna yazdırılıyor.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub IsimVeSoyisimBilgileriniAyir()
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim i As Long
+    Dim j As Long
+    Dim dizi As Variant
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
-    
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '---------------------------------------
+    'Her satır için işlem yap.
+    '---------------------------------------
+    For i = 1 To Cells(1048576, 1).End(xlUp).Row
+        
+        '---------------------------------------
+        'İsim-soyisim metnini boşluk karakterinden böl.
+        '---------------------------------------
+        dizi = Split(Cells(i, 1), " ")
+        
+        '---------------------------------------
+        'İsim kısmını ikinci sütuna yaz.
+        'İsim birden fazlaysa döngü ile
+        'diğer isimle(rle) birleştirilecek.
+        '---------------------------------------
+        For j = 0 To UBound(dizi) - 1
+            Cells(i, 2) = Trim(Cells(i, 2) & " " & dizi(j))
+        Next j
+        
+        '---------------------------------------
+        'Soyismi üçüncü sütuna yaz.
+        '---------------------------------------
+        Cells(i, 3) = Trim(dizi(UBound(dizi)))
+    Next i
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

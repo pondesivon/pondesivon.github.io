@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Kodu Bütün Aktif Sayfalarda Çalıştır - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,47 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Kodu Bütün Aktif Sayfalarda Çalıştır - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen kodu bütün aktif sayfalarda çalıştıran VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub KoduButunaktifSayfalardaCalistir()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim i          As Long
+    Dim j          As Long
+    Dim k          As Long
+    Dim sayac      As Long
+    Dim aktifSayfa As Worksheet
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '--------------------------------------------------
+    'Değer ataması yap.
+    '--------------------------------------------------
+    [A1].ClearContents
+    sayac = 1
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '--------------------------------------------------
+    'Her sayfa için döngü çalıştır.
+    '--------------------------------------------------
+    For i = 1 To Sheets.Count
+        Set aktifSayfa = Sheets(i)
+        
+        '--------------------------------------------------
+        'Aktif sayfa için kod çalıştır.
+        '--------------------------------------------------
+        For j = 1 To 20
+            aktifSayfa.Range("A" & j) = "SAYAÇ: " & sayac
+            sayac = sayac + 1
+        Next
+        
+        '--------------------------------------------------
+        'İşlem bittiğinde sayacı başlangıç değerine getir.
+        '--------------------------------------------------
+        sayac = 1
+    Next
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

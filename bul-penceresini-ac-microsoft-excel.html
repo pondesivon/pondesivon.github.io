@@ -34,17 +34,13 @@
        <div class="row">
         <div class="col">
            <h1>Bul Penceresini Aç - Microsoft Excel</h1>
-           <hr /><p class="lead">Microsoft Excel üzerindeki "Bul" penceresini açmaya yarayan VBA kodu örneğidir. Bu pencere üzerinden çalışma sayfası üzerinde arama yapılabilir.
+           <hr /><p class="lead">"Bul" penceresini açmaya yarayan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Sub BulPenceresiniAc1()
+Sub BulPenceresiniAc()
     Application.Dialogs(xlDialogFormulaFind).Show
-End Sub
-
-Sub BulPenceresiniAc2()
-    Application.CommandBars.FindControl(ID:=1849).Execute
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

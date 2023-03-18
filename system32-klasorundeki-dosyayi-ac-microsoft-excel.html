@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>System32 Klasöründeki Dosyayı Aç - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,26 +33,25 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>System32 Klasöründeki Dosyayı Aç - Microsoft Excel</h1>
+           <hr /><p class="lead">System32 içinde bulunan bir dosyanın ismi uzantısıyla beraber verildiğinde bu dosyayı açan VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub System32DosyasiAc(dosya As String)
+    Dim wScriptShell As Object
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
-    
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Set wScriptShell = CreateObject("WScript.Shell")
+    wScriptShell.Run "C:\Windows\System32\" & dosya
+End Sub
+
+Sub OrnekKullanim()
+    System32DosyasiAc "cleanmgr.exe"
 End Sub
 </code></pre>
+
+<div class="alert alert-info"><strong>Dosya Listesi</strong></div>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

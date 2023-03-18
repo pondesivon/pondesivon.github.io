@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Çalışma Kitabına Demo Süresi Koy - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,27 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Çalışma Kitabına Demo Süresi Koy - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen tarih bilgisine göre çalışma kitabının açılıp açılmamasını sağlayan VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub Auto_Open()
+    Dim bitisTarihi As Date
+    Dim mesajMetni  As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
+    bitisTarihi = "25.09.2022"
+    
+    If Date > bitisTarihi Then
+        MsgBox ("Kullanım süresi dolmuştur.")
+        ActiveWorkbook.Close
     End If
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    mesajMetni = bitisTarihi - Date & " GÜN"
+    
+    MsgBox mesajMetni, vbOKOnly + vbInformation, _
+        "Kullanım Süresinin Dolmasına Kalan Gün"
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

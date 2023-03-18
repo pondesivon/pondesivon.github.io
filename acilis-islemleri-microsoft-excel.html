@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Açılış İşlemleri - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,54 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Açılış İşlemleri - Microsoft Excel</h1>
+           <hr /><p class="lead">Çalışma kitabı açıldığında yapılacak rutin işlemlerin bir alternatifinin verildiği VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub Auto_Open()
+    AcilisIslemleri
+End Sub
+
+Sub AcilisIslemleri()
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim kullanici    As String
+    Dim tarih        As String
+    Dim saat         As String
+    Dim acilisMesaji As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    Sheets("veri").Select
+    Range("A1").Select
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Sheets("rapor").Visible = False
+    
+    Application.StatusBar = "Hoşgeldiniz."
+    ActiveWindow.DisplayWorkbookTabs = True
+    ActiveWindow.WindowState = xlMaximized
+    
+    Application.CommandBars("Full Screen").Visible = False
+    Application.CommandBars("Formatting").Visible = False
+    Application.CommandBars("Standard").Visible = False
+    
+    ActiveCell.Select
+    Application.Caption = "UYGULAMA BAŞLIĞI"
+    ActiveWindow.Caption = "Aktif Pencere Başlığı"
+    
+    '---------------------------------------
+    'Açılış mesajını göster.
+    '---------------------------------------
+    kullanici = Application.UserName
+    tarih = Format(Now, "dd mmmm yyyy dddd")
+    saat = Format(Now, "hh:mm:ss")
+    
+    acilisMesaji = "KULLANICI: " & kullanici & vbCrLf & _
+    "TARİH: " & tarih & vbCrLf & _
+    "SAAT: " & saat & vbCrLf
+    
+    MsgBox acilisMesaji
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

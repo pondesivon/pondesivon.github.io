@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Aktif Hücreye Çift Tıklandığında Üst Satırların Alt Toplam Formülünü Yaz - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,24 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Aktif Hücreye Çift Tıklandığında Üst Satırların Alt Toplam Formülünü Yaz - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif hücreye çift tıklandığında bu hücrenin üstündeki satırlar için alt toplam formülü yazan VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Private Sub Worksheet_BeforeDoubleClick(ByVal _
+    Target As Range, Cancel As Boolean)
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    Cancel = True
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Range(Target.Offset(-1, 0).End(xlUp), Target).Select
+    
+    Target.Formula = "=SUBTOTAL(9," _
+        & Selection(1).Address(0, 0) & ":" _
+        & Selection(Selection.Count - 1).Address(0, 0) & ")"
+    
+    Target.Activate
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Metni Ara Ve Bir Sonraki Bulunana Git - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,25 +33,25 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Metni Ara Ve Bir Sonraki Bulunana Git - Microsoft Excel</h1>
+           <hr /><p class="lead">Arama metnini ilgili çalışma sayfasında arar ve eğer bulunursa ilk bulunan hücreye gider. Kod her çalıştırıldığında (varsa) sonraki bulunan hücreye atlayarak devam eder.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub MetniAraVeBirSonrakiBulunanaGit()
+    Dim metin As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    metin = "ria"
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    Cells.Find( _
+        What:=metin, After:=ActiveCell, _
+        LookIn:=xlValues, LookAt:=xlPart, _
+        SearchOrder:=xlByRows, SearchDirection:=xlNext, _
+        MatchCase:=False, SearchFormat:=False).Activate
 End Sub
+
+'Not: Makro çalıştığında farkedilmeyebilir, çalışma sayfasında sonucu görmek gerekiyor.
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

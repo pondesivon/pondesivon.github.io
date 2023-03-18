@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Haftanın Gününü Ver - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,26 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Haftanın Gününü Ver - Microsoft Excel</h1>
+           <hr /><p class="lead">Bugünün tarihinin hangi gün olduğunu gün ismiyle veren VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Private Sub HaftaninGununuVer()
+    Dim gun As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    Select Case Weekday(Date, vbMonday)
+        Case 1: gun = "Pazartesi"
+        Case 2: gun = "Salı"
+        Case 3: gun = "Çarşamba"
+        Case 4: gun = "Perşembe"
+        Case 5: gun = "Cuma"
+        Case 6: gun = "Cumartesi"
+        Case 7: gun = "Pazar"
+    End Select
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    MsgBox gun
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

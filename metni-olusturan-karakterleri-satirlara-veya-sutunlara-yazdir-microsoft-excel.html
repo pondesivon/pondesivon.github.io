@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Metni Oluşturan Karakterleri Satırlara Veya Sütunlara Yazdır - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,44 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Metni Oluşturan Karakterleri Satırlara Veya Sütunlara Yazdır - Microsoft Excel</h1>
+           <hr /><p class="lead">Verilen metindeki karakterleri ayıran ve isteğe göre A sütunundaki satırlara veya ilk satırdaki sütunlara sırasıyla ayrı ayrı yazdıran VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Sub MetniOlusturanKarakterleriSatirlaraVeyaSutunlaraYazdir()
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim i               As Long
+    Dim metin           As String
+    Dim sutunlaraYazdir As Boolean
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
+    '---------------------------------------
+    'Değişkenlere değer ata.
+    '---------------------------------------
+    metin = "Çanakkale"
+    sutunlaraYazdir = True
+    
+    '---------------------------------------
+    'Alanı hazırla.
+    '---------------------------------------
+    Range("A:A").Clear
+    Range("1:1").Clear
+        
+    '---------------------------------------
+    'Döngü ile yazdırma işlemini yap.
+    '---------------------------------------
+    If sutunlaraYazdir = False Then
+        For i = 1 To Len(metin)
+            Cells(i, 1).value = Mid(metin, i, 1)
+        Next
+    Else
+        For i = 1 To Len(metin)
+            Cells(1, i).value = Mid(metin, i, 1)
+        Next
     End If
-    
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

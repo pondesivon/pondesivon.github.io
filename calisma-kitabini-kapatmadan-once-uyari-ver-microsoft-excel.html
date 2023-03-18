@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Çalışma Kitabını Kapatmadan Önce Uyarı Ver - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,47 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Çalışma Kitabını Kapatmadan Önce Uyarı Ver - Microsoft Excel</h1>
+           <hr /><p class="lead">Çalışma kitabı kapatılırken uyarı penceresi çıkaran ve bu sonuca göre hareket eden VBA kodu alternatifidir.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+    CikisKontrol Cancel
+End Sub
+
+Sub CikisKontrol(Cancel As Boolean)
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim mesaj      As Integer
+    Dim mesajMetni As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
+    '---------------------------------------
+    'Mesaj Metni
+    '---------------------------------------
+    mesajMetni = "Çalışma kitabını kapatmadan " _
+    & "önce dosyayı kaydetmelisiniz." _
+    & vbCrLf & vbCrLf _
+    & "Tamam butonuna bastığınızda dosya " _
+    & "kaydedilecek ve kapatılacak." _
+    
+    '---------------------------------------
+    'Mesaj
+    '---------------------------------------
+    mesaj = MsgBox(mesajMetni, _
+                vbCritical + vbOKCancel, _
+                "Çıkış İşlemi")
+    
+    '---------------------------------------
+    'mesaj değişkeninin sonucuna göre işlem yap.
+    '---------------------------------------
+    If mesaj = vbOK Then
+        Save
+    Else
+        Cancel = True
     End If
-    
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>

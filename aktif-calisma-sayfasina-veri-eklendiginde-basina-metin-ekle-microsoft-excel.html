@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Seçilen Alanı Renklendir - Microsoft Excel</title>
+    <title>Aktif Çalışma Sayfasına Veri Eklendiğinde Başına Metin Ekle - Microsoft Excel</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -33,24 +33,58 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Seçilen Alanı Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Seçilen alanı renklendirmeye yarayan VBA kodu alternatifidir.
+           <h1>Aktif Çalışma Sayfasına Veri Eklendiğinde Başına Metin Ekle - Microsoft Excel</h1>
+           <hr /><p class="lead">Aktif çalışma sayfasına veri eklendiğinde o verinin başına istenilen metni eklemeye yarayan VBA kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-vb">
 Option Explicit
 
-Private Sub Worksheet_SelectionChange(ByVal Target As Range)
-    Static oncekiHucre As Range
+Private Sub Worksheet_Change(ByVal Target As Range)
+    '---------------------------------------
+    'Değişkenler
+    '---------------------------------------
+    Dim alan      As Range
+    Dim hucre     As Range
+    Dim eklenecek As String
     
-    If Target.Interior.ColorIndex <> xlColorIndexNone Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-        Exit Sub
-    ElseIf Not oncekiHucre Is Nothing Then
-        oncekiHucre.Interior.ColorIndex = xlColorIndexNone
-    End If
+    '---------------------------------------
+    'Bir hata meydana geldiğinde "hata" satırına git.
+    '---------------------------------------
+    On Error GoTo hata:
     
-    Target.Interior.ColorIndex = 6
-    Set oncekiHucre = Target
+    '---------------------------------------
+    'Ayarlama yap.
+    '---------------------------------------
+    Set alan = Range("A2:C20, F10:G36, K7:R21")
+    eklenecek = "[OK] "
+    Application.EnableEvents = False
+    
+    '---------------------------------------
+    'Verilen alan(lar) için metin ekleme işlemi yap.
+    '---------------------------------------
+    For Each hucre In Range(Target.Address)
+        If Not Intersect(hucre, alan) Is Nothing Then
+            If hucre <> "" Then
+                If IsNumeric(hucre) Then
+                    hucre.NumberFormat = eklenecek & String(Len(hucre), "0")
+                End If
+                
+                'If IsNumeric(hucre) Then
+                '    hucre.NumberFormat = "@"
+                'End If
+                
+                hucre = eklenecek & hucre
+            End If
+        End If
+    Next
+    
+    '---------------------------------------
+    'Değişkenleri temizle.
+    '---------------------------------------
+    Set alan = Nothing
+
+hata:
+    Application.EnableEvents = True
 End Sub
 </code></pre>
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
