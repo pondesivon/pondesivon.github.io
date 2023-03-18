@@ -59,5 +59,5 @@ function empDetails(xml) {
     liste+= "</ol>";
 
     // Print the xml data in table form
-    document.body.innerHTML = table;
+    document.body.innerHTML = liste;
 }
