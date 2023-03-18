@@ -58,19 +58,28 @@ function empDetails(xml) {
 
     liste+= "</ol>";
 
-    var sayfa;
-    for (i = 0; i < x.length/20; i++) {
-    sayfa += '<a class="bgl" id="' + "syf-" + i + '" href="'
-          + '#'
-          + '">'
-          + i+1
-          + "</a><br>";
-    }
 
-    liste+= "<hr>" + sayfa; 
+
+
 
     // Print the xml data in table form
     document.getElementById("icerik-liste").innerHTML = liste;
+}
+
+function loadXMLDoc(sayfaNo=1) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+
+        // Request finished and response 
+        // is ready and Status is "OK"
+        if (this.readyState == 4 && this.status == 200) {
+            empDetails(this, sayfaNo);
+        }
+    };
+
+    // employee.xml is the external xml file
+    xmlhttp.open("GET", "https://pondesivon.github.io/icerikler.xml", true);
+    xmlhttp.send();
 }
 
 function empDetails(xml, sayfaNo=1) {
@@ -87,3 +96,18 @@ function empDetails(xml, sayfaNo=1) {
               + x[i].getAttribute("baslik")
               + "</a></li>";
     }
+
+    var sayfa;
+    for (i = 0; i < x.length/20; i++) {
+    sayfa += '<a '+ "onclick=loadXMLDoc("+ document.getElementById('syf-' + i).getAttribute('id') +")" +' class="bgl" id="' + "syf-" + i + '" href="'
+          + '#'
+          + '">'
+          + i+1
+          + "</a><br>";
+    }    
+
+        liste+= "<hr>" + sayfa;
+    // Print the xml data in table form
+    document.getElementById("icerik-liste").innerHTML = liste;
+
+  }
