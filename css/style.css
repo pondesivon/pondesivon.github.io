@@ -8,4 +8,19 @@ body    { overflow-y:scroll }
 
 .kenar { border: 3px solid #dc3545; padding: 15px; border-radius: 10px; font-size: 28px }
 
-.e8e8e8 { background-color: #E8E8E8  }
+.bg-e8e8e8 { background-color: #e8e8e8 }
+.bg-ffd43b { background-color: #ffd43b }
+.bg-74c0fc { background-color: #74c0fc }
+.bg-63e6be { background-color: #63e6be }
+.bg-e599f7 { background-color: #e599f7 }
+.bg-b197fc { background-color: #b197fc }
+.bg-ff8787 { background-color: #ff8787 }
+
+.sosyal {
+	font-size: 16px;
+	text-decoration: none;
+}
+
+.tanim {
+	font-size: 30px;
+}
