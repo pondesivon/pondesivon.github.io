@@ -84,7 +84,7 @@ function loadXMLDoc() {
 var aktifSayfa=1;
 var sayfaBasiIcerik = 50;
 
-function empDetails(xml, filtreMetni="göster") {
+function empDetails(xml, filtreMetni="Gizle") {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
