@@ -127,7 +127,7 @@ function empDetails(xml) {
     document.getElementById("sayfa").value = aktifSayfa;
   }
 
-  function sonrakiSayfa() {
+  function sonrakiSayfa(xml) {
     var xmlDoc = xml.responseXML;
     var x = xmlDoc.getElementsByTagName("Icerik");
 
