@@ -126,10 +126,10 @@ function icerikListe(xml) {
     if (aktifSayfa > 1) {
       aktifSayfa = aktifSayfa-1;
     }
-    document.getElementById("sayfa").value = aktifSayfa;
+    document.getElementById("sayfa").innerText = "Sayfa: " + aktifSayfa;
   }
 
   function sonrakiSayfa() {
     aktifSayfa = aktifSayfa+1;
-    document.getElementById("sayfa").innerText = "Sayfa:" + aktifSayfa;
+    document.getElementById("sayfa").innerText = "Sayfa: " + aktifSayfa;
   }
