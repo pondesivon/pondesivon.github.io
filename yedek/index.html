@@ -13,7 +13,7 @@
     <link href="css/prism.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
   </head>
-  <body>
+  <body onload="oncekiSayfa();loadXMLDoc()">
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container">
@@ -47,8 +47,18 @@
   <hr class="my-4">
   <p class="lead">Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı <span class="text-primary"><strong>kişisel veri tabanı</strong></span>.</p>
   <hr class="my-4">
+
 </div>
-            <a href="arsiv.html" class="btn btn-outline-danger btn-lg">Arşiv Sayfasına Git</a>
+          <div id="icerik-liste">
+            
+          </div>
+          <br>
+          <p>
+            <span class="btn btn-outline-primary" onclick="oncekiSayfa();loadXMLDoc()">Önceki</span>
+            <span class="btn btn-outline-primary" onclick="sonrakiSayfa();loadXMLDoc()">Sonraki</span>
+            <span class="btn btn-outline-success" type="text" name="" id="sayfa">Sayfa: 1</span>
+            <a href="arsiv.html" class="btn btn-outline-danger">Arşiv</a>
+          </p>
 
         </div>
       </div>
