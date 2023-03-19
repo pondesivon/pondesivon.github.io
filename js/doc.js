@@ -72,7 +72,7 @@ function loadXMLDoc() {
         // Request finished and response 
         // is ready and Status is "OK"
         if (this.readyState == 4 && this.status == 200) {
-            empDetails(this);
+            icerikListe(this);
         }
     };
 
@@ -82,13 +82,13 @@ function loadXMLDoc() {
 }
 
 var aktifSayfa=1;
-var sayfaBasiIcerik = 100;
+var sayfaBasiIcerik = 20;
 
-function empDetails(xml) {
+function icerikListe(xml) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
-    var liste = '<ol start="' + ((aktifSayfa - 1) * sayfaBasiIcerik + 1) + '">"';
+    var liste = '<ol start="' + ((aktifSayfa - 1) * sayfaBasiIcerik + 1) + '">';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
     var xFiltre = "";
@@ -131,5 +131,5 @@ function empDetails(xml) {
 
   function sonrakiSayfa() {
     aktifSayfa = aktifSayfa+1;
-    document.getElementById("sayfa").value = aktifSayfa;
+    document.getElementById("sayfa").innerText = "Sayfa:" + aktifSayfa;
   }
