@@ -82,7 +82,7 @@ function loadXMLDoc() {
 }
 
 var aktifSayfa=1;
-var sayfaBasiIcerik = 50;
+var sayfaBasiIcerik = 10;
 
 function empDetails(xml) {
     var i;
@@ -131,7 +131,7 @@ function empDetails(xml) {
     var xmlDoc = xml.responseXML;
     var x = xmlDoc.getElementsByTagName("Icerik");
 
-    if (aktifSayfa <= x.length/sayfaBasiIcerik) {
+    if (aktifSayfa <= sayfaBasiIcerik/x.length) {
       aktifSayfa = aktifSayfa+1;
     }
 
