@@ -82,13 +82,13 @@ function loadXMLDoc() {
 }
 
 var aktifSayfa=1;
-var sayfaBasiIcerik = 20;
+var sayfaBasiIcerik = 10;
 
 function icerikListe(xml) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
-    var liste = '<ol start="' + ((aktifSayfa - 1) * sayfaBasiIcerik + 1) + '">';
+    var liste = '<ol class="list-group" start="' + ((aktifSayfa - 1) * sayfaBasiIcerik + 1) + '">';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
     var xFiltre = "";
@@ -96,7 +96,7 @@ function icerikListe(xml) {
     // Start to fetch the data by using TagName 
     for (i = (aktifSayfa - 1) * sayfaBasiIcerik; i < (aktifSayfa - 1) * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
       if (x[i] != null){
-        liste += '<li class="str"><a class="bgl" href="'
+        liste += '<li class="list-group-item"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
