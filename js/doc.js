@@ -82,7 +82,7 @@ function loadXMLDoc() {
 }
 
 var aktifSayfa=1;
-var sayfaBasiIcerik = 10;
+var sayfaBasiIcerik = 100;
 
 function empDetails(xml) {
     var i;
