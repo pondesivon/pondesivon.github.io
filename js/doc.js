@@ -81,20 +81,21 @@ function loadXMLDoc(sayfaNo=1) {
     xmlhttp.send();
 }
 
-var aktifSayfa;
+var aktifSayfa=5;
+var sayfaBasiIcerik = 20;
 
 function empDetails(xml, sayfaNo=40) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
-    var liste = "<ol>";
+    var liste = '<ol start="' +aktifSayfa * sayfaBasiIcerik + '">"';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
     sayi = 20;
 
     // Start to fetch the data by using TagName 
-    for (i = sayfaNo*sayi; i < sayfaNo*sayi + sayi; i++) {
-        liste += '<li start="' + i + '" class="str"><a class="bgl" href="'
+    for (i = aktifSayfa * sayfaBasiIcerik; i < aktifSayfa * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
+        liste += '<li class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
@@ -118,9 +119,9 @@ function empDetails(xml, sayfaNo=40) {
   }
 
   function oncekiSayfa() {
-
+    aktifSayfa = aktifSayfa-1;
   }
 
   function sonrakiSayfa() {
-
+    aktifSayfa = aktifSayfa+1;
   }
