@@ -94,7 +94,7 @@ function empDetails(xml) {
     var xFiltre = "";
 
     // Start to fetch the data by using TagName 
-    for (i = (aktifSayfa - 1) * sayfaBasiIcerik; i < (aktifSayfa - 1) * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
+    for (i = (aktifSayfa - 1) * sayfaBasiIcerik; i <= (aktifSayfa - 1) * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
         liste += '<li class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
