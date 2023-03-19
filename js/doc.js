@@ -127,8 +127,8 @@ function empDetails(xml) {
     document.getElementById("sayfa").value = aktifSayfa;
   }
 
-  function sonrakiSayfa(xml) {
-    var xmlDoc = xml.responseXML;
+  function sonrakiSayfa() {
+    var xmlDoc = this.responseXML;
     var x = xmlDoc.getElementsByTagName("Icerik");
 
     if (aktifSayfa <= sayfaBasiIcerik/x.length) {
