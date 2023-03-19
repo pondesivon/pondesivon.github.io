@@ -127,5 +127,11 @@ function empDetails(xml) {
   }
 
   function sonrakiSayfa() {
-    aktifSayfa = aktifSayfa+1;
+    var xmlDoc = xml.responseXML;
+    var x = xmlDoc.getElementsByTagName("Icerik");
+
+    if (aktifSayfa <= x/sayfaBasiIcerik) {
+      aktifSayfa = aktifSayfa+1;
+
+    }
   }
