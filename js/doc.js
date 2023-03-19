@@ -65,14 +65,14 @@ function empDetails(xml) {
 }
 */
 
-function loadXMLDoc(sayfaNo=1) {
+function loadXMLDoc() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
 
         // Request finished and response 
         // is ready and Status is "OK"
         if (this.readyState == 4 && this.status == 200) {
-            empDetails(this, sayfaNo);
+            empDetails(this);
         }
     };
 
@@ -81,25 +81,27 @@ function loadXMLDoc(sayfaNo=1) {
     xmlhttp.send();
 }
 
-var aktifSayfa=5;
-var sayfaBasiIcerik = 20;
+var aktifSayfa=1;
+var sayfaBasiIcerik = 50;
 
-function empDetails(xml, sayfaNo=40) {
+function empDetails(xml, filtreMetni="göster") {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
-    var liste = '<ol start="' +aktifSayfa * sayfaBasiIcerik + '">"';
+    var liste = '<ol start="' +aktifSayfa * sayfaBasiIcerik + 1 + '">"';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
-    sayi = 20;
+    var 
 
     // Start to fetch the data by using TagName 
     for (i = aktifSayfa * sayfaBasiIcerik; i < aktifSayfa * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
+      if (x[i].getAttribute("baslik").includes(filtreMetni)) {
         liste += '<li class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
+      }
     }
 
 /*
@@ -119,7 +121,9 @@ function empDetails(xml, sayfaNo=40) {
   }
 
   function oncekiSayfa() {
-    aktifSayfa = aktifSayfa-1;
+    if (aktifSayfa > 1) {
+      aktifSayfa = aktifSayfa-1;
+    }
   }
 
   function sonrakiSayfa() {
