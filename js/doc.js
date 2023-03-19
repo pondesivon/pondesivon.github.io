@@ -88,7 +88,7 @@ function empDetails(xml) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
-    var liste = '<ol start="' +aktifSayfa * sayfaBasiIcerik + 1 + '">"';
+    var liste = '<ol start="' +(aktifSayfa - 1) * sayfaBasiIcerik + 1 + '">"';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
     var xFiltre = "";
