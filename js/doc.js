@@ -128,12 +128,6 @@ function empDetails(xml) {
   }
 
   function sonrakiSayfa() {
-    var xmlDoc = this.responseXML;
-    var x = xmlDoc.getElementsByTagName("Icerik");
-
-    if (aktifSayfa <= sayfaBasiIcerik/x.length) {
-      aktifSayfa = aktifSayfa+1;
-    }
-
+    aktifSayfa = aktifSayfa+1;
     document.getElementById("sayfa").value = aktifSayfa;
   }
