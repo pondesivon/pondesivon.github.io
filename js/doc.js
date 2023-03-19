@@ -95,11 +95,13 @@ function empDetails(xml) {
 
     // Start to fetch the data by using TagName 
     for (i = (aktifSayfa - 1) * sayfaBasiIcerik; i < (aktifSayfa - 1) * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
+      if (variable == null){
         liste += '<li class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
+      }
     }
 
     liste+="</ol>";
