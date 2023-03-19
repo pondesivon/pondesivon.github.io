@@ -131,7 +131,7 @@ function empDetails(xml) {
     var xmlDoc = xml.responseXML;
     var x = xmlDoc.getElementsByTagName("Icerik");
 
-    if (aktifSayfa <= x/sayfaBasiIcerik) {
+    if (aktifSayfa <= x.length/sayfaBasiIcerik) {
       aktifSayfa = aktifSayfa+1;
     }
 
