@@ -84,7 +84,7 @@ function loadXMLDoc() {
 var aktifSayfa=1;
 var sayfaBasiIcerik = 50;
 
-function empDetails(xml, filtreMetni="Gizle") {
+function empDetails(xml) {
     var i;
     var sayi;
     var xmlDoc = xml.responseXML;
@@ -95,13 +95,11 @@ function empDetails(xml, filtreMetni="Gizle") {
 
     // Start to fetch the data by using TagName 
     for (i = aktifSayfa * sayfaBasiIcerik; i < aktifSayfa * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
-      if (x[i].getAttribute("baslik").includes(filtreMetni)) {
         liste += '<li class="str"><a class="bgl" href="'
               + x[i].getAttribute("baglanti")
               + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
-      }
     }
 
     liste+="</ol>";
