@@ -91,7 +91,6 @@ function empDetails(xml, filtreMetni="göster") {
     var liste = '<ol start="' +aktifSayfa * sayfaBasiIcerik + 1 + '">"';
     var x = xmlDoc.getElementsByTagName("Icerik");
 
-    var 
 
     // Start to fetch the data by using TagName 
     for (i = aktifSayfa * sayfaBasiIcerik; i < aktifSayfa * sayfaBasiIcerik + sayfaBasiIcerik; i++) {
