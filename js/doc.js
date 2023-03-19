@@ -124,6 +124,7 @@ function empDetails(xml) {
     if (aktifSayfa > 1) {
       aktifSayfa = aktifSayfa-1;
     }
+    document.getElementById("sayfa").value = aktifSayfa;
   }
 
   function sonrakiSayfa() {
@@ -132,6 +133,7 @@ function empDetails(xml) {
 
     if (aktifSayfa <= x/sayfaBasiIcerik) {
       aktifSayfa = aktifSayfa+1;
-
     }
+
+    document.getElementById("sayfa").value = aktifSayfa;
   }
