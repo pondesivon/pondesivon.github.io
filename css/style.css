@@ -16,11 +16,5 @@ body    { overflow-y:scroll }
 .bg-b197fc { background-color: #b197fc }
 .bg-ff8787 { background-color: #ff8787 }
 
-.sosyal {
-	font-size: 16px;
-	text-decoration: none;
-}
-
-.tanim {
-	font-size: 30px;
-}
+.sosyal { font-size: 16px; text-decoration: none; }
+.tanim { font-size: 30px; }
