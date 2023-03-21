@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,13 +39,12 @@
            <h1>sort() Metodu İle Sıralama Yap - Javascript</h1>
            <hr /><p class="lead">Javascript üzerindeki sort() metodunun çalışma mantığını bir senaryo üzerinden analiz eden ve sort() metodu ile sayı sıralamasının nasıl yapılabileceği ile ilgili bir alternatif gösteren koddur.
 </p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Kelime Sıralama</strong></p>
-        <p>Aşağıdaki kod kelimeleri sıralamaya yarayan bir javascript kodu alternatifidir.</p>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Kelime Sıralama</strong></p>
+<p>Aşağıdaki kod kelimeleri sıralamaya yarayan bir javascript kodu alternatifidir.</p>
 <pre><code class="language-js">
 var kelimeDizi = 
-	new Array("Cemil", "Eda", "Yeşim", "Ferdi", "Zuhal", "Hasan");
+    new Array("Cemil", "Eda", "Yeşim", "Ferdi", "Zuhal", "Hasan");
 
 kelimeDizi.sort();
 </code></pre>
@@ -53,15 +53,12 @@ kelimeDizi.sort();
 <pre><code class="language-js">
 Array(6) [ "Cemil", "Eda", "Ferdi", "Hasan", "Yeşim", "Zuhal" ]
 </code></pre>
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Sayı Sıralama</strong></p>
+<p class="text-danger f-ffd43b mb-2 pb-1 border-bottom border-danger border-3"><strong>Sayı Sıralama</strong></p>
         <p>Sayıları sıralamak için <code>sort()</code> metodunu kullanalım ve sonucu görelim.</p>
 
 <pre><code class="language-js">
 var sayiDizi = 
-	new Array(10, 8, 25, 13, 84, 36);
+    new Array(10, 8, 25, 13, 84, 36);
 
 sayiDizi.sort();
 </code></pre>
@@ -70,22 +67,18 @@ sayiDizi.sort();
 <pre><code class="language-js">
 Array(6) [ 10, 13, 25, 36, 8, 84 ]
 </code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Durum</strong></p>
-        <p>Kelime sıralama işlemi düzgün bir şekilde çalışırken sayılar istediğimiz gibi sıralanmadı. Sayıların sıralanmasında hem doğru hem de yanlış bir şeyler var.</p>
 
-        <p><strong>Sayılar doğru sıralanmış</strong>, çünkü dizilime baktığımızda tıpkı kelimelerde olduğu gibi alfabetik bir sıralama var.</p>
 
-        <p><strong>Sayılar yanlış sıralanmış</strong>, çünkü ben alfabetik bir dizilim istemiyorum. Matematiksel değerlerine göre sıralama yapılsın istiyorum.</p>
-    </li>
-</ul>
+<p class="text-danger mb-2 ml-1 pb-1 border-bottom border-danger border-3"><strong>Durum</strong></p>
+<p>Kelime sıralama işlemi düzgün bir şekilde çalışırken sayılar istediğimiz gibi sıralanmadı. Sayıların sıralanmasında hem doğru hem de yanlış bir şeyler var.</p>
+
+<p><strong>Sayılar doğru sıralanmış</strong>, çünkü dizilime baktığımızda tıpkı kelimelerde olduğu gibi <strong>alfabetik</strong> bir sıralama var.</p>
+
+<p><strong>Sayılar yanlış sıralanmış</strong>, çünkü ben alfabetik bir dizilim istemiyorum. Matematiksel değerlerine göre sıralama yapılsın istiyorum.</p>
 
 <div class="alert alert-info"><strong>Çözüm</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Durumun Analizi</strong></p>
-        <p>Bu duruma sebep olan şey Javascript'in çalışma yapısından kaynaklanıyor. Javascript’te temel sıralama alfabetik olarak yapılıyor. Bu sayı da olsa durum farketmiyor. Bu yüzden de sayılar alfabetik olarak sıralandı. Durumu daha iyi anlamak için bir kelimelerin de olduğu bir örneğe bakalım.</p>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Durumun Analizi</strong></p>
+<p>Bu duruma sebep olan şey Javascript'in çalışma yapısından kaynaklanıyor. Javascript’te temel sıralama alfabetik olarak yapılıyor. Bu sayı da olsa durum farketmiyor. Bu yüzden de sayılar alfabetik olarak sıralandı. Durumu daha iyi anlamak için bir kelimelerin de olduğu bir örneğe bakalım.</p>
 
 <p><strong>Öncelik Sonralık İlişkisine Göre Sıralanmış Bir Kelime Listesi</strong></p>
 <pre><code class="language-plain-text">
@@ -110,10 +103,9 @@ Veli----84
 <p>Sayılarda ilk sıralar doğru sıralanmış gibi görünse de aslında alfabetik mantığa uyduğu için öyleymiş gibi görünüyor. Örneğin 10 ile 13 karşılaştıralım. İlk sayılar aynı olduğundan dolayı bir sıkıntı yok ama ikinci sayılara bakalım: 0 ve 3. Hangisi alfabetik olarak daha önce gelir? (0 = A ve 3 = C gibi)</p>
 
 <p>Bu sebepten dolayı ilk dört sıradaki sayılar <strong>denk geldiği için</strong> sayı olarak da doğru sıralanmış gibi görünüyor. Ama işin aslı öyle değil.</p>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Sayı Sırala</strong></p>
-        <p><code>sort()</code> metodunun nümerik mantıkta çalışabilmesi için sort metoduna ekleme yapmak gerekiyor. Karşılaştırma yapacak ve sort fonksiyonunu buna göre yönlendirebilecek bu fonksiyon.</p>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Sayı Sırala</strong></p>
+<p><code>sort()</code> metodunun nümerik mantıkta çalışabilmesi için sort metoduna ekleme yapmak gerekiyor. Karşılaştırma yapacak ve sort fonksiyonunu buna göre yönlendirebilecek bu fonksiyon.</p>
 
 <pre><code class="language-js">
 var sayiDizi = new Array(10, 8, 25, 13, 84, 36);
@@ -124,8 +116,6 @@ sayiDizi.sort(function(a,b) { return a - b; });
 //Azalan sıralama yap.
 sayiDizi.sort(function(a,b) { return b - a; });
 </code></pre>
-    </li>
-</ul>
 
 <div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
 <div class="list-group">

@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,9 +39,44 @@
            <h1>Veri Eklendikçe div Etiketi İçine Duruma Göre ol Ve li Etiketlerini Ekle - Javascript</h1>
            <hr /><p class="lead">Buton ile tıklama yolu ile input üzerinden veri eklendikçe div içine (eğer yoksa) ol etiketini oluşturuyor. Bu ol etiketinin içine de gönderilen veriyi li etiketi ile sarmalayarak ekliyor.
 </p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js</strong></p>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
+<pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Javascript Dinamik Liste&lt;/title&gt;
+	&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="content"&gt;
+			Bir meyve adı giriniz:&lt;br&gt;&lt;input type="text" id="kutu" /&gt;
+			&lt;button id="meyve-ekle" type="submit"&gt;Ekle&lt;/button&gt;
+		
+		&lt;div id="liste"&gt;&lt;p class="not"&gt;div bölgesi&lt;/p&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>style.css</strong></p>
+<pre><code class="language-css">
+#liste {
+	background-color: #50babf;
+	width:30%;
+	padding:10px;
+	margin-top:20px;
+	border:1px solid #ddd;
+}
+
+#meyveler {
+	background-color:lightgreen;
+}
+</code></pre>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
 <pre><code class="language-js">
 document.getElementById("meyve-ekle").addEventListener(
 	'click', 
@@ -63,9 +99,8 @@ document.getElementById("meyve-ekle").addEventListener(
 	}
 );
 </code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js (Açıklamalı)</strong></p>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js (Açıklamalı)</strong></p>
 <pre><code class="language-js">
 //--------------------------------------------------
 //id değeri "meyve-ekle" olan element için olay 
@@ -151,51 +186,9 @@ document.getElementById("meyve-ekle").addEventListener(
 	}
 );
 </code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>index.html</strong></p>
-<pre><code class="language-html">
-&lt;!doctype html&gt;
-&lt;html lang="tr-TR"&gt;
-&lt;head&gt;
-	&lt;meta charset="UTF-8"&gt;
-	&lt;title&gt;Javascript Dinamik Liste&lt;/title&gt;
-	&lt;link rel="stylesheet" href="style.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;div id="content"&gt;
-			Bir meyve adı giriniz:&lt;br&gt;&lt;input type="text" id="kutu" /&gt;
-			&lt;button id="meyve-ekle" type="submit"&gt;Ekle&lt;/button&gt;
-		
-		&lt;div id="liste"&gt;&lt;p class="not"&gt;div bölgesi&lt;/p&gt;&lt;/div&gt;
-	&lt;/div&gt;
-	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>      
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>style.css</strong></p>
-<pre><code class="language-css">
-#liste {
-	background-color: #50babf;
-	width:30%;
-	padding:10px;
-	margin-top:20px;
-	border:1px solid #ddd;
-}
 
-#meyveler {
-	background-color:lightgreen;
-}
-</code></pre>
-   </li>
-</ul>
-<br>
 <div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
-<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
-
-<p><a class="btn btn-warning" target="_blank" href="doc/veri-eklendikce-div-etiketi-icine-duruma-gore-ol-ve-li-etiketlerini-ekle-javascript.zip" rel="noopener">veri-eklendikce-div-etiketi-icine-duruma-gore-ol-ve-li-etiketlerini-ekle-javascript.zip</a></p>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/veri-eklendikce-div-etiketi-icine-duruma-gore-ol-ve-li-etiketlerini-ekle-javascript.zip" rel="noopener">İndir</a></p>
 
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,54 +39,8 @@
            <h1>Basit Form Doğrulama Örneği - Javascript</h1>
            <hr /><p class="lead">İsim soyisim bilgisi girilmediği zaman uyarı veren bir javascript örneği aşağıda verilmiştir.
 </p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js</strong></p>
-<pre><code class="language-js">
-document.getElementById("submitBtn").addEventListener('click', send);
-document.getElementById("clearForm").addEventListener('click', clear);
 
-//--------------------------------------------------
-//submitBtn id değerine sahip elemente tıklandığında
-//formdaki verilerin gönderilmesini sağlayacak.
-//--------------------------------------------------
-function send() {
-	validate();
-	//document.getElementById("mainform").submit();
-}
-
-//--------------------------------------------------
-//clearForm id değerine sahip elemente tıklandığında
-//mainform id değerine sahip form elementi içindeki 
-//tüm elementlerin içeriği temizlenecek.
-//--------------------------------------------------
-function clear() {
-	document.getElementById("mainform").reset();
-}
-
-var validateMessage = "";
-function validate() {
-	var form = document.getElementById('mainform');
-	var formElements = form.elements;
-
-	for(var i=0; i&lt;formElements.length; i++) {
-		var element = formElements[i];
-		if(element.type === "text" && element.value.length &lt;= 0) {
-			validateMessage += element.name + " boş bırakılamaz." + "
-
-";
-		}
-	}
-
-	if(validateMessage.length &gt; 0) {
-		alert(validateMessage + "Gerekli alanları doldurunuz.");
-	}
-	validateMessage = "";
-}
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>index.html</strong></p>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
 <pre><code class="language-html">
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -134,12 +89,53 @@ function validate() {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-    </li>
-</ul>
-<br>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
+<pre><code class="language-js">
+document.getElementById("submitBtn").addEventListener('click', send);
+document.getElementById("clearForm").addEventListener('click', clear);
+
+//--------------------------------------------------
+//submitBtn id değerine sahip elemente tıklandığında
+//formdaki verilerin gönderilmesini sağlayacak.
+//--------------------------------------------------
+function send() {
+	validate();
+	//document.getElementById("mainform").submit();
+}
+
+//--------------------------------------------------
+//clearForm id değerine sahip elemente tıklandığında
+//mainform id değerine sahip form elementi içindeki 
+//tüm elementlerin içeriği temizlenecek.
+//--------------------------------------------------
+function clear() {
+	document.getElementById("mainform").reset();
+}
+
+var validateMessage = "";
+function validate() {
+	var form = document.getElementById('mainform');
+	var formElements = form.elements;
+
+	for(var i=0; i&lt;formElements.length; i++) {
+		var element = formElements[i];
+		if(element.type === "text" && element.value.length &lt;= 0) {
+			validateMessage += element.name + " boş bırakılamaz." + "
+
+";
+		}
+	}
+
+	if(validateMessage.length &gt; 0) {
+		alert(validateMessage + "Gerekli alanları doldurunuz.");
+	}
+	validateMessage = "";
+}
+</code></pre>
+
 <div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
-<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
-<p><a class="btn btn-warning" target="_blank" href="doc/basit-form-dogrulama-ornegi-javascript.zip" rel="noopener">basit-form-dogrulama-ornegi-javascript.zip</a></p>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/basit-form-dogrulama-ornegi-javascript.zip" rel="noopener">İndir</a></p>
 
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>

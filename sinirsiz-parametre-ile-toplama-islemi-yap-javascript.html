@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,23 +39,7 @@
            <h1>Sınırsız Parametre İle Toplama İşlemi Yap - Javascript</h1>
            <hr /><p class="lead">İstenilen sayıda sayıyı toplayıp sonucunu yazdıran javascript kodu aşağıda verilmiştir.
 </p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js</strong></p>
-<pre><code class="language-js">
-function SinirsizParametreIleToplamaIslemiYap() {
-	var snc = 0;
-	
-	for(var i in arguments){
-		snc = parseInt(snc) + parseInt(arguments[i]);
-	}
-	
-	return alert(snc);
-}
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>index.html</strong></p>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
 <pre><code class="language-html">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="tr-TR"&gt;
@@ -71,9 +56,23 @@ function SinirsizParametreIleToplamaIslemiYap() {
     &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>        
-    </li>
-</ul>
+</code></pre>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
+<pre><code class="language-js">
+function SinirsizParametreIleToplamaIslemiYap() {
+    var snc = 0;
+    
+    for(var i in arguments){
+        snc = parseInt(snc) + parseInt(arguments[i]);
+    }
+    
+    return alert(snc);
+}
+</code></pre>
+
+
+
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

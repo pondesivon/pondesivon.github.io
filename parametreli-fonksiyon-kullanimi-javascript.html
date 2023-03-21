@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -37,41 +38,38 @@
         <div class="col">
            <h1>Parametreli Fonksiyon Kullanımı - Javascript</h1>
            <hr /><p class="lead">HTML form elemanlarını kullanarak iki sayı girişi yapacağız ve butona bastığımızda bu iki sayı toplanacak, fonksiyonu da form elemanlarına göre biçimlendireceğiz.
-</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js</strong></p>
-        <pre><code class="language-js">
-function IkiSayiyiTopla(p1, p2) {
-	var p1  = document.frm_topla.sayi1.value;
-	var p2  = document.frm_topla.sayi2.value;
-	var snc = parseInt(p1)+parseInt(p2);
 
-	return alert(snc);
-}
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>index.html</strong></p>
+</p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
         <pre><code class="language-html">
 &lt;!DOCTYPE HTML&gt;
 &lt;html lang="tr-TR"&gt;
 &lt;head&gt;
-	&lt;meta charset="utf-8"&gt;
-	&lt;title&gt;Javascript İki Sayıyı Topla&lt;/title&gt;
-	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Javascript İki Sayıyı Topla&lt;/title&gt;
+    &lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-	&lt;form action="" method="post" name="frm_topla"&gt;
-		Sayı1: &lt;input type="text" name="sayi1" value="15" /&gt;&lt;br /&gt;
-		Sayı2: &lt;input type="text" name="sayi2" value="20" /&gt;
-		&lt;button type="submit" value="topla" onClick="IkiSayiyiTopla()"&gt;İki Sayıyı Topla&lt;/button&gt;
-	&lt;/form&gt;
+    &lt;form action="" method="post" name="frm_topla"&gt;
+        Sayı1: &lt;input type="text" name="sayi1" value="15" /&gt;&lt;br /&gt;
+        Sayı2: &lt;input type="text" name="sayi2" value="20" /&gt;
+        &lt;button type="submit" value="topla" onClick="IkiSayiyiTopla()"&gt;İki Sayıyı Topla&lt;/button&gt;
+    &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-    </li>
-</ul>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
+        <pre><code class="language-js">
+function IkiSayiyiTopla(p1, p2) {
+    var p1  = document.frm_topla.sayi1.value;
+    var p2  = document.frm_topla.sayi2.value;
+    var snc = parseInt(p1)+parseInt(p2);
+
+    return alert(snc);
+}
+</code></pre>
+
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>

@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -41,9 +42,24 @@
 <a class="img-fluid d-block" href="doc/metin-kutusuna-odaklan-veya-odaklanma-durumundan-cik-javascript-1.gif"><img src = "doc/metin-kutusuna-odaklan-veya-odaklanma-durumundan-cik-javascript-1.gif" alt="" /></a>
 <br>
 <div class="alert alert-info"><strong>Dosyalar</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya.js</strong></p>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
+<pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Javascript - Metin Kutusuna Odaklan Veya Odaktan Çık&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type="text" id="metin-kutusu"&gt;
+    &lt;input type="button" id="odaklan" value="Odaklan" /&gt;
+    &lt;input type="button" id="cik" value="Çık" /&gt;
+    &lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
 <pre><code class="language-js">
 //--------------------------------------------------
 //function Grubu
@@ -69,9 +85,8 @@ document.getElementById("cik").addEventListener(
   metinKutusuOdaklanmaDurumundanCik
 );
 </code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>dosya (açıklamalı).js</strong></p>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js (Açıklamalı)</strong></p>
 <pre><code class="language-js">
 //--------------------------------------------------
 //Metin kutusuna odaklanma işlemini
@@ -109,31 +124,9 @@ document.getElementById("cik").addEventListener(
   metinKutusuOdaklanmaDurumundanCik
 );
 </code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>index.html</strong></p>
-<pre><code class="language-html">
-&lt;!doctype html&gt;
-&lt;html lang="tr-TR"&gt;
-&lt;head&gt;
-	&lt;meta charset="UTF-8"&gt;
-	&lt;title&gt;Javascript - Metin Kutusuna Odaklan Veya Odaktan Çık&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;input type="text" id="metin-kutusu"&gt;
-	&lt;input type="button" id="odaklan" value="Odaklan" /&gt;
-	&lt;input type="button" id="cik" value="Çık" /&gt;
-	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-    </li>
-</ul>
-<br>
-<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
-<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz:</p>
 
-<p><a class="btn btn-warning" target="_blank" href="doc/metin-kutusuna-odaklan-veya-odaklanma-durumundan-cik-javascript.zip" rel="noopener">metin-kutusuna-odaklan-veya-odaklanma-durumundan-cik-javascript.zip</a></p>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/metin-kutusuna-odaklan-veya-odaklanma-durumundan-cik-javascript.zip" rel="noopener">İndir</a></p>
 
 <div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
 <div class="list-group">

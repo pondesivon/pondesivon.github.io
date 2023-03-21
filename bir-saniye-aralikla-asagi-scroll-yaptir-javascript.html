@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,24 +39,27 @@
            <h1>Bir Saniye Aralıkla Aşağı Scroll Yaptır - Javascript</h1>
            <hr /><p class="lead">Twitter gibi sayfanın sonuna gelindiğinde hemen son gönderinin altından itibaren bir veri grubu daha ekleyerek çalışan siteler için işe yarayabilecek bir javascript kodudur.
 </p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Çalıştırma Kodu</strong></p>
 <pre><code class="language-js">
+
+//--------------------------------------------------
+//Çalıştır.
+//--------------------------------------------------
 var indir = setInterval(function(){ asagiScroll() }, 1000);
 
 function asagiScroll() {
     window.scrollTo(0, document.body.scrollHeight);
 }
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Durdurma Kodu</strong></p>
-<pre><code class="language-js">
+
+//--------------------------------------------------
+//Durdur.
+//--------------------------------------------------
 clearInterval(indir);
+
+//--------------------------------------------------
+//Not
+//--------------------------------------------------
+//Çalıştırma ve durdurma kodlarını ayrı ayrı çalıştır.
 </code></pre>
-    </li>
-</ul>
 
 <div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
 <div class="list-group">

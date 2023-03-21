@@ -11,6 +11,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
 </head>
 <body>
     <!-- Responsive navbar-->
@@ -38,29 +39,13 @@
            <h1>Verilen Class’a Sahip Elementlere strong Etiketi Ekle - Javascript</h1>
            <hr /><p class="lead">getElementsByClassName ile aldığımız değerleri bir değişkene aktardığımız ve bu dizi değişkenindeki değerlere for döngüsüyle müdahale ettiğimiz basit bir javascript örneğidir.
 </p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
-<ul class="list-group">
- 	<li class="list-group-item">
-<p class="text-danger"><strong>dosya.js</strong></p>
-
-<pre><code class="language-js">
-var listeOge = document.getElementsByClassName("lst");
-
-for (var i = 0; i &lt; listeOge.length; i++) {
-    listeOge[i].innerHTML = "&lt;strong&gt;" 
-							+ listeOge[i].innerText
-							+ "&lt;/strong&gt;";
-}
-</code></pre>
-</li>
- 	<li class="list-group-item">
-<p class="text-danger"><strong>index.html</strong></p>
-
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
 <pre><code class="language-html">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;title&gt;&lt;/title&gt;
-	&lt;meta charset="utf-8" /&gt;
+    &lt;meta charset="utf-8" /&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;ul&gt;
@@ -78,13 +63,20 @@ for (var i = 0; i &lt; listeOge.length; i++) {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-</li>
-</ul>
-<br>
-<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
-<p>Konu ile ilgili örnek dosyayı aşağıdaki bağlantıdan indirebilirsiniz.</p>
 
-<p><a class="btn btn-warning" target="_blank" href="doc/verilen-classa-sahip-elementlere-strong-etiketi-ekle-javascript.zip" rel="noopener">verilen-classa-sahip-elementlere-strong-etiketi-ekle-javascript.zip</a></p>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
+<pre><code class="language-js">
+var listeOge = document.getElementsByClassName("lst");
+
+for (var i = 0; i &lt; listeOge.length; i++) {
+    listeOge[i].innerHTML = "&lt;strong&gt;" 
+                            + listeOge[i].innerText
+                            + "&lt;/strong&gt;";
+}
+</code></pre>
+
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/verilen-classa-sahip-elementlere-strong-etiketi-ekle-javascript.zip" rel="noopener">İndir</a></p>
 
 			<hr><a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
