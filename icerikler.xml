@@ -11,7 +11,7 @@
 	<Icerik id="9" baslik="Dolgu Seçeneğini Kullanarak Artan Sayılar Üret - Microsoft Excel" baglanti="dolgu-secenegini-kullanarak-artan-sayilar-uret-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="10" baslik="Boş Hücreleri Tespit Et - Microsoft Excel" baglanti="bos-hucreleri-tespit-et-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="11" baslik="Facebook Web Sitesine Giriş Yap – Microsoft Excel" baglanti="facebook-web-sitesine-giris-yap-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
-	<Icerik id="12" baslik="Yazı Renklerinin HTML Renk Karşılığı - Microsoft Excel" baglanti="yazi-renklerinin-html-renk-karsiligi-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
+	<Icerik id="12" baslik="Yazı Renklerinin Hex Karşılığı - Microsoft Excel" baglanti="yazi-renklerinin-hex-karsiligi-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="13" baslik="Uzantı Listesine Göre Dosya Listele – Microsoft Excel" baglanti="uzanti-listesine-gore-dosya-listele-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="14" baslik="Klasöre Gözat Penceresi İle Klasör Seç – Microsoft Excel" baglanti="klasore-gozat-penceresi-ile-klasor-sec-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="15" baslik="Formül Metnini Çalıştırmadan Hücreye Yazdır – Microsoft Excel" baglanti="formul-metnini-calistirmadan-hucreye-yazdir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
@@ -85,7 +85,7 @@
 	<Icerik id="83" baslik="Sürücünün Toplam Alan Bilgisini Getir - Microsoft Excel" baglanti="surucunun-toplam-alan-bilgisini-getir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="84" baslik="Sürücünün Volume Bilgisini Getir - Microsoft Excel" baglanti="surucunun-volume-bilgisini-getir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="85" baslik="Seçili Hücrenin Sütun İsmini Al - Microsoft Excel" baglanti="secili-hucrenin-sutun-ismini-al-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
-	<Icerik id="86" baslik="Çalışma Sayfasının Yakınlaştırma Düzeyini (Zoom) Ayarla - Microsoft Excel" baglanti="calisma-sayfasinin-yakinlastirma-duzeyini--zoom--ayarla-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
+	<Icerik id="86" baslik="Çalışma Sayfasının Yakınlaştırma Düzeyini (Zoom) Ayarla - Microsoft Excel" baglanti="calisma-sayfasinin-yakinlastirma-duzeyini-zoom-ayarla-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="87" baslik="Daha Önceden Oluşturulmuş Bir Word Dosyasını Aç - Microsoft Excel" baglanti="daha-onceden-olusturulmus-bir-word-dosyasini-ac-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="88" baslik="Word Dosyasını Baskı Önizleme Modunda Aç - Microsoft Excel" baglanti="word-dosyasini-baski-onizleme-modunda-ac-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
 	<Icerik id="89" baslik="Bir Klasördeki Dosyayı Başka Bir Klasöre Kopyala - Microsoft Excel" baglanti="bir-klasordeki-dosyayi-baska-bir-klasore-kopyala-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-36" kategori="Programlama" etiket="" />
@@ -842,4 +842,8 @@
 	<Icerik id="840" baslik="Aktif Çalışma Sayfasına Veri Eklendiğinde Başına Metin Ekle - Microsoft Excel" baglanti="aktif-calisma-sayfasina-veri-eklendiginde-basina-metin-ekle-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="841" baslik="Seçilen Alan İçin Arka Plan Deseni Uygula - Microsoft Excel" baglanti="secilen-alan-icin-arka-plan-deseni-uygula-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="842" baslik="Enter Tuşuna Basınca Filtreleme Yap - Javascript" baglanti="enter-tusuna-basinca-filtreleme-yap-javascript.html" eklenmeTarihi="2023-03-21--23-46-09" kategori="Programlama" etiket="" />
+	<Icerik id="843" baslik="Dosyanın Başına Veya Sonuna Git - Javascript" baglanti="dosyanin-basina-veya-sonuna-git-javascript.html" kategori="Programlama" etiket="javascript, javascript dosya işlemleri" />
+	<Icerik id="844" baslik="Dinamik Yol Kullanarak Bugünün Tarihiyle Klasör Oluştur - Bat" baglanti="dinamik-yol-kullanarak-bugunun-tarihiyle-klasor-olustur-bat.html" kategori="Programlama" etiket="bat, bat klasör işlemleri" />
+	<Icerik id="845" baslik="Dosya Kopyala - Bat" baglanti="dosya-kopyala-bat.html" kategori="Programlama" etiket="bat, bat dosya işlemleri" />
+	<Icerik id="846" baslik="Butonun Arka Planını Bir Saniye Sonra Kırmızı Yap - CSharp" baglanti="butonun-arka-planini-bir-saniye-sonra-kirmizi-yap-csharp.html" kategori="Programlama" etiket="csharp, csharp buton işlemleri, csharp timer işlemleri" />
 </Icerikler>

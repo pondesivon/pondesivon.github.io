@@ -13,7 +13,7 @@
     <link href="css/prism.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
   </head>
-  <body>
+  <body onload="xmlDosyaYukle(20);">
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container">
@@ -23,11 +23,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
-                        <li class="nav-item"><a class="nav-link" href="ara.html">Ara</a></li>
-            <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
-            <li class="nav-item"><a class="nav-link" href="emmet.html">Emmet</a></li>			
-            <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+          <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menü</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="ara.html">Ara</a></li>
+              <li><a class="dropdown-item" href="emmet.html">Emmet</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="hakkinda.html">Hakkında</a></li>
+              <li><a class="dropdown-item" href="iletisim.html">İletişim</a></li>
+            </ul>
+          </li>
           </ul>
         </div>
       </div>
@@ -40,18 +47,12 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12 col-sm-12"><h1 class="display-6 text-primary"><strong>pondesivon.github.io</strong></h1></div>
-    <hr class="mt-2 mb-2">
-    <div class="col-lg-9 col-sm-12"><p class="lead tanim">Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı <span class="text-primary "><strong>kişisel veri tabanı</strong></span>.</p>
-    <p><a href="arsiv.html" class="btn btn-outline-primary btn-lg btn-block"><strong>Arşiv Sayfasına Git</strong></a></p>
-    </div>
-    <div class="col-lg-12 col-sm-12">
-      <hr class="mt-1">
-      <a href="https://twitter.com/pondesivon" target="_blank" class="badge bg-primary sosyal">Twitter</a> 
-      <a href="https://github.com/pondesivon" target="_blank" class="badge bg-dark sosyal">GitHub</a> 
-      <a href="https://stackoverflow.com/users/21435802/pondesivon" target="_blank" class="badge bg-danger sosyal">StackOverflow</a>
-    <hr>
-    </div>
+    <h1 class="display-6 text-primary"><strong>pondesivon.github.io</strong></h1>
+    <hr class="mt-2 mb-3">
+    <p class="lead">Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı <span class="text-primary "><strong>kişisel veri tabanı</strong></span>.</p>
+    <hr class="mb-3">
+    <div class="alert alert-info"><strong>Son 20 İçerik</strong></div>
+    <div id="icerik-liste"></div>
   </div>
 </div>
 
@@ -60,9 +61,10 @@
     </div>
     <!-- JS-->
     <script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/prism.js"></script>
     <script src="js/doc.js"></script>
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-		 crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
   </body>
 </html>

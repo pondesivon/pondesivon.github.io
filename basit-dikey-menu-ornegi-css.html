@@ -21,11 +21,18 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
-                                <li class="nav-item"><a class="nav-link" href="ara.html">Ara</a></li>
-            <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
-            <li class="nav-item"><a class="nav-link" href="emmet.html">Emmet</a></li>
-                    <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menü</a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="ara.html">Ara</a></li>
+							<li><a class="dropdown-item" href="emmet.html">Emmet</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="hakkinda.html">Hakkında</a></li>
+							<li><a class="dropdown-item" href="iletisim.html">İletişim</a></li>
+						</ul>
+					</li>
                 </ul>
             </div>
         </div>
@@ -235,6 +242,7 @@ dikey_menu sınıfı içinde
 
 <!-- JS-->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/prism.js"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
      crossorigin="anonymous"></script>

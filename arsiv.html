@@ -13,7 +13,7 @@
     <link href="css/prism.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
   </head>
-  <body>
+  <body onload="aramaKutusunaOdaklan('konu1')">
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container">
@@ -23,11 +23,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
-                        <li class="nav-item"><a class="nav-link" href="ara.html">Ara</a></li>
-            <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
-            <li class="nav-item"><a class="nav-link" href="emmet.html">Emmet</a></li>     
-            <li class="nav-item"><a class="nav-link" href="hakkinda.html">Hakkında</a></li>
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menü</a>
+						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" href="ara.html">Ara</a></li>
+							<li><a class="dropdown-item" href="emmet.html">Emmet</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="hakkinda.html">Hakkında</a></li>
+							<li><a class="dropdown-item" href="iletisim.html">İletişim</a></li>
+						</ul>
+					</li>
           </ul>
         </div>
       </div>
@@ -39,12 +46,17 @@
           <p></p>
           <h1>Arşiv</h1>
           <hr />
-          <p class="lead">Tüm içeriklerin bağlantılarının listelendiği alan.</p>
+          <p class="lead">Tüm içeriklerin bağlantılarının listelendiği alan. Aşağıda bulunan arama kutusundan arama yapabileceğiniz gibi, <kbd>Ctrl</kbd> + <kbd>F</kbd> klavye kısayolunu kullanarak tarayıcı üzerinden de arama yapabilirsiniz.</p>
           <hr />
 
-<div class="input-group mb-3 border-secondary">
-  <input class="form-control _form-control-lg bg-e8e8e8" type="text" id="konu" onkeypress="konuFiltre()" placeholder="Listede Ara..." aria-describedby="basic-addon3">
-</div>
+        <!-- Arama Kutusu Ust Baslangic -->
+        <div class="input-group mb-3 border-secondary">
+          <input class="form-control _form-control-lg bg-e8e8e8" type="text" id="konu1" onkeypress="konuFiltreKey('konu1')" placeholder="Listede Ara..." aria-describedby="basic-addon3">
+          <input type="button" class="btn btn-danger" name="" onclick="valueTemizle('konu1')" value="_">
+          <input type="button" class="btn btn-info" name="" onclick="window.scrollTo(0, document.body.scrollHeight);" value="▼">
+          <input type="button" class="btn btn-primary" name="" onclick="konuFiltre('konu1')" value="Ara">
+        </div>
+        <!-- Arama Kutusu Ust Bitis -->
 
 <ol id="liste" class="">
 <li class="str"><a class="bgl" href="301-yonlendirmesi-yap-htaccess.html">301 Yönlendirmesi Yap - htaccess</a></li>
@@ -889,12 +901,26 @@
 <li class="str"><a class="bgl" href="aktif-calisma-sayfasina-veri-eklendiginde-basina-metin-ekle-microsoft-excel.html">Aktif Çalışma Sayfasına Veri Eklendiğinde Başına Metin Ekle - Microsoft Excel</a></li>
 <li class="str"><a class="bgl" href="secilen-alan-icin-arka-plan-deseni-uygula-microsoft-excel.html">Seçilen Alan İçin Arka Plan Deseni Uygula - Microsoft Excel</a></li>
 <li class="str"><a class="bgl" href="enter-tusuna-basinca-filtreleme-yap-javascript.html">Enter Tuşuna Basıldığında Filtreleme Yap - Javascript</a></li>
+<li class="str"><a class="bgl" href="dosyanin-basina-veya-sonuna-git-javascript.html">Dosyanın Başına Veya Sonuna Git - Javascript</a></li>
+<li class="str"><a class="text-decoration-none" href="dinamik-yol-kullanarak-bugunun-tarihiyle-klasor-olustur-bat.html">Dinamik Yol Kullanarak Bugünün Tarihiyle Klasör Oluştur - Bat</a></li>
+<li class="str"><a class="text-decoration-none" href="dosya-kopyala-bat.html">Dosya Kopyala - Bat</a></li>
+<li class="str"><a class="text-decoration-none" href="butonun-arka-planini-bir-saniye-sonra-kirmizi-yap-csharp.html">Butonun Arka Planını Bir Saniye Sonra Kırmızı Yap - CSharp</a></li>
 </ol>
+
+        <!-- Arama Kutusu Alt Baslangic -->
+        <div class="input-group mb-3 border-secondary">
+          <input class="form-control _form-control-lg bg-e8e8e8" type="text" id="konu2" onkeypress="konuFiltreKey('konu2')" placeholder="Listede Ara..." aria-describedby="basic-addon3">
+          <input type="button" class="btn btn-danger" name="" onclick="valueTemizle('konu2')" value="_">
+          <input type="button" class="btn btn-info" name="" onclick="window.scrollTo(0, 0);" value="▲">
+          <input type="button" class="btn btn-primary" name="" onclick="konuFiltre('konu2')" value="Ara">
+        </div>
+        <!-- Arama Kutusu Alt Bitis -->
         </div>
       </div>
     </div>
     <!-- JS-->
     <script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/prism.js"></script>
     <script src="js/doc.js"></script>
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
