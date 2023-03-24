@@ -113,7 +113,7 @@ function xmlDosyaYukle(sayi) {
     };
 
     // employee.xml is the external xml file
-    xmlhttp.open("GET", "http://localhost/pondesivon.github.io/icerikler.xml", true);
+    xmlhttp.open("GET", "https//:pondesivon.github.io/icerikler.xml", true);
     xmlhttp.send();
 }
 
