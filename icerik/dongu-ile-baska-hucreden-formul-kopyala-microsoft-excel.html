@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Döngü İle Başka Hücreden Formül Kopyala - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Döngü İle Başka Hücreden Formül Kopyala - Microsoft Excel</h1>
+           <hr /><p class="lead">Amacımız başka bir hücrede bulunan formülü başka bir yere yapıştırmak ve aşağı doğru dinamik bir şekilde çoğaltmak. İşte bu dinamikliği sağlamak adına alternatif bir çözüm aşağıda verilmiştir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub DonguIleFormulKopyalaYapistir()
+    Dim i As Integer
+    
+    '--------------------------------------------------
+    'Formülü başka bir hücreden al.
+    '--------------------------------------------------
+    Range("A1").Formula = Range("B1").Formula
+    
+    '--------------------------------------------------
+    'Formülü uygula.
+    '--------------------------------------------------
+    Application.ScreenUpdating = False
+    
+    For i = 2 To 20
+        Range("A" & i - 1).Select
+        Range("A" & i - 1).Copy
+        Range("A" & i).Select
+        ActiveCell.PasteSpecial
+    Next
+    
+    Application.ScreenUpdating = True
+    Application.CutCopyMode = False
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'Formülü B1 hücresinden kopyalamak istiyoruz.
+'A sütununda da çoğaltma işlemini yapacağız.
+Sub DonguIleFormulKopyalaYapistir()
+    
+    'Döngü için kullanacağımız değişken.
+    Dim i As Integer
+    
+    '--------------------------------------------------
+    'İlk önce formülünü kopyalamak amacıyla
+    'hücremizi belirliyoruz ve istediğimiz
+    'hücreye formül olarak atıyoruz.
+    '--------------------------------------------------
+    Range("A1").Formula = Range("B1").Formula
+    
+    '--------------------------------------------------
+    'Ekran güncellemesini kapat.
+    '--------------------------------------------------
+    Application.ScreenUpdating = False
+    
+    '--------------------------------------------------
+    'Bu kısım ise aklıma ilk gelen çözüm.
+    'A1 hücresinde ana formülümüz var zaten.
+    'Şimdi A2 hücresinden itibaren döngüyü
+    'başlatıyoruz. Döngü boş hücrenin
+    'bir üstündeki hücreyi seçip kopyalayacak.
+    'Sonra da asıl hücremizi seçecek ve
+    'kopyaladığımız formülü yapıştıracak.
+    '
+    'Böylelikle formülün içindeki dinamik
+    'alanlar da buna göre etkilenecek. Tıpkı
+    'seçili hücrede sağ alt köşeden çekip
+    'aşağı kopyalıyormuş gibi olacak.
+    '--------------------------------------------------
+    For i = 2 To 20
+        Range("A" & i - 1).Select
+        Range("A" & i - 1).Copy
+        Range("A" & i).Select
+        ActiveCell.PasteSpecial
+    Next
+    
+    '--------------------------------------------------
+    'Ekran güncellemesini aç.
+    '--------------------------------------------------
+    Application.ScreenUpdating = True
+    
+    '--------------------------------------------------
+    'Excel kopyalama modunu kapat.
+    '--------------------------------------------------
+    Application.CutCopyMode = False
+End Sub
+</code></pre>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Türkçe Karakterleri Değiştir - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Türkçe Karakterleri Değiştir - Microsoft Excel</h1>
+           <hr /><p class="lead">Fonksiyon Türkçe karakterleri tespit ediyor ve en çok benzeyen harflerle değiştiriliyor. Böylelikle İngilizce alfabeye uygun bir yazım düzeni ortaya çıkıyor.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Public Function TurkceKarakterDegistir(hucre As Range) As String
+    Dim diziE As Variant
+    Dim diziY As Variant
+    Dim i     As Long
+    Dim sonuc As String
+    
+    diziE = Array("İ", "Ç", "Ö", "Ü", "Ş", "Ğ", "ı", "ç", "ö", "ü", "ş", "ğ")
+    diziY = Array("I", "C", "O", "U", "S", "G", "i", "c", "o", "u", "s", "g")
+    
+    sonuc = hucre.Value
+    
+    For i = LBound(diziE) To UBound(diziE)
+      sonuc = Replace(sonuc, diziE(i), diziY(i))
+    Next
+    
+    TurkceKarakterDegistir = sonuc
+End Function
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Tek parametreden oluşan ve string değer
+'döndüren bir fonksiyon tanımladık.
+'--------------------------------------------------
+Public Function TurkceKarakterDegistir(hucre As Range) As String
+    
+    '--------------------------------------------------
+    'Değiştirilecek karakterlerin listelendiği
+    'bir dizi değişkeni. Sonundaki E harfi "eski"
+    'anlamına geliyor.
+    '--------------------------------------------------
+    Dim diziE As Variant
+    
+    '--------------------------------------------------
+    'Değiştirilecek karakterlerin yerine konacak
+    'karakterleri bu değişkende listeliyoruz.
+    'Sonundaki Y harfi "yeni" anlamına geliyor.
+    '--------------------------------------------------
+    Dim diziY As Variant
+    
+    '--------------------------------------------------
+    'Döngü için lazım olacak.
+    '--------------------------------------------------
+    Dim i     As Long
+    
+    '--------------------------------------------------
+    'Bu değişkeni de karakter değişimi
+    'işlemlerinde depo gibi kullanacağız.
+    '--------------------------------------------------
+    Dim sonuc As String
+    
+    '--------------------------------------------------
+    'Değiştirilecek karakterleri veri olarak girdik.
+    '--------------------------------------------------
+    diziE = Array("İ", "Ç", "Ö", "Ü", "Ş", "Ğ", "ı", "ç", "ö", "ü", "ş", "ğ")
+    
+    '--------------------------------------------------
+    'Değiştirileceklerin yerine konacak karakterleri veri olarak girdik.
+    '--------------------------------------------------
+    diziY = Array("I", "C", "O", "U", "S", "G", "i", "c", "o", "u", "s", "g")
+    
+    '--------------------------------------------------
+    'Şimdi metnin ilk halini sonuç değişkenine aktardık.
+    'Ham halini değiştire değiştire ilerleyeceğiz.
+    '--------------------------------------------------
+    sonuc = hucre.Value
+    
+    '--------------------------------------------------
+    'Burada döngünün olayı şu: Eski değerlerin tümünü
+    'diziE değişkeni aracılığıyla kontrol edeceğiz.
+    'Eğer bu dizideki karakterlerden birine denk
+    'gelirse acımadan değiştirecek.
+    '--------------------------------------------------
+    For i = LBound(diziE) To UBound(diziE)
+    
+        '--------------------------------------------------
+        'Burada belki neden iki döngü kullanmadığımızı
+        'düşünüyor olabilirsiniz. Cevap: Gerek yok.
+        'Çünkü Replace üyesi siz değiştirilecek ve yerine
+        'konacak karakterleri verdiğinizde varsayılan
+        'olarak baştan sona tüm metni kontrol eder ve
+        'bulursa hepsini değiştirir.
+        '
+        'Biz de eski değerlerin olduğu dizide sırasıyla
+        'tüm karakterler için değiştirme işlemini yapmasını
+        'sağlıyoruz.
+        '--------------------------------------------------
+        sonuc = Replace(sonuc, diziE(i), diziY(i))
+    Next
+    
+    '--------------------------------------------------
+    'Sonucu yazdırıyoruz.
+    '--------------------------------------------------
+    TurkceKarakterDegistir = sonuc
+End Function
+</code></pre>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

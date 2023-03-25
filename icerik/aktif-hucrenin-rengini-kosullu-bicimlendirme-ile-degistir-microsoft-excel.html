@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Aktif Hücrenin Rengini Koşullu Biçimlendirme İle Değiştir - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Aktif Hücrenin Rengini Koşullu Biçimlendirme İle Değiştir - Microsoft Excel</h1>
+           <hr /><p class="lead">Koşullu biçimlendirme ve VBA'dan yararlanarak aktif hücrenin renginin nasıl değiştirilebileceği ile ilgili alternatif bir çözüme bakalım.
+</p><hr /><div class="alert alert-info"><strong>Formül</strong></div>
+<p>Aşağıdaki formülü <strong>Koşullu Biçimlendirme</strong> > <strong>Yeni Kural</strong> > <strong>Biçimlendirilecek hücreleri belirlemek için formül kullan</strong> seçeneklerini takip ettikten sonra ilgili metin kutusuna uygulayın.</p>
+
+<pre><code class="language-excel-formula">
+=VE(SATIR()=HÜCRE("sat");SÜTUN()=HÜCRE("süt"))
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<p>Koşullu biçimlendirmenin uygulandığı sayfaya ekleyin.</p>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Excel.Range)
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Formülün Çalışma Mantığı</strong></p>
+        <p>Formül iki şartın sağlanması durumunda çalışıyor. <code>SATIR</code> formülünden gelen sonuç seçili hücrenin satır bilgisiyle eşleşiyorsa ve <code>SÜTUN</code> formülünden gelen sonuç seçili hücrenin sütun bilgisiyle eşleşiyorsa koşullu biçimlendirme işlemi gerçekleşecek.</p>
+
+        <p><code>SATIR</code> ve <code>SÜTUN</code> formülleri seçilen alanın satır ve sütun sayıları hakkında bilgi verirken <code>HÜCRE</code> formülü seçilen hücre hakkında (eğer birden fazla hücre seçilmişse seçimin başlangıç noktası olan hücrenin) çeşitli bilgileri öğrenmemizi sağlıyor. Ön tanımlı parametrelerinden <strong>sat</strong> ile satır numarasını, <strong>süt</strong> ile de sütun numarasını öğrenebiliyoruz.</p>
+
+        <p>Burada sadece aktif hücreyi renklendiren mantık da şu: <code>SATIR()</code> ve <code>SÜTUN()</code> formülleri içine bilgi girilmeden kullanıldığı zaman aktif hücreyle/hücrelerle ilgileri bilgileri verir. <code>HÜCRE</code> formülü de zaten tek hücre seçiminde de, çoklü hücre seçiminde de tek hücre ile ilgili bilgiler veriyor. Biz bu iki parametreyi <code>VE</code> formülüyle birleştirince de işlemin tek hücre üzerinde yapılmasını sağlamış oluyoruz.</p>
+
+        <p>VBA kısmı da ekran güncellemesiyle alakalı, yani aslında formülle doğrudan bir alakası yok. Seçim yapıldığı zaman renk değişikliklerinin düzgün görüntülenebilmesi için kullanılıyor.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Satır Kontrolü</strong></p>
+        <p>Yapılan seçimin satır numarası, seçilen ilk hücrenin satır bilgisiyle eşleşiyor mu?</p>
+
+<pre><code class="language-excel-formula">
+SATIR()=HÜCRE("sat")
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sütun Kontrolü</strong></p>
+        <p>Yapılan seçimin sütun numarası, seçilen ilk hücrenin sütun bilgisiyle eşleşiyor mu?</p>
+
+<pre><code class="language-excel-formula">
+SÜTUN()=HÜCRE("süt")
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+        <p>Eğer verilen iki şart aynı anda sağlanıyorsa koşullu biçimlendirme işlemini yapan ve hücreyi biçimlendirmeye yarayan formül ortaya çıkmış oluyor.</p>
+
+<pre><code class="language-excel-formula">
+=VE(SATIR()=HÜCRE("sat");SÜTUN()=HÜCRE("süt"))
+</code></pre>
+    </li>
+</ul>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Seçilen Kelimelere Göre Cümle Listesini Filtrele - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Seçilen Kelimelere Göre Cümle Listesini Filtrele - Microsoft Excel</h1>
+           <hr /><p class="lead">Elimizdeki kelime listesini kullanarak sütunda bulunan cümleleri filtrelemek için kullanılabilecek alternatif bir çözüm aşağıda verilmiştir.
+</p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
+<p>Elimizde uzun bir cümle listesi olduğunu varsayıyoruz ve bunların içinden belli kelimeleri içeren cümleleri arasından filtrelemek istiyoruz.</p>
+
+<div class="alert alert-info"><strong>Çözüm</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Hazırlık Yap</strong></p>
+        <p>Bize en üstünde aynı başlık olan iki liste gerekli, birincisi cümle listesi, ikincisi de filtrelemede gerekli olacak kelime listesi. Aynı başlığa sahip olmalı çünkü gelişmiş filtrelemede bu baz alınacak.</p>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Listelerin Yerini Belirle</strong></p>
+        <p>Bu arada listelerin yerinin bir önemi yok ama örnekte karışıklık olmaması açısından cümle listesini A sütununa, filtre listemizi de B sütununa ekleyelim. (Filtre listesindeki kelimelerin iki yıldız karakteri arasında olması <strong>içerir</strong> anlamına geliyor.)</p>
+
+<table class="table table-bordered table-sm">
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cümleler</td>
+<td>Cümleler</td>
+</tr>
+<tr>
+<td>Bu bir excel dosyasıdır.</td>
+<td>*excel*</td>
+</tr>
+<tr>
+<td>Ali ata bakarken yere düştü.</td>
+<td>*ekmek*</td>
+</tr>
+<tr>
+<td>Gelirken iki tane ekmek al.</td>
+<td>*süt*</td>
+</tr>
+<tr>
+<td>Çok yorgun olduğumdan eve gelir gelmez yattım.</td>
+<td></td>
+</tr>
+<tr>
+<td>Bugün çok çay içtim.</td>
+<td></td>
+</tr>
+<tr>
+<td>Işık ılık süt iç.</td>
+<td></td>
+</tr>
+<tr>
+<td>Kahvaltı yaptım ama yine de kısa sürede acıktım.</td>
+<td></td>
+</tr>
+<tr>
+<td>Yarın kütüphaneye uğrayacağım.</td>
+<td></td>
+</tr>
+<tr>
+<td>Abi geç oldu yat artık istersen.</td>
+<td></td>
+</tr>
+<tr>
+<td>Aman sabahlar olmasın beaa!</td>
+<td></td>
+</tr>
+<tr>
+<td>Excel dosyalarını iki yapalım!</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Gelişmiş Filtre Penceresini Aç</strong></p>
+        <p><strong>Veri</strong> sekmesinden <strong>Gelişmiş</strong> seçeneğine tıklayarak gelişmiş filtre penceresini açalım.</p>
+
+        <a class="img-fluid d-block" href="doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-1.png"><img src = "doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-1.png" alt="" /></a>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Parametre Ayarlarını Yap</strong></p>
+        <p>Gelen pencerede filtre uygulamak istediğimiz alanı başlığıyla beraber seçiyoruz. Hemen ardından aynı şekilde filtre listesini de seçip <strong>Tamam</strong> tuşuna basıyoruz.</p>
+
+    <a class="img-fluid d-block" href="doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-2.png"><img src = "doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-2.png" alt="" /></a>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+        <p>Bu işlemlerden sonra cümleler kriterimize göre filtrelenecek ve buna göre sonuçlar listelenecektir.</p>
+
+        <a class="img-fluid d-block" href="doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-3.png"><img src = "doc/secilen-kelimelere-gore-cumle-listesini-filtrele-microsoft-excel-3.png" alt="" /></a>
+    </li>
+</ul>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

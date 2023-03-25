@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Seçilen Alanı Resim Olarak Kaydet - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Seçilen Alanı Resim Olarak Kaydet - Microsoft Excel</h1>
+           <hr /><p class="lead">Bir hücre grubunu seçtikten sonra o seçilen alanı masaüstüne resim olarak kaydediyor. Gerçi çıktı biraz kalitesiz oluyor ama 1000 satırlık tablo için de deneme yaptım, yine aynı kalitesizliğe rağmen güzel sonuç veriyor aslında.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub SecilenAlaniResimOlarakKaydet()
+
+	'--------------------------------------------------
+	'Değişkenler
+    '--------------------------------------------------
+	Dim objTemp    As Object
+    Dim chtMyChart As Chart
+    Dim rngImg     As Range
+    Dim WshShell   As Object
+    Dim strDesktop As String
+    
+	'--------------------------------------------------
+	'Hazırlık
+    '--------------------------------------------------
+	Set rngImg = Selection
+    Set WshShell = CreateObject("WScript.Shell")
+    strDesktop = WshShell.SpecialFolders("Desktop") & "/"
+    
+    rngImg.Copy
+    
+    Set objTemp = ActiveSheet.Shapes.AddShape(1, 1, 1, 1, 0)
+    objTemp.Select
+    
+    ActiveSheet.Paste
+    
+    objTemp.Delete
+    
+	'--------------------------------------------------
+	'Resim Oluştur
+    '--------------------------------------------------
+	With Selection
+        .CopyPicture 1, 2
+        Set chtMyChart = ActiveSheet.ChartObjects.Add(1, 1, .Width, .Height).Chart
+		
+        With chtMyChart
+			.Paste
+			.Export strDesktop & "\excel-alan-resim.jpg"
+			.Parent.Delete
+        End With
+      
+        .Delete
+    End With
+    
+	'--------------------------------------------------
+	'Bilgi Mesajı
+    '--------------------------------------------------
+	MsgBox "Resim oluşturuldu ve kaydedildi."
+    
+	'--------------------------------------------------
+	'Değişken Temizle
+    '--------------------------------------------------
+	Set rngImg = Nothing
+    Set objTemp = Nothing
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub SecilenAlaniResimOlarakKaydet()
+    
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim objTemp    As Object
+    Dim chtMyChart As Chart
+    Dim rngImg     As Range
+    Dim WshShell   As Object
+    Dim strDesktop As String
+    
+    
+    '--------------------------------------------------
+    'Görüntüsü alınacak alanı ayarla.
+    '--------------------------------------------------
+    Set rngImg = Selection
+    
+    '--------------------------------------------------
+    'Masaüstü klasörünü dinamik olarak belirlemek
+    'için kullanacağımız nesne örneği.
+    '--------------------------------------------------
+    Set WshShell = CreateObject("WScript.Shell")
+    
+    '--------------------------------------------------
+    'Masaüstü klasörünün tam yolunu al.
+    '--------------------------------------------------
+    strDesktop = WshShell.SpecialFolders("Desktop") & "/"
+    
+    '--------------------------------------------------
+    'Alanı kopyalıyoruz.
+    '--------------------------------------------------
+    rngImg.Copy
+    
+    '--------------------------------------------------
+    'Bir adet boyutları 1 olan bir şekil oluşturduk ve seçtik.
+    'Amacımız şekil oluşturmaktan ziyade Shape sınıfının
+    'özelliklerinden faydalanarak resim oluşturmak olacak.
+    '--------------------------------------------------
+    Set objTemp = ActiveSheet.Shapes.AddShape(1, 1, 1, 1, 0)
+    objTemp.Select
+    
+    '--------------------------------------------------
+    'Yukarıdaki kodlar çalıştıktan sonra bu yapıştırma işlemini
+    'yaptığımızda tam seçili alanın olduğu bölgenin hemen üstünde
+    'bir resim oluşuyor.
+    '--------------------------------------------------
+    ActiveSheet.Paste
+    
+    '--------------------------------------------------
+    'Nesneyle işimiz bitti, siliyoruz.
+    '--------------------------------------------------
+    objTemp.Delete
+    
+    '--------------------------------------------------
+    'Şimdi yukarıdaki kodlar çalıştıktan sonra
+    'alanımız seçili ama resmimiz de (sanki üzerine tıklanmış
+    'gibi) aktif olduğundan aktif seçim o. Bu yüzden Selection
+    'işlemi Range sınıfı yerine Picture sınıfına göre çalışacak.
+    '--------------------------------------------------
+    With Selection
+    
+        '--------------------------------------------------
+        'Resmi kopyala.
+        'Function CopyPicture([Appearance As XlPictureAppearance = xlScreen],
+        '                     [Format As XlCopyPictureFormat = xlPicture])
+        '--------------------------------------------------
+        .CopyPicture 1, 2
+        
+        
+        '--------------------------------------------------
+        'Şimdi bu grafik nesnesi nereden çıktı ona bakalım.
+        '
+        'Aslında bizim grafikle de alakamız yok ama şu var:
+        'Bu grafikleri resim olarak dışarı çıkarabiliyoruz.
+        'Madem öyle bir şey var ben bunu kendi oluşturduğum
+        'resmi dışarı aktarmak için kullanırım. Temiz olur.
+        '--------------------------------------------------
+        Set chtMyChart = ActiveSheet.ChartObjects.Add(1, 1, .Width, .Height).Chart
+            
+        '--------------------------------------------------
+        'Grafik nesnesinin örneğini oluşturduktan
+        'sonra birkaç işlem yaptırıyoruz.
+        '--------------------------------------------------
+        With chtMyChart
+        
+            '--------------------------------------------------
+            'Oluşturduğumuz resmi grafik arka planı olarak
+            'çıkan nesneye yabıştırdık. Güzelcene yabışıyo o.
+            '--------------------------------------------------
+            .Paste
+            
+            '--------------------------------------------------
+            'Masaüstüne excel-alan-resim.jpg olarak kaydettirdik.
+            'masaustu bir fonksiyon ve bu kodların hemen altında
+            'fonksiyonun kendisi var. İsterseniz siz bu fonksiyonu
+            'hiç karıştırmadan kendi yolunuzu ekleyebilirsiniz.
+            '--------------------------------------------------
+            .Export strDesktop & "\excel-alan-resim.jpg"
+            
+            '--------------------------------------------------
+            'Grafik nesnesi için bir altyapı penceresi gibi
+            'bir pencere oluşuyor ya, biz ona resim ekledik
+            've dışarı çıkardık. İşimiz bittiği için artık onu
+            'silebiliriz.
+            '--------------------------------------------------
+            .Parent.Delete
+        End With
+      
+        '--------------------------------------------------
+        'Seçtiğimiz alanın resmi var ya, bu da onu siliyor.
+        '--------------------------------------------------
+        .Delete
+    End With
+    
+    '--------------------------------------------------
+    'Bilgi mesajı ver.
+    '--------------------------------------------------
+    MsgBox "Resim oluşturuldu ve kaydedildi."
+    
+    '--------------------------------------------------
+    'Nesne örneklerini RAM'den temizle.
+    '--------------------------------------------------
+    Set rngImg = Nothing
+    Set objTemp = Nothing
+End Sub
+</code></pre>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

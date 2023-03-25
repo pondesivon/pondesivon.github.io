@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Dinamik Yol Kullanarak Bugünün Tarihiyle Klasör Oluştur - Bat</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menü</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="ara.html">Ara</a></li>
+                            <li><a class="dropdown-item" href="emmet.html">Emmet</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="hakkinda.html">Hakkında</a></li>
+                            <li><a class="dropdown-item" href="iletisim.html">İletişim</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Dinamik Yol Kullanarak Bugünün Tarihiyle Klasör Oluştur - Bat</h1>
+           <hr /><p class="lead">Bat dosyasının bulunduğu konuma göre bir üst klasöre gidip verilen adda yeni bir klasör oluşturur. Oluşturulan bu yeni klasörün içine verilen klasörün adına zaman damgası ekleyerek yeni bir klasör oluşturur.</p><hr />
+<div class="alert alert-info"><strong>Bilgi</strong></div>
+<p><code>bat</code> dosyasının bulunduğu klasörün tam yolu şu olsun: <code>C:\Arşiv\Belgeler\Icerikler</code></p>
+<p>bat dosyası bulunduğu konumun tam yolundan hareket ederek çalışır.</p>
+<ol>
+    <li>Zaman damgası oluşturur.</li>
+    <li>Bir üst klasöre (<code>C:\Arşiv\Belgeler</code>) verilen isimde yeni bir klasör oluşturur (<code>C:\Arşiv\Belgeler\VeriGrup</code>).</li>
+    <li>Oluşturulan bu yeni klasöre (<code>VeriGrup</code>) verilen ada oluşturulan zaman damgasını ekler ve bu isimle yeni bir klasör oluşturur (<code>C:\Arşiv\Belgeler\VeriGrup\Yedek--2023-03-23--11-02-22</code>).</li>
+</ol>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-batch">
+@echo OFF
+
+:: --------------------------------------------------
+:: Use date /t and time /t from the command line 
+:: to get the format of your date and time; 
+:: change the substring below as needed.
+:: This will create a timestamp like yyyy-mm-dd-hh-mm-ss.
+:: --------------------------------------------------
+
+:: --------------------------------------------------
+:: Zaman damgası oluştur.
+:: Formatı da şu şekilde: 2023-03-23--10-50-13
+:: --------------------------------------------------
+set TIMESTAMP=%DATE:~10,4%-%DATE:~7,2%-%DATE:~4,2%--%TIME:~0,2%-%TIME:~3,2%-%TIME:~6,2%
+
+:: --------------------------------------------------
+:: Zaman damgasını yazdır.
+:: --------------------------------------------------
+@echo TIMESTAMP=%TIMESTAMP%
+
+:: --------------------------------------------------
+:: Bir üst klasöre zaman damgasıyla yeni klasör oluştur.
+:: --------------------------------------------------
+md "..\VeriGrup\Yedek--%TIMESTAMP%"
+
+:: --------------------------------------------------
+:: İki üst klasöre zaman damgasıyla yeni klasör oluştur.
+:: --------------------------------------------------
+:: md "..\..\VeriGrup\Yedek--%TIMESTAMP%"
+</code></pre>
+
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

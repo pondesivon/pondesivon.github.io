@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Sütuna Birden Fazla Girilen Değeri Renklendir - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Sütuna Birden Fazla Girilen Değeri Renklendir - Microsoft Excel</h1>
+           <hr /><p class="lead">Worksheet_Change olayı ile A sütununda meydana gelen her veri değişiminde kontrol yaptırıyoruz ve eğer girilen değer önceden eklenmişse bilgi mesajı veriyor ve o sütunu renklendiriyor.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+    If Intersect(Target, Range("A1:A1048576")) Is Nothing Then Exit Sub
+        Dim son_satir As Long
+        Dim x, k As Long
+        
+        son_satir = Range("A1048576").End(xlUp).Row
+        For x = 1 To son_satir
+            If WorksheetFunction.CountIf(Range("A1:A" & son_satir), Cells(son_satir, 1)) > 1 Then
+                MsgBox "Bu veri daha önceden eklenmiş." & _
+                vbCrLf & "Tekrarlanan veri renklendirildi."
+                
+                Cells(son_satir, 1).Select
+                Selection.Interior.ColorIndex = 40
+                Exit Sub
+            Else
+                Cells(son_satir, 1).Interior.Color = xlNone
+            End If
+        Next
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+
+    '--------------------------------------------------
+    'Eğer Target alanı, belirlediğimiz alanla
+    'kesişmiyorsa bu Worksheet_Change olayı çalışmasın.
+    '--------------------------------------------------
+    If Intersect(Target, Range("A1:A1048576")) Is Nothing Then Exit Sub
+        Dim son_satir As Long
+        Dim x, k As Long
+        
+        '--------------------------------------------------
+        'Biz A sütununa veri ekledikçe son satır
+        'bilgisi de değişeceği için bunu değişkene
+        'aktarıyoruz ve dinamik hale getiriyoruz.
+        '--------------------------------------------------
+        son_satir = Range("A1048576").End(xlUp).Row
+        
+        '--------------------------------------------------
+        'Worksheet_Change olayı her tetiklendiğinde
+        'yeni eklenen satır da dahil olmak üzere
+        'döngü çalışacak ve kontrol yapacak.
+        '--------------------------------------------------
+        For x = 1 To son_satir
+            
+            '--------------------------------------------------
+            'Kontrolü CountIf fonksiyonu ile yaptırıyoruz.
+            'Yani çalışma sayfasında (Worksheet) Türkçe
+            'karşılığı EĞERSAY olan fonksiyon.
+            '
+            'Verilen alanda son girilen veri kaç tane var
+            'kontrol ettiriyoruz. Eğer bu sonuç birden büyükse
+            'demek ki son girilen kayıt aslında mükerrer,
+            'yani tekrar eden bir kayıt.
+            '--------------------------------------------------
+            If WorksheetFunction.CountIf(Range("A1:A" & son_satir), Cells(son_satir, 1)) > 1 Then
+                
+                '--------------------------------------------------
+                'Birden fazla kayıt olduğu bilgisini veriyoruz.
+                '--------------------------------------------------
+                MsgBox "Bu veri daha önceden eklenmiş." & _
+                vbCrLf & "Tekrarlanan veri boyandı."
+                
+                '--------------------------------------------------
+                'Son girdiğimiz verinin bulunduğu hücreyi seçtik.
+                '--------------------------------------------------
+                Cells(son_satir, 1).Select
+                
+                '--------------------------------------------------
+                'Hücreyi renklendirdik.
+                '--------------------------------------------------
+                Selection.Interior.ColorIndex = 40
+                
+                '--------------------------------------------------
+                'Bu noktadan itibaren kodun çalışmasına
+                'gerek yok, yordamdan çıkıyoruz.
+                '--------------------------------------------------
+                Exit Sub
+            Else
+                
+                '--------------------------------------------------
+                'Bunun konuyla doğrudan bir alakası yok.
+                'Eğer birbiri ardına aynı kaydı 5 - 10
+                'defa girerseniz otomatik olarak benzersiz
+                'kayıtları da boyamaya başlıyor. Bunun
+                'önüne geçmek için de bu kodu ekledim.
+                '--------------------------------------------------
+                Cells(son_satir, 1).Interior.Color = xlNone
+            End If
+        Next
+End Sub
+</code></pre>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

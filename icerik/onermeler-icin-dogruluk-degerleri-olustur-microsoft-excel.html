@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Önermeler İçin Doğruluk Değerleri Oluştur - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Önermeler İçin Doğruluk Değerleri Oluştur - Microsoft Excel</h1>
+           <hr /><p class="lead">Mantık konusunda önermelere doğruluk değeri atama konusunda yardımcı olabilecek alternatif bir VBA kodudur.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub OnermelerIcinDogrulukDegeriOlustur()
+    Dim onermeSayisi         As Long
+    Dim i                    As Long
+    Dim j                    As Long
+    Dim dogrulukDegeriSayisi As Double
+    Dim yarimDeger           As Double
+    Dim eklemeDegeri         As Double
+    Dim donguBaslangicDegeri As Double
+    Dim kontrol              As Boolean
+    Dim dogrulukDegeri       As Long
+    Dim sayac                As Long
+    Dim mesaj                As String
+    
+    '--------------------------------------------------
+    'İşlem yapılacak alanı temizle.
+    '--------------------------------------------------
+    Range("A:Z").Clear
+    
+    '--------------------------------------------------
+    'Değişkenlere başlangıç değeri ata.
+    '--------------------------------------------------
+    onermeSayisi = 25
+    
+    '--------------------------------------------------
+    'Doğruluk değeri kontrolü yap.
+    '--------------------------------------------------
+    If onermeSayisi >= 20 Then
+        mesaj = onermeSayisi _
+            & " sayısı için oluşturulması gereken doğruluk değeri sayısı " _
+            & "Microsoft Excel sayfasındaki satır sayısını aşıyor. " _
+            & vbCrLf & vbCrLf _
+            & "Ayrıca doğruluk değerleri 2^n şeklinde arttığı için " _
+            & "işlem çok uzun sürebilir. " _
+            & vbCrLf & vbCrLf _
+            & "Lütfen 20'den küçük olacak şekilde bir sayı kullanın."
+            
+        MsgBox mesaj
+        
+        Exit Sub
+    End If
+    
+    dogrulukDegeriSayisi = 2 ^ onermeSayisi
+    yarimDeger = dogrulukDegeriSayisi
+    
+    '--------------------------------------------------
+    'Önerme başlıklarını ekle.
+    '--------------------------------------------------
+    For i = 1 To onermeSayisi
+        Range("A1").Offset(0, i - 1) = "Önerme " & i
+    Next
+    
+    '--------------------------------------------------
+    'Doğruluk değerlerini listele.
+    '--------------------------------------------------
+    donguBaslangicDegeri = 1
+    dogrulukDegeri = 1
+    
+    Application.ScreenUpdating = False
+    
+    For i = 1 To onermeSayisi
+        eklemeDegeri = dogrulukDegeriSayisi / (2 ^ i)
+        yarimDeger = eklemeDegeri
+        donguBaslangicDegeri = 1
+        dogrulukDegeri = 1
+        sayac = 1
+                
+        While (donguBaslangicDegeri <= dogrulukDegeriSayisi)
+            For j = donguBaslangicDegeri To yarimDeger
+                Range("A1").Offset(sayac, i - 1) = dogrulukDegeri
+                sayac = sayac + 1
+            Next
+            
+            donguBaslangicDegeri = donguBaslangicDegeri + eklemeDegeri
+            yarimDeger = yarimDeger + eklemeDegeri
+            
+            If (dogrulukDegeri = 1) Then
+                dogrulukDegeri = 0
+            Else
+                dogrulukDegeri = 1
+            End If
+        Wend
+    Next
+    
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Sub OnermelerIcinDogrulukDegeriOlustur()
+    
+    '--------------------------------------------------
+    'Kaç önerme için doğruluk değerlerini listeletme
+    'işlemini yapmak istediğimizi bu değişken
+    'aracılığıyla belirteceğiz.
+    '--------------------------------------------------
+    Dim onermeSayisi         As Long
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak.
+    '--------------------------------------------------
+    Dim i                    As Long
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak.
+    '--------------------------------------------------
+    Dim j                    As Long
+    
+    '--------------------------------------------------
+    'Verilen önerme sayısına göre doğruluk değeri
+    'sayısı 2^n formülü ile bulunuyor. Biz de
+    'kaç doğruluk değeri olduğunu dinamik olarak
+    'öğrenebilmek için bu değişkeni kullanacağız.
+    '--------------------------------------------------
+    Dim dogrulukDegeriSayisi As Double
+    
+    '--------------------------------------------------
+    'Doğruluk değerlerini yazdırma işlemi şu şekilde
+    'oluyor. İki örnekle mantığını görelim.
+    '
+    'Önerme Sayısı: 1
+    'p: 1, 0
+    '
+    'Önerme Sayısı: 2
+    'p: 1, 1, 0, 0
+    'q: 1, 0, 1, 0
+    '
+    'Önerme sayısı: 3
+    'p: 1, 1, 1, 1, 0, 0, 0, 0
+    'q: 1, 1, 0, 0, 1, 1, 0, 0
+    'r: 1, 0, 1, 0, 1, 0, 1, 0
+    '
+    'Görülebileceği üzere doğruluk değerlerini
+    'verirken hep toplam doğruluk değeri sayısını
+    'her önerme için 2'ye bölerek ilerliyoruz ve
+    'bu şekilde doğruluk değerleri grupları oluşturuyoruz.
+    '
+    'Önerme sayısı üç olduğunda her bir önerme için
+    '2^3 = 8 adet doğruluk değeri var.
+    'p önermesi için 8/2=4 yani 4'lü grup olacak şekilde doğruluk değeri verildi.
+    'q önermesi için 4/2=2 yani 2'li grup olacak şekilde doğruluk değeri verildi.
+    'r önermesi için 2/2=1 yani 1'li grup olacak şekilde doğruluk değeri verildi.
+    '
+    'Bu değeri dinamik olarak alabilmek için bu değişkeni kullanacağız.
+    '--------------------------------------------------
+    Dim yarimDeger           As Double
+    
+    '--------------------------------------------------
+    'Kodun ilerleyen kısımlarında kullanacağımız bir
+    'döngüde döngünün başlangıç ve bitiş sayılarını
+    'dinamik olarak yeniden belirlememiz gerekiyor.
+    'Bu belirleme işlemini de dinamik olarak yapabilmek
+    'için eklenecek değeri değişkene atayıp bunun
+    'üzerinden hareket edeceğiz.
+    '--------------------------------------------------
+    Dim donguBaslangicDegeri As Double
+    Dim eklemeDegeri         As Double
+    
+    '--------------------------------------------------
+    'Doğruluk değeri olarak girilen 1 veya 0
+    'değerlerini grup mantığıyla eklediğimizi
+    'belirtmiştik. İşte bu geçişleri kontrol
+    'edebilmek için bu değişkeni kullanacağız.
+    '--------------------------------------------------
+    Dim kontrol              As Boolean
+    
+    '--------------------------------------------------
+    '1 ve 0 doğruluk değerlerini de bir değişken
+    'aracılığıyla ekliyoruz. Ayrıca grup grup
+    'ekleme işleminde bize kolaylık sağlıyor.
+    '--------------------------------------------------
+    Dim dogrulukDegeri       As Byte
+    
+    '--------------------------------------------------
+    'Çalışma sayfasındaki alanlara döngü aracılığıyla
+    'doğruluk değeri ataması yaparken kullandığımız
+    'değişken. Döngü değişkenleri ekleme işlemini
+    'istediğimiz gibi yapmadığından dolayı satırları
+    'ayrı bir değişkenle takip ediyoruz.
+    '--------------------------------------------------
+    Dim sayac                As Long
+    
+    '--------------------------------------------------
+    'Önerme sayısının çok fazla olması durumunda
+    'gösterilecek mesajın atandığı değişken.
+    '--------------------------------------------------
+    Dim mesaj                As String
+    
+    '--------------------------------------------------
+    'İşlem yapılacak alanı temizle.
+    '--------------------------------------------------
+    Range("A:Z").Clear
+    
+    '--------------------------------------------------
+    'Değişkenlere başlangıç değeri ata.
+    'Kod önerme sayısına bağlı olarak çalışıyor.
+    'Bu yüzden buna atama yapmamız şart.
+    '--------------------------------------------------
+    onermeSayisi = 2
+    
+    '--------------------------------------------------
+    'Önerme sayısının uygunluğunu kontrol ediyoruz.
+    'Aslında sayılarda sınırlamaya gitmek gibi bir
+    'durum yok fakat yazılım ve donanım kısıtı bizi
+    'bunu yapmaya itiyor.
+    '
+    'Eski Excel sürümlerinde bir sayfada 65536 satır var.
+    '2007 ve sonrasındaki sürümlerde de 1048576 satır var.
+    '
+    '65536   = 2^16
+    '1048576 = 2^20
+    '
+    'Şimdi ilk satırı önerme isimleri için ayırdık.
+    'Bu yüzden de bize (2^20 - 1) satır kaldı.
+    'Bu yüzden 19 önermeden fazla önermeler için
+    'hem satır sayısı yetmeyecek, hem döngü aşırı
+    'uzayacak hem de performans sıkıntısı çıkacak.
+    '
+    'Bu yüzden bu aşamada bir kontrol yapıyoruz.
+    'Gerekirse koddan çıkılmasını sağlıyoruz.
+    '--------------------------------------------------
+    If onermeSayisi >= 20 Then
+        mesaj = onermeSayisi _
+            & " sayısı için oluşturulması gereken doğruluk değeri sayısı " _
+            & "Microsoft Excel sayfasındaki satır sayısını aşıyor. " _
+            & vbCrLf & vbCrLf _
+            & "Ayrıca doğruluk değerleri 2^n şeklinde arttığı için " _
+            & "işlem çok uzun sürebilir. " _
+            & vbCrLf & vbCrLf _
+            & "Lütfen 20'den küçük olacak şekilde bir sayı kullanın."
+            
+        MsgBox mesaj
+        
+        Exit Sub
+    End If
+    
+    '--------------------------------------------------
+    'Önerme sayısı için doğruluk değerlerinin sayısını
+    'buluyoruz. Bunu da 2^n formülüyle hesapladık.
+    '--------------------------------------------------
+    dogrulukDegeriSayisi = 2 ^ onermeSayisi
+    
+    '--------------------------------------------------
+    'Yukarıda gruplandırma işlemini nasıl yaptığımızdan
+    'bahsetmiştik. Başlangıç atamasında bir bölme işlemi
+    'yapmadan değerimizi atadık.
+    '--------------------------------------------------
+    'yarimDeger = dogrulukDegeriSayisi
+    
+    '--------------------------------------------------
+    'Önerme başlıklarını ekle.
+    '--------------------------------------------------
+    For i = 1 To onermeSayisi
+        Range("A1").Offset(0, i - 1) = "Önerme " & i
+    Next
+    
+    '--------------------------------------------------
+    'Başlangıç ve bitiş değerleri değişen döngümüzün
+    'ilk başlangıç değerini atadık.
+    '--------------------------------------------------
+    donguBaslangicDegeri = 1
+    
+    '--------------------------------------------------
+    'Doğruluk değeri ataması da yaptık. Yani ilk önce
+    '1 doğruluk değeri eklenecek. Sonra 0 doğruluk
+    'değeri eklenecek.
+    '--------------------------------------------------
+    dogrulukDegeri = 1
+    
+    '--------------------------------------------------
+    'Performansı artırmak için ekran güncellemesini kapattık.
+    '--------------------------------------------------
+    Application.ScreenUpdating = False
+    
+    '--------------------------------------------------
+    'Her önerme için doğruluk değerleri ayrı bir sütunda
+    'listeleniyor. Bu yüzden de önerme sayısı kadar
+    'sütunda işlem yapılacak.
+    '--------------------------------------------------
+    For i = 1 To onermeSayisi
+        
+        '--------------------------------------------------
+        'Zurnanın zırt dediği yer.
+        'Gruplandırma işlemini her sütun geçişinde 2'ye
+        'bölerek düşürüyorduk. İşte bu işlemi dinamik
+        'olarak yapan kod parçası bu.
+        '--------------------------------------------------
+        eklemeDegeri = dogrulukDegeriSayisi / (2 ^ i)
+        
+        '--------------------------------------------------
+        'yarimDeger değişkenimize değer ataması yaptık.
+        'Bu noktada yarimDeger ile eklemeDegeri aynı
+        'olduğundan gereksiz bir değişken kullanıyormuşuz
+        'gibi görünebilir fakat durum öyle değil.
+        'eklemeDegeri her sütun geçişinde küçülürken
+        'yarimDeger değişkeninin değeri döngü ile artıyor.
+        '--------------------------------------------------
+        yarimDeger = eklemeDegeri
+        
+        '--------------------------------------------------
+        'Her sütun geçişinde değişkenlere
+        'başlangıç değeri ayarı yaptırıyoruz.
+        '--------------------------------------------------
+        donguBaslangicDegeri = 1
+        dogrulukDegeri = 1
+        sayac = 1
+
+        '--------------------------------------------------
+        'Satırlara doğruluk değerlerini yazdıran döngü.
+        '--------------------------------------------------
+        While (donguBaslangicDegeri <= dogrulukDegeriSayisi)
+            
+            '--------------------------------------------------
+            'Yukarıda bahsedilen grup grup doğruluk değeri
+            'yazdırma işlemini yapan döngü bu.
+            '
+            'Örneğin 1'den 4'e kadar 1 doğruluk değeri yazdırıyor.
+            '        5'den 8'e kadar 0 doğruluk değeri yazdırıyor.
+            '--------------------------------------------------
+            For j = donguBaslangicDegeri To yarimDeger
+                Range("A1").Offset(sayac, i - 1) = dogrulukDegeri
+                sayac = sayac + 1
+            Next
+            
+            '--------------------------------------------------
+            'Döngünün başlangıç ve bitiş değerlerini yeniden
+            'ayarladık. Böylelikle yeni grubu yazdırabilecek.
+            '--------------------------------------------------
+            donguBaslangicDegeri = donguBaslangicDegeri + eklemeDegeri
+            yarimDeger = yarimDeger + eklemeDegeri
+            
+            '--------------------------------------------------
+            'Burada da doğruluk değerini değiştiriyoruz.
+            'Eğer 1 değeri girilmişse artık 0'lar girilmeye
+            'başlayacak. Doğruluk değeri sayısına ulaşana
+            'kadar bu şekilde devam edecek.
+            '--------------------------------------------------
+            If (dogrulukDegeri = 1) Then
+                dogrulukDegeri = 0
+            Else
+                dogrulukDegeri = 1
+            End If
+        Wend
+    Next
+    
+    '--------------------------------------------------
+    'Performans artırmak için kapattığımız ekran
+    'güncellemesini sonuçları görebilmek için
+    'yeniden açtık.
+    '--------------------------------------------------
+    Application.ScreenUpdating = True
+End Sub
+</code></pre>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

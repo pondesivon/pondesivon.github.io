@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Metnin Her Karakterini Numaralandır - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Metnin Her Karakterini Numaralandır - Microsoft Excel</h1>
+           <hr /><p class="lead">Dizi formüllerinde işe yarayabilecek bir formül alternatifidir. Birden başlayarak metindeki her karaktere ardışık sayılar atamaya yarar.
+</p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
+<p><code>A1</code> hücresinde bir metin olduğunu varsayalım. Örneğin metnimiz <strong>internet</strong> olsun. Biz bu metin ile işlem yapacağız fakat bu işlemi yapabilmek için soldan itibaren her bir harfe 1’den başlayıp ardışık olarak artan sayılar vermemiz gerekiyor. Ne yapılabilir?</p>
+
+<div class="alert alert-info"><strong>Formül</strong></div>
+<p>Dizi formülüdür, formülü hücreye girdikten sonra <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Enter</kbd> tuşları ile tamamlayın. Sonrasında da gerektiği kadar aşağı doğru kopyalayın.</p>
+
+<pre><code class="language-excel-formula">
+=SATIR(KAYDIR($A$1;0;0;UZUNLUK($A$1);1))
+</code></pre>
+
+<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Metnin Uzunluğunu Bul</strong></p>
+        <p>İşlemi metindeki karakter sayısı kadar yapmak istiyoruz, bu nedenle de ilk önce metnin uzunluğunu buluyoruz. Metni aşağı doğru kopyalarken formüldeki hücrenin referansı değişmesin diye de satırı ve sütunu dolar işareti ile sabitledik.</p>
+
+<pre><code class="language-excel-formula">
+UZUNLUK($A$1)
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Karakter Sayısı Üzerinden Alan Belirle</strong></p>
+        <p>Ardışık numara verme işlemini <code>SATIR</code> formülü ile yapacağız. Bu <code>SATIR</code> formülünün dizi sonucu üretebilmesi için ona bir alan belirtmemiz gerekiyor. İşte bu alanı metindeki karakter sayısına göre dinamik olarak belirlememizi sağlayan formülü oluşturuyoruz. Bu aşamada yazılan formül, <code>SATIR</code> formülüne parametre olacak.</p>
+
+<pre><code class="language-excel-formula">
+KAYDIR($A$1;0;0;UZUNLUK($A$1);1)
+</code></pre>
+
+<pre><code class="language-plain-text">
+KAYDIR(
+	//Kaydırma yapmak için A1 hücresini referans al.
+	$A$1;
+	
+	//Sıfır satır kaydır.
+	0;
+	
+	//Sıfır sütun kaydır.
+	0;
+	
+	//Kaydırma işlemini 1 satır ve 1 sütundan oluşan
+	//A1 hücresi için yapma, UZUNLUK($A$1) satır ve 
+	//1 sütundan oluşan bir alan için yap.
+	//
+	//UZUNLUK($A$1) formülü "internet" kelimesi 8 harf
+	//olduğundan 8 sonucunu döndürecek. Yani biz bu
+	//durumda kaydırma işlemini A1:A8 alanı için yapacağız.
+	UZUNLUK($A$1);
+
+	//Yukarıda alanın satır sayısını belirlemiştik,
+	//şimdi de sütun sayısını belirliyoruz.
+	1
+)
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Numara Üret</strong></p>
+        <p>Dinamik olarak alan tanımlama işlemini yaptık, şimdi formül sonucu üretilen bu alanı <code>SATIR</code> formülünde kullanabiliriz. Bu sonuç formülü dizi formülü olarak çalıştırdıktan sonra yeteri kadar aşağı doğru kopyaladığımızda bize ardışık numaraları üretecek. Metnin uzunluğunu geçtikten sonra da hata verecek.</p>
+
+<pre><code class="language-excel-formula">
+=SATIR(KAYDIR($A$1;0;0;UZUNLUK($A$1);1))
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Sonuç</strong></p>
+        <p><code>KAYDIR</code> formülünü kullanarak <code>SATIR($A$1:$A$8)</code> formülüne ulaştık. Bunu dizi formülü olarak çalıştırdığımızda metnin uzunluğuna göre soldan sağa doğru birden başlayıp birer birer artan numaralar vermiş oluyoruz.</p>
+
+<pre><code class="language-excel-formula">
+=SATIR(KAYDIR($A$1;0;0;UZUNLUK($A$1);1))
+</code></pre>
+    </li>
+</ul>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

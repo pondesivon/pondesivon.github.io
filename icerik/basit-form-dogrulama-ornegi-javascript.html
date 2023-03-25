@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Basit Form Doğrulama Örneği - Javascript</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Basit Form Doğrulama Örneği - Javascript</h1>
+           <hr /><p class="lead">İsim soyisim bilgisi girilmediği zaman uyarı veren bir javascript örneği aşağıda verilmiştir.
+</p><hr /><div class="alert alert-info"><strong>Dosyalar</strong></div>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
+<pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Javascript Form Doğrulama Örneği&lt;/title&gt;
+	&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form id="mainform"&gt;
+		&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Name&lt;/td&gt;
+			&lt;td&gt;&lt;input type="text" id="name" name="Name" /&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Lastname&lt;/td&gt;
+			&lt;td&gt;&lt;input type="text" id="lastname" name="Lastname"/&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Department&lt;/td&gt;
+			&lt;td&gt;
+			&lt;select id="department" name="Department"&gt;
+				&lt;option value="0"&gt;Select Department&lt;/option&gt;
+				&lt;optgroup label="Finance"&gt;
+					&lt;option value="1"&gt;Accounting&lt;/option&gt;
+					&lt;option value="2"&gt;Payment Unit&lt;/option&gt;
+					&lt;option value="6"&gt;Billing Unit&lt;/option&gt;
+					&lt;option value="3"&gt;Return Unit&lt;/option&gt;
+				&lt;/optgroup&gt;
+				&lt;optgroup label="Meintenance"&gt;
+					&lt;option value="4"&gt;Technical Service&lt;/option&gt;
+					&lt;option value="5"&gt;Delivery Unit&lt;/option&gt;
+				&lt;/optgroup&gt;
+			&lt;/select&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;input type="button" id="submitBtn" value="Send"&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;input type="button" id="clearForm" value="Clear"&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;/table&gt;
+	&lt;/form&gt;
+
+	&lt;script type="text/javascript" src="dosya.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>dosya.js</strong></p>
+<pre><code class="language-js">
+document.getElementById("submitBtn").addEventListener('click', send);
+document.getElementById("clearForm").addEventListener('click', clear);
+
+//--------------------------------------------------
+//submitBtn id değerine sahip elemente tıklandığında
+//formdaki verilerin gönderilmesini sağlayacak.
+//--------------------------------------------------
+function send() {
+	validate();
+	//document.getElementById("mainform").submit();
+}
+
+//--------------------------------------------------
+//clearForm id değerine sahip elemente tıklandığında
+//mainform id değerine sahip form elementi içindeki 
+//tüm elementlerin içeriği temizlenecek.
+//--------------------------------------------------
+function clear() {
+	document.getElementById("mainform").reset();
+}
+
+var validateMessage = "";
+function validate() {
+	var form = document.getElementById('mainform');
+	var formElements = form.elements;
+
+	for(var i=0; i&lt;formElements.length; i++) {
+		var element = formElements[i];
+		if(element.type === "text" && element.value.length &lt;= 0) {
+			validateMessage += element.name + " boş bırakılamaz." + "
+
+";
+		}
+	}
+
+	if(validateMessage.length &gt; 0) {
+		alert(validateMessage + "Gerekli alanları doldurunuz.");
+	}
+	validateMessage = "";
+}
+</code></pre>
+
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/basit-form-dogrulama-ornegi-javascript.zip" rel="noopener">İndir</a></p>
+
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

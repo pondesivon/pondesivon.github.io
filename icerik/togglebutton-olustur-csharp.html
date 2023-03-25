@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>ToggleButton Oluştur - CSharp</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>ToggleButton Oluştur - CSharp</h1>
+           <hr /><p class="lead">Eğer excel vba ile uğraşmışsanız ToggleButton nesnesiyle karşılaşmış olabilirsiniz. ToggleButton bastığınız zaman basılı kalan butondur. Fakat C#'ta ToggleButton veya onun alternatifi olabilecek bir nesne yok. En azından ToolBox’ta doğrudan ulaşamıyoruz. Ama bu C# üzerinde ToggleButton oluşturmamıza engel değil.
+</p><hr /><div class="alert alert-info"><strong>Bilgi</strong></div>
+<p>C#'ta ToggleButton oluşturabilmek için CheckBox nesnesini kullanabiliriz. Direkt olarak CheckBox ile de işlem yapabiliriz ya da buton haline getirip o şekilde de kullanabiliriz. CheckBox'u direkt olarak kullanacaksanız sıkıntı yok fakat buton haline getirmek için birkaç basit işlem yapmak gerekiyor (benzer işlemler Visual Basic için de yapılabilir).</p>
+
+<div class="alert alert-info"><strong>İşlemler</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+<p class="text-danger"><strong>CheckBox Ekle</strong></p>
+<p>İlk olarak form uygulamasına bir CheckBox ekleyin.</p>
+</li>
+	<li class="list-group-item">
+<p class="text-danger"><strong>Appearance Değerini Değiştir</strong></p>
+<p>CheckBox'un Properties kısmından Appearance >>> Button seçeneklerini izleyin.</p>
+</li>
+	<li class="list-group-item">
+<p class="text-danger"><strong>Boyutlandırma Özelliğini Değiştir</strong></p>
+<p>Buton haline dönüştürdük fakat boyutlandırma yapamıyoruz. Boyutlandırma için CheckBox’un properties kısmından AutoSize >>> False seçeneklerini takip edin.</p>
+</li>
+</ul>
+<br>
+<p>Eğer bir sıkıntı çıkmadıysa CheckBox artık yeniden boyutlandırılabilir bir buton haline dönüşmüş olmalıdır. CheckBox buton haline dönüştü. Biz bu butona tıkladığımız zaman mavi renk alacak, tekrardan basana kadar mavi olarak kalacaktır. Bu işlemi kod ile yapmak istersek aşağıdaki gibi bir kullanım yapabiliriz. Tabii bu kullanım biçimi projenize göre çok değişkenlik gösterebilir. Bu sadece alternatiflerden birisi.</p>
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-csharp">
+//---------------------------------------------
+//Formunuz yüklendiği zaman CheckBox'a
+//bu özellikleri kazandırarak yükleyecek.
+//---------------------------------------------
+private void Form1_Load(object sender, EventArgs e)
+{
+	checkBox1.Appearance = Appearance.Button;
+	checkBox1.AutoSize = false;
+}
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="http://theadamgaskins.blogspot.com.tr/2011/06/c-toggle-button.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://theadamgaskins.blogspot.com.tr/2011/06/c-toggle-button.html</a>
+</div>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

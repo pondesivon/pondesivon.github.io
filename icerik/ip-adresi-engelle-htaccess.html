@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>IP Adresi Engelle - htaccess</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>IP Adresi Engelle - htaccess</h1>
+           <hr /><p class="lead">htaccess dosyası üzerinden IP engellemek için kullanılabilecek birkaç alternatif aşağıda listelenmiştir.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<ul class="list-group">
+	<li class="list-group-item">
+        <p class="text-danger"><strong>IP Aralığı Engelle 1</strong></p>
+<pre><code class="language-apacheconf">
+#--------------------------------------------------
+#Sırasıyla 14 ile başlayan, 14.106 ile başlayan, 
+#14.106.225 ile başlayan IP aralıklarını engelle.
+#--------------------------------------------------
+order allow,deny
+deny from   14
+deny from   14.106
+deny from   14.106.225
+
+#--------------------------------------------------
+#Tam emin değilim, kesin bilgi bulamadım ama 
+#bu sanırım şu anlama geliyor:
+#Ana IP aralığı 14.106 olacak, üçüncü grup da 
+#100 ile 200 arasındaki IP değerleri olacak.
+#--------------------------------------------------
+deny from   14.106.100/200
+allow from all
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>IP Aralığı Engelle 2</strong></p>
+<pre><code class="language-apacheconf">
+RewriteEngine on
+RewriteCond %{REMOTE_ADDR} ^14\.106\.225\.
+RewriteRule ^ - [F]
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Belli Bir IP Adresini Engelle</strong></p>
+<pre><code class="language-apacheconf">
+order allow,deny
+deny from   14.106.225.181
+allow from all
+</code></pre>
+    </li>
+	<li class="list-group-item">
+        <p class="text-danger"><strong>Alan Adı Engelle</strong></p>
+        <p>Bildiğiniz üzere alan adları IP adreslerini temsil ederler. Alan adları ve alt alan adları da bu iş için kullanılabilir. Aşağıdaki gibi bir kullanım da mümkündür.</p>
+
+<pre><code class="language-apacheconf">
+order allow,deny
+deny from istenmeyen_alan_adi.com
+deny from subdomain.istenmeyen_alan_adi.com
+allow from all
+</code></pre>
+    </li>
+</ul>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://stackoverflow.com/questions/18483068/how-to-block-an-ip-address-range-using-the-htaccess-file" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/18483068/how-to-block-an-ip-address-range-using-the-htaccess-file</a>
+    <a href="https://www.blamcast.net/articles/block-bots-hotlinking-ban-ip-htaccess" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.blamcast.net/articles/block-bots-hotlinking-ban-ip-htaccess</a>
+    <a href="http://www.clockwatchers.com/htaccess_block.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.clockwatchers.com/htaccess_block.html</a>
+    <a href="https://wmaraci.com/forum/webmaster-genel/htaccess-ip-engelleme-12488.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://wmaraci.com/forum/webmaster-genel/htaccess-ip-engelleme-12488.html</a>
+    <a href="http://forum.iyinet.com/apache-htaccess-mod_rewrite/58075-htaccess-ile-ip-engelleme.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://forum.iyinet.com/apache-htaccess-mod_rewrite/58075-htaccess-ile-ip-engelleme.html</a>
+    <a href="http://www.koodla.com/2008/12/15/htaccess-konulari-ip-engelleme/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.koodla.com/2008/12/15/htaccess-konulari-ip-engelleme/</a>
+</div>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

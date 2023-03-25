@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Bir Sayının Asal Sayı Olup Olmadığını Kontrol Et - CSharp</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Bir Sayının Asal Sayı Olup Olmadığını Kontrol Et - CSharp</h1>
+           <hr /><p class="lead">Verilen sayının asal sayı olup olmadığını kontrol eder ve eğer asal sayı değilse, bu sayıyı bölebilen sayıları yazdırır.
+</p><hr /><div class="alert alert-info"><strong>Ekran Görüntüsü</strong></div>
+<a class="img-fluid d-block" href="doc/bir-sayinin-asal-sayi-olup-olmadigini-kontrol-et-csharp-1.png"><img src="doc/bir-sayinin-asal-sayi-olup-olmadigini-kontrol-et-csharp-1.png" alt="" /></a>
+<br>
+<div class="alert alert-info"><strong>Dosyalar</strong></div>
+
+<p class="text-danger border-bottom border-danger"><strong>AsalSayiKontrolForm.cs</strong></p>
+<pre data-line="26-67"><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CSharpBirSayininAsalSayiOlupOlmadiginiOgren
+{
+    public partial class AsalSayiKontrolForm : Form
+    {
+        public AsalSayiKontrolForm()
+        {
+            InitializeComponent();
+        }
+
+        int RasgeleSayiUret()
+        {
+            Random random = new Random();
+            return random.Next(2, 32000000);
+        }
+
+        string AsalSayiKontrol(int sayi)
+        {
+            try
+            {
+                if (sayi &lt; 2)
+                {
+                    return 
+                        "En küçük asal sayı 2'den başlar. "
+                        + "Lütfen buna göre bir tam sayı girişi yapın.";
+                }
+                else
+                {
+                    int sayac = 0;
+                    string sonuc = "";
+                    for (int i = 2; i &lt;= sayi; i++)
+                    {
+                        if (sayi % i == 0 && sayi != i)
+                        {
+                            sayac = sayac + 1;
+                            sonuc = sonuc + i.ToString() + ", ";
+                        }
+                    }
+
+                    if (sayac == 0)
+                    {
+                        return 
+                            "Girilen sayı asal sayıdır.";
+                    }
+                    else
+                    {
+                        return
+                            "Girilen sayı asal sayı değildir.\n\n"
+                            + "Girilen sayıyı bölebilen sayılar:\n"
+                            + sonuc.Trim(", ".ToCharArray());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        void EgerDegerGirisiYapilmissaIslemYap()
+        {
+            if (!String.IsNullOrEmpty(sayiRichTextBox.Text))
+            {
+                mesajRichTextBox.Text = AsalSayiKontrol(Convert.ToInt32(sayiRichTextBox.Text));
+            }
+        }
+
+        private void AsalSayiKontrolForm_Load(object sender, EventArgs e)
+        {
+            sayiRichTextBox.Text = RasgeleSayiUret().ToString();
+        }
+
+        private void rasgeleSayiUretVeKontrolEtButton_Click(object sender, EventArgs e)
+        {
+            sayiRichTextBox.Text = RasgeleSayiUret().ToString();
+            EgerDegerGirisiYapilmissaIslemYap();
+
+        }
+
+        private void sayininAsalSayiOlupOlmadiginiKontrolEtButton_Click(object sender, EventArgs e)
+        {
+            EgerDegerGirisiYapilmissaIslemYap();
+        }
+    }
+}
+</code></pre>
+<br>
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/bir-sayinin-asal-sayi-olup-olmadigini-kontrol-et-csharp.zip" rel="noopener">İndir</a>
+
+
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

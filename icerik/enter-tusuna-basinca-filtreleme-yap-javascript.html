@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Enter Tuşuna Basınca Filtreleme Yap - Javascript</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Enter Tuşuna Basınca Filtreleme Yap - Javascript</h1>
+           <hr /><p class="lead">input'a filtreleme metni girildikten sonra Enter tuşuna basıldığı zaman li elementlerini verilen koşula göre filtreleyen javascript kodu örneğidir.</p><hr />
+
+
+<div class="alert alert-info"><strong>Dosyalar</strong></div>
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>index.html</strong></p>
+<pre class="language-html"><code>
+&lt;!doctype html&gt;
+&lt;html lang="tr"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Enter Tuşuna Basıldığında Filtreleme Yap - Javascript&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input id="ara" type="text" onkeypress="filtrelemeYap()"&gt;
+    &lt;ul id="liste"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Elma&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Kivi&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Karpuz&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Avokado&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Muz&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Ananas&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Kiraz&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Vişne&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Nar&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Portakal&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Mandalina&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;  
+</code></pre>
+
+
+<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>script.js</strong></p>
+<pre class="language-js"><code>
+function filtrelemeYap() {
+
+  //--------------------------------------------------
+  //Değişken tanımla.
+  //--------------------------------------------------
+  var input; 
+  var filtreMetni; 
+  var liste; 
+  var listeDizi; 
+  var aranan;
+  var i;
+  var a; 
+  
+  //--------------------------------------------------
+  //Değişkenlere değer ata.
+  //--------------------------------------------------
+  input = document.getElementById("ara");
+  filtreMetni = input.value.toLocaleLowerCase('tr-TR');
+  liste = document.getElementById("liste");
+  listeDizi = liste.getElementsByTagName("li");
+
+  if (event.key === "Enter") {
+
+    //--------------------------------------------------
+    //li elementleri için döngü çalıştır.
+    //--------------------------------------------------
+    for (i = 0; i < listeDizi.length; i++) {
+
+      //--------------------------------------------------
+      //li elementi içindeki ilk a elementi için işlem yap.
+      //--------------------------------------------------
+      a = listeDizi[i].getElementsByTagName("a")[0];
+
+      //--------------------------------------------------
+      //Eğer a elementi varsa işlem yap.
+      //--------------------------------------------------
+      if (a) {
+        aranan = a.textContent || a.innerText;
+        if (aranan.toLocaleLowerCase('tr-TR').indexOf(filtreMetni) &gt; -1) {
+          listeDizi[i].style.display = "";
+        } else {
+          listeDizi[i].style.display = "none";
+        }
+      }
+    }
+
+    //--------------------------------------------------
+    //input'u yeni arama için hazırla.
+    //--------------------------------------------------
+    input.select();
+  }
+}    
+</code></pre>
+
+<div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/enter-tusuna-basildiginda-filtreleme-yap-javascript.zip" rel="noopener">İndir</a></p>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp</a>
+</div>
+
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Resimleri Alt Alta Hizala Ve Tümünü Seç - Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">
+           <h1>Resimleri Alt Alta Hizala Ve Tümünü Seç - Microsoft Excel</h1>
+           <hr /><p class="lead">Çalışma sayfasına yüklenmiş resimlerin alt alta belli bir aralık payıyla sıralanmasını sağlayan alternatif bir VBA kodudur.
+</p><hr /><div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub ResimleriAltAltaHizalaVeTumunuSec()
+    Dim i            As Integer
+    Dim sekil_sayisi As Integer
+    Dim aralik_payi  As Integer
+    Dim sekil          As shape
+    Dim kumulatifYukseklik As Long
+    
+    sekil_sayisi = ActiveSheet.Shapes.Count
+    aralik_payi = 5
+    kumulatifYukseklik = 0
+    
+    For i = 1 To sekil_sayisi
+        'ActiveSheet.Shapes.Range(Array("Picture " & i)).Select
+        Set sekil = ActiveSheet.Shapes(i)
+        sekil.Select
+        If TypeName(Selection) = "Picture" Then
+            ActiveSheet.Shapes(sekil.Name).Select
+            Selection.Left = Range("A1").Left
+            Selection.Top = kumulatifYukseklik
+            kumulatifYukseklik = kumulatifYukseklik + sekil.Height + aralik_payi
+        End If
+    Next
+    
+    ActiveSheet.Pictures.Select
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub ResimleriAltAltaHizalaVeTumunuSec()
+    '--------------------------------------------------
+    'Değişkenler
+    '--------------------------------------------------
+    Dim i            As Integer
+    Dim sekil_sayisi As Integer
+    Dim aralik_payi  As Integer
+    Dim sekil          As shape
+    Dim kumulatifYukseklik As Long
+    
+    '--------------------------------------------------
+    'Çalışma sayfasında tüm Shape tipli
+    'öğelerin toplam sayısını buluyoruz.
+    'Bu döngü için işimize yarayacak.
+    '--------------------------------------------------
+    sekil_sayisi = ActiveSheet.Shapes.Count
+    
+    '--------------------------------------------------
+    'Resimler alt alta eklenirken arada bırakılacak
+    'boşluk miktarını bu değişkenle belirliyoruz.
+    '--------------------------------------------------
+    aralik_payi = 5
+    
+    '--------------------------------------------------
+    'Çalışma sayfasına yüklenmiş resimler aynı yüksekliğe
+    'sahip olabileceği gibi farklı yüksekliklere de sahip
+    'olabilir. Bu durumda sağlıklı bir dizilim yapabilmek
+    'için alt alta eklenmiş resimleri (eklenen boşlukla
+    'beraber) tek bir resimmiş gibi düşünüp bu toplam
+    'resmin yüksekliğini bulmamız gerekiyor. Tabii bu
+    'yükseklik de resim eklendikçe değişeceği için her
+    'seferinde yeniden hesaplanacak. Bunu da aşağıdaki
+    'döngü ile yaptıracağız.
+    '--------------------------------------------------
+    kumulatifYukseklik = 0
+    
+    '--------------------------------------------------
+    'Çalışma sayfasındaki bütün şekiller için döngü çalıştır.
+    '--------------------------------------------------
+    For i = 1 To sekil_sayisi
+        
+        '--------------------------------------------------
+        'Sıradaki Shape tipli öğeyi değişkene ata.
+        '--------------------------------------------------
+        Set sekil = ActiveSheet.Shapes(i)
+        
+        '--------------------------------------------------
+        'Şekli seç.
+        '--------------------------------------------------
+        sekil.Select
+        
+        '--------------------------------------------------
+        'Eğer seçilen öğenin tipi "Picture" ise işlem yap.
+        '--------------------------------------------------
+        If TypeName(Selection) = "Picture" Then
+        
+            '--------------------------------------------------
+            'Şekli seç.
+            '--------------------------------------------------
+            ActiveSheet.Shapes(sekil.Name).Select
+            
+            '--------------------------------------------------
+            'Resmin Left hizalamasını yapıyoruz.
+            'Yani resim ne solda olacak bunu belirliyoruz.
+            'Bu satırda Left bilgisi olarak hücrenin konum
+            'bilgisini referans verdik. Tabii A1 hücresinin
+            'Left değeri sıfır olduğundan dolayı resimler de
+            'sol kısımla sıfırlanacak şekilde alt alta sıralanacak.
+            '--------------------------------------------------
+            Selection.Left = Range("A1").Left
+            
+            '--------------------------------------------------
+            'Şimdi de resmin ne kadar üstte duracağını belirliyoruz.
+            'İlk resim en üstte duracak.
+            'İkinci resim ilk resmin altında duracak.
+            'Üçüncü resim ikinci resmin altında duracak.
+            '...
+            'Bütün resimler alt alta dizilene kadar
+            'bu işlem bu şekilde devam edecek.
+            '--------------------------------------------------
+            Selection.Top = kumulatifYukseklik
+            
+            '--------------------------------------------------
+            'Resmi ekledik. Şimdi yeni eklenecek resmin konumunu
+            'üstteki resme ya da resim grubuna göre yeniden
+            'hesaplamamız gerekiyor. Eğer ben resmin veya resim
+            'grubunun toplam yüksekliğini bilirsem, yeni eklenecek
+            'resmin nereye konumlandırılabileceğini bulurum.
+            '--------------------------------------------------
+            kumulatifYukseklik = kumulatifYukseklik + sekil.Height + aralik_payi
+        End If
+    Next
+    
+    '--------------------------------------------------
+    'Bütün resimleri seç.
+    'Varsa şekliniz, tekrar bekleriz.
+    '--------------------------------------------------
+    ActiveSheet.Pictures.Select
+End Sub
+</code></pre>
+
+<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group">
+    <a href="https://www.mrexcel.com/forum/excel-questions/17872-how-do-count-how-many-shapes-sheet.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/forum/excel-questions/17872-how-do-count-how-many-shapes-sheet.html</a>
+    <a href="https://stackoverflow.com/questions/24288149/vba-select-shapes-based-on-their-positions" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/24288149/vba-select-shapes-based-on-their-positions</a>
+    <a href="https://www.mrexcel.com/forum/excel-questions/49919-aligning-shapes-cell.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/forum/excel-questions/49919-aligning-shapes-cell.html</a>
+    <a href="https://stackoverflow.com/questions/8246511/how-to-get-selected-shape-in-excel-vba" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/8246511/how-to-get-selected-shape-in-excel-vba</a>
+    <a href="https://www.mrexcel.com/forum/excel-questions/628180-vba-shape-type-list.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.mrexcel.com/forum/excel-questions/628180-vba-shape-type-list.html</a>
+    <a href="https://msdn.microsoft.com/en-us/library/aa432678%28v=office.12%29.aspx?f=255&MSPPError=-2147217396" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://msdn.microsoft.com/en-us/library/aa432678%28v=office.12%29.aspx?f=255&MSPPError=-2147217396</a>
+    <a href="https://www.extendoffice.com/documents/excel/1066-excel-select-all-pictures-charts.html" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.extendoffice.com/documents/excel/1066-excel-select-all-pictures-charts.html</a>
+</div>
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>

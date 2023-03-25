@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <title>Klasörden Resim Taşı – Microsoft Excel</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page content-->
+    <div class="container">
+       <br>
+       <div class="row">
+        <div class="col">                
+			<h1>Klasörden Resim Taşı – Microsoft Excel</h1>
+			<hr /><p class="lead">Bir klasörde ilgili resimleri seçebilmek için düzenli ifadelerden (regular expression) faydalanılan ve bu şekilde taşıma işleminin yapıldığı bir VBA örneğidir.</p><hr />
+
+<div class="alert alert-primary"><strong>Senaryo</strong></div>
+<p>Klasördeki resim dosyası içerikleri aşağıdaki şekilde:</p>
+
+<ul>
+    <li><p class="text-danger"><strong>Ana Resim Dosyası</strong></p>
+<p>Ana dosya isimlerinde bir değişiklik yok.</p></li>
+
+    <li><p class="text-danger"><strong>Otomatik Olarak Oluşturulmuş Resimler</strong></p>
+<p>Otomatik olarak oluşturulmuş dosyalar var. Bu dosyalar da şuna benzer şekildeler:</p>
+bu_bir_dosya_adi-1024x700.png<br>
+bu_baska_bir_dosya_adi-450x225.jpeg</li>
+</ul>
+
+<p>Amacımız ana resimleri otomatik olarak oluşturulmuş resimlerden ayıklamak. Alternatif bir çözüme bakalım.</p>
+
+<div class="alert alert-primary"><strong>Kod</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub ResimDosyalariniRegularExpressionIleAyikla()
+    '--------------------------------------------------
+    'Microsoft VBScript Regular Expressions 5.5
+    'referansını seç.
+    '--------------------------------------------------
+    Dim fso             As Object
+    Dim klasor          As Object
+    Dim dosya           As Object
+    Dim i               As Long
+    Dim sayac           As Long
+    Dim regex           As New RegExp
+    Dim desen           As String
+    Dim ciktiYol        As String
+    Dim kopyalanacakYol As String
+    Dim hedefYol        As String
+        
+    '--------------------------------------------------
+    'Değişken atamalarını yap.
+    '--------------------------------------------------
+    i = 1
+    sayac = 1
+    desen = "([a-zA-Z0-9_]{1,100})([-])([0-9]{1,4})([x])([0-9]{1,4}[.][a-zA-Z]{1,4})"
+    
+    '--------------------------------------------------
+    'Nesne örneklerini ayarla.
+    '--------------------------------------------------
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    Set klasor = fso.GetFolder("C:\OrnekKlasor\ResimIcerikleri")
+    
+    '--------------------------------------------------
+    'Listeleme yapılacak sütunu komple temizle.
+    '--------------------------------------------------
+    Range("A1:B1048576").Clear
+    
+    '--------------------------------------------------
+    'regex değişkenini ayarla.
+    '--------------------------------------------------
+    With regex
+        .Global = True
+        .MultiLine = True
+        .IgnoreCase = False
+        .Pattern = desen
+    End With
+    
+    '--------------------------------------------------
+    'Filtre uygulanacak klasördeki dosyaları listele.
+    '--------------------------------------------------
+    For Each dosya In klasor.Files
+        Range("A" & sayac) = dosya.Name
+        sayac = sayac + 1
+    Next
+    
+    '--------------------------------------------------
+    'İstenilen dosyaları filtrele.
+    '--------------------------------------------------
+    sayac = 1
+    For Each dosya In klasor.Files
+        If regex.Test(dosya) = False Then
+            Range("B" & sayac) = dosya.Name
+            sayac = sayac + 1
+        End If
+    Next
+    
+    '--------------------------------------------------
+    'Dosyaların kopyalanacağı klasör yolunu ayarla.
+    '--------------------------------------------------
+    ciktiYol = klasor & " - Ayıklanan Resimler"
+    
+    '--------------------------------------------------
+    'Eğer kopyalanacak klasör yoksa oluştur.
+    '--------------------------------------------------
+    With CreateObject("Scripting.FileSystemObject")
+        If Not .FolderExists(ciktiYol) Then .CreateFolder ciktiYol
+    End With
+    
+    '--------------------------------------------------
+    'Kopyalama işlemi yap.
+    '--------------------------------------------------
+    For i = 1 To Range("B1048576").End(xlUp).Row
+        kopyalanacakYol = klasor & Application.PathSeparator & Range("B" & i)
+        hedefYol = ciktiYol & Application.PathSeparator & Range("B" & i)
+        
+        With CreateObject("Scripting.FileSystemObject")
+            Call .CopyFile(kopyalanacakYol, hedefYol)
+        End With
+    Next
+End Sub
+</code></pre>
+
+<div class="alert alert-primary"><strong>Kod (Açıklamalı)</strong></div>
+<pre><code class="language-vb">
+Option Explicit
+
+Sub ResimDosyalariniRegularExpressionIleAyikla()
+    '--------------------------------------------------
+    'Scripting.FileSystemObject sınıfı örneği
+    'oluşturmak ve atamak için kullanacağımız
+    'değişken. Klasördeki dosya listesini almak
+    'için kullanacağız.
+    '--------------------------------------------------
+    Dim fso             As Object
+    
+    '--------------------------------------------------
+    'fso nesnesi aracılığıyla klasör
+    'ataması yapacağımız değişken.
+    '--------------------------------------------------
+    Dim klasor          As Object
+    
+    '--------------------------------------------------
+    'fso nesne örneği aracılığıyla
+    'klasörün içindeki dosya isimlerini
+    'almak için kullanacağımız değişken.
+    '--------------------------------------------------
+    Dim dosya           As Object
+    
+    '--------------------------------------------------
+    'Döngü için kullanılacak değişken.
+    '--------------------------------------------------
+    Dim i               As Long
+    
+    '--------------------------------------------------
+    'Sayaç olarak kullanacağımız değişken.
+    '--------------------------------------------------
+    Dim sayac           As Long
+    
+    '--------------------------------------------------
+    'Resim dosyalarını elemek için düzenli ifadelerden
+    'faydalanacağız. Bunu kullanabilmemizi sağlayan
+    'RegExp nesnesini kullanabilmek için oluşturduğumuz
+    'değişken.
+    '
+    'Bunu kullanabilmek için VBA penceresi menüsünde
+    'Tools > References seçeneklerini takip edin.
+    '
+    'Gelen pencerede aşağıdaki seçeneği
+    'bulun ve seçin:
+    '
+    'Microsoft VBScript Regular Expressions 5.5
+    '--------------------------------------------------
+    Dim regex           As New RegExp
+    
+    '--------------------------------------------------
+    'Regular expression desenini
+    'atayacağımız değişken.
+    '--------------------------------------------------
+    Dim desen           As String
+    
+    '--------------------------------------------------
+    'Ayıklanmış olan dosyaları aktarmak
+    'için kullanacağımız hedef klasör
+    'yolunu atadığımız değişken.
+    '--------------------------------------------------
+    Dim ciktiYol        As String
+    
+    '--------------------------------------------------
+    'Ayıklamak istediğimiz dosyanın
+    'mevcut yolunun atandığı değişken.
+    '--------------------------------------------------
+    Dim kopyalanacakYol As String
+    
+    '--------------------------------------------------
+    'Ayıklamak istediğimiz dosyanın
+    'yeni yolunun atandığı değişken.
+    '--------------------------------------------------
+    Dim hedefYol        As String
+
+
+
+    '--------------------------------------------------
+    'Döngü için kullanılacak değişkene
+    'başlangıç değeri atadık.
+    '--------------------------------------------------
+    i = 1
+    
+    '--------------------------------------------------
+    'Sayaç kullanılacak değişkene
+    'başlangıç değeri atadık.
+    '--------------------------------------------------
+    sayac = 1
+    
+    '--------------------------------------------------
+    'Regular Expression nesnesine atamak için
+    'kullanacağımız desen metnini bir değişkene atadık.
+    'Bu değişkendeki regular expression deseni 7 temel kısımdan oluşuyor.
+    '
+    'desen =
+    '
+    'Dosyanın isminde büyük-küçük harfler ve sayılar bulunabilir.
+    'Diğer karakterlerden de "_" karakteri dosya isminde geçebilir.
+    'Bu dosyanın ismi en az bir karakter en fazla da 100 karakterdir.
+    '([a-zA-Z0-9_]{1,100})
+    
+    'Dosya isminin hemen sağında mutlaka bir tire ( "-" ) işareti var.
+    '([-])
+    
+    'Tire işaretinden sonra dosya boyutu eklenmiş.
+    'Genişlik boyutu sadece sayılardan oluşuyor.
+    'Bu sayı en az bir haneli, en çok da 4 hanelidir.
+    '([0-9]{1,4})
+    
+    'Boyutlar çarpı işareti ("x") ile ayrılmış.
+    'İki boyut arasında mutlaka bir çarpı işareti var.
+    '([x])
+    
+    'Yükseklik boyutu sadece sayılardan oluşuyor.
+    'Bu sayı en az bir haneli, en çok da 4 hanelidir.
+    '([0-9]{1,4})
+    
+    'Şimdi dosya uzantısı ile ilgili regex düzenlemesini yapıyoruz.
+    'Standart olarak uzantılar nokta (".") işareti ile ayrılıyor.
+    '([.])
+    
+    'Uzantı sadece büyük-küçük harflerden oluşmaktadır.
+    'Uzantı en az 1 en fazla 4 karakter uzunluğundadır.
+    'Örneğin png 3 karakterli iken jpeg 4 karakterlidir.
+    '([a-zA-Z]{1,4})"
+    '--------------------------------------------------
+    desen = "([a-zA-Z0-9_]{1,100})([-])([0-9]{1,4})([x])([0-9]{1,4}[.][a-zA-Z]{1,4})"
+    
+    '--------------------------------------------------
+    'Scripting.FileSystemObject nesnesi oluşturduk.
+    '--------------------------------------------------
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    '--------------------------------------------------
+    'İşlem yapılacak klasörü ayarladık.
+    '--------------------------------------------------
+    Set klasor = fso.GetFolder("C:\OrnekKlasor\ResimIcerikleri")
+    
+    '--------------------------------------------------
+    'Listeleme yapılacak sütunu komple temizliyoruz.
+    'Böylelikle olası bir karışıklığı önlemiş oluyoruz.
+    '--------------------------------------------------
+    Range("A1:B1048576").Clear
+    
+    '--------------------------------------------------
+    'regex değişkeni için ayarlama yapıyoruz.
+    'Dikkat ettiyseniz "desen" isimli değişkenimizi
+    'regex nesne örneğimizin Pattern kısmına atadık.
+    '--------------------------------------------------
+    With regex
+        .Global = True
+        .MultiLine = True
+        .IgnoreCase = False
+        .Pattern = desen
+    End With
+    
+    '--------------------------------------------------
+    'Klasördeki tüm dosyaları A sütununda listeliyoruz.
+    'Bunun için de klasor isimli değişkenden (yani
+    'arka planda Scripting.FileSystemObject nesnesinden)
+    'faydalanacağız. Bu kodun özel bir amacı yok,
+    'sadece tüm dosyaları görebilmek için listeledik.
+    '--------------------------------------------------
+    For Each dosya In klasor.Files
+        Range("A" & sayac) = dosya.Name
+        sayac = sayac + 1
+    Next
+    
+    '--------------------------------------------------
+    'Klasördeki her dosya için regular expression
+    'kontrolü yapıyoruz. Bu testi geçen dosyalar
+    'bizim istemediğimiz dosyalar. Geçemeyen
+    'dosyalar da bizim ayıklamak istediğimiz dosyalar.
+    'Eğer dosya testten geçememişse (yani ayıklamak
+    'istediğimiz bir dosyaysa) B sütunundaki listeye
+    'ekletiyoruz.
+    '
+    'Burada dosyanın sadece ismini listeletiyoruz.
+    'Tam yolunu değil.
+    '--------------------------------------------------
+    sayac = 1
+    For Each dosya In klasor.Files
+        If regex.Test(dosya) = False Then
+            Range("B" & sayac) = dosya.Name
+            sayac = sayac + 1
+        End If
+    Next
+    
+    '--------------------------------------------------
+    'Dosyaların kopyalanacağı klasör yolunu ayarlıyoruz.
+    'Buradaki amacımız hedef klasör de kaynak klasörle
+    'aynı yerde olsun ama birbirine de karışmasınlar.
+    'Bu yüzden klasor değişkenindeki klasöre metin
+    'ekleyerek farklı bir klasör yolu elde etmiş olduk.
+    'Bu da bizim hedef yolumuz oluyor, yani dosyaları
+    'kopyalayacağımız klasör.
+    '--------------------------------------------------
+    ciktiYol = klasor & " - Ayıklanan Resimler"
+    
+    '--------------------------------------------------
+    'Hedef yolu oluşturduk. Şimdi de bu yolu bir
+    'kontrolden geçirelim. Eğer bu klasör yoksa
+    'bu klasör oluşturulsun.
+    '--------------------------------------------------
+    With CreateObject("Scripting.FileSystemObject")
+        If Not .FolderExists(ciktiYol) Then .CreateFolder ciktiYol
+    End With
+    
+    '--------------------------------------------------
+    'B sütununda listelenmiş her dosyayı hedef klasöre
+    'kopyalayacağız. Bunu da döngü ile yapıyoruz.
+    '--------------------------------------------------
+    For i = 1 To Range("B1048576").End(xlUp).Row
+        
+        '--------------------------------------------------
+        'Biz dosya isimlerini listeletirken dosyaların
+        'sadece ismini almıştık. Gel gelelim bu kopyalama
+        'işleminde dosyanın tam yolu gerekiyor.
+        '
+        'Kopyalama işleminin yapılacağı klasör zaten
+        'klasor isimli değişkende tanımlıydı. Eğer ben
+        'onu dosya ismiyle düzgün bir şekilde
+        'birleştirirsem kaynak tam yolu elde
+        'etmiş olurum.
+        '
+        'Aynı şekilde ben zaten yukarıda hedef klasörümü
+        'oluşturmuştum ve ciktiYol isimli değişkene atamıştım.
+        'Onu da dosya ismiyle doğru bir şekilde birleştirirsem
+        'hedef tam yolunu da elde etmiş olurum.
+        '--------------------------------------------------
+        kopyalanacakYol = klasor & Application.PathSeparator & Range("B" & i)
+        hedefYol = ciktiYol & Application.PathSeparator & Range("B" & i)
+        
+        '--------------------------------------------------
+        'Dosya kopyalama işlemi için de Scripting.FileSystemObject
+        'sınıfından faydalanıyoruz. Yukarıda oluşturduğumuz
+        'iki parametreyi sınıfın CopyFile metodunda kullandık.
+        '--------------------------------------------------
+        With CreateObject("Scripting.FileSystemObject")
+            Call .CopyFile(kopyalanacakYol, hedefYol)
+        End With
+    Next
+End Sub
+</code></pre>
+
+
+			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+  </div>
+</div>
+</div>
+
+<!-- JS-->
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/prism.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
+     crossorigin="anonymous"></script>
+</body>
+</html>
