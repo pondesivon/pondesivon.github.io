@@ -77,7 +77,7 @@ function icerikListe(xml) {
     var liste = "<ol id='liste'>";
     var x = xmlDoc.getElementsByTagName("Icerik");
     var y = document.getElementById("ara");
-
+    alert(y.value);
     // Start to fetch the data by using TagName 
         for (i = 0; i < x.length; i++) {
             if (x[i].getAttribute("baslik").toLocaleLowerCase('tr-TR').includes(y.value.toLocaleLowerCase('tr-TR'))) {
