@@ -79,7 +79,7 @@ function icerikListe(xml) {
     var y = document.getElementById("ara");
     alert(y.value);
     // Start to fetch the data by using TagName 
-        for (i = 0; i < x.length; i++) {
+        for (i = 0; i < x.length - 1; i++) {
             if (x[i].getAttribute("baslik").toLocaleLowerCase('tr-TR').includes(y.value.toLocaleLowerCase('tr-TR'))) {
             liste += '<li class="str"><a class="bgl" target="_blank" href="'
                   + x[i].getAttribute("baglanti")
@@ -112,7 +112,7 @@ function xmlDosyaYukle(sayi) {
         }
     };
 
-    // employee.xml is the external xml file
+    // external xml file
     xmlhttp.open("GET", "icerikler.xml", true);
     xmlhttp.send();
 }
@@ -125,7 +125,7 @@ function icerikListe(xml, sayi) {
     // Start to fetch the data by using TagName 
     for (i = x.length - 1 ; i >= (x.length - sayi); i--) {
         liste += '<li class="str">'
-              + '<a class="bgl" target="_blank" href="' + x[i].getAttribute("baglanti") + '">'
+              + '<a class="bgl" href="' + x[i].getAttribute("baglanti") + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
     }
