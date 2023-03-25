@@ -67,7 +67,7 @@ function xmlDosyaYukle() {
     };
 
     // employee.xml is the external xml file
-    xmlhttp.open("GET", "icerikler.xml", true);
+    xmlhttp.open("GET", "../icerikler.xml", true);
     xmlhttp.send();
 }
 
