@@ -846,4 +846,9 @@
 	<Icerik id="844" baslik="Dinamik Yol Kullanarak Bugünün Tarihiyle Klasör Oluştur - Bat" baglanti="icerik/dinamik-yol-kullanarak-bugunun-tarihiyle-klasor-olustur-bat.html" kategori="Programlama" etiket="bat, bat klasör işlemleri" />
 	<Icerik id="845" baslik="Dosya Kopyala - Bat" baglanti="icerik/dosya-kopyala-bat.html" kategori="Programlama" etiket="bat, bat dosya işlemleri" />
 	<Icerik id="846" baslik="Butonun Arka Planını Bir Saniye Sonra Kırmızı Yap - CSharp" baglanti="icerik/butonun-arka-planini-bir-saniye-sonra-kirmizi-yap-csharp.html" kategori="Programlama" etiket="csharp, csharp buton işlemleri, csharp timer işlemleri" />
+	<Icerik id="847" baslik="Açık Olan Formları Say - CSharp" baglanti="icerik/acik-olan-formlari-say-csharp.html" kategori="Programlama" etiket="csharp, csharp form işlemleri" />
+	<Icerik id="848" baslik="RichTextBox İmlecin Bulunduğu Yere Metin Yerleştir - CSharp" baglanti="icerik/richtextbox-imlecin-bulundugu-yere-metin-yerlestir-csharp.html" kategori="Programlama" etiket="csharp, csharp richtextbox, csharp metin işlemleri" />
+	<Icerik id="849" baslik="Bu Bilgisayar Klasörünü GUID Değeri İle Aç - CSharp" baglanti="icerik/bu-bilgisayar-klasorunu-guid-degeri-ile-ac-csharp.html" kategori="Programlama" etiket="csharp, csharp dosya klasör işlemleri" />
+	<Icerik id="850" baslik="pre Elementi İçin Tasarım Örneği - CSS" baglanti="icerik/pre-elementi-icin-tasarim-ornegi-css.html" kategori="Programlama" etiket="css" />
+	<Icerik id="851" baslik="Yazı Gizle - CSS" baglanti="icerik/yazi-gizle-css.html" kategori="Programlama" etiket="css, css gizleme işlemleri" />
 </Icerikler>
