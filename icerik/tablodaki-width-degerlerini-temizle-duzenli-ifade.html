@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Tablodaki width Değerlerini Temizle - Notepad Plus Plus</title>
+    <title>Tablodaki width Değerlerini Temizle - Düzenli İfade</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -34,7 +34,7 @@
        <br>
        <div class="row">
         <div class="col">
-           <h1>Tablodaki width Değerlerini Temizle - Notepad Plus Plus</h1>
+           <h1>Tablodaki width Değerlerini Temizle - Düzenli İfade</h1>
            <hr /><p class="lead">Notepad++ ve düzenli ifadeler (regular expressions) kullanarak html tablosundaki width değerlerini nasıl temizleyebiliriz, görelim.
 </p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
 <p>Aşağıdaki gibi bir HTML tablosu var ve bu tablodan width özelliğini değerleriyle beraber silmek istiyoruz.</p>
@@ -66,31 +66,24 @@
 </code></pre>
 
 <div class="alert alert-info"><strong>Çözüm</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Yedek Al</strong></p>
-        <p>Olası istenmeyen senaryolara karşı yedeğinizi alın.</p>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Değiştir Penceresini Aç</strong></p>
-        <p><kbd>Ctrl</kbd> + <kbd>F</kbd> tuşlarına basarak arama penceresini açın ve <strong>Değiştir</strong> sekmesini aktifleştirin. Pencede arama modunu <strong>Düzenli ifade</strong> olarak belirleyin.</p>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Düzenli İfade Yaz</strong></p>
-        <p><strong>Değiştir</strong> penceresinde <strong>Aranan: </strong> bölümüne düzenli ifadeyi ekleyin.</p>
-        <p><strong>Değiştir: </strong> bölümünü boş bıraktık, çünkü biz değerleri değiştirmek değil silmek istiyoruz.</p>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>Yedek Al</strong></p>
+<p>Olası istenmeyen senaryolara karşı yedeğinizi alın.</p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>Değiştir Penceresini Aç</strong></p>
+<p><kbd>Ctrl</kbd> + <kbd>F</kbd> tuşlarına basarak arama penceresini açın ve <strong>Değiştir</strong> sekmesini aktifleştirin. Pencede arama modunu <strong>Düzenli ifade</strong> olarak belirleyin.</p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>Düzenli İfade Yaz</strong></p>
+<p><strong>Değiştir</strong> penceresinde <strong>Aranan: </strong> bölümüne düzenli ifadeyi ekleyin.</p>
+<p><strong>Değiştir: </strong> bölümünü boş bıraktık, çünkü biz değerleri değiştirmek değil silmek istiyoruz.</p>
 
 <a class="img-fluid d-block" href="doc/tablodaki-width-degerlerini-temizle-notepad-plus-plus-1.png"><img src = "doc/tablodaki-width-degerlerini-temizle-notepad-plus-plus-1.png" alt="" /></a>
-</li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Düzenli İfade</strong></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>Düzenli İfade</strong></p>
 <pre><code class="language-regexp">
 ([ width="]{7})([0-9"]{1,5})
 </code></pre>
-    </li>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Düzenli İfade (Açıklamalı)</strong></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>Düzenli İfade (Açıklamalı)</strong></p>
 <pre><code class="language-regexp">
 /* --------------------------------------------------
 Tablodaki başlangıç ifadeleri hep şu şekilde: 
@@ -121,9 +114,7 @@ ve " karakterinden oluşuyor. Bu karakter grubu da
 en az 1 an fazla da 5 haneli olabilir.
 -------------------------------------------------- */
 ([0-9"]{1,5})
-</code></pre> 
-    </li>
-</ul>
+</code></pre>
 			<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
   </div>
 </div>
@@ -133,7 +124,5 @@ en az 1 an fazla da 5 haneli olabilir.
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/bootstrap.bundle.min.js"></script>
 <script src="../js/prism.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-     crossorigin="anonymous"></script>
 </body>
 </html>

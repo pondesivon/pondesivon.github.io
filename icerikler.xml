@@ -469,10 +469,10 @@
 	<Icerik id="467" baslik="İnternet Kısayolu Oluştur" baglanti="icerik/internet-kisayolu-olustur.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="468" baslik="Tilde İşareti (~) Oluşturma Rehberi" baglanti="icerik/tilde-isareti-olusturma-rehberi.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="469" baslik="Birden Fazla Sıkıştırılmış Dosyayı Arşivden Çıkar - 7-Zip" baglanti="icerik/birden-fazla-sikistirilmis-dosyayi-arsivden-cikar-7-zip.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
-	<Icerik id="470" baslik="Tablodaki width Değerlerini Temizle - Notepad Plus Plus" baglanti="icerik/tablodaki-width-degerlerini-temizle-notepad-plus-plus.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
-	<Icerik id="471" baslik="Tüm HTML Etiketlerini Temizle - Notepad Plus Plus" baglanti="icerik/tum-html-etiketlerini-temizle-notepad-plus-plus.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
-	<Icerik id="472" baslik="http Ve https Metinlerini Sil - Notepad Plus Plus" baglanti="icerik/http-ve-https-metinlerini-sil-notepad-plus-plus.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
-	<Icerik id="473" baslik="Sıra Numarası Verilmiş Metinleri Temizle - Notepad Plus Plus" baglanti="icerik/sira-numarasi-verilmis-metinleri-temizle-notepad-plus-plus.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
+	<Icerik id="470" baslik="Tablodaki width Değerlerini Temizle - Notepad Plus Plus" baglanti="icerik/tablodaki-width-degerlerini-temizle-duzenli-ifade.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
+	<Icerik id="471" baslik="Tüm HTML Etiketlerini Temizle - Notepad Plus Plus" baglanti="icerik/tum-html-etiketlerini-temizle-duzenli-ifade.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
+	<Icerik id="472" baslik="http Ve https Metinlerini Sil - Notepad Plus Plus" baglanti="icerik/http-ve-https-metinlerini-sil-duzenli-ifade.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
+	<Icerik id="473" baslik="Sıra Numarası Verilmiş Metinleri Temizle - Notepad Plus Plus" baglanti="icerik/sira-numarasi-verilmis-metinleri-temizle-duzenli-ifade.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="474" baslik="Eşit Aralıklı Yazı Tipi" baglanti="icerik/esit-aralikli-yazi-tipi.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="475" baslik="Aktif Hücrenin Rengini Koşullu Biçimlendirme İle Değiştir - Microsoft Excel" baglanti="icerik/aktif-hucrenin-rengini-kosullu-bicimlendirme-ile-degistir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="476" baslik="Seçilen Alanda Formül İçeren Hücreleri Listele - Microsoft Excel" baglanti="icerik/secilen-alanda-formul-iceren-hucreleri-listele-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
@@ -586,7 +586,7 @@
 	<Icerik id="584" baslik="&quot;Briefly unavailable for scheduled maintenance. Check back in a minute.&quot; Hatasını Düzelt - Wordpress" baglanti="icerik/briefly-unavailable-for-scheduled-maintenance-check-back-in-a-minute-hatasini-duzelt-wordpress.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="585" baslik="Aynı Olan Kayıtların Altta Olanını Sil - Microsoft Excel" baglanti="icerik/ayni-olan-kayitlarin-altta-olanini-sil-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="586" baslik="Kod İle Tarih Ve Saat Yazdır - Microsoft Excel" baglanti="icerik/kod-ile-tarih-ve-saat-yazdir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
-	<Icerik id="587" baslik="Noktaları Temizle - Notepad Plus Plus" baglanti="icerik/noktalari-temizle-notepad-plus-plus.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
+	<Icerik id="587" baslik="Noktaları Temizle - Notepad Plus Plus" baglanti="icerik/noktalari-temizle-duzenli-ifade.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="588" baslik="SmallScroll Ve LargeScroll İle Scroll Yaptır - Microsoft Excel" baglanti="icerik/smallscroll-ve-largescroll-ile-scroll-yaptir-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="589" baslik="Alanın Adres Bilgilerini Mesaj Olarak Göster - Microsoft Excel" baglanti="icerik/alanin-adres-bilgilerini-mesaj-olarak-goster-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
 	<Icerik id="590" baslik="Dosya Yollarına Bağlantı Ekle - Microsoft Excel" baglanti="icerik/dosya-yollarina-baglanti-ekle-microsoft-excel.html" eklenmeTarihi="2023-03-19--01-09-37" kategori="Programlama" etiket="" />
@@ -851,4 +851,9 @@
 	<Icerik id="849" baslik="Bu Bilgisayar Klasörünü GUID Değeri İle Aç - CSharp" baglanti="icerik/bu-bilgisayar-klasorunu-guid-degeri-ile-ac-csharp.html" kategori="Programlama" etiket="csharp, csharp dosya klasör işlemleri" />
 	<Icerik id="850" baslik="pre Elementi İçin Tasarım Örneği - CSS" baglanti="icerik/pre-elementi-icin-tasarim-ornegi-css.html" kategori="Programlama" etiket="css" />
 	<Icerik id="851" baslik="Yazı Gizle - CSS" baglanti="icerik/yazi-gizle-css.html" kategori="Programlama" etiket="css, css gizleme işlemleri" />
+	<Icerik id="852" baslik="Metnin Sonundaki Sayıları Temizle - Düzenli İfade" baglanti="icerik/metnin-sonundaki-sayilari-temizle-duzenli-ifade.html" kategori="Programlama" etiket="düzenli ifade" />
+	<Icerik id="853" baslik="Web Sayfasının Adresini Adres Çubuğundan Al - Javascript" baglanti="icerik/web-sayfasinin-adresini-adres-cubugundan-al-javascript.html" kategori="Programlama" etiket="javascript" />
+	<Icerik id="854" baslik="Dizi Tanımlamanın Üç Alternatifi - Javascript" baglanti="icerik/dizi-tanimlamanin-uc-alternatifi-javascript.html" kategori="Programlama" etiket="javascript" />
+	<Icerik id="855" baslik="Web Sayfasının Bağlantısını Al - Javascript" baglanti="icerik/web-sayfasinin-baglantisini-al-javascript.html" kategori="Programlama" etiket="javascript" />
+	<Icerik id="856" baslik="Yeni Pencere Aç Ve Metin Yazdır - Javascript" baglanti="icerik/yeni-pencere-ac-ve-metin-yazdir-javascript.html" kategori="Programlama" etiket="javascript" />
 </Icerikler>
