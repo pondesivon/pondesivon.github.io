@@ -1,2 +1,19 @@
 # pondesivon.github.io
-Kişisel veri tabanı.
+Ağırlıklı olarak programlama, webmaster ve bilgisayar konularındaki içeriklerin paylaşıldığı kişisel veri tabanı.
+
+---
+
+Bu repository ağırlıklı olarak programlama ile ilgili içeriklerin barındırıldığı bir not defteri, bir arşiv niteliğindedir. Daha ulaşılabilir olması amacıyla eklenmiştir.
+
+---
+
+## Kategoriler
+- Programlama
+- Bilgisayar
+
+---
+
+## Etiketler
+- microsoft excel (vba, formül)
+- html, css, javascript vs.
+- csharp
