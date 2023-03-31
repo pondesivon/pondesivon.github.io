@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <title>MenuStrip İçindeki Nesnelerin Renklerini Ayarla - CSharp</title>
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+
+    <!-- Script Alani Ust Baslangic -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043" crossorigin="anonymous"></script>
+    <!-- Script Alani Ust Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-2">MenuStrip İçindeki Nesnelerin Renklerini Ayarla - CSharp</h1>
+<hr /><p class="lead">MenuStrip bünyesinde bulunan nesnelerle tek tek işlem yapmak zahmetli ve uğraştırıcı olabiliyor. Bunun önüne geçebilmek için döngü ile MenuStrip nesnesi bünyesindeki nesnelere müdahale edilebilecek alternatif bir csharp kodu aşağıda verilmiştir.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace FormuOnTanimliDegerlerleYenidenBoyutlandirCSharp
+{
+    public partial class AnaForm : Form
+    {
+        public AnaForm()
+        {
+            InitializeComponent();
+        }
+
+        //--------------------------------------------------
+        //MenuStrip içindeki nesnelere 
+        //ulaşabilmek için kullanılan metot.
+        //--------------------------------------------------
+        /// &lt;summary&gt
+        /// Recursively get SubMenu Items.Includes Separators.
+        /// &lt;/summary&gt
+        /// &lt;param name="item"&gt&lt;/param&gt
+        /// &lt;returns&gt&lt;/returns&gt
+        private IEnumerable&lt;ToolStripItem&gt GetItems(ToolStripItem item)
+        {
+            if (item is ToolStripMenuItem)
+            {
+                foreach (ToolStripItem tsi in (item as ToolStripMenuItem).DropDownItems)
+                {
+                    if (tsi is ToolStripMenuItem)
+                    {
+                        if ((tsi as ToolStripMenuItem).HasDropDownItems)
+                        {
+                            foreach (ToolStripItem subItem in GetItems((tsi as ToolStripMenuItem)))
+                                yield return subItem;
+                        }
+                        yield return (tsi as ToolStripMenuItem);
+                    }
+                    else if (tsi is ToolStripSeparator)
+                    {
+                        yield return (tsi as ToolStripSeparator);
+                    }
+                }
+            }
+            else if (item is ToolStripSeparator)
+            {
+                yield return (item as ToolStripSeparator);
+            }
+        }
+
+        //--------------------------------------------------
+        //GetItems() metodu aracılığıyla 
+        //nesneler üzerinde renk ayarı yap.
+        //--------------------------------------------------
+        void AracCubuklariTemaRenkAyarla()
+        {
+            List&lt;ToolStripItem&gt allItems = new List&lt;ToolStripItem&gt();
+            foreach (ToolStripItem toolItem in menuStrip.Items)
+            {
+                allItems.Add(toolItem);
+                //add sub items
+                allItems.AddRange(GetItems(toolItem));
+            }
+
+            foreach (ToolStripItem toolItem in allItems)
+            {
+                if (toolItem is ToolStripMenuItem)
+                {
+                    ToolStripMenuItem tsmi = (toolItem as ToolStripMenuItem);
+                    //Do something with it
+                    tsmi.BackColor = Color.Yellow;
+                    tsmi.ForeColor = Color.Blue;
+                }
+                else if (toolItem is ToolStripSeparator)
+                {
+                    ToolStripSeparator tss = (toolItem as ToolStripSeparator);
+
+                    //Do something with it
+                    tss.Paint += toolStripSeparator_Paint;
+                }
+            }
+        }
+
+        //--------------------------------------------------
+        //ToolStripSeparator için renk ayarı yap.
+        //--------------------------------------------------
+        void toolStripSeparator_Paint(object sender, PaintEventArgs e)
+        {
+            ToolStripSeparator tss = (ToolStripSeparator)sender;
+
+            e.Graphics.FillRectangle(new SolidBrush(Color.Green), 0, 0, tss.Width, tss.Height);
+            e.Graphics.DrawLine(new Pen(Color.Gray), 30, tss.Height / 2, tss.Width - 4, tss.Height / 2);
+        }
+
+        //--------------------------------------------------
+        //Form açıldığında renk ayarlarını uygula.
+        //--------------------------------------------------
+        private void AnaForm_Load(object sender, EventArgs e)
+        {
+            AracCubuklariTemaRenkAyarla();
+        }
+    }
+}
+</code></pre>
+<!-- Icerik Metin Bitis -->
+
+<!-- Yonlendirme Alani Alt Baslangic -->
+<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+<!-- Yonlendirme Alani Alt Bitis -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/doc.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</html>

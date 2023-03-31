@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <title>ToolStripMenuItem Nesnesine Alt Klasör İsimlerini Listele - CSharp</title>
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+
+    <!-- Script Alani Ust Baslangic -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043" crossorigin="anonymous"></script>
+    <!-- Script Alani Ust Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-2">ToolStripMenuItem Nesnesine Alt Klasör İsimlerini Listele - CSharp</h1>
+<hr /><p class="lead">MenuStrip üzerinde bulunan bir ToolStripMenuItem nesnesine alt klasör isimlerini listeleyen ve bu isimlere tıklandığında da bu alt klasörleri açan csharp kodu alternatifidir.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre data-line="22-25,27-50,52-65"><code class="language-csharp">
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OrnekProje
+{
+    public partial class AnaForm : Form
+    {
+        public AnaForm()
+        {
+            InitializeComponent();
+        }
+
+        //--------------------------------------------------
+        //İçeriklerin listeleneceği klasörü belirle.
+        //--------------------------------------------------
+        public static string KlasorYolu { get; set; } = Path.Combine("C:\");
+
+        //--------------------------------------------------
+        //Verilen ToolStripMenuItem nesnesine klasörleri listele.
+        //--------------------------------------------------
+        void KlasorListesiniYukle(string yol, ToolStripMenuItem yuklenecek)
+        {
+            try
+            {
+                yuklenecek.DropDownItems.Clear();
+
+                string[] klasorler = Directory.GetDirectories(yol);
+
+                foreach (string klasorAdi in klasorler)
+                {
+                    ToolStripMenuItem item = new ToolStripMenuItem();
+                    item.Text = Path.GetFileName(klasorAdi);
+                    yuklenecek.DropDownItems.Add(item);
+                    item.Click += new EventHandler(klasorAc_Click);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "KlasorListesiniYukle");
+            }
+        }
+
+        //--------------------------------------------------
+        //İlgili ToolStripMenuItem nesnesine 
+        //tıklandığında o klasörü aç.
+        //--------------------------------------------------
+        private void klasorAc_Click(object sender, EventArgs e)
+        {
+            var v = sender as ToolStripMenuItem;
+            string altKlasorYolu = Path.Combine(KlasorYolu, v.Text);
+
+            if (Directory.Exists(altKlasorYolu))
+            {
+                Process.Start(altKlasorYolu);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            KlasorListesiniYukle(KlasorYolu, klasorlerToolStripMenuItem);
+        }
+    }
+}
+</code></pre>
+<!-- Icerik Metin Bitis -->
+
+<!-- Yonlendirme Alani Alt Baslangic -->
+<hr><a href="../arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a><hr>
+<!-- Yonlendirme Alani Alt Bitis -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/doc.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</html>
