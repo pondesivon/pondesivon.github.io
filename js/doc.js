@@ -120,11 +120,12 @@ function xmlDosyaYukle(sayi) {
 function icerikListe(xml, sayi) {
     var i;
     var xmlDoc = xml.responseXML;
-    var liste = "<ol id='liste'>";
+    var liste = "<ol id='liste' class='list-group'>";
+    liste+='<li class="list-group-item bg-secondary text-white">Son ' + sayi + ' İçerik</li>'
     var x = xmlDoc.getElementsByTagName("Icerik");
     // Start to fetch the data by using TagName 
     for (i = x.length - 1 ; i >= (x.length - sayi); i--) {
-        liste += '<li class="str">'
+        liste += '<li class="list-group-item">'
               + '<a class="bgl" href="' + x[i].getAttribute("baglanti") + '">'
               + x[i].getAttribute("baslik")
               + "</a></li>";
