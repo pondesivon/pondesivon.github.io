@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <title>Daire Şeklinde Renk Paleti Oluştur - CSharp</title>
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+
+    <!-- Script Alani Ust Baslangic -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043" crossorigin="anonymous"></script>
+    <!-- Script Alani Ust Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-2">Daire Şeklinde Renk Paleti Oluştur - CSharp</h1>
+<hr /><p class="lead">Renk seçimi için kullanılabilecek, daire şeklinde bir renk seçme paleti oluşturan csharp sınıfı alternatifidir.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-csharp">
+public class ColorWheel
+{
+    /// &lt;summary&gt;
+    /// Draw a color wheel in the indicated area. 
+    /// &lt;/summary&gt;
+    /// &lt;param name="gr"&gt;&lt;/param&gt;
+    /// &lt;param name="outline_color"&gt;&lt;/param&gt;
+    /// &lt;param name="xmin"&gt;&lt;/param&gt;
+    /// &lt;param name="ymin"&gt;&lt;/param&gt;
+    /// &lt;param name="wid"&gt;&lt;/param&gt;
+    /// &lt;param name="hgt"&gt;&lt;/param&gt;
+    public static void Draw(Graphics gr, Color outline_color,
+        int xmin, int ymin, int wid, int hgt)
+    {
+        Rectangle rect = new Rectangle(xmin, ymin, wid, hgt);
+        GraphicsPath wheel_path = new GraphicsPath();
+        wheel_path.AddEllipse(rect);
+        wheel_path.Flatten();
+
+        float num_pts = (wheel_path.PointCount - 1) / 6;
+        Color[] surround_colors = new Color[wheel_path.PointCount];
+
+        int index = 0;
+        InterpolateColors(surround_colors, ref index,
+            1 * num_pts, 255, 255, 0, 0, 255, 255, 0, 255);
+        InterpolateColors(surround_colors, ref index,
+            2 * num_pts, 255, 255, 0, 255, 255, 0, 0, 255);
+        InterpolateColors(surround_colors, ref index,
+            3 * num_pts, 255, 0, 0, 255, 255, 0, 255, 255);
+        InterpolateColors(surround_colors, ref index,
+            4 * num_pts, 255, 0, 255, 255, 255, 0, 255, 0);
+        InterpolateColors(surround_colors, ref index,
+            5 * num_pts, 255, 0, 255, 0, 255, 255, 255, 0);
+        InterpolateColors(surround_colors, ref index,
+            wheel_path.PointCount, 255, 255, 255, 0, 255, 255, 0, 0);
+
+        using (PathGradientBrush path_brush =
+            new PathGradientBrush(wheel_path))
+        {
+            path_brush.CenterColor = Color.White;
+            path_brush.SurroundColors = surround_colors;
+
+            gr.FillPath(path_brush, wheel_path);
+
+            // It looks better if we outline the wheel.
+            using (Pen thick_pen = new Pen(outline_color, 2))
+            {
+                gr.DrawPath(thick_pen, wheel_path);
+            }
+        }
+
+        //// Uncomment the following to draw the path's points.
+        //for (int i = 0; i &lt; wheel_path.PointCount; i++)
+        //{
+        //    gr.FillEllipse(Brushes.Black,
+        //        wheel_path.PathPoints[i].X - 2,
+        //        wheel_path.PathPoints[i].Y - 2,
+        //        4, 4);
+        //}
+    }
+
+    /// &lt;summary&gt;
+    /// Fill in colors interpolating between the from and to values.
+    /// &lt;/summary&gt;
+    /// &lt;param name="surround_colors"&gt;&lt;/param&gt;
+    /// &lt;param name="index"&gt;&lt;/param&gt;
+    /// &lt;param name="stop_pt"&gt;&lt;/param&gt;
+    /// &lt;param name="from_a"&gt;&lt;/param&gt;
+    /// &lt;param name="from_r"&gt;&lt;/param&gt;
+    /// &lt;param name="from_g"&gt;&lt;/param&gt;
+    /// &lt;param name="from_b"&gt;&lt;/param&gt;
+    /// &lt;param name="to_a"&gt;&lt;/param&gt;
+    /// &lt;param name="to_r"&gt;&lt;/param&gt;
+    /// &lt;param name="to_g"&gt;&lt;/param&gt;
+    /// &lt;param name="to_b"&gt;&lt;/param&gt;
+    public static void InterpolateColors(Color[] surround_colors,
+        ref int index, float stop_pt,
+        int from_a, int from_r, int from_g, int from_b,
+        int to_a, int to_r, int to_g, int to_b)
+    {
+        int num_pts = (int)stop_pt - index;
+        float a = from_a, r = from_r, g = from_g, b = from_b;
+        float da = (to_a - from_a) / (num_pts - 1);
+        float dr = (to_r - from_r) / (num_pts - 1);
+        float dg = (to_g - from_g) / (num_pts - 1);
+        float db = (to_b - from_b) / (num_pts - 1);
+
+        for (int i = 0; i &lt; num_pts; i++)
+        {
+            surround_colors[index++] =
+                Color.FromArgb((int)a, (int)r, (int)g, (int)b);
+            a += da;
+            r += dr;
+            g += dg;
+            b += db;
+        }
+    }
+}
+</code></pre>
+<!-- Icerik Metin Bitis -->
+
+<!-- Yonlendirme Alani Alt Baslangic -->
+<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
+<!-- Yonlendirme Alani Alt Bitis -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/doc.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</html>

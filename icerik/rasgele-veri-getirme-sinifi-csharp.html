@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <title>Rasgele Veri Getirme Sınıfı - CSharp</title>
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+
+    <!-- Script Alani Ust Baslangic -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043" crossorigin="anonymous"></script>
+    <!-- Script Alani Ust Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-2">Rasgele Veri Getirme Sınıfı - CSharp</h1>
+<hr /><p class="lead">Projelerde veri oluşturma ve getirme işlemini kolaylaştırmak amacıyla oluşturulmuş csharp kodu alternatifidir.</p><hr />
+
+<div class="alert alert-info"><strong>Kod</strong></div>
+<pre><code class="language-csharp">
+public class RasgeleVeri
+{
+    #region Veriler
+
+    public static string[] Yemekler { get; set; } = { 
+        "Dolma", "Kuru Fasulye", "Kızartma", "Musakka", "İmam Bayıldı", "Köfte",
+        "Bulgur Pilavı", "Pirinç Pilavı", "Taze Fasulye", "Barbunya", "Menemen"};
+
+    public static string[] Hobiler { get; set; } = {
+        "Kitap Okumak", "Müzik Dinlemek", "Resim Yapmak", "Yürüyüş Yapmak",
+        "Origami Yapmak", "Spor Yapmak", "Bisiklet Sürmek", "Film İzlemek"};
+
+    public static string[] OkulAlan { get; set; } = { "Sayısal", "Eşit Ağırlık", "Sözel" };
+
+    public static string[] Gunler { get; set; } =
+        { "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar" };
+    
+    public static string[] Aylar { get; set; } =
+        { "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+          "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık" };
+    
+    public static string[] Cumleler { get; set; } =
+    {
+        "Ali ata bak.", "Emel eve gel.",
+        "Işık ılık süt iç.", "İpek ip atla.",
+        "Veli topu tut.", "Uyu, yat, uyu.",
+        "Bugün hava çok güzel.", "Ayşe koş.",
+        "Bütün çamaşırları yıkadım.", 
+        "Alışveriş yaptım."
+    };
+
+    public static string[] IsimSoyIsim { get; set; } =
+    {
+        "Aslı Kaslı", "Adem Badem", "Ezgi Sezgi", "Eda Seda", "Erdi Serdi",
+        "Oya Boya", "Ercan Sercan", "Engin Zengin", "Aslan Kaplan", "Ece Gece",
+        "Ebru Sanat", "Erman Derman", "Akın Sakın", "Özge Egzö", "Hakan Akan",
+        "Selin Niles", "Umut Tumu", "Burak Durak", "Yeşim Yaprak Orman", "Ferdi İdref"
+    };
+
+    public static string[] LoremIpsum { get; set; } =
+    {
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dignissim lectus in lacus condimentum sodales. Nullam semper commodo est, quis pellentesque tellus efficitur id. Nulla sit amet dolor mauris. Mauris placerat nibh ac quam pharetra dictum. Sed accumsan felis ut ex faucibus aliquet. Vivamus posuere nibh elit, id ultricies quam imperdiet id. Nullam sagittis arcu ac sem fermentum posuere. Proin pharetra et nisi nec hendrerit. Nunc lobortis neque vitae dui convallis fermentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "Donec id felis in arcu commodo sagittis vel vel mi. Morbi tristique nulla in lorem convallis varius. Nulla a dui condimentum, porta sapien nec, aliquam lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse potenti. Pellentesque facilisis magna non arcu porttitor tempus. Quisque vitae elementum erat. Ut auctor accumsan risus, vitae convallis ex scelerisque sed. Aenean accumsan vitae ipsum nec interdum. Aenean vulputate dui id viverra pharetra. Proin malesuada blandit leo. Aliquam vulputate, dui sed ultricies ultricies, diam odio rhoncus tellus, lacinia ultricies diam neque vitae metus.",
+        "Nulla bibendum mattis tellus, eu fermentum leo ullamcorper a. Fusce et tellus sit amet mauris ornare cursus. Aenean tincidunt nunc velit, sed iaculis odio tempor vel. Aenean nulla enim, placerat non ante nec, tristique eleifend risus. Ut egestas ex nec felis tempor, in efficitur tellus efficitur. In ut mollis dolor. In hac habitasse platea dictumst. In non consequat tellus, vel elementum magna. Maecenas non ultricies lectus. Maecenas id magna vitae lacus vulputate aliquam. Phasellus vel ultrices mi. Nulla non congue lacus. Nullam venenatis et nulla quis luctus. Aenean molestie urna nisi, sit amet pharetra justo consectetur non. Pellentesque mollis posuere nisi venenatis blandit.",
+        "Phasellus rhoncus feugiat elit, at porttitor erat lobortis et. Phasellus vel venenatis elit. Proin et urna nec mi dignissim vulputate. Nunc rhoncus vulputate nisl non pulvinar. Nunc sagittis mollis pulvinar. Integer augue lectus, dapibus eu magna ac, pellentesque posuere quam. In placerat bibendum ultricies. Mauris egestas ante non neque mattis congue. Suspendisse at elementum enim. Sed quam mauris, placerat in ullamcorper vitae, aliquet tempus dui. Donec vitae dapibus purus. Suspendisse eu ligula bibendum massa ullamcorper facilisis vitae ac nulla. Nunc nec libero luctus, pulvinar nisl et, viverra risus. Nullam ut lobortis magna. Curabitur eu orci non dui interdum aliquam et porttitor ligula.",
+        "Nulla a neque nisl. Ut dapibus orci neque. Vestibulum quis ultricies sapien. Donec sed odio eu nisi eleifend interdum. Maecenas lobortis turpis eu consectetur tincidunt. Etiam dapibus purus dictum leo vehicula tempor. Sed eu dui et purus gravida luctus. Sed ac justo eros. Pellentesque eget libero blandit, ultricies ipsum in, pulvinar mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam tincidunt justo ut diam rutrum porta.",
+        "Proin aliquam augue nisi, ac egestas sem pretium ut. Nulla ut dolor elementum, lacinia quam ac, tincidunt diam. Ut a nisl at nisl euismod elementum. Morbi malesuada cursus urna, at pretium ipsum volutpat at. Duis rhoncus, ipsum luctus vestibulum pulvinar, lacus ligula ornare erat, eu hendrerit augue justo eu orci. Pellentesque congue sit amet sem et egestas. Aenean tempor sodales sem at porta. Proin non sem ut lacus tempus rutrum sagittis a nibh. Phasellus rhoncus dictum odio et euismod. Sed hendrerit ultricies mi, sed finibus libero suscipit eu. Ut lobortis ex ut nulla fringilla, ac mollis turpis efficitur. Nunc efficitur sapien eros, quis molestie lacus accumsan pulvinar. Praesent quis lorem quis justo suscipit elementum eget nec diam. Proin elit ipsum, pharetra sed convallis suscipit, accumsan vitae lacus. Sed cursus pulvinar ligula eu tempor. Mauris molestie venenatis purus eu tincidunt.",
+        "Pellentesque vel lorem pellentesque nulla egestas imperdiet ac sit amet nunc. Nunc non vehicula ipsum, vel sodales est. Quisque non mollis lectus. Ut vulputate ac enim eget scelerisque. Ut ut scelerisque turpis. Nullam sed erat id lorem malesuada pellentesque non sit amet mauris. In ex urna, ullamcorper ut mi eu, tempus interdum enim. Ut laoreet ultrices tellus ut consequat.",
+        "Ut vitae tortor elementum magna finibus efficitur. Nunc placerat purus a metus imperdiet rhoncus. In a commodo mauris. Sed dapibus laoreet rhoncus. Donec mi est, volutpat at volutpat eget, pulvinar eget est. Ut vel commodo nibh, ac sollicitudin risus. Praesent sodales dignissim turpis, vitae iaculis justo auctor at. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse dignissim commodo ornare. Donec vel libero id sem sodales maximus quis quis orci. Cras eget iaculis nulla. Sed dolor nibh, congue quis tortor sed, rutrum luctus dolor. Praesent sed neque neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse eu urna id nulla euismod pharetra.",
+        "Curabitur sit amet eros pulvinar, varius velit ac, aliquam mi. Nulla facilisi. In sollicitudin mi at augue molestie, sit amet cursus enim porttitor. Suspendisse auctor elementum euismod. Quisque consequat elit non feugiat consectetur. Duis cursus nulla sit amet nisi malesuada imperdiet. Sed varius dictum ullamcorper. Nullam vel lorem accumsan, scelerisque ipsum in, condimentum eros.",
+        "Praesent dui ante, auctor vitae massa quis, laoreet suscipit nibh. Nam ut justo leo. Morbi tortor nibh, posuere quis eros a, placerat bibendum nulla. Aliquam quis dapibus nunc. Fusce fermentum massa mauris, quis consectetur quam commodo sit amet. Vivamus scelerisque libero eget libero varius blandit. Proin sed iaculis ligula. Sed feugiat fermentum neque, vitae commodo ex interdum vel. In hac habitasse platea dictumst. Ut viverra euismod erat, non varius sapien tempus ac. Donec id nibh sapien. Ut commodo ac metus vel tristique.",
+        "Ut eget nulla ex. Nulla nibh ante, venenatis eget quam quis, sagittis pretium mauris. Suspendisse semper massa augue, quis eleifend tellus tempor gravida. Suspendisse eu ex nibh. Vestibulum tortor mi, facilisis at vulputate in, auctor vitae lorem. Phasellus faucibus scelerisque dui vitae facilisis. Aenean commodo aliquet purus.",
+        "Proin fringilla rutrum feugiat. Mauris eu placerat dolor. Phasellus in dui mauris. Nulla sagittis risus nec augue auctor, nec pharetra elit dapibus. Suspendisse blandit ornare nisl, non rutrum dolor sollicitudin at. Curabitur quis ornare dui. Nam nec imperdiet nisi. Vivamus tincidunt enim metus.",
+        "Nunc venenatis auctor risus, in bibendum nibh vehicula non. Praesent dapibus leo sit amet diam sagittis porta. Donec quis ultricies purus, in porta ex. Fusce in vehicula est. Nulla pretium purus sapien, in ullamcorper lectus semper eget. Suspendisse in sem ut libero venenatis posuere id sit amet nunc. Proin ultricies sem nisl, varius pulvinar nisl laoreet nec. Fusce at tempus mi, ullamcorper elementum odio. Nam dictum condimentum metus, ut ullamcorper justo facilisis et. Quisque sagittis at tellus eu sodales. Donec scelerisque placerat nisl, vel pellentesque justo tristique vitae. Phasellus sollicitudin hendrerit facilisis.",
+        "Aliquam ac dapibus lectus. Curabitur efficitur pellentesque vulputate. Nam in felis et metus porta porttitor. Nam ullamcorper libero ac ipsum venenatis commodo. Quisque in arcu pulvinar, malesuada velit vel, elementum felis. Nam pharetra dui eget bibendum sagittis. Curabitur ullamcorper eros tortor. Duis blandit a mi dapibus varius. Morbi mollis, augue id ornare varius, mauris ex porttitor nibh, sit amet vulputate velit quam eleifend urna. Curabitur euismod orci et ultricies porttitor. Proin sapien enim, sodales eu placerat ac, congue at risus. Maecenas at cursus est, sit amet porta turpis. Pellentesque libero urna, pulvinar et mollis sed, iaculis vitae enim. Phasellus lacus arcu, ornare ut est in, tempor dictum lorem.",
+        "Etiam in sapien erat. Donec gravida facilisis sem et sodales. Praesent justo erat, molestie sed nulla sed, eleifend eleifend turpis. Suspendisse magna diam, accumsan a orci vel, tincidunt pharetra lectus. Integer ullamcorper enim lectus. Sed metus tortor, scelerisque in nunc a, fringilla varius ante. Mauris finibus sit amet ligula nec lobortis. Integer tristique mi sapien, vel tristique enim iaculis lobortis. Integer vestibulum volutpat lorem, quis facilisis enim tincidunt et. Suspendisse potenti.",
+        "Curabitur semper luctus ante, auctor porta sapien blandit vitae. Proin vitae ultrices lorem, eu iaculis leo. Fusce tristique ipsum sem, sit amet porta tortor sodales vitae. Fusce quis justo risus. Ut cursus turpis ac diam scelerisque, sed viverra nibh dictum. Donec finibus arcu quis nulla iaculis, non molestie magna pharetra. Nam ut gravida est, a facilisis dolor. In congue sapien tellus. Suspendisse vestibulum vulputate sapien, vel accumsan nibh lobortis non. Nulla facilisi. Sed eros ligula, lacinia et urna quis, ultricies mollis urna. Pellentesque lacinia sit amet magna vitae varius. Sed eget maximus nulla. Curabitur imperdiet interdum mollis. Curabitur dictum arcu quis eros rutrum eleifend.",
+        "Sed scelerisque diam in odio venenatis laoreet. Pellentesque sit amet turpis vitae sem mollis tincidunt vel quis purus. Aenean ac vulputate est. Donec vulputate ante leo, vitae tristique felis porttitor quis. Integer venenatis mattis dui, sit amet gravida diam mollis in. Donec pulvinar turpis sollicitudin, malesuada mi vel, rutrum mauris. Donec eget tellus nunc. Maecenas fringilla non orci non lobortis. Proin at augue placerat, hendrerit lacus et, porttitor sem.",
+        "Sed ac nunc quis massa tempus pellentesque in a odio. Nunc at nulla tellus. Praesent pellentesque viverra mi vitae venenatis. Sed accumsan in ex in gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent efficitur leo ac interdum tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec commodo leo non nisl ornare blandit. Duis sagittis neque quis dolor iaculis volutpat. Vivamus ornare turpis ac neque pulvinar vulputate. Aliquam convallis leo enim, ut tincidunt risus feugiat et. Nam facilisis mi sit amet urna gravida scelerisque. Integer egestas odio condimentum maximus auctor. Morbi quis porta nunc, et aliquet urna. Aenean ultricies efficitur risus, at vulputate ante pharetra elementum.",
+        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris bibendum at lorem vel viverra. Pellentesque lacus orci, consequat ultrices bibendum id, vulputate et diam. Curabitur varius nunc nunc. Duis semper odio sed orci tristique, id facilisis urna mollis. Maecenas sit amet metus id turpis sagittis lacinia in quis metus. Vestibulum nec luctus justo. Nam sit amet sapien in sem pharetra efficitur. Integer at diam eget sapien rhoncus imperdiet nec sed dolor. Etiam ullamcorper, nunc et laoreet feugiat, est ante tincidunt arcu, quis faucibus tortor dolor nec lacus. Integer imperdiet, mauris ut interdum placerat, elit enim lobortis purus, et sollicitudin ipsum sapien quis quam.",
+        "Etiam commodo nec lacus at tristique. Vivamus vitae tincidunt ex. In eu lacus dignissim, ullamcorper eros a, auctor dolor. Suspendisse sed cursus dolor. Vestibulum luctus mi ac metus suscipit consequat. Nullam commodo sed purus non hendrerit. Integer a facilisis sem. Phasellus rhoncus viverra vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla lacinia nec arcu nec faucibus. Vivamus eu urna dui. Donec fringilla egestas bibendum. Morbi eu ornare tellus. Sed enim orci, feugiat et metus non, venenatis rutrum risus. Curabitur vestibulum quam at mauris cursus sodales.",
+        "Praesent mollis enim non venenatis lobortis. Suspendisse potenti. Donec et ligula consequat, pharetra magna vel, ultrices tellus. Praesent lectus odio, laoreet quis eros mollis, convallis vestibulum lorem. Pellentesque hendrerit nibh arcu, nec imperdiet magna fermentum sed. Donec sit amet felis eget felis consectetur tristique ut quis neque. Nunc augue metus, imperdiet eget condimentum ac, scelerisque quis turpis. Aenean consectetur magna at nisi laoreet, in congue arcu porta. Donec vitae ullamcorper orci. In at blandit erat. Sed sed congue ipsum.",
+        "Sed consectetur efficitur diam eu ultricies. Maecenas vel aliquet tellus, nec pretium eros. Vestibulum suscipit, diam eget congue faucibus, libero tellus malesuada massa, eu auctor urna lorem at metus. Nulla ornare hendrerit massa eget dictum. Proin rutrum metus nec efficitur porttitor. Vivamus in dui enim. Morbi consequat pulvinar metus, tristique porttitor ipsum cursus vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent rhoncus neque vitae elit sagittis, sed luctus felis interdum. Maecenas convallis, lectus a finibus porttitor, arcu arcu mollis ipsum, ut dapibus justo mauris hendrerit mauris. Sed ipsum ex, auctor a bibendum eget, scelerisque dignissim ex. Phasellus dictum a augue ac tempor. Donec in est sit amet lorem malesuada feugiat. Integer pharetra nisl diam, vel tincidunt erat porta non. Aenean mattis pretium posuere.",
+        "Suspendisse potenti. Maecenas posuere arcu eget libero euismod, convallis elementum justo porta. Morbi elementum molestie purus, a porta dui vestibulum a. Proin congue massa nibh, eu pulvinar mauris luctus vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur auctor tristique purus ac pretium. Donec porta mattis sapien, a finibus ex sollicitudin cursus. Curabitur ipsum ante, rutrum eu mauris in, dignissim posuere sem. Aliquam interdum elementum risus id fermentum.",
+        "Duis hendrerit auctor tellus venenatis suscipit. Ut in tellus mauris. Aenean tempor neque nec enim ultrices ultrices. Proin id blandit leo. Pellentesque turpis mi, convallis et vehicula sit amet, tincidunt ut ipsum. Donec ex diam, fermentum non fermentum nec, tristique sit amet nunc. Suspendisse lobortis enim justo, a convallis odio convallis id.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fermentum congue ex, congue volutpat eros fermentum eu. Donec a pretium purus. Suspendisse potenti. Morbi sed dui sem. Mauris nibh sem, convallis et mollis gravida, interdum in nunc. Integer et mattis lorem. Proin vehicula nulla nec nunc tristique suscipit. Pellentesque molestie diam nec tellus volutpat, id dictum felis pellentesque. Sed at rutrum libero. Nullam ullamcorper, nibh sit amet dapibus luctus, elit elit luctus eros, eu interdum neque tellus id libero.",
+        "Vivamus fermentum sem et condimentum commodo. Proin interdum massa dolor, ut consequat sem vehicula a. Nam aliquet pretium suscipit. Morbi efficitur lacus bibendum, accumsan quam nec, blandit lacus. Integer ac ultricies orci. Sed nec ligula ac augue rutrum varius vel eget lectus. Suspendisse ultrices varius purus vitae imperdiet. Sed elementum, nunc a ultrices iaculis, augue mi congue purus, molestie bibendum ante ipsum vel ante. Ut lacinia, mauris ac aliquet venenatis, dolor turpis vestibulum tortor, et luctus lacus nisi eu eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam scelerisque, nisl vitae vehicula vulputate, tellus metus congue leo, at condimentum felis dui gravida felis.",
+        "Maecenas at leo volutpat, accumsan arcu in, iaculis dolor. Curabitur ultrices ornare purus, id pharetra nunc viverra nec. Curabitur mattis massa metus, nec porta sapien vehicula quis. Quisque at augue sollicitudin, suscipit lectus nec, elementum neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed malesuada et erat eget aliquet. Curabitur scelerisque, enim quis tincidunt porta, elit massa imperdiet leo, eu lobortis odio risus id mauris. Integer commodo risus neque, in aliquam risus faucibus at. Nulla consequat massa ut porta laoreet. In consectetur auctor pharetra. Nulla id risus rhoncus, maximus quam et, tempor neque.",
+        "Curabitur placerat felis mauris, vitae faucibus sem cursus eget. Sed pretium malesuada bibendum. Fusce felis ligula, vulputate sed egestas vitae, varius vel neque. Morbi id nisl fringilla, aliquam nisl vitae, mollis ex. Duis pellentesque mollis arcu iaculis fermentum. Phasellus non leo varius, accumsan augue vitae, convallis diam. Nulla venenatis, dui fermentum accumsan varius, tortor nulla fermentum lacus, ac porttitor turpis justo vitae lectus. Mauris feugiat varius lacus sed suscipit. Praesent maximus nisi ac nibh lacinia feugiat. Nam et lectus in arcu dictum imperdiet sit amet sed ex.",
+        "Quisque congue egestas mauris ut tempus. Sed vestibulum faucibus rhoncus. Suspendisse nunc arcu, mattis et felis non, vestibulum ornare ex. Vivamus fermentum nunc in tristique bibendum. Praesent a tellus rutrum, consequat libero id, blandit velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque a nisl eu risus sollicitudin auctor. Ut dignissim leo vel ex lobortis aliquet. Proin vulputate urna sed arcu auctor varius.",
+        "Maecenas ut consequat lectus, sed tincidunt odio. Quisque vel luctus urna, sed sagittis leo. Phasellus fringilla vitae tellus commodo scelerisque. Duis odio leo, porttitor volutpat mauris porta, vehicula luctus purus. Aenean urna tellus, consequat quis augue ac, congue gravida ante. Phasellus viverra lacus vel dolor accumsan, eget maximus purus porttitor. Morbi viverra, sapien at euismod mattis, magna libero vehicula elit, vitae dapibus erat nibh id felis. Praesent aliquet in est id lobortis. Sed nec velit metus.",
+        "Nam interdum euismod luctus. Etiam eu neque nec nunc accumsan dignissim a quis ipsum. In vulputate leo nibh, non ultricies odio tristique ut. Sed in lectus et tellus porta placerat nec eget tortor. Morbi vestibulum tincidunt ligula ut viverra. Praesent egestas egestas magna quis lobortis. Vestibulum vel rutrum purus. Proin bibendum in magna tristique posuere. Donec auctor tortor eleifend viverra luctus. Fusce vel iaculis leo. Etiam id posuere magna. Proin velit elit, interdum sed euismod non, viverra at nisi. Sed et dolor placerat, ullamcorper felis sed, cursus quam. Nulla sodales tortor et turpis aliquet, non sagittis odio gravida. Duis magna quam, lacinia non faucibus quis, porta eu sapien. Donec ultrices ornare ultricies.",
+        "Mauris nec sollicitudin libero. Nullam lacinia sit amet orci in congue. Sed metus orci, facilisis eu felis non, molestie gravida augue. Donec ornare eros at neque mollis, non consequat arcu hendrerit. Ut tristique erat vel ultricies commodo. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam vitae cursus urna. Cras feugiat lacinia massa non scelerisque. Mauris eleifend ex id est suscipit, non rhoncus tellus vestibulum. Donec cursus mi vitae quam ullamcorper euismod. Donec suscipit turpis non metus interdum porta. Vestibulum placerat turpis pulvinar sem euismod ullamcorper. In fermentum neque quis sem dictum, at eleifend massa finibus.",
+        "Proin nec odio tortor. Donec cursus est sit amet mi interdum, ut vehicula eros pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam feugiat urna eget aliquet mattis. Ut lobortis ante eu massa convallis semper id in mi. Fusce pharetra sem ut dictum efficitur. Suspendisse dictum nulla quis nulla bibendum, vitae elementum velit lacinia. Etiam sodales enim velit, vel luctus ipsum sagittis sed. Nullam eu risus cursus, varius neque et, fermentum est. Donec rutrum nec turpis pellentesque consequat.",
+        "Curabitur nulla nulla, volutpat interdum fermentum eu, tincidunt id arcu. Sed fermentum dui vitae facilisis porta. Aenean ultricies eros in sapien tempus pharetra. Suspendisse potenti. Maecenas a dui in odio dapibus suscipit. Phasellus eget pellentesque elit, non varius quam. Proin hendrerit arcu lacus, sit amet aliquam lacus vestibulum quis. Vestibulum finibus, dolor rutrum suscipit malesuada, nisl massa convallis nisi, sit amet sollicitudin augue nulla nec nibh. Donec accumsan ante id iaculis placerat. Vivamus convallis tortor nisl, ut mollis elit aliquet quis. Integer posuere, mi sit amet dictum tempus, diam ante placerat lorem, placerat cursus dolor massa at justo. Etiam orci lacus, tempus eget aliquet eu, aliquet eget erat.",
+        "Proin mollis malesuada varius. Nullam aliquet neque eu fringilla placerat. Nunc sit amet metus sit amet tellus vehicula convallis. Donec congue eros lacus, dignissim dictum metus mollis quis. Pellentesque tincidunt ex purus, a egestas turpis tempor sit amet. Duis eget hendrerit ipsum, eu pharetra mauris. Etiam dignissim mi leo, vel faucibus leo vehicula vitae.",
+        "Cras mollis porttitor lectus vitae efficitur. Praesent a turpis a tortor pellentesque molestie ac non ipsum. Donec scelerisque augue sed arcu ultricies auctor non at lorem. Vestibulum a libero porttitor, maximus urna sed, fringilla velit. Phasellus vel viverra nisl. Quisque pretium massa vel fermentum blandit. Ut sapien arcu, tempor et volutpat id, molestie nec odio. Curabitur rhoncus magna vitae elementum dapibus.",
+        "Pellentesque fringilla fringilla ex, ac lacinia risus rutrum eget. Duis id massa vitae arcu pretium tristique. Morbi quis dui vitae eros hendrerit pellentesque et id quam. Maecenas mollis accumsan ipsum ac iaculis. Vivamus ut cursus sapien. Sed sagittis efficitur semper. Donec efficitur lacus risus. Ut aliquam, magna eu ultrices ornare, risus nisl vulputate justo, eget elementum odio sem vitae magna. Quisque vitae purus at nisl suscipit feugiat ut nec diam. Maecenas pretium aliquet diam, ut condimentum turpis elementum eu. Phasellus id mattis lorem. Aenean vitae ullamcorper nisi, ac condimentum orci.",
+        "Pellentesque id dapibus magna. Pellentesque vestibulum, ex ut porta dignissim, ligula nisl ultrices lorem, sagittis dignissim ligula sem sed lacus. Pellentesque iaculis nunc eros, a laoreet ante vehicula sit amet. Mauris sed egestas nisi. Nulla neque lectus, pellentesque eu imperdiet in, scelerisque sit amet justo. Integer nulla ante, finibus vel odio eget, gravida cursus ipsum. Morbi venenatis massa vitae mi tempor, eu cursus quam pulvinar. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam porttitor eros at dui finibus vestibulum.",
+        "Donec nec augue at ipsum rhoncus elementum. Nullam accumsan sapien nec nulla placerat, vitae interdum neque varius. Sed augue turpis, dapibus vitae maximus ac, pharetra sit amet metus. Praesent porttitor lobortis dignissim. Morbi rhoncus enim mauris, et pulvinar velit consequat in. Cras faucibus pellentesque efficitur. Praesent interdum laoreet urna, sit amet cursus est accumsan sed. Donec et feugiat dolor. Quisque euismod placerat libero id lacinia. Maecenas eget enim augue. Donec tellus mauris, efficitur id magna vel, sollicitudin fermentum diam. Morbi tincidunt, urna eu hendrerit mollis, neque nunc feugiat nibh, ac commodo est nisi eget ante. Quisque at convallis nisl. Curabitur lobortis rutrum tellus.",
+        "Curabitur laoreet dictum velit ac egestas. Ut in tincidunt felis. Phasellus tincidunt commodo iaculis. Donec fringilla sem in cursus dapibus. Vivamus ligula dolor, elementum quis nulla id, malesuada dictum arcu. Integer quis dapibus felis, a bibendum eros. Maecenas hendrerit congue facilisis. Curabitur quis erat vel massa rutrum porta. Mauris dignissim dignissim arcu, ut maximus ligula interdum suscipit. Quisque interdum ut quam aliquam porta. Phasellus ut enim lectus. Fusce est urna, blandit at mauris et, placerat sagittis nulla. Vivamus scelerisque fermentum risus, a bibendum sem suscipit sed.",
+        "In augue magna, tincidunt sed mollis malesuada, tristique ut libero. Integer mollis ornare consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam sollicitudin condimentum tortor mollis blandit. Nunc et fringilla mi, ut placerat ipsum. Pellentesque in neque tincidunt urna volutpat elementum. Pellentesque suscipit egestas rhoncus. Curabitur pretium imperdiet velit, eu vulputate tortor elementum id. Quisque semper lectus ornare, porttitor nunc et, consequat diam. Nunc eleifend vitae quam nec pretium. Maecenas ultrices nisl in felis tristique, vel egestas sem dignissim. Maecenas ante magna, commodo nec porttitor nec, pulvinar sit amet turpis. Nunc id lacinia erat, eget sollicitudin sem. Ut et ex in nisi euismod semper. Ut elementum bibendum quam, et scelerisque risus mattis sit amet. Integer egestas leo ut nibh tristique, id fermentum sapien tincidunt.",
+        "Maecenas sit amet venenatis nisi. Duis enim leo, posuere vitae fringilla a, euismod suscipit nulla. Aliquam est augue, pretium tempus ultrices ultricies, ullamcorper quis tellus. Quisque in orci ante. Mauris mattis, magna non placerat maximus, quam enim commodo libero, suscipit luctus dui eros at lectus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla imperdiet aliquam justo sed suscipit. Aenean at rutrum elit. Nullam lobortis, nunc ac blandit eleifend, est eros faucibus eros, vel pulvinar libero nisl et quam.",
+        "Nam vitae tellus tincidunt, lobortis risus a, bibendum sapien. Cras pulvinar dui erat, id accumsan sem finibus et. Vivamus urna justo, sodales tempus blandit pulvinar, consectetur ut velit. Curabitur at mi consequat lorem iaculis pulvinar nec non neque. Proin sed lobortis nibh, condimentum rhoncus risus. Nunc ac porta purus, aliquam faucibus tortor. Donec nec aliquet libero.",
+        "Aliquam accumsan nunc nec quam molestie, ac faucibus felis porttitor. Donec scelerisque neque nisl, quis blandit nibh dapibus a. Cras tincidunt eros vel lacinia tincidunt. Sed blandit urna tellus. Vestibulum in arcu euismod, pretium nisl ac, elementum lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. In vel diam sit amet risus accumsan gravida in eu tortor. Sed in volutpat ligula. Cras sem tellus, porttitor in urna a, congue luctus dolor. Ut mi sem, pellentesque quis massa quis, auctor dignissim risus. In id congue magna. Nulla vitae enim eu nisi vulputate porta. Duis sagittis ante id augue dignissim, nec vulputate lacus placerat. Duis sodales neque ac viverra pharetra. Ut bibendum pharetra nunc vitae tempus.",
+        "Pellentesque sagittis dignissim libero mollis auctor. Aliquam placerat velit in pellentesque viverra. Aliquam tempor dignissim velit eu blandit. Sed enim dolor, dapibus sed est quis, elementum scelerisque tortor. Nullam non vulputate dolor. Fusce fermentum urna mauris, in hendrerit nibh efficitur at. Praesent ex nisi, molestie sit amet imperdiet ut, tristique eu est. Morbi congue sagittis condimentum. Fusce rutrum commodo placerat.",
+        "Proin ornare dui lorem, quis tempus ex maximus suscipit. Cras gravida purus quis lorem aliquet, a vestibulum est ultrices. Nunc a dictum dolor, nec venenatis felis. Suspendisse a aliquam orci, commodo congue est. Donec euismod nulla vel eros iaculis, et rutrum risus scelerisque. Ut a augue pharetra, ultricies nunc id, maximus nulla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum tempor finibus. Morbi erat sem, faucibus sed elit non, rhoncus auctor nisl. In quam metus, rhoncus vel velit vel, dapibus tempor orci. Duis ut dui mattis, mollis nisl a, placerat massa. Sed eleifend, massa ut imperdiet tempor, ligula nisl efficitur mauris, vitae elementum dolor ipsum at felis. Curabitur vitae mattis ante. Sed et orci at velit placerat lobortis eu ac justo.",
+        "Nulla bibendum urna non augue pulvinar pellentesque. Morbi vulputate metus odio, eu consectetur libero aliquam id. Praesent non leo eu felis semper malesuada. Sed sed felis eu erat dictum pharetra. Ut a turpis lacus. Curabitur feugiat convallis mauris id feugiat. Duis viverra nibh eu neque rhoncus sollicitudin. In consequat est nisl, id sagittis orci blandit at.",
+        "Fusce tempus scelerisque ultricies. Sed in viverra magna. Phasellus et ligula et est egestas mollis. Sed congue, odio non malesuada egestas, nunc ipsum sodales urna, eget auctor sapien diam quis tellus. Phasellus id est leo. Suspendisse non tellus urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce ac nisi lobortis, lacinia ligula sit amet, vestibulum ligula.",
+        "Mauris hendrerit condimentum posuere. Duis sit amet malesuada ligula. Fusce in volutpat metus. Vestibulum ut venenatis libero. Vivamus sollicitudin urna eu venenatis dapibus. Pellentesque non elit eu est auctor congue sit amet eget tellus. Nullam at fringilla dolor. Sed sollicitudin purus ut erat congue, ac lobortis tortor ultrices. Nunc eu convallis eros, ac euismod ipsum. Maecenas ornare mauris non hendrerit sagittis. Aenean id accumsan nisi. Integer nisl neque, congue id justo efficitur, venenatis laoreet purus. Suspendisse pulvinar felis ut finibus dictum. Etiam id nisl mollis, pharetra mi id, ullamcorper dolor. Maecenas tincidunt arcu nec mollis lobortis.",
+        "In pulvinar lorem sit amet orci ornare ornare. Cras gravida neque at egestas rutrum. Vivamus ultricies pharetra erat. Morbi quis odio mauris. Etiam eget nulla id tellus iaculis lacinia ut nec velit. Cras in est massa. Vivamus sit amet orci sed sem aliquet iaculis vel ut nisl. In laoreet, quam vel tincidunt interdum, dui justo ultrices nulla, eget porttitor odio nisi at quam. Suspendisse pharetra ante ac leo auctor ultrices. Cras quis ipsum erat. Aenean varius ultricies nunc et consequat."
+    };
+    #endregion
+
+    public static string Getir(params string[] dizi)
+    {
+        Random random = new Random();
+        int r = random.Next(dizi.Length);
+
+        return dizi[r];
+    }
+
+    //public static string Tarih()
+    //{
+    //    Random random = new Random();
+    //    int r = random.Next(-20000, 20000);
+    //    DateTime dt = new DateTime();
+
+    //    return;
+    //}
+
+}
+</code></pre>
+<!-- Icerik Metin Bitis -->
+
+<!-- Yonlendirme Alani Alt Baslangic -->
+<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
+<!-- Yonlendirme Alani Alt Bitis -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/doc.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</html>
