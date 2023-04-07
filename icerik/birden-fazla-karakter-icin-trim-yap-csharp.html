@@ -8,7 +8,7 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>Tam Yol Dosya Mı, Klasör Mü - CSharp</title>
+    <title>Birden Fazla Karakter İçin Trim Yap - CSharp</title>
     <!-- Favicon Baslangic -->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Favicon Bitis -->
@@ -50,28 +50,26 @@
             <div class="col">
 
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">Tam Yol Dosya Mı, Klasör Mü - CSharp</h1>
+<h1 class="mt-2">Birden Fazla Karakter İçin Trim Yap - CSharp</h1>
 <hr /><p class="lead">-</p><hr />
 
 <div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-csharp">
 /// &lt;summary&gt;
-/// Verilen path verisinin dosya ya da klasör
-/// olup olmadığını anlamak için kullanılan kod.
-/// true: file, false: directory
+/// Eğer Trim işleminin bir string üzerinden yapılması gerekiyorsa
+/// işe yarıyor. String ifadeyi char ile değiştiriyor. Sonra Trim
+/// işlemini yapıp sonucu döndürüyor.
 /// &lt;/summary&gt;
-/// &lt;param name="s"&gt;Dosya ya da klasör yolu.&lt;/param&gt;
-/// &lt;returns&gt;bool&lt;/returns&gt;
-public static Tur DosyaMiKlasorMu(string s)
+/// &lt;param name="metin"&gt;&lt;/param&gt;
+/// &lt;param name="splitMetni"&gt;Char dönüşümü yapılacak metin.&lt;/param&gt;
+/// &lt;param name="degistirilecekKarakter"&gt;Hangi char karakterine dönüştürülecek?&lt;/param&gt;
+/// &lt;returns&gt;string&lt;/returns&gt;
+public static string CokluKarakterTrim(
+    string metin, string splitMetni)
 {
-    //http://dlgt.net/c-check-if-path-is-a-file-or-directory/
+    metin = metin.Trim(splitMetni.ToCharArray());
 
-    FileAttributes fa = File.GetAttributes(s);
-
-    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
-        return Tur.Klasor;
-    else
-        return Tur.Dosya;
+    return metin;
 }
 </code></pre>
 <!-- Icerik Metin Bitis -->

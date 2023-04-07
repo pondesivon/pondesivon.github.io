@@ -8,7 +8,7 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>Tam Yol Dosya Mı, Klasör Mü - CSharp</title>
+    <title>DataGridView Satır Sütun Ekle - CSharp</title>
     <!-- Favicon Baslangic -->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Favicon Bitis -->
@@ -50,29 +50,28 @@
             <div class="col">
 
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">Tam Yol Dosya Mı, Klasör Mü - CSharp</h1>
+<h1 class="mt-2">DataGridView Satır Sütun Ekle - CSharp</h1>
 <hr /><p class="lead">-</p><hr />
 
 <div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-csharp">
+#region SatirEkle
 /// &lt;summary&gt;
-/// Verilen path verisinin dosya ya da klasör
-/// olup olmadığını anlamak için kullanılan kod.
-/// true: file, false: directory
+/// Verilen DataGridView örneğine boş satır ekler.
 /// &lt;/summary&gt;
-/// &lt;param name="s"&gt;Dosya ya da klasör yolu.&lt;/param&gt;
-/// &lt;returns&gt;bool&lt;/returns&gt;
-public static Tur DosyaMiKlasorMu(string s)
+/// &lt;param name="dataGridView"&gt;&lt;/param&gt;
+public static void SatirEkle(DataGridView dataGridView)
 {
-    //http://dlgt.net/c-check-if-path-is-a-file-or-directory/
-
-    FileAttributes fa = File.GetAttributes(s);
-
-    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
-        return Tur.Klasor;
-    else
-        return Tur.Dosya;
+    dataGridView.Rows.Add();
 }
+#endregion
+
+#region SutunEkle
+public static void SutunEkle(DataGridView dataGridView, string sutunBasligi, int genislik = 200)
+{
+    dataGridView.Columns.Add("sutun-adi", sutunBasligi);
+}
+#endregion
 </code></pre>
 <!-- Icerik Metin Bitis -->
 

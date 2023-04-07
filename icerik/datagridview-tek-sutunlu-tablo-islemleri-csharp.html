@@ -8,7 +8,7 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>Tam Yol Dosya Mı, Klasör Mü - CSharp</title>
+    <title>DataGridView Tek Sütunlu Tablo İşlemleri - CSharp</title>
     <!-- Favicon Baslangic -->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Favicon Bitis -->
@@ -50,29 +50,44 @@
             <div class="col">
 
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">Tam Yol Dosya Mı, Klasör Mü - CSharp</h1>
+<h1 class="mt-2">DataGridView Tek Sütunlu Tablo İşlemleri - CSharp</h1>
 <hr /><p class="lead">-</p><hr />
 
 <div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-csharp">
+#region SatirEkleTekSutun
 /// &lt;summary&gt;
-/// Verilen path verisinin dosya ya da klasör
-/// olup olmadığını anlamak için kullanılan kod.
-/// true: file, false: directory
+/// DataGridView örneğine satır ekledikten sonra hücrelerine de
+/// dizide verilen verileri ekler.
 /// &lt;/summary&gt;
-/// &lt;param name="s"&gt;Dosya ya da klasör yolu.&lt;/param&gt;
-/// &lt;returns&gt;bool&lt;/returns&gt;
-public static Tur DosyaMiKlasorMu(string s)
+/// &lt;param name="dgv"&gt;&lt;/param&gt;
+/// &lt;param name="icerikler"&gt;&lt;/param&gt;
+public static void SatirEkleTekSutun(DataGridView dgv, string deger)
 {
-    //http://dlgt.net/c-check-if-path-is-a-file-or-directory/
-
-    FileAttributes fa = File.GetAttributes(s);
-
-    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
-        return Tur.Klasor;
-    else
-        return Tur.Dosya;
+    dgv.ClearSelection();
+    var index = dgv.Rows.Add();
+    dgv.Rows[index].Selected = true;
+    dgv.Rows[index].Cells[0].Value = deger;
 }
+#endregion
+
+#region CokluSatirEkleTekSutun
+/// &lt;summary&gt;
+/// Eski verileri temizledikten sonra dizideki verileri döngü
+/// ile yazdırıyor.
+/// &lt;/summary&gt;
+/// &lt;param name="dgv"&gt;İşlemin yapılacağı DataGridView nesnesi.&lt;/param&gt;
+/// &lt;param name="dizi"&gt;Eklenecek veriler.&lt;/param&gt;
+public static void CokluSatirEkleTekSutun(DataGridView dgv, string[] dizi)
+{
+    dgv.ClearSelection();
+    for (int i = 0; i &lt; dizi.Length; i++)
+    {
+        dgv.Rows.Add();
+        dgv.Rows[i].Cells[0].Value = dizi[i];
+    }
+}
+#endregion
 </code></pre>
 <!-- Icerik Metin Bitis -->
 

@@ -8,7 +8,7 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>Tam Yol Dosya Mı, Klasör Mü - CSharp</title>
+    <title>Geçersiz Yol Karakterlerini Temizle - CSharp</title>
     <!-- Favicon Baslangic -->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Favicon Bitis -->
@@ -50,28 +50,29 @@
             <div class="col">
 
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">Tam Yol Dosya Mı, Klasör Mü - CSharp</h1>
+<h1 class="mt-2">Geçersiz Yol Karakterlerini Temizle - CSharp</h1>
 <hr /><p class="lead">-</p><hr />
 
 <div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-csharp">
-/// &lt;summary&gt;
-/// Verilen path verisinin dosya ya da klasör
-/// olup olmadığını anlamak için kullanılan kod.
-/// true: file, false: directory
-/// &lt;/summary&gt;
-/// &lt;param name="s"&gt;Dosya ya da klasör yolu.&lt;/param&gt;
-/// &lt;returns&gt;bool&lt;/returns&gt;
-public static Tur DosyaMiKlasorMu(string s)
+public static string GecersizYolKarakterleriniTemizle(
+    string metin, string degistirmeKarakteri = "-")
 {
-    //http://dlgt.net/c-check-if-path-is-a-file-or-directory/
+    //Normalde "{" ve "}" karakterleri eklenebiliyor
+    //ama sorun da çıkartabiliyor. Sanırım "{GUID}"
+    //şeklindeki isimlendirmeleri algılamaya çalışınca
+    //bu sorun çıkabiliyor. Ama muhtemelen sebep bu değil.
+    //Başka bir şey var.
+    string[] dizi = { 
+        "/", "\\", ":", "?", "\"", 
+        "&lt;", "&gt;", "|", "*", ".", 
+        "\n", "\r", "\t", "{", "}"};
 
-    FileAttributes fa = File.GetAttributes(s);
-
-    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
-        return Tur.Klasor;
-    else
-        return Tur.Dosya;
+    foreach (var item in dizi)
+    {
+        metin = metin.Replace(item, degistirmeKarakteri);
+    }
+    return metin;
 }
 </code></pre>
 <!-- Icerik Metin Bitis -->

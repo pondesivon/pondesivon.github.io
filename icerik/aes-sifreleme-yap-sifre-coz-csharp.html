@@ -8,7 +8,7 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>Tam Yol Dosya Mı, Klasör Mü - CSharp</title>
+    <title>AES Şifreleme Yap - Şifre Çöz - CSharp</title>
     <!-- Favicon Baslangic -->
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Favicon Bitis -->
@@ -50,28 +50,74 @@
             <div class="col">
 
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">Tam Yol Dosya Mı, Klasör Mü - CSharp</h1>
+<h1 class="mt-2">AES Şifreleme Yap - Şifre Çöz - CSharp</h1>
 <hr /><p class="lead">-</p><hr />
 
 <div class="alert alert-info"><strong>Kod</strong></div>
 <pre><code class="language-csharp">
-/// &lt;summary&gt;
-/// Verilen path verisinin dosya ya da klasör
-/// olup olmadığını anlamak için kullanılan kod.
-/// true: file, false: directory
-/// &lt;/summary&gt;
-/// &lt;param name="s"&gt;Dosya ya da klasör yolu.&lt;/param&gt;
-/// &lt;returns&gt;bool&lt;/returns&gt;
-public static Tur DosyaMiKlasorMu(string s)
+public class AESVs
 {
-    //http://dlgt.net/c-check-if-path-is-a-file-or-directory/
+    private const string AES_IV = @"!&+QWSDF!123126+";
+    private const string aes_anahtar = @"QQsaw!257()%%ert";
 
-    FileAttributes fa = File.GetAttributes(s);
+    #region AESSifrele
+    public static string Sifrele(string metin)
+    {
+        AesCryptoServiceProvider aes_saglayici = new AesCryptoServiceProvider();
+        /*
+        Şifreleme yöntemi olarak AES şifreleme yöntemini seçiyoruz.
+         */
 
-    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
-        return Tur.Klasor;
-    else
-        return Tur.Dosya;
+        aes_saglayici.BlockSize = 128;
+        /*
+        AES bloklar halinde şifreleme yapar. 
+        Biz de bloklama yöntemini belirliyoruz.
+         */
+
+        aes_saglayici.KeySize = 128;
+        /*
+        AES şifreleme metodunda anahtar ile şifreleme yapılıyor.
+        Anahtar boyutları 128, 192 ve 256 olabilir.
+         */
+
+        aes_saglayici.IV = Encoding.UTF8.GetBytes(AES_IV);
+        //IV = Initial Vector
+        aes_saglayici.Key = Encoding.UTF8.GetBytes(aes_anahtar);
+        aes_saglayici.Mode = CipherMode.CBC;
+        aes_saglayici.Padding = PaddingMode.PKCS7;
+
+        byte[] kaynak = Encoding.Unicode.GetBytes(metin);
+        /*
+         Metni byte dizisine çeviriyoruz.
+         */
+        using (ICryptoTransform sifrele = aes_saglayici.CreateEncryptor())
+        {
+            byte[] hedef = sifrele.TransformFinalBlock(kaynak, 0, kaynak.Length);
+            return Convert.ToBase64String(hedef);
+        }
+    }
+    #endregion
+
+    #region AESSifreCoz
+    public static string SifreCoz(string sifreliMetin)
+    {
+        AesCryptoServiceProvider aes_saglayici = new AesCryptoServiceProvider();
+        aes_saglayici.BlockSize = 128;
+        aes_saglayici.KeySize = 128;
+        aes_saglayici.IV = Encoding.UTF8.GetBytes(AES_IV);
+        aes_saglayici.Key = Encoding.UTF8.GetBytes(aes_anahtar);
+        aes_saglayici.Mode = CipherMode.CBC;
+        aes_saglayici.Padding = PaddingMode.PKCS7;
+
+        byte[] kaynak = System.Convert.FromBase64String(sifreliMetin);
+
+        using (ICryptoTransform decrypt = aes_saglayici.CreateDecryptor())
+        {
+            byte[] hedef = decrypt.TransformFinalBlock(kaynak, 0, kaynak.Length);
+            return Encoding.Unicode.GetString(hedef);
+        }
+    }
+    #endregion
 }
 </code></pre>
 <!-- Icerik Metin Bitis -->
