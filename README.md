@@ -9,6 +9,6 @@ Bu repository ağırlıklı olarak programlama ile ilgili içeriklerin barındı
 - Bilgisayar
 
 ## Etiketler
-- microsoft excel (vba, formül)
+- microsoft excel vba, formül vs.
 - html, css, javascript vs.
 - csharp
