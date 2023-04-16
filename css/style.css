@@ -19,3 +19,20 @@ body    { overflow-y:scroll }
 .sosyal { font-size: 16px; text-decoration: none; }
 .tanim { font-size: 30px; }
 .cp { cursor:pointer; }
+
+code {
+  padding-top: 15px;
+  background-color: none;
+  font-size: 100%;
+  color: #e83e8c;
+  word-wrap: break-word;
+}
+
+hr.bolum {
+	border-top: 4px solid #ddd;
+}
+
+pre {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}

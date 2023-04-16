@@ -8,9 +8,12 @@
     <meta name="author" content="pondesivon" />
     <!-- Meta Bolumu Bitis -->
     
-    <title>TabControl TabPage Kapat - CSharp</title>
+    <!-- Title Alani Baslangic -->
+	<title>TabControl TabPage Kapat - CSharp</title>
+	<!-- Title Alani Bitis -->
+
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -18,10 +21,6 @@
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
     <!-- CSS Alani Bitis -->
-
-    <!-- Script Alani Ust Baslangic -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043" crossorigin="anonymous"></script>
-    <!-- Script Alani Ust Bitis -->
 </head>
 <body>
     <!-- Responsive NavBar Baslangic -->
@@ -34,6 +33,10 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
                     <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
                     <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -41,7 +44,7 @@
     <!-- Responsive NavBar Bitis -->
 
     <!-- Kapsayici Icerik Alani Baslangic -->
-    <div class="container mb-2">
+    <div class="container min-vh-100 mb-2">
 
         <!-- Icerik Ana Satir Baslangic -->
         <div class="row">
@@ -49,22 +52,19 @@
             <!-- Icerik Ana Sutun Baslangic -->
             <div class="col">
 
+<!-- ################################################## -->
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-2">TabControl TabPage Kapat - CSharp</h1>
-<hr /><p class="lead">-</p><hr />
-
+<h1 class="mt-3">TabControl TabPage Kapat - CSharp</h1><hr class="mt-1 mb-1"><p class="lead">Verilen TabControl nesnesindeki verilen TabPage nesnesini kapatmaya yarayan csharp kodu alternatifidir.</p>
+<!-- bol -->
 <div class="alert alert-info"><strong>Kod</strong></div>
-<pre><code class="language-csharp">
+<p><pre><code class="language-csharp">
 public static void TabPageKapat(TabControl tabControl, TabPage tabPage)
 {
     tabControl.Controls.Remove(tabPage);
 }
-</code></pre>
+</code></pre></p>
 <!-- Icerik Metin Bitis -->
-
-<!-- Yonlendirme Alani Alt Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Yonlendirme Alani Alt Bitis -->
+<!-- ################################################## -->
 
             </div>
             <!-- Icerik Ana Sutun Bitis -->
@@ -75,10 +75,32 @@ public static void TabPageKapat(TabControl tabControl, TabPage tabPage)
     </div>
     <!-- Kapsayici Icerik Alani Bitis -->
 
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
     <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/prism.js"></script>
-    <script src="../js/doc.js"></script>
+    <script src="../js/script.js"></script>
     <!-- Javascript Alani Alt Bitis -->
+</body>
 </html>

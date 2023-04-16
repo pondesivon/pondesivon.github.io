@@ -1,99 +1,135 @@
 <!DOCTYPE html>
 <html lang="tr">
-  <head>
+<head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Çözücü Eklentisini Aktifleştir - Microsoft Excel</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Çözücü Eklentisini Aktifleştir - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
-  </head>
-  <body>
-    <!-- Responsive navbar-->
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-          <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-          <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-    
-    <!-- Page content-->
-    <div class="container">
-      <br>
-      <div class="row">
-        <div class="col">
-          <h1>Çözücü Eklentisini Aktifleştir - Microsoft Excel</h1>
-          <hr />
-          <p class="lead">Microsoft Excel bünyesindeki çözücü eklentisinin aktifleştirme işlemini adım adım uygulayalım.</p>
-          <hr />
-          <div class="alert alert-primary">
-            <strong>Excel Solver Eklentisini Aktifleştirme İşlemi</strong>
-          </div>
-          <ul class="list-group">
-            <li class="list-group-item">
-              <p class="text-danger">
-                <strong>Excel Uygulaması Üzerindeki İşlemler</strong>
-              </p>
-              <ul>
-                <li>
-                  <strong>Dosya</strong> sekmesine tıklıyoruz.
-                </li>
-                <li> Sol köşeden <strong>Seçenekler</strong> seçeneğini bulup tıklıyoruz. <a href="doc/cozucu-eklentisini-aktiflestir-microsoft-excel-1.png">
-                    <img class="img-fluid d-block" src="doc/cozucu-eklentisini-aktiflestir-microsoft-excel-1.png" alt="" />
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="list-group-item">
-              <p class="text-danger">
-                <strong>Ayar Penceresi Üzerindeki İşlemler</strong>
-              </p>
-              <ul>
-                <li>Gelen pencerede <strong>Eklentiler</strong> seçeneğine tıklıyoruz. </li>
-                <li> Sağ alt kısımda <strong>Yönet: Excel Eklentileri</strong> ile ayarlı kısmın yanındaki <strong>Git</strong> butonuna tıklıyoruz. 
-                <img class="img-fluid d-block" src="doc/cozucu-eklentisini-aktiflestir-microsoft-excel-2.png" alt="" />
-                </li>
-                <li>
-                  <strong>Çözücü Eklentisi</strong> seçeneğinin yanındaki kutucuğu işaretliyoruz.
-                  <img class="img-fluid d-block" src="doc/cozucu-eklentisini-aktiflestir-microsoft-excel-3.png" alt="" />
-                </li>
-                <li>
-                  <strong>Tamam</strong> tuşuna basarak işlemi bitiriyoruz.
-                </li>
-              </ul>
-            </li>
-            <li class="list-group-item">
-              <p class="text-danger">
-                <strong>Veri Sekmesi Üzerindeki İşlemler</strong>
-              </p> Çok güzel, ama bir değişiklik olmadı. Nereden açılıyor bu eklenti? Çözücü eklentisini açabilmek için aşağıdaki adımları izleyin. <ul>
-                <li>Excel menüsünde <strong>Veri</strong> sekmesini seçin. </li>
-                <li> En sağ tarafta <strong>Çözücü</strong> grubununun gelmiş olması gerekiyor.
-                    <img class="img-fluid d-block" src="doc/cozucu-eklentisini-aktiflestir-microsoft-excel-4.png" alt="" />
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <hr>
-          <a href="arsiv.html" class="btn btn-success">Arşiv Sayfasına Git</a>
-          <hr>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Çözücü Eklentisini Aktifleştir - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Microsoft Excel bünyesindeki çözücü eklentisinin aktifleştirme işlemini adım adım uygulayalım.</p>
+<div class="alert alert-info"><strong>Excel Solver Eklentisini Aktifleştirme İşlemi</strong></div>
+<p class="text-danger"><strong>Excel Uygulaması Üzerindeki İşlemler</strong></p>
+<ul>
+  <li>
+    <strong>Dosya</strong> sekmesine tıklıyoruz.
+  </li>
+  <li> Sol köşeden <strong>Seçenekler</strong> seçeneğini bulup tıklıyoruz. <a href="yukleme/cozucu-eklentisini-aktiflestir-microsoft-excel-1.png">
+      <img class="img-fluid d-block" src="yukleme/cozucu-eklentisini-aktiflestir-microsoft-excel-1.png" alt="" />
+    </a>
+  </li>
+</ul>
+<hr class="bolum">
+
+<p class="text-danger"><strong>Ayar Penceresi Üzerindeki İşlemler</strong></p>
+<ul>
+  <li>Gelen pencerede <strong>Eklentiler</strong> seçeneğine tıklıyoruz. </li>
+  <li> Sağ alt kısımda <strong>Yönet: Excel Eklentileri</strong> ile ayarlı kısmın yanındaki <strong>Git</strong> butonuna tıklıyoruz. 
+  <img class="img-fluid d-block" src="yukleme/cozucu-eklentisini-aktiflestir-microsoft-excel-2.png" alt="" />
+  </li>
+  <li>
+    <strong>Çözücü Eklentisi</strong> seçeneğinin yanındaki kutucuğu işaretliyoruz.
+    <img class="img-fluid d-block" src="yukleme/cozucu-eklentisini-aktiflestir-microsoft-excel-3.png" alt="" />
+  </li>
+  <li>
+    <strong>Tamam</strong> tuşuna basarak işlemi bitiriyoruz.
+  </li>
+</ul>
+
+<hr class="bolum">
+<p class="text-danger"><strong>Veri Sekmesi Üzerindeki İşlemler</strong></p> 
+<p>Çok güzel, ama bir değişiklik olmadı. Nereden açılıyor bu eklenti? Çözücü eklentisini açabilmek için aşağıdaki adımları izleyin.</p>
+<ul>
+  <li>Excel menüsünde <strong>Veri</strong> sekmesini seçin. </li>
+  <li> En sağ tarafta <strong>Çözücü</strong> grubununun gelmiş olması gerekiyor.
+      <img class="img-fluid d-block" src="yukleme/cozucu-eklentisini-aktiflestir-microsoft-excel-4.png" alt="" />
+  </li>
+</ul>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
         </div>
-      </div>
+        <!-- Icerik Ana Satir Bitis -->
+
     </div>
-    <!-- JS-->
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/prism.js"></script>
-	  </body>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
 </html>

@@ -1,74 +1,125 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Boş Hücreleri Tespit Et – Microsoft Excel</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Boş Hücreleri Tespit Et - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body>
-    <!-- Responsive navbar-->
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Responsive NavBar Bitis -->
 
-    <!-- Page content-->
-    <div class="container">
-       <br>
-       <div class="row">
-        <div class="col">                
-			<h1>Boş Hücreleri Tespit Et – Microsoft Excel</h1>
-			<hr /><p class="lead">Excelde boş hücrelerle ilgili işlemler yapmak istiyorsanız makroda bulunan <code>SpecialCells</code> metodundaki <code>xlTypeBlanks</code> özelliğinden faydalanarak kodlama yapabilirsiniz. Kullanımını basit bir örnekle vermeye çalışalım.</p><hr />
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
 
-<div class="alert alert-primary"><strong>Kod</strong></div>
-<pre><code class="language-vb">
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Boş Hücreleri Tespit Et - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Excelde boş hücrelerle ilgili işlemler yapmak istiyorsanız makroda bulunan <code>SpecialCells</code> metodundaki <code>xlTypeBlanks</code> özelliğinden faydalanarak kodlama yapabilirsiniz. Kullanımını basit bir örnekle vermeye çalışalım.</p>
+<!-- bol -->
+<div class="alert alert-info"><strong>Kod</strong></div>
+<p><pre><code class="language-vb">
 Sub TablodaBosHucreleriTespitEt()
       Range("A1:E10").SpecialCells(xlCellTypeBlanks) = "BOŞ"
 End Sub
-</code></pre>
+</code></pre></p>
 
-<div class="alert alert-primary"><strong>Çalışma Mantığını Anlamak</strong></div>
+<div class="alert alert-info"><strong>Çalışma Mantığını Anlamak</strong></div>
 <p>Bu kod bir çalışıp bir çalışmayabilir. Hatta <code>Runtime error: '1004': Hiçbir hücre bulunamadı.</code> bu hatayla da bazen karşılaşıp bazen karşılaşmayabilirsiniz.</p>
 
 <p>Burada <code>Range</code> sınıfının <code>SpecialCells()</code> metodunun çalışma şeklini anlamak önem kazanıyor. Ben de açıkçası tam çalışma mantığını bilmiyorum ama örnekler sizin de bir şeyler anlamanıza yardımcı olacaktır.</p>
 
-<div class="alert alert-primary"><strong>Senaryolar</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">Eğer alan olarak doğrudan tablo tabanlı bir veri grubu verirseniz kod çalışır ve boş hücreleri tespit eder.</li>
-	<li class="list-group-item">Diyelim ki yeni bir çalışma sayfası açtınız ve sayfa boş olmasına rağmen direkt olarak VBA penceresini açtınız, kodu eklediniz ve çalıştırmayı denediniz. O zaman "Hiçbir hücre bulunamadı." hatası almanız muhtemel. Çünkü eğer verilen alanda bir tablo altyapısı yoksa, excel çalışma sayfasında üzerinde işlem yapılmış en sağdaki ve en alttaki hücreyi referans alıyor ve buna göre bir şeyler yapmaya çalışıyor. Gel gelelim üzerinde işlem yapılmış bir hücre de yok. O yüzden de hata veriyor.
+<div class="alert alert-info"><strong>Senaryolar</strong></div>
+<p>Eğer alan olarak doğrudan tablo tabanlı bir veri grubu verirseniz kod çalışır ve boş hücreleri tespit eder.</p>
 
-Aslında bu hata mantıksız bir hata değil, işin bir de şu yönü var: Sınırın olmadığı durumda bu kodun çalışması demek, en büyük tablo olan sayfanın komple işlem görmesi demek. Bu da gereksiz vakit kaybı, gereksiz kaynak kaybı vs.</li>
-	<li class="list-group-item">Diyelim ki boş bir çalışma sayfası açtınız, en sağ ve en alt hücre olan <code>E10</code> hücresi üzerinde işlem yaptınız, sonra da bu kodu <code>A1:E10</code> veya daha dar bir aralıkta çalıştırdınız. O zaman kod çalışır. Gel gelelim daha geniş bir aralık verirseniz yine <code>A1:E10</code> aralığı için işlem yapar. Alanı genişletmek için en sağdaki ve en alttaki hücreyi güncellemeniz, yani başka bir hücrede işlem yapmanız gerekiyor. Örneğin <code>Z20</code> hücresi içine yazı yazdık ve sildik. Artık bu kod (kodu da uygun şekilde güncellediğinizde) <code>A1:Z20</code> aralığında çalışacak.</li>
-	<li class="list-group-item">Eğer çalışma kitabını kapatıp yeniden açarsanız ve tablo tipi bir veriniz yoksa, yine hata verebilir, bu yüzden de en sağdaki ve en alttaki hücreyi belirleme işlemi yapmak durumunda kalabilirsiniz.</li>
-</ul>			
+<hr class="bolum">
 
-			<!-- Alt Yonlendirme Bolumu Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Alt Yonlendirme Bolumu Bitis -->
-  </div>
-</div>
-</div>
+<p>Diyelim ki yeni bir çalışma sayfası açtınız ve sayfa boş olmasına rağmen direkt olarak VBA penceresini açtınız, kodu eklediniz ve çalıştırmayı denediniz. O zaman "Hiçbir hücre bulunamadı." hatası almanız muhtemel. Çünkü eğer verilen alanda bir tablo altyapısı yoksa, excel çalışma sayfasında üzerinde işlem yapılmış en sağdaki ve en alttaki hücreyi referans alıyor ve buna göre bir şeyler yapmaya çalışıyor. Gel gelelim üzerinde işlem yapılmış bir hücre de yok. O yüzden de hata veriyor.
 
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
+Aslında bu hata mantıksız bir hata değil, işin bir de şu yönü var: Sınırın olmadığı durumda bu kodun çalışması demek, en büyük tablo olan sayfanın komple işlem görmesi demek. Bu da gereksiz vakit kaybı, gereksiz kaynak kaybı vs.</p>
+
+<hr class="bolum">
+
+<p>Diyelim ki boş bir çalışma sayfası açtınız, en sağ ve en alt hücre olan <code>E10</code> hücresi üzerinde işlem yaptınız, sonra da bu kodu <code>A1:E10</code> veya daha dar bir aralıkta çalıştırdınız. O zaman kod çalışır. Gel gelelim daha geniş bir aralık verirseniz yine <code>A1:E10</code> aralığı için işlem yapar. Alanı genişletmek için en sağdaki ve en alttaki hücreyi güncellemeniz, yani başka bir hücrede işlem yapmanız gerekiyor. Örneğin <code>Z20</code> hücresi içine yazı yazdık ve sildik. Artık bu kod (kodu da uygun şekilde güncellediğinizde) <code>A1:Z20</code> aralığında çalışacak.</p>
+
+<p>Eğer çalışma kitabını kapatıp yeniden açarsanız ve tablo tipi bir veriniz yoksa, yine hata verebilir, bu yüzden de en sağdaki ve en alttaki hücreyi belirleme işlemi yapmak durumunda kalabilirsiniz.</p>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
 </body>
 </html>

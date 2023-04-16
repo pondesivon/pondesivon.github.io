@@ -1,104 +1,150 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Bugünün Tarihinin Yılın Kaçıncı Günü Ve Haftası Olduğunu Bul - Microsoft Excel</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Bugünün Tarihinin Yılın Kaçıncı Günü Ve Haftası Olduğunu Bul - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body>
-    <!-- Responsive navbar-->
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Responsive NavBar Bitis -->
 
-    <!-- Page content-->
-    <div class="container">
-       <br>
-       <div class="row">
-        <div class="col">
-           <h1>Bugünün Tarihinin Yılın Kaçıncı Günü Ve Haftası Olduğunu Bul - Microsoft Excel</h1>
-           <hr /><p class="lead">Bugünün tarihinin yılın kaçıncı gününe ve haftasına denk geldiğini bulan formüller aşağıda verilmiştir.
-</p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Bugünün Tarihinin Yılın Kaçıncı Günü Ve Haftası Olduğunu Bul - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Bugünün tarihinin yılın kaçıncı gününe ve haftasına denk geldiğini bulan formüller aşağıda verilmiştir.</p>
+<!-- bol -->
+<div class="alert alert-info"><strong>Senaryo</strong></div>
 <p><code>A1</code> hücresinde <code>BUGÜN()</code> formülü (istediğiniz bir tarih de olabilir) yazıyor olsun. Bu durumda <code>B1</code> hücresine hangi formülü yazalım ki bize kaçıncı günde olduğu sonucunu döndürsün.</p>
 
 <div class="alert alert-info"><strong>Formül</strong></div>
-<pre><code class="language-excel-formula">
+
+<p><pre><code class="language-excel-formula">
 =A1-TARİH(YIL(A1)-1;12;31)
-</code></pre>
+</code></pre></p>
 
-<pre><code class="language-excel-formula">
+<p><pre><code class="language-excel-formula">
 =HAFTANINGÜNÜ(BUGÜN();2)
-</code></pre>
-
+</code></pre></p>
 <div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Formülün Çalışma Biçimi</strong></p>
-<pre><code class="language-plain-text">
+
+<p class="text-danger"><strong>Formülün Çalışma Biçimi</strong></p>
+<p><pre><code class="language-plain-text">
 =BUGÜN() [06.01.2017]   >>> A1 Hücresi >>> 42741
 =TARİH(YIL(A1)-1;12;31) >>> B1 Hücresi >>> 42735
 --------------------------------------------------
 FARK:                                  >>>     6   
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Sonuç nasıl doğru çıkıyor?</strong></p>
-        <p><code>TARİH(YIL(A1)-1;12;31)</code> formülü bir yıl öncesinin son gününü veriyor. Sonuç nasıl doğru çıkıyor?</p>
-        <p>Adım adım anlatıyorum.</p>
+</code></pre></p>
 
+<hr class="bolum">
+
+<p class="text-danger"><strong>Sonuç nasıl doğru çıkıyor?</strong></p>
+<p><code>TARİH(YIL(A1)-1;12;31)</code> formülü bir yıl öncesinin son gününü veriyor. Sonuç nasıl doğru çıkıyor?</p>
+<p>Adım adım anlatıyorum.</p>
 <ol>
-<li>Şimdi iki sayıyı çıkaracaksınız ama sonuç yine ilk sayının kendisi olacak. Nasıl yapılabilir? Sayıyı sıfırdan çıkararak yapabiliriz, değil mi? Mesela <code>6 – 0 = 6</code> örneğinde olduğu gibi.</li>
-<li>Gelelim ikinci bilgiye: Bu tarih dediğimiz şeyler toplanıp çıkarılırken tarih sayılarıyla işlem yapılıyor. Buna da yukarıda örnek vermiştik.</li>
-<li>Şimdi bu tarihleri bir sayı doğrusu üzerindeymiş gibi düşünelim. Eğer biz önceki yılın son gününü yeni yılın sıfırıncı günü gibi kabul edersek <code>tarih sayısı – 0 = tarih sayısı</code> bilgisine, yani yılın kaçıncı günü olduğu bilgisine ulaşır mıyız? Evet.
+    <li>Şimdi iki sayıyı çıkaracaksınız ama sonuç yine ilk sayının kendisi olacak. Nasıl yapılabilir? Sayıyı sıfırdan çıkararak yapabiliriz, değil mi? Mesela <code>6 – 0 = 6</code> örneğinde olduğu gibi.</li>
+    <li>Gelelim ikinci bilgiye: Bu tarih dediğimiz şeyler toplanıp çıkarılırken tarih sayılarıyla işlem yapılıyor. Buna da yukarıda örnek vermiştik.</li>
+    <li>Şimdi bu tarihleri bir sayı doğrusu üzerindeymiş gibi düşünelim. Eğer biz önceki yılın son gününü yeni yılın sıfırıncı günü gibi kabul edersek <code>tarih sayısı – 0 = tarih sayısı</code> bilgisine, yani yılın kaçıncı günü olduğu bilgisine ulaşır mıyız? Evet.
 
-<a class="img-fluid d-block" href="doc/bugunun-tarihinin-yilin-kacinci-gunu-ve-haftasi-oldugunu-bul-microsoft-excel-1.png"><img src = "doc/bugunun-tarihinin-yilin-kacinci-gunu-ve-haftasi-oldugunu-bul-microsoft-excel-1.png" alt="" /></a>
+    <a class="img-fluid d-block" href="yukleme/bugunun-tarihinin-yilin-kacinci-gunu-ve-haftasi-oldugunu-bul-microsoft-excel-1.png"><img src = "yukleme/bugunun-tarihinin-yilin-kacinci-gunu-ve-haftasi-oldugunu-bul-microsoft-excel-1.png" alt="" /></a>
 </li>
 
-<li>Ayrıca bu formülün başka bir güzelliği de şu: <strong>"Artık yıl"ları da hesaba katıyor olması</strong>. Bu açıdan da oldukça başarılı bir formül.</li>
+    <li>Ayrıca bu formülün başka bir güzelliği de şu: <strong>"Artık yıl"ları da hesaba katıyor olması</strong>. Bu açıdan da oldukça başarılı bir formül.</li>
 </ol>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Verilen tarih yılın kaçıncı haftasına denk geliyor?</strong></p>
-        <code>HAFTANINGÜNÜ</code> formülünde birinci parametrede tarih bilgisini isteniyor. İkinci parametrede de haftanın hangi günden başladığını soruyor. Formülü yazarken 2. parametreye geldiğinizde size seçenekleri günleri ile beraber sunuyor.
 
-<pre><code class="language-excel-formula">
+<hr class="bolum">
+
+<p class="text-danger"><strong>Verilen tarih yılın kaçıncı haftasına denk geliyor?</strong></p>
+<p><code>HAFTANINGÜNÜ</code> formülünde birinci parametrede tarih bilgisini isteniyor. İkinci parametrede de haftanın hangi günden başladığını soruyor. Formülü yazarken 2. parametreye geldiğinizde size seçenekleri günleri ile beraber sunuyor.</p>
+
+<p><pre><code class="language-excel-formula">
 =HAFTANINGÜNÜ(BUGÜN();2)
-</code></pre>
-    </li>
-</ul>
-<br>
+</code></pre></p>
+
 <div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
 <div class="list-group">
     <a href="http://www.sorucevap.com/bilisimteknolojisi/bilgisayar/excel/ders.asp?208461" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.sorucevap.com/bilisimteknolojisi/bilgisayar/excel/ders.asp?208461</a>
 </div>
-			<!-- Alt Yonlendirme Bolumu Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Alt Yonlendirme Bolumu Bitis -->
-  </div>
-</div>
-</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
 
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
 </body>
 </html>

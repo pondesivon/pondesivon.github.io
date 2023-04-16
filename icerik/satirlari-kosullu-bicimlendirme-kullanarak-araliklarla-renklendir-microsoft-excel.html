@@ -1,103 +1,151 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Satırları Koşullu Biçimlendirme Kullanarak Aralıklarla Renklendir - Microsoft Excel</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Satırları Koşullu Biçimlendirme Kullanarak Aralıklarla Renklendir - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body>
-    <!-- Responsive navbar-->
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Responsive NavBar Bitis -->
 
-    <!-- Page content-->
-    <div class="container">
-       <br>
-       <div class="row">
-        <div class="col">
-           <h1>Satırları Koşullu Biçimlendirme Kullanarak Aralıklarla Renklendir - Microsoft Excel</h1>
-           <hr /><p class="lead">Koşullu biçimlendirme ve formül kullanarak bir tablodaki satırları aralıklarla renklendirme işlemini yapar.
-</p><hr /><div class="alert alert-info"><strong>Formül</strong></div>
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Satırları Koşullu Biçimlendirme Kullanarak Aralıklarla Renklendir - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Koşullu biçimlendirme ve formül kullanarak bir tablodaki satırları aralıklarla renklendirme işlemini yapar.</p>
+<!-- bol -->
+<div class="alert alert-info"><strong>Formül</strong></div>
 <p>Koşullu biçimlendirmeyi <code>A2</code> hücresine uygulayın, sonra sadece biçimleri kopyalayacak şekilde aşağıdaki hücrelere kopyalayın.</p> 
 
-<pre><code class="language-excel-formula">
+<p><pre><code class="language-excel-formula">
 =MOD(SATIRSAY($A$2:A2);$F$1)=0
-</code></pre>
+</code></pre></p>
 
 <div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Formülün Çalışma Mantığı</strong></p>
+
+<p class="text-danger"><strong>Formülün Çalışma Mantığı</strong></p>
 <p>Biçimlendirmeyi dinamik olarak ve hızlıca değiştirebilmek için formülün bir parametresini hücreden alıyoruz. Bu parametre ile aralık miktarını istediğimiz gibi değiştirebileceğiz.</p>
 
 <p>Formülü ilk halini ilgili hücreye yazdık ve aşağı doğru kopyalamaya başladık. Formül her kopyalandığında satır sayısı yeniden kontrol ediliyor. Eğer bu satır sayısının modu sıfıra eşitse renklendirme işlemini yapıyor.</p>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Satırları Saydır</strong></p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Satırları Saydır</strong></p>
 <p>Formül aşağı doğru kopyalandıkça alan değişecek ve bu değişen alanın yeniden sayılmasını sağlayacak bir formüle ihtiyacımız var.</p>
 
-<pre><code class="language-excel-formula">
+<p><pre><code class="language-excel-formula">
 SATIRSAY($A$2:A2)
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Mod Sonucuna Göre İşlem Yap</strong></p>
+</code></pre></p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Mod Sonucuna Göre İşlem Yap</strong></p>
 <p><code>MOD</code> formülü için iki parametre gerekiyor, sayı ve bölen. Sayı parametresini <code>SATIRSAY($A$2:A2)</code> formülünden alıyoruz. Bölen parametresini ise (hızlıca değiştirebilmek için) <code>F1</code> hücresinden alıyoruz. Eğer bu parametrelere göre <code>MOD</code> formülünün sonucu sıfır çıkarsa renklendirme işlemi yapılacak.</p>
 
-<pre><code class="language-excel-formula">
+<p><pre><code class="language-excel-formula">
 MOD(SATIRSAY($A$2:A2);$F$1)
-</code></pre> 
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Koşullu Biçimlendirme İçin Formül Parametresini Gir</strong></p>
-        <p>Formülümüz aslında hazır, fakat biz bu formülü bir hücrede değil, koşullu biçimlendirmede çalıştıracağız. Koşullu biçimlendirme penceresinde formül bölümüne bu formülü eklememiz gerekiyor. Fakat koşullu biçimlendirme işlemine formül verirken de aslında bir koşul belirtiyoruz. Bu yüzden formül sonucuyla ne yapılacağını da belirtecek şekilde yazıyoruz.</p>
+</code></pre></p> 
 
-<pre><code class="language-excel-formula">
-=MOD(SATIRSAY($A$2:A2);$F$1)=0
-</code></pre>
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Sonuç</strong></p>
-        <p>Koşullu biçimlendirme ile aralığı F1 hücresinden belirleyecek şekilde renklendirme işlemini yapabiliyoruz.</p>
+<hr class="bolum">
 
-<pre><code class="language-excel-formula">
+<p class="text-danger"><strong>Koşullu Biçimlendirme İçin Formül Parametresini Gir</strong></p>
+<p>Formülümüz aslında hazır, fakat biz bu formülü bir hücrede değil, koşullu biçimlendirmede çalıştıracağız. Koşullu biçimlendirme penceresinde formül bölümüne bu formülü eklememiz gerekiyor. Fakat koşullu biçimlendirme işlemine formül verirken de aslında bir koşul belirtiyoruz. Bu yüzden formül sonucuyla ne yapılacağını da belirtecek şekilde yazıyoruz.</p>
+
+<p><pre><code class="language-excel-formula">
 =MOD(SATIRSAY($A$2:A2);$F$1)=0
-</code></pre>
-    </li>
-</ul>
-<br>
+</code></pre></p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Sonuç</strong></p>
+<p>Koşullu biçimlendirme ile aralığı F1 hücresinden belirleyecek şekilde renklendirme işlemini yapabiliyoruz.</p>
+
+<p><pre><code class="language-excel-formula">
+=MOD(SATIRSAY($A$2:A2);$F$1)=0
+</code></pre></p>
+
 <div class="alert alert-info"><strong>İndirme Bağlantısı</strong></div>
-<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="doc/satirlari-kosullu-bicimlendirme-kullanarak-araliklarla-renklendir-microsoft-excel.zip" rel="noopener">İndir</a></p>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge badge-danger text-decoration-none fw-bold" target="_blank" href="yukleme/satirlari-kosullu-bicimlendirme-kullanarak-araliklarla-renklendir-microsoft-excel.zip" rel="noopener">İndir</a></p>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
 
-			<!-- Alt Yonlendirme Bolumu Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Alt Yonlendirme Bolumu Bitis -->
-  </div>
-</div>
-</div>
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
 
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
 </body>
 </html>

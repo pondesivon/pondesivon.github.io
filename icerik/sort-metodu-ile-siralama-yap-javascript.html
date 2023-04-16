@@ -1,73 +1,97 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>sort() Metodu İle Sıralama Yap - Javascript</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>sort() Metodu İle Sıralama Yap - Javascript</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body>
-    <!-- Responsive navbar-->
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Responsive NavBar Bitis -->
 
-    <!-- Page content-->
-    <div class="container">
-       <br>
-       <div class="row">
-        <div class="col">
-           <h1>sort() Metodu İle Sıralama Yap - Javascript</h1>
-           <hr /><p class="lead">Javascript üzerindeki sort() metodunun çalışma mantığını bir senaryo üzerinden analiz eden ve sort() metodu ile sayı sıralamasının nasıl yapılabileceği ile ilgili bir alternatif gösteren koddur.
-</p><hr /><div class="alert alert-info"><strong>Senaryo</strong></div>
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
 
-<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Kelime Sıralama</strong></p>
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">sort() Metodu İle Sıralama Yap - Javascript</h1><hr class="mt-1 mb-1"><p class="lead">Javascript üzerindeki sort() metodunun çalışma mantığını bir senaryo üzerinden analiz eden ve sort() metodu ile sayı sıralamasının nasıl yapılabileceği ile ilgili bir alternatif gösteren koddur.</p>
+<!-- bol -->
+<div class="alert alert-info"><strong>Senaryo</strong></div>
+
+<p class="text-danger"><strong>Kelime Sıralama</strong></p>
 <p>Aşağıdaki kod kelimeleri sıralamaya yarayan bir javascript kodu alternatifidir.</p>
-<pre><code class="language-js">
+<p><pre><code class="language-js">
 var kelimeDizi = 
     new Array("Cemil", "Eda", "Yeşim", "Ferdi", "Zuhal", "Hasan");
 
 kelimeDizi.sort();
-</code></pre>
+</code></pre></p>
 
 <p>Kodu çalıştırdığımız zaman bize aşağıdaki sonucu döndürdü.</p>
-<pre><code class="language-js">
+<p><pre><code class="language-js">
 Array(6) [ "Cemil", "Eda", "Ferdi", "Hasan", "Yeşim", "Zuhal" ]
-</code></pre>
-<p class="text-danger f-ffd43b mb-2 pb-1 border-bottom border-danger border-3"><strong>Sayı Sıralama</strong></p>
-        <p>Sayıları sıralamak için <code>sort()</code> metodunu kullanalım ve sonucu görelim.</p>
+</code></pre></p>
 
-<pre><code class="language-js">
+<hr class="bolum">
+
+<p class="text-danger"><strong>Sayı Sıralama</strong></p>
+<p>Sayıları sıralamak için <code>sort()</code> metodunu kullanalım ve sonucu görelim.</p>
+
+<p><pre><code class="language-js">
 var sayiDizi = 
     new Array(10, 8, 25, 13, 84, 36);
 
 sayiDizi.sort();
-</code></pre>
+</code></pre></p>
 
 <p>Kodu çalıştırdığımız zaman bize aşağıdaki sonucu döndürdü.</p>
-<pre><code class="language-js">
+<p><pre><code class="language-js">
 Array(6) [ 10, 13, 25, 36, 8, 84 ]
-</code></pre>
+</code></pre></p>
 
+<hr class="bolum">
 
-<p class="text-danger mb-2 ml-1 pb-1 border-bottom border-danger border-3"><strong>Durum</strong></p>
+<p class="text-danger"><strong>Durum</strong></p>
 <p>Kelime sıralama işlemi düzgün bir şekilde çalışırken sayılar istediğimiz gibi sıralanmadı. Sayıların sıralanmasında hem doğru hem de yanlış bir şeyler var.</p>
 
 <p><strong>Sayılar doğru sıralanmış</strong>, çünkü dizilime baktığımızda tıpkı kelimelerde olduğu gibi <strong>alfabetik</strong> bir sıralama var.</p>
@@ -75,37 +99,39 @@ Array(6) [ 10, 13, 25, 36, 8, 84 ]
 <p><strong>Sayılar yanlış sıralanmış</strong>, çünkü ben alfabetik bir dizilim istemiyorum. Matematiksel değerlerine göre sıralama yapılsın istiyorum.</p>
 
 <div class="alert alert-info"><strong>Çözüm</strong></div>
-<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Durumun Analizi</strong></p>
+<p class="text-danger"><strong>Durumun Analizi</strong></p>
 <p>Bu duruma sebep olan şey Javascript'in çalışma yapısından kaynaklanıyor. Javascript’te temel sıralama alfabetik olarak yapılıyor. Bu sayı da olsa durum farketmiyor. Bu yüzden de sayılar alfabetik olarak sıralandı. Durumu daha iyi anlamak için bir kelimelerin de olduğu bir örneğe bakalım.</p>
 
 <p><strong>Öncelik Sonralık İlişkisine Göre Sıralanmış Bir Kelime Listesi</strong></p>
-<pre><code class="language-plain-text">
+<p><pre><code class="language-plain-text">
 Ali
 C
 Er
 Erdal
 Remzi
 Veli
-</code></pre>
+</code></pre></p>
 
 <p><strong>Sayıların Öncelik Sonralık İlişkisine Göre Diziliminin Mantığı</strong></p>
-<pre><code class="language-plain-text">
+<p><pre><code class="language-plain-text">
 Ali-----10   
 C-------13
 Er------25
 Erdal---36
 Remzi---8
 Veli----84
-</code></pre>
+</code></pre></p>
 
 <p>Sayılarda ilk sıralar doğru sıralanmış gibi görünse de aslında alfabetik mantığa uyduğu için öyleymiş gibi görünüyor. Örneğin 10 ile 13 karşılaştıralım. İlk sayılar aynı olduğundan dolayı bir sıkıntı yok ama ikinci sayılara bakalım: 0 ve 3. Hangisi alfabetik olarak daha önce gelir? (0 = A ve 3 = C gibi)</p>
 
 <p>Bu sebepten dolayı ilk dört sıradaki sayılar <strong>denk geldiği için</strong> sayı olarak da doğru sıralanmış gibi görünüyor. Ama işin aslı öyle değil.</p>
 
-<p class="text-danger mb-2 pb-1 border-bottom border-danger border-2"><strong>Sayı Sırala</strong></p>
+<hr class="bolum">
+
+<p class="text-danger"><strong>Sayı Sırala</strong></p>
 <p><code>sort()</code> metodunun nümerik mantıkta çalışabilmesi için sort metoduna ekleme yapmak gerekiyor. Karşılaştırma yapacak ve sort fonksiyonunu buna göre yönlendirebilecek bu fonksiyon.</p>
 
-<pre><code class="language-js">
+<p><pre><code class="language-js">
 var sayiDizi = new Array(10, 8, 25, 13, 84, 36);
 
 //Artan sıralama yap.
@@ -113,23 +139,52 @@ sayiDizi.sort(function(a,b) { return a - b; });
 
 //Azalan sıralama yap.
 sayiDizi.sort(function(a,b) { return b - a; });
-</code></pre>
+</code></pre></p>
 
 <div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
 <div class="list-group">
     <a href="https://stackoverflow.com/questions/7000851/array-sort-doesnt-sort-numbers-correctly" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://stackoverflow.com/questions/7000851/array-sort-doesnt-sort-numbers-correctly</a>
     <a href="" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://www.javascriptkit.com/javatutors/arraysort.shtml</a>
 </div>
-			<!-- Alt Yonlendirme Bolumu Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Alt Yonlendirme Bolumu Bitis -->
-  </div>
-</div>
-</div>
 
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
 </body>
 </html>

@@ -1,104 +1,143 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Kişisel veri tabanı." />
-  <meta name="author" content="pondesivon" />
-  <title>Emmet - Pondesivon</title>
-  <!-- Favicon-->
-  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../css/prism.css" rel="stylesheet" />
-  <link href="../css/style.css" rel="stylesheet" />
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Emmet - Pondesivon</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body onload="aramaKutusunaOdaklan('exampleFormControlTextarea1')">
-  <!-- Responsive navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-         <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-         <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-         <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
-       </ul>
-     </div>
-   </div>
- </nav>
- <!-- Page content-->
- <div class="container">
-  <div class="row">
-    <div class="col">
-      <p></p>
-      <h1>Emmet</h1>
-      <hr />
-      <p class="lead">Emmet HTML etiket oluşturma aracı. <a class="emmet-powered badge bg-secondary bgl" style="cursor:pointer;" onclick="emmet.require('textarea').showInfo();">Klavye Kısayolları</a> <a class="badge bg-danger bgl" href="https://github.com/sergeche/zen-coding/downloads">Kaynak</a></p>
-      <hr />
-
-      <form>
-        <div class="form-group">
-          <textarea class="form-control bg-e8e8e8" id="exampleFormControlTextarea1" rows="14"></textarea>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </form>
-      <br>
-      <div class="alert alert-info"><strong>Örnekler</strong></div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
 
-      <p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Örnek dosya altyapısı oluştur.</strong></p>
-      <pre><code class="language-html">
-        html:5>div#page>div#header>ul.navigation>li*4>a
-      </code></pre>
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
 
-      <p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>class değerli element oluştur.</strong></p>
-      <pre><code class="language-html">
-        p.liste-ogesi
-      </code></pre>
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
 
-      <p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>id değerli element oluştur.</strong></p>
-      <pre><code class="language-html">
-        span#liste
-      </code></pre>
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
 
-      <p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Liste içine bağlantı elementleri oluştur. Özellik ve değer ata.</strong></p>
-      <pre><code class="language-html">
-        ul>li*5>a[class="baglanti" href="https://www.siteadi.com/ornek-baglanti$.html"]{Örnek Bağlantı $}
-      </code></pre>
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-2">Emmet</h1><hr class="mt-1 mb-1">
+<p class="lead">Emmet HTML etiket oluşturma aracı. <a class="emmet-powered badge bg-secondary bgl" style="cursor:pointer;" onclick="emmet.require('textarea').showInfo();">Klavye Kısayolları</a> <a class="badge bg-danger bgl" href="https://github.com/sergeche/zen-coding/downloads">Kaynak</a></p>
+<!-- bol -->
+<form>
+    <div class="form-group">
+        <textarea class="form-control bg-e8e8e8" id="exampleFormControlTextarea1" rows="14"></textarea>
+    </div>
+</form>
+<br>
+<div class="alert alert-info"><strong>Örnekler</strong></div>
 
-      <p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Yorum Satırı Oluştur</strong></p>
-      <pre><code class="language-html">
-        c{Bu örnek bir yorumdur.}
-        c>span{Bu etiket yorum satırıyla birlikte oluşturuldu.}
-      </code></pre>
-      <script>
-        emmet.require('textarea').setup({
-        pretty_break: true, // enable formatted line breaks (when inserting 
-                        // between opening and closing tag) 
-        use_tab: true       // expand abbreviations by Tab key
-      });
-    </script>
+<p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Örnek dosya altyapısı oluştur.</strong></p>
+<pre><code class="language-html">
+html:5>div#page>div#header>ul.navigation>li*4>a
+</code></pre>
 
-</div>
-</div>
-</div>
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
-<script src="../js/emmet.min.js"></script>
+<p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>class değerli element oluştur.</strong></p>
+<pre><code class="language-html">
+p.liste-ogesi
+</code></pre>
 
+<p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>id değerli element oluştur.</strong></p>
+<pre><code class="language-html">
+span#liste
+</code></pre>
+
+<p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Liste içine bağlantı elementleri oluştur. Özellik ve değer ata.</strong></p>
+<pre><code class="language-html">
+ul>li*5>a[class="baglanti" href="https://www.siteadi.com/ornek-baglanti$.html"]{Örnek Bağlantı $}
+</code></pre>
+
+<p class="text-secondary mb-2 pb-1 border-bottom border-secondary border-2"><strong>Yorum Satırı Oluştur</strong></p>
+<pre><code class="language-html">
+c{Bu örnek bir yorumdur.}
+c>span{Bu etiket yorum satırıyla birlikte oluşturuldu.}
+</code></pre>
+
+
+<script src="../js/emmet.min.js" type="text/javascript"></script>
 <script>
-  emmet.require('textarea').setup({
-        pretty_break: true, // enable formatted line breaks (when inserting 
-                        // between opening and closing tag) 
-        use_tab: true       // expand abbreviations by Tab key
-      });
-    </script>
-    <script src="../js/doc.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887594848036043"
-    crossorigin="anonymous"></script>
-  </body>
-  </html>
+emmet.require('textarea').setup({
+pretty_break: true, // enable formatted line breaks (when inserting 
+        // between opening and closing tag) 
+use_tab: true       // expand abbreviations by Tab key
+});
+</script>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

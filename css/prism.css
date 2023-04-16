@@ -285,6 +285,7 @@ pre[class*="language-"].line-numbers > code {
 
 div.code-toolbar {
 	position: relative;
+	border: 1px solid #ddd;
 }
 
 div.code-toolbar > .toolbar {

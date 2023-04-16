@@ -1,94 +1,146 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <!-- Meta Bolumu Baslangic -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Kişisel veri tabanı." />
     <meta name="author" content="pondesivon" />
-    <title>Makro Facialarını Azaltmak İçin Önceden Alınabilecek Önlemler - Microsoft Excel</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Makro Facialarını Azaltmak İçin Önceden Alınabilecek Önlemler - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/prism.css" rel="stylesheet" />
     <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
 </head>
 <body>
-    <!-- Responsive navbar-->
+    <!-- Responsive NavBar Baslangic -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
-					<li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- Responsive NavBar Bitis -->
 
-    <!-- Page content-->
-    <div class="container">
-       <br>
-       <div class="row">
-        <div class="col">
-           <h1>Makro Facialarını Azaltmak İçin Önceden Alınabilecek Önlemler - Microsoft Excel</h1>
-           <hr /><p class="lead">Excel VBA malumunuz yapılan değişiklikleri geri alma konusunda kıllıkları ile meşhur ama yine de severek bağrımıza bastığımız bir şey. Ben de buna karşı “önceden” alınabilecek birkaç önlemi yazmak istedim.
-</p><hr /><div class="alert alert-info"><strong>Liste</strong></div>
-<ul class="list-group">
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Unutmayın.</strong></p>
-Excel VBA kodu çalıştırdıktan sonra eski verilere estire estire geri ulaşabilmek bir çoğumuz için hayalden ibaret olacaktır muhtemelen. Bu yüzden olası kanırtıcı duygular yaşamamak için yedek vs. almayı unutmayın.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Üşenmeyin.</strong></p>
-        Şahsen üşenmek bana bazen pahalıya patlayabiliyor. Bu yüzden de yedeğinizi alın, yedek önemli. Kopi peyst forevır yani. Kopyalanabilecek bilumum yerlerin hepsine kopyalamak, güzel şeyler bunlar.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Dosyayı açmadan önce bir kopya oluşturun.</strong></p>
-        Bunu Photoshop kullananlar da sık sık yaparlar. Resmi yüklerler ve hemen bir tane layer oluştururlar ki ana resmin içine etse bile asıl resim yine kenarda duruyor olsun. Siz de bir kopyasını alın, elinize mi yapışır!
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Verilerinizin kopyasını alın.</strong></p>
-        Bazen tüm dosyayı kopyalamanızı gerektirecek bir durum olmayabilir. Bununla birlikte üzerinde makro çalıştıracağınız verinin kritik olduğunu düşünüyorsanız ilgili verileri boş bir yere kopyalayın ve öyle çalıştırın.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Programı iyi tanıyın.</strong></p>
-        Excel'de otomatik kaydetme seçenekleri vs. mevcut. Şimdi bu seçenek duruma göre iyi de olabilir, kötü de olabilir. Bir gün hayat kurtarır ama tam hatayı yaptıktan sonra da kaydederse hiç de hoş olmaz. Tabii bunu yazma amacım kötülemek değil, bunu bilin ve ona göre çalışın demekti. Örneğin eğer bu özellik kapalıysa önemli noktalarda kayıt etmeyi unutmayın ki vakit kaybettirecek durumlar yaşanmasın.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Makroyu çalıştırmadan önce iki kere düşünün.</strong></p>
-        Kendinize bir kontrol listesi oluşturun ve bu listedeki maddelere göre kontrolünüzü yapın. Belki her kodda bunu yapmak zaman kaybı olabilir ama kritik işlerde çok işe yarar. Çünkü yanlış yazılmış kodlar bazen dosyayı kitleyebiliyor ve mecburen kapatmak durumunda kalıyorsunuz. Hem verilerinizden hem de yazdığınız koddan olmamak için iki kez düşünün, bir kez çalıştırın.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Kaydetmeden kapatın.</strong></p>
-        Şimdi bu yazacaklarımı iyi anlayın, özel bir durum çünkü.
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Makro Facialarını Azaltmak İçin Önceden Alınabilecek Önlemler - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Excel VBA malumunuz yapılan değişiklikleri geri alma konusunda kıllıkları ile meşhur ama yine de severek bağrımıza bastığımız bir şey. Ben de buna karşı “önceden” alınabilecek birkaç önlemi yazmak istedim.</p>
+<!-- bol -->
+<div class="alert alert-info"><strong>Liste</strong></div>
+
+<p class="text-danger"><strong>Unutmayın.</strong></p>
+<p>Excel VBA kodu çalıştırdıktan sonra eski verilere estire estire geri ulaşabilmek bir çoğumuz için hayalden ibaret olacaktır muhtemelen. Bu yüzden olası kanırtıcı duygular yaşamamak için yedek vs. almayı unutmayın.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Üşenmeyin.</strong></p>
+<p>Şahsen üşenmek bana bazen pahalıya patlayabiliyor. Bu yüzden de yedeğinizi alın, yedek önemli. Kopi peyst forevır yani. Kopyalanabilecek bilumum yerlerin hepsine kopyalamak, güzel şeyler bunlar.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Dosyayı açmadan önce bir kopya oluşturun.</strong></p>
+<p>Bunu Photoshop kullananlar da sık sık yaparlar. Resmi yüklerler ve hemen bir tane layer oluştururlar ki ana resmin içine etse bile asıl resim yine kenarda duruyor olsun. Siz de bir kopyasını alın, elinize mi yapışır!</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Verilerinizin kopyasını alın.</strong></p>
+<p>Bazen tüm dosyayı kopyalamanızı gerektirecek bir durum olmayabilir. Bununla birlikte üzerinde makro çalıştıracağınız verinin kritik olduğunu düşünüyorsanız ilgili verileri boş bir yere kopyalayın ve öyle çalıştırın.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Programı iyi tanıyın.</strong></p>
+<p>Excel'de otomatik kaydetme seçenekleri vs. mevcut. Şimdi bu seçenek duruma göre iyi de olabilir, kötü de olabilir. Bir gün hayat kurtarır ama tam hatayı yaptıktan sonra da kaydederse hiç de hoş olmaz. Tabii bunu yazma amacım kötülemek değil, bunu bilin ve ona göre çalışın demekti. Örneğin eğer bu özellik kapalıysa önemli noktalarda kayıt etmeyi unutmayın ki vakit kaybettirecek durumlar yaşanmasın.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Makroyu çalıştırmadan önce iki kere düşünün.</strong></p>
+<p>Kendinize bir kontrol listesi oluşturun ve bu listedeki maddelere göre kontrolünüzü yapın. Belki her kodda bunu yapmak zaman kaybı olabilir ama kritik işlerde çok işe yarar. Çünkü yanlış yazılmış kodlar bazen dosyayı kitleyebiliyor ve mecburen kapatmak durumunda kalıyorsunuz. Hem verilerinizden hem de yazdığınız koddan olmamak için iki kez düşünün, bir kez çalıştırın.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Kaydetmeden kapatın.</strong></p>
+<p>Şimdi bu yazacaklarımı iyi anlayın, özel bir durum çünkü.</p>
 <ol>
-<li>Makroyu yazdınız.</li>
-<li>Çalıştırdınız.</li>
-<li>Çok yanlış şeyler oldu.</li>
-<li>Şimdi o ellerinizi mouse ve klavyeden yavaşça çekin ve düşünün: “Eğer kaydetmeden kapatırsam ne olur?” sorusunu kendinize sorun.</li>
+    <li>Makroyu yazdınız.</li>
+    <li>Çalıştırdınız.</li>
+    <li>Çok yanlış şeyler oldu.</li>
+    <li>Şimdi o ellerinizi mouse ve klavyeden yavaşça çekin ve düşünün: “Eğer kaydetmeden kapatırsam ne olur?” sorusunu kendinize sorun.</li>
 </ol>
 
-Eğer kritik noktalarda kayıtlarınızı almışsanız, dosyayı kaydetmeden kapattığınızda ve yeniden açtığınızda makro hiç çalışmamış gibi olacak ve dosyanızın son kaydettiğiniz haline ulaşabileceksiniz. Süper bir çözüm değil elbette ama bazen çok işe yarayabiliyor.
-    </li>
-	<li class="list-group-item">
-        <p class="text-danger"><strong>Örnek verilerle ve/veya az sayıda veri ile çalışın.</strong></p>
-        Tabii en güzeli asıl veri ile çalışmak ama bu da neden olmasın ki? Asıl veriyi bulamıyorsanız ya da asıl veri ile çalışmaya cesaretiniz yetmiyorsa ilaç gibi çözümdür. Özellikle döngü vs. ile çalışırken çok faydasını görürsünüz, hem zaman kazandırır hem de sisteminizi yormaz. Değişikliklere daha fazla vakit ayırabilirsiniz.
-    </li>
-</ul>
-			<!-- Alt Yonlendirme Bolumu Baslangic -->
-<p class="pl-0 pr-0 pt-3 pb-3 mt-3 border-2 border-top border-bottom border-success"><a class="bg bg-success text-light p-2 text-decoration-none" href="../arsiv.html">Arşiv</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfalar.html">Sayfalar</a> <a class="bg bg-success text-light p-2 text-decoration-none" href="../sayfa/emmet.html">Emmet</a></p>
-<!-- Alt Yonlendirme Bolumu Bitis -->
-  </div>
-</div>
-</div>
+<p>Eğer kritik noktalarda kayıtlarınızı almışsanız, dosyayı kaydetmeden kapattığınızda ve yeniden açtığınızda makro hiç çalışmamış gibi olacak ve dosyanızın son kaydettiğiniz haline ulaşabileceksiniz. Süper bir çözüm değil elbette ama bazen çok işe yarayabiliyor.</p>
 
-<!-- JS-->
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/prism.js"></script>
+<hr class="bolum">
+
+<p class="text-danger"><strong>Örnek verilerle ve/veya az sayıda veri ile çalışın.</strong></p>
+Tabii en güzeli asıl veri ile çalışmak ama bu da neden olmasın ki? Asıl veriyi bulamıyorsanız ya da asıl veri ile çalışmaya cesaretiniz yetmiyorsa ilaç gibi çözümdür. Özellikle döngü vs. ile çalışırken çok faydasını görürsünüz, hem zaman kazandırır hem de sisteminizi yormaz. Değişikliklere daha fazla vakit ayırabilirsiniz.
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
 </body>
 </html>
