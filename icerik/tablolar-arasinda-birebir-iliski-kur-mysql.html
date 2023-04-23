@@ -13,7 +13,7 @@
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -56,10 +56,10 @@
 <!-- Icerik Metin Baslangic -->
 <h1 class="mt-3">Tablolar Arasında Birebir İlişki Kur - MySQL</h1><hr class="mt-1 mb-1"><p class="lead">Uygun iki tablo arasında MySQL komutlarını kullanarak birebir ilişki kurma işlemini bir örnek üzerinden inceleyelim.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Açıklama</strong></div>
+<div class="alert alert-dark"><strong>Açıklama</strong></div>
 <p>Aşağıdaki MySQL komutları ilk olarak <code>kisiGorev</code> adında bir veri tabanı oluşturur ve bunu kullanıma hazır hale getirir. <code>kisiBilgileri</code> ve <code>gorevBilgileri</code> adında tablolar oluşturduktan sonra bu tabloları birebir ilişki kuracak şekilde birbirine bağlar.</p>
 
-<div class="alert alert-info"><strong>Sorgu</strong></div>
+<div class="alert alert-dark"><strong>Sorgu</strong></div>
 <p><pre><code class="language-sql">
 CREATE DATABASE kisiGorev;
 USE kisiGorev;
@@ -83,7 +83,7 @@ CREATE TABLE `gorev_bilgileri`
 
     PRIMARY KEY (`g_id`),
     FOREIGN KEY(g_id) REFERENCES kisi_bilgileri(k_id)
-) ENGINE = InnoDB;</code></pre></p>
+) ENGINE = InnoDB;</code></pre></p><div class="alert alert-info"><strong>Etiketler: </strong>mysql</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

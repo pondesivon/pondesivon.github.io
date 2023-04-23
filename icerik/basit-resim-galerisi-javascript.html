@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Basit Resim Galerisi - Javascript</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Basit Resim Galerisi - Javascript</h1><hr class="mt-1 mb-1"><p class="lead">Resim galerisiyle ilgili basit bir javascript örneğidir.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p><pre><code class="language-javascript">
+var toplam = 0;
+var dizi = ["resim-0.jpg", "resim-1.jpg", "resim-2.jpg", 
+            "resim-3.jpg", "resim-4.jpg", "resim-5.jpg"];
+
+
+function ileriGeri() {
+	document.getElementById('onceki').onclick = function() {
+
+		var resim = document.getElementById("resim");
+		toplam = toplam - 1;
+
+		if(toplam &lt; 0) {
+			toplam = 0
+			resim.src = "images/" + dizi[0];		
+		} else {
+			resim.src = "images/" + dizi[toplam];
+		}
+	};
+
+	document.getElementById('sonraki').onclick = function() {
+
+		var resim = document.getElementById("resim");
+		toplam = toplam + 1;
+
+		if(toplam &gt; 5) {
+			toplam = 5
+			resim.src = "images/" + dizi[5];		
+		} else {
+			resim.src = "images/" + dizi[toplam];
+			resim.style.display = "block";
+		}
+	};
+}
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="yukleme/basit-resim-galerisi-javascript.zip" rel="noopener">İndir</a></p><div class="alert alert-info"><strong>Etiketler: </strong>javascript, javascript örnekleri</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

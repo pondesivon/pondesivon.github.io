@@ -9,11 +9,11 @@
     <!-- Meta Bolumu Bitis -->
     
     <!-- Title Alani Baslangic -->
-	<title>Tabloyu Boşalt - SQLite</title>
+	<title>Bir Sonraki Sayfayı Seç - Microsoft Excel</title>
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -54,12 +54,20 @@
 
 <!-- ################################################## -->
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-3">Tabloyu Boşalt - SQLite</h1><hr class="mt-1 mb-1"><p class="lead">SQLite veri tabanında bir tablodaki tüm içerikleri silmeye yarayan SQL sorgusudur.</p>
+<h1 class="mt-3">Bir Sonraki Sayfayı Seç - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Her çalıştırıldığında bir sonraki sayfayı seçen, eğer gelinen sayfa son sayfaysa en baştaki sayfaya geri dönen VBA kodu alternatifidir.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Sorgu</strong></div>
-<p><pre><code class="language-sql">
-DELETE FROM tabloAdi
-</code></pre></p>
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p><pre><code class="language-vb">
+Option Explicit
+
+Sub BirSonrakiSayfayiSec()
+    If ActiveSheet.Index = Worksheets.Count Then
+        Worksheets(1).Select
+    Else
+        Worksheets(ActiveSheet.Index + 1).Select
+    End If
+End Sub
+</code></pre></p><div class="alert alert-info"><strong>Etiketler: </strong>microsoft excel, microsoft excel vba, microsoft excel vba çalışma sayfası işlemleri, microsoft excel vba seçim işlemleri</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

@@ -13,7 +13,7 @@
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -56,14 +56,14 @@
 <!-- Icerik Metin Baslangic -->
 <h1 class="mt-3">Aktif Hücrenin Rengini Koşullu Biçimlendirme İle Değiştir - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Koşullu biçimlendirme ve VBA'dan yararlanarak aktif hücrenin renginin nasıl değiştirilebileceği ile ilgili alternatif bir çözüme bakalım.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Formül</strong></div>
+<div class="alert alert-dark"><strong>Formül</strong></div>
 <p>Aşağıdaki formülü Koşullu Biçimlendirme &gt; Yeni Kural &gt; Biçimlendirilecek hücreleri belirlemek için formül kullan seçeneklerini takip ettikten sonra ilgili metin kutusuna uygulayın.</p>
 
 <p><pre><code class="language-excel-formula">
 =VE(SATIR()=HÜCRE("sat");SÜTUN()=HÜCRE("süt"))
 </code></pre></p>
 
-<div class="alert alert-info"><strong>Kod</strong></div>
+<div class="alert alert-dark"><strong>Kod</strong></div>
 <p>Koşullu biçimlendirmenin uygulandığı sayfaya ekleyin.</p>
 <p><pre><code class="language-vb">
 Option Explicit
@@ -73,7 +73,7 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Excel.Range)
 End Sub
 </code></pre></p>
 
-<div class="alert alert-info"><strong>Formül (Açıklamalı)</strong></div>
+<div class="alert alert-dark"><strong>Formül (Açıklamalı)</strong></div>
 <p class="text-danger"><strong>Formülün Çalışma Mantığı</strong></p>
 <p>Formül iki şartın sağlanması durumunda çalışıyor. <code>SATIR</code> formülünden gelen sonuç seçili hücrenin satır bilgisiyle eşleşiyorsa ve <code>SÜTUN</code> formülünden gelen sonuç seçili hücrenin sütun bilgisiyle eşleşiyorsa koşullu biçimlendirme işlemi gerçekleşecek.</p>
 
@@ -108,7 +108,7 @@ SÜTUN()=HÜCRE("süt")
 
 <p><pre><code class="language-excel-formula">
 =VE(SATIR()=HÜCRE("sat");SÜTUN()=HÜCRE("süt"))
-</code></pre></p>
+</code></pre></p><div class="alert alert-info"><strong>Etiketler: </strong>microsoft excel, açıklamalı içerik, microsoft excel formül, microsoft excel koşullu biçimlendirme, microsoft excel vba</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

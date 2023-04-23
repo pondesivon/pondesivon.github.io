@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Anlık Filtreleme Yap - jQuery</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Anlık Filtreleme Yap - jQuery</h1><hr class="mt-1 mb-1"><p class="lead">Bir listede anlık filtreleme yapmaya yarayan jquery örneğidir.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Dosyalar</strong></div>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>index.html</strong></p>
+<p><pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;Filtreleme Yap - jQuery&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;!-- Filtreleme Alanı --&gt;
+	&lt;input type="text" id="filtre" placeholder="Filtrelemek için bir yazın"&gt;&lt;br&gt;
+
+	&lt;!-- Liste Alanı --&gt;
+	&lt;br&gt;&lt;div class="sayac"&gt;Toplam &lt;strong&gt;4&lt;/strong&gt; kişi gösteriliyor.&lt;/div&gt;
+	&lt;div class="container"&gt;
+		&lt;div class="liste-ogesi"&gt;Ali &lt;i&gt;(senior)&lt;/i&gt;&lt;/div&gt;
+		&lt;div class="liste-ogesi"&gt;Ahmet &lt;i&gt;(junior)&lt;/i&gt;&lt;/div&gt;
+		&lt;div class="liste-ogesi"&gt;Veli &lt;i&gt;(danisman)&lt;/i&gt;&lt;/div&gt;
+		&lt;div class="liste-ogesi"&gt;Derya &lt;i&gt;(senior)&lt;/i&gt;&lt;/div&gt;
+	&lt;/div&gt;
+
+	&lt;hr&gt;
+
+	&lt;textarea class="icerik-listesi" rows="4"&gt;&lt;/textarea&gt;&lt;br&gt;
+	&lt;input type="button" name="gonder" value="Liste Öğesi Ekle" onclick="ekle('icerik-listesi')"&gt;
+
+	&lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js</strong></p>
+<p><pre><code class="language-javascript">
+$('#filtre').keyup(function () {
+	if ($('#filtre').val().length &lt; 2) {
+		var tg = $('.liste-ogesi');
+		tg.show();
+		$(".sayac").html("Toplam &lt;strong&gt;" + tg.length + "&lt;/strong&gt; kişi gösteriliyor.");
+		return;
+	}
+	$('.liste-ogesi').hide();
+
+	var txt = $('#filtre').val();
+	$('.liste-ogesi').each(function () {
+		if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+			$(this).show();
+		}
+	});
+	var t = $('.liste-ogesi:visible');
+	$(".sayac").html("Toplam &lt;strong&gt;" + t.length + "&lt;/strong&gt; kişi gösteriliyor.");
+});
+
+function ekle(liste) {
+	var deger = document.getElementsByClassName(liste);
+	var dizi = deger[0].value.split('\n');
+	for (var i = 0; i &lt; dizi.length; i++) {
+		var parag = document.createElement("div");
+		parag.setAttribute("class", "liste-ogesi");
+
+		var metin = document.createTextNode(dizi[i]);
+		parag.appendChild(metin);
+
+		document.getElementsByClassName("container")[0].appendChild(parag);
+	}
+}
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="yukleme/anlik-filtreleme-yap-jquery.zip" rel="noopener">İndir</a></p><div class="alert alert-info"><strong>Etiketler: </strong>jquery, jquery v1.12.4, jquery listeleme işlemleri, jquery filtreleme işlemleri, jquery örnekleri</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

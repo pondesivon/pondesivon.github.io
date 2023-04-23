@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>input İle Değer Girerek Liste Oluştur - Javascript</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">input İle Değer Girerek Liste Oluştur - Javascript</h1><hr class="mt-1 mb-1"><p class="lead">input elementi üzerinden değer girip enter tuşuna bastığımızda bir sıralı liste oluşturmaya yarayan javascript kodudur.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Dosyalar</strong></div>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>index.html</strong></p>
+<p><pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="tr-TR"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;input İle Değer Girerek Liste Oluştur - Javascript&lt;/title&gt;
+	&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="content"&gt;
+		&lt;!-- Liste öğeleri bu input aracılığıyla eklenecek. --&gt;
+		Liste Öğesi Ekle&lt;br&gt;&lt;input type="text" id="veri" /&gt;
+
+		&lt;!-- Liste bu div içinde oluşturulacak. --&gt;
+		&lt;div id="alan"&gt;&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>style.css</strong></p>
+<p><pre><code class="language-css">
+#alan {
+	background-color: #50babf;
+	width:30%;
+	padding:10px;
+	margin-top:20px;
+	border:1px solid #ddd;
+	border-radius: 5px;
+}
+
+#sirali-liste {
+	background-color:lightgreen;
+	border-radius: 5px;
+}
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js</strong></p>
+<p><pre><code class="language-javascript">
+document.getElementById("veri").addEventListener(
+	'keydown', 
+	function listeOlustur(e) {
+		if (e.keyCode == 13) {
+		var veri = document.getElementById("veri");
+		
+		if(document.getElementById("sirali-liste") === null) {
+			var olElement = document.createElement("ol");
+			olElement.id = "sirali-liste";
+
+			document.getElementById("alan").appendChild(olElement);
+		}
+
+		var liElement = document.createElement("li");
+		liElement.innerHTML = veri.value;
+		document.getElementById("sirali-liste").appendChild(liElement);
+
+		veri.value = "";
+		veri.focus();
+			
+		}
+	}
+);
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js (Açıklamalı)</strong></p>
+<p><pre><code class="language-javascript">
+//--------------------------------------------------
+//"veri" id değerine sahip elemente keydown olayı 
+//ekliyoruz. Bu dosyada veri id değerine sahip 
+//element bir input ve biz input üzerindeyken enter 
+//tuşuna her bastığımızda liste öğesi eklensin ve
+//input elementine yeniden odaklanılsın isityoruz.
+//keydown olayı bize bu konuda yardımcı olacak.
+//--------------------------------------------------
+document.getElementById("veri").addEventListener(
+	'keydown', 
+	function listeOlustur(e) {
+		//--------------------------------------------------
+		//Enter tuşuna basıldığında işlem yap.
+		//--------------------------------------------------
+		if (e.keyCode == 13) {
+			var veri = document.getElementById("veri");
+			
+			//--------------------------------------------------
+			//Eğer "sirali-liste" id değerine sahip bir element
+			//yoksa işlem yap. Bir ol elementi oluştur ve id
+			//değerini bu ol elementine ata. Oluşturulan bu
+			//ol elementini "alan" id değerine sahip elemente
+			//ekle.
+			//--------------------------------------------------
+			if(document.getElementById("sirali-liste") === null) {
+				var olElement = document.createElement("ol");
+				olElement.id = "sirali-liste";
+
+				document.getElementById("alan").appendChild(olElement);
+			}
+
+			//--------------------------------------------------
+			//li elementi oluştur ve bu elemente "veri" id 
+			//değerine sahip elementten gelen value değerini
+			//ata. Son olarak bu elementi "sirali-liste" id
+			//değerine sahip elemente ekle.
+			//--------------------------------------------------
+	 		var liElement = document.createElement("li");
+			liElement.innerHTML = veri.value;
+			document.getElementById("sirali-liste").appendChild(liElement);
+
+			//--------------------------------------------------
+			//"veri" id değerine sahip input'un value 
+			//değerini sil ve bu input'a yeniden odaklan.
+			//--------------------------------------------------
+			veri.value = "";
+			veri.focus();
+		}
+	}
+);
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="yukleme/input-ile-deger-girerek-liste-olustur-javascript.zip" rel="noopener">İndir</a></p><div class="alert alert-info"><strong>Etiketler: </strong>javascript, javascript element işlemleri, javascript liste işlemleri, açıklamalı içerik</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

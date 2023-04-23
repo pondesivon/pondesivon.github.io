@@ -13,7 +13,7 @@
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -56,7 +56,7 @@
 <!-- Icerik Metin Baslangic -->
 <h1 class="mt-3">Mükerrer (Tekrar Eden) Kayıt Sil - Microsoft SQL Server</h1><hr class="mt-1 mb-1"><p class="lead">T-SQL ve iç içe sorgular kullanarak mükerrer kayıt silme işlemi yapmaya yarayan alternatif bir T-SQL sorgusu aşağıda verilmiştir.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Hazırlık</strong></div>
+<div class="alert alert-dark"><strong>Hazırlık</strong></div>
 
 <p class="text-danger"><strong>Tablo Oluştur</strong></p>
 <p>Tablo oluşturma ve veri ekleme işlemi için aşağıdaki sorguyu kullanabilirsiniz.</p>
@@ -84,7 +84,7 @@ INSERT INTO kisiler(kisi_ad) VALUES('Pelin')
 INSERT INTO kisiler(kisi_ad) VALUES('Pelin')
 </code></pre></p>
 
-<div class="alert alert-info"><strong>Sorgu</strong></div>
+<div class="alert alert-dark"><strong>Sorgu</strong></div>
 <p class="text-danger"><strong>En Küçük ID Numarasına Göre Mükerrer Kayıt Sil</strong></p>
 <p><pre><code class="language-sql">
 DELETE FROM kisiler 
@@ -106,7 +106,7 @@ SELECT * FROM kisiler
 DELETE FROM kisiler 
 WHERE NOT   kisi_id 
 IN          (SELECT MAX(kisi_id) FROM kisiler GROUP BY kisi_ad)
-</code></pre></p>
+</code></pre></p><div class="alert alert-info"><strong>Etiketler: </strong>microsoft sql server</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>XML Tablo Listele - Javascript</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">XML Tablo Listele - Javascript</h1><hr class="mt-1 mb-1"><p class="lead">Bir XML tablosunu verilen sayfa üzerinde listelemeye yarayan javascript kodu alternatifidir.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>index.html</strong></p>
+<p><pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;XML Tablo Listele - Javascript&lt;/title&gt;
+	&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button type="button" id="listele-button"&gt;XML Tablo Listele&lt;/button&gt;
+
+	&lt;!-- Xml içerikleri bu tabloda listelenecek. --&gt;
+	&lt;table id="cd-liste" border="1"&gt;&lt;/table&gt;
+
+	&lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js</strong></p>
+<p><pre><code class="language-javascript">
+document.getElementById('listele-button').addEventListener('click', XmlTabloListele);
+
+function XmlTabloListele() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+
+    //--------------------------------------------------
+    //readyState = 4
+    //İşlem tamamlandı, talep hazır anlamına geliyor.
+
+    //status = 200
+    //Sayfa bulundu, her şey tamam, sıkıntı yok anlamında.
+    //--------------------------------------------------
+    if(xhr.readyState == 4 && xhr.status == 200) {
+
+      //--------------------------------------------------
+      //cd_catalog.xml dosyasından bir
+      //responseXML sonucu alıyoruz. Bunu da
+      //xml adında bir değişkene atıyoruz.
+      //--------------------------------------------------
+      var xml = xhr.responseXML;
+
+      //--------------------------------------------------
+      //Listelemeyi neyin içinde yapacağımızı belirliyoruz.
+      //Koleksiyon gerekiyor. Dikkat edilirse bir "document"
+      //üzerinden değil, "xml" değişkeni üzerinden bir şeyler
+      //alıyoruz. Şimdi CD etiketli elementleri listeliyoruz.
+      //--------------------------------------------------
+      var cds = xml.getElementsByTagName('CD');
+
+      //--------------------------------------------------
+      //satirlar değişkeni oluşturduk ve ilk olarak XML
+      //tablosundaki başlıkları ekliyoruz.
+      //--------------------------------------------------
+      var satirlar = "&lt;tr&gt;" +
+                			"&lt;th&gt;Title&lt;/th&gt;" +
+                			"&lt;th&gt;Artist&lt;/th&gt;" +
+                			"&lt;th&gt;Country&lt;/th&gt;" +
+                			"&lt;th&gt;Company&lt;/th&gt;" +
+                			"&lt;th&gt;Price&lt;/th&gt;" +
+                			"&lt;th&gt;Year&lt;/th&gt;" +
+                		"&lt;/tr&gt;";
+
+      //--------------------------------------------------
+      //Döngü kullanarak tablodaki her satır için element
+      //grubu oluşturuyoruz ve bunu satirlar değişkenine
+      //ekletiyoruz.
+      //--------------------------------------------------
+      for (var i = 0; i &lt; cds.length; i++) {
+        var title   = cds[i].getElementsByTagName('TITLE')[0].childNodes[0].nodeValue;
+        var artist  = cds[i].getElementsByTagName('ARTIST')[0].childNodes[0].nodeValue;
+        var country = cds[i].getElementsByTagName('COUNTRY')[0].childNodes[0].nodeValue;
+        var company = cds[i].getElementsByTagName('COMPANY')[0].childNodes[0].nodeValue;
+        var price   = cds[i].getElementsByTagName('PRICE')[0].childNodes[0].nodeValue;
+        var year    = cds[i].getElementsByTagName('YEAR')[0].childNodes[0].nodeValue;
+
+        var satir = "&lt;tr&gt;" +
+                			"&lt;td&gt;"+ title +"&lt;/td&gt;" +
+                			"&lt;td&gt;"+ artist +"&lt;/td&gt;" +
+                			"&lt;td&gt;"+ country +"&lt;/td&gt;" +
+                			"&lt;td&gt;"+ company +"&lt;/td&gt;" +
+                			"&lt;td&gt;"+ price +"&lt;/td&gt;" +
+                			"&lt;td&gt;"+ year +"&lt;/td&gt;" +
+          		      "&lt;/tr&gt;";
+
+        satirlar += satir;
+      }
+
+      //--------------------------------------------------
+      //Tabloyu oluşturduk. Şimdi ilgili sayfada "cd-liste"
+      //id değerine sahip elemente bu tablo satırlarını ekliyoruz.
+      //--------------------------------------------------
+      document.getElementById('cd-liste').innerHTML += satirlar;
+    }
+  };
+
+  xhr.open('GET', 'cd_catalog.xml', true);
+  xhr.send();
+}
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>style.css</strong></p>
+<p><pre><code class="language-css">
+button {
+	padding: 10px;
+	background-color: #ddd;
+	border-color: #aaa;
+	margin-bottom: 5px;
+}
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="yukleme/xml-tablo-listele-javascript.zip" rel="noopener">İndir</a></p>
+
+<div class="alert alert-dark"><strong>Not</strong></div>
+CORS hatası almamak için bu dosyaları bir sunucu üzerinde veya localhost üzerinde çalıştırın.<div class="alert alert-info"><strong>Etiketler: </strong>javascript, javascript xml işlemleri, javascript listeleme işlemleri, açıklamalı içerik</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

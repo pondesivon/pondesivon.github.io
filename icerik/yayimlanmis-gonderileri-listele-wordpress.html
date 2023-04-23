@@ -13,7 +13,7 @@
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -56,7 +56,7 @@
 <!-- Icerik Metin Baslangic -->
 <h1 class="mt-3">Yayımlanmış Gönderileri Listele - WordPress</h1><hr class="mt-1 mb-1"><p class="lead">Bu yazıda sizlere WordPress veri tabanında publish ve post tipindeki yazılarınızı (yani yayımlanmış gönderilerinizi) listeleyen SQL sorgusunu paylaşmak istiyorum.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Sorgu</strong></div>
+<div class="alert alert-dark"><strong>Sorgu</strong></div>
 <p><pre><code class="language-sql">
 SELECT     post_title, post_status, post_date, wp_term_taxonomy.taxonomy 
 FROM       wp_posts
@@ -72,10 +72,10 @@ AND        wp_posts.post_name NOT LIKE '%autosave%'
 ORDER BY   post_title ASC;
 </code></pre></p>
 
-<div class="alert alert-info"><strong>Yararlanılan Kaynaklar</strong></div>
-<div class="list-group">
+<div class="alert alert-dark"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group mb-3">
     <a href="http://wordpress.stackexchange.com/questions/3262/total-count-of-posts-not-in-selected-categories" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">http://wordpress.stackexchange.com/questions/3262/total-count-of-posts-not-in-selected-categories</a>
-</div>
+</div><div class="alert alert-info"><strong>Etiketler: </strong>wordpress, wordpress mysql</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

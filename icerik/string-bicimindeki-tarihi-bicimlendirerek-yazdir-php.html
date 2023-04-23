@@ -9,11 +9,11 @@
     <!-- Meta Bolumu Bitis -->
     
     <!-- Title Alani Baslangic -->
-	<title>Aktif Hücrenin Etrafındaki Hücreleri Seç - Microsoft Excel</title>
+	<title>String Biçimindeki Tarihi Biçimlendirerek Yazdır - PHP</title>
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -54,65 +54,31 @@
 
 <!-- ################################################## -->
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-3">Aktif Hücrenin Etrafındaki Hücreleri Seç - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Aktif hücrenin komşu hücrelerini seçmek için kullanılabilecek VBA kodu alternatifidir.</p>
+<h1 class="mt-3">String Biçimindeki Tarihi Biçimlendirerek Yazdır - PHP</h1><hr class="mt-1 mb-1"><p class="lead">String biçimindeki tarih metnini tarih formatında biçimlendirerek yazdıran PHP kodudur.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Kod</strong></div>
-<p><pre><code class="language-vb">
-Option Explicit
-
-'--------------------------------------------------
-'Seçili hücrenin bir üstündeki hücreyi kod ile 
-'seçmeye yarar. Eğer ilk satırdaysa işlem yapmaz.
-'--------------------------------------------------
-Sub AktifHucreninBirUstundekiHucreyiSec()
-    If ActiveCell.Row &gt; 1 Then
-        ActiveCell.Offset(-1, 0).Select
-    End If
-End Sub
-
-'--------------------------------------------------
-'Seçili hücrenin bir altındaki hücreyi kod ile 
-'seçmeye yarar. Eğer en son satırdaysa 
-'işlem yapmaz.
-'--------------------------------------------------
-Sub AktifHucreninBirAltindakiHucreyiSec()
-    If ActiveCell.Row &lt; Range("A:A").Rows.Count Then
-        ActiveCell.Offset(1, 0).Select
-    End If
-End Sub
-
-'--------------------------------------------------
-'Seçili hücrenin bir solundaki hücreyi kod ile 
-'seçmeye yarar. Eğer ilk sütundaysa işlem yapmaz.
-'--------------------------------------------------
-Sub AktifHucreninBirSolundakiHucreyiSec()
-    If ActiveCell.Column &gt; 1 Then
-        ActiveCell.Offset(0, -1).Select
-    End If
-End Sub
-
-'--------------------------------------------------
-'Seçili hücrenin bir sağındaki hücreyi kod ile 
-'seçmeye yarar. Eğer en son sütundaysa 
-'işlem yapmaz.
-'--------------------------------------------------
-Sub AktifHucreninBirSagindakiHucreyiSec()
-    If ActiveCell.Column &lt; Range("1:1").Columns.Count Then
-        ActiveCell.Offset(0, 1).Select
-    End If
-End Sub
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p><pre><code class="language-php">
+&lt;?php 
+   $timestamp = strtotime('2023-04-12 18:14:13'); 
+   $tarih = date('d F Y • H:i:s', $timestamp);
+   echo $tarih;
+?&gt;
 </code></pre></p>
 
-<p><pre><code class="language-vb">
-Option Explicit
-
-Sub AktifHucreninEtrafindakiHucreleriSec()
-    ActiveCell.Offset(1, 0).Select
-    ActiveCell.Offset(-1, 0).Select
-    ActiveCell.Offset(0, 1).Select
-    ActiveCell.Offset(0, -1).Select
-End Sub
-</code></pre></p>
+<div class="alert alert-dark"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="list-group mb-3">
+	<a href="https://www.javatpoint.com/how-to-change-date-format-in-php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.javatpoint.com/how-to-change-date-format-in-php</a>
+	<a href="https://stackoverflow.com/questions/2487921/convert-a-date-format-in-php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://stackoverflow.com/questions/2487921/convert-a-date-format-in-php</a>
+	<a href="https://stackoverflow.com/questions/15920768/how-to-re-format-datetime-string-in-php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://stackoverflow.com/questions/15920768/how-to-re-format-datetime-string-in-php</a>
+	<a href="https://www.w3schools.com/php/func_date_date_format.asp" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.w3schools.com/php/func_date_date_format.asp</a>
+	<a href="https://stackoverflow.com/questions/8063057/convert-this-string-to-datetime" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://stackoverflow.com/questions/8063057/convert-this-string-to-datetime</a>
+	<a href="https://www.php.net/manual/de/datetime.createfromformat.php" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.php.net/manual/de/datetime.createfromformat.php</a>
+	<a href="https://www.geeksforgeeks.org/php-converting-string-to-date-and-datetime/" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.geeksforgeeks.org/php-converting-string-to-date-and-datetime/</a>
+	<a href="https://www.alfabesoft.com.tr/news/view/9" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.alfabesoft.com.tr/news/view/9</a>
+	<a href="https://stackoverflow.com/questions/14868876/how-to-display-php-date-in-turkish" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://stackoverflow.com/questions/14868876/how-to-display-php-date-in-turkish</a>
+	<a href="https://prototurk.com/soru/3296-yerel-zaman-damgasi-degistirme" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://prototurk.com/soru/3296-yerel-zaman-damgasi-degistirme</a>
+	<a href="https://burhantanis.com/blog_kod_dunyam/2017/08/16/phpde-turkce-tarih-yazdirma-isi" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://burhantanis.com/blog_kod_dunyam/2017/08/16/phpde-turkce-tarih-yazdirma-isi</a>
+</div><div class="alert alert-info"><strong>Etiketler: </strong>php, php tarih saat işlemleri</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

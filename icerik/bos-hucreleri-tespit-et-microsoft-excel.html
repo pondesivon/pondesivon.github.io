@@ -13,7 +13,7 @@
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
-    <link rel="icon" type="image/x-icon" href="../yonetim/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
     <!-- Favicon Bitis -->
 
     <!-- CSS Alani Baslangic -->
@@ -56,19 +56,19 @@
 <!-- Icerik Metin Baslangic -->
 <h1 class="mt-3">Boş Hücreleri Tespit Et - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Excelde boş hücrelerle ilgili işlemler yapmak istiyorsanız makroda bulunan <code>SpecialCells</code> metodundaki <code>xlTypeBlanks</code> özelliğinden faydalanarak kodlama yapabilirsiniz. Kullanımını basit bir örnekle vermeye çalışalım.</p>
 <!-- bol -->
-<div class="alert alert-info"><strong>Kod</strong></div>
+<div class="alert alert-dark"><strong>Kod</strong></div>
 <p><pre><code class="language-vb">
 Sub TablodaBosHucreleriTespitEt()
       Range("A1:E10").SpecialCells(xlCellTypeBlanks) = "BOŞ"
 End Sub
 </code></pre></p>
 
-<div class="alert alert-info"><strong>Çalışma Mantığını Anlamak</strong></div>
+<div class="alert alert-dark"><strong>Çalışma Mantığını Anlamak</strong></div>
 <p>Bu kod bir çalışıp bir çalışmayabilir. Hatta <code>Runtime error: '1004': Hiçbir hücre bulunamadı.</code> bu hatayla da bazen karşılaşıp bazen karşılaşmayabilirsiniz.</p>
 
 <p>Burada <code>Range</code> sınıfının <code>SpecialCells()</code> metodunun çalışma şeklini anlamak önem kazanıyor. Ben de açıkçası tam çalışma mantığını bilmiyorum ama örnekler sizin de bir şeyler anlamanıza yardımcı olacaktır.</p>
 
-<div class="alert alert-info"><strong>Senaryolar</strong></div>
+<div class="alert alert-dark"><strong>Senaryolar</strong></div>
 <p>Eğer alan olarak doğrudan tablo tabanlı bir veri grubu verirseniz kod çalışır ve boş hücreleri tespit eder.</p>
 
 <hr class="bolum">
@@ -81,7 +81,7 @@ Aslında bu hata mantıksız bir hata değil, işin bir de şu yönü var: Sın�
 
 <p>Diyelim ki boş bir çalışma sayfası açtınız, en sağ ve en alt hücre olan <code>E10</code> hücresi üzerinde işlem yaptınız, sonra da bu kodu <code>A1:E10</code> veya daha dar bir aralıkta çalıştırdınız. O zaman kod çalışır. Gel gelelim daha geniş bir aralık verirseniz yine <code>A1:E10</code> aralığı için işlem yapar. Alanı genişletmek için en sağdaki ve en alttaki hücreyi güncellemeniz, yani başka bir hücrede işlem yapmanız gerekiyor. Örneğin <code>Z20</code> hücresi içine yazı yazdık ve sildik. Artık bu kod (kodu da uygun şekilde güncellediğinizde) <code>A1:Z20</code> aralığında çalışacak.</p>
 
-<p>Eğer çalışma kitabını kapatıp yeniden açarsanız ve tablo tipi bir veriniz yoksa, yine hata verebilir, bu yüzden de en sağdaki ve en alttaki hücreyi belirleme işlemi yapmak durumunda kalabilirsiniz.</p>
+<p>Eğer çalışma kitabını kapatıp yeniden açarsanız ve tablo tipi bir veriniz yoksa, yine hata verebilir, bu yüzden de en sağdaki ve en alttaki hücreyi belirleme işlemi yapmak durumunda kalabilirsiniz.</p><div class="alert alert-info"><strong>Etiketler: </strong>microsoft excel, microsoft excel vba</div>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

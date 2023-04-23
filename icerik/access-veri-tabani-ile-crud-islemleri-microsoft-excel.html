@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Access Veri Tabanı İle CRUD İşlemleri - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Access Veri Tabanı İle CRUD İşlemleri - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Bir UserForm üzerinden Access veri tabanındaki tablo üzerinde CRUD (Create, Read, Update, Delete) işlemlerinin ve süzme işleminin yapılmasını sağlayan VBA projesidir.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Ekran Görüntüsü</strong></div>
+<p><a href="yukleme/access-veri-tabani-ile-crud-islemleri-microsoft-excel-1.png"><img class="img-fluid d-block" src="yukleme/access-veri-tabani-ile-crud-islemleri-microsoft-excel-1.png" alt="Access Veri Tabanı İle CRUD İşlemleri - Microsoft Excel 1"></a></p>
+
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>crud (Module) Kodları</strong></p>
+<p><pre><code class="language-vb">
+Option Explicit
+
+'--------------------------------------------------
+'Listele
+'--------------------------------------------------
+Sub Listele()
+    Dim baglanti   As ADODB.Connection
+    Dim kayit_seti As ADODB.Recordset
+    Dim sorgu      As String
+    
+    Set baglanti = New ADODB.Connection
+    Set kayit_seti = New ADODB.Recordset
+    
+    baglanti.Open "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+                  "Data Source=" & ThisWorkbook.Path & "\veri.accdb"
+    
+    sorgu = "SELECT * FROM kisiler"
+    Set kayit_seti = baglanti.Execute(sorgu)
+    
+    With AnaUserForm.icerikListBox
+        .ColumnCount = kayit_seti.Fields.Count
+        .ColumnWidths = "30;50;50;70"
+        .RowSource = ""
+            .Column = kayit_seti.GetRows(kayit_seti.RecordCount)
+    End With
+    
+    Set kayit_seti = Nothing
+    Set baglanti = Nothing
+End Sub
+
+'--------------------------------------------------
+'Süz
+'--------------------------------------------------
+Sub Suz()
+    Dim baglanti    As ADODB.Connection
+    Dim kayit_seti  As ADODB.Recordset
+    Dim sorgu       As String
+    Dim aranan      As String
+
+    Set baglanti = New ADODB.Connection
+    Set kayit_seti = New ADODB.Recordset
+    
+    baglanti.Open "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+                  "Data Source=" & ThisWorkbook.Path & "\veri.accdb"
+
+    aranan = "'%" & AnaUserForm.ismeGoreSuzTextBox.Text & "%'"
+    
+    sorgu = "SELECT * FROM kisiler WHERE ad LIKE " & aranan
+    Set kayit_seti = baglanti.Execute(sorgu)
+
+    With AnaUserForm.icerikListBox
+        .ColumnCount = kayit_seti.Fields.Count
+        .ColumnWidths = "30;50;50;70"
+        .RowSource = ""
+        .Column = kayit_seti.GetRows(kayit_seti.RecordCount)
+    End With
+    
+    Set kayit_seti = Nothing
+    Set baglanti = Nothing
+    
+End Sub
+
+'--------------------------------------------------
+'Ekle
+'--------------------------------------------------
+Sub Ekle()
+    Dim baglanti   As ADODB.Connection
+    Dim kayit_seti As ADODB.Recordset
+    Dim sorgu      As String
+    Dim ad         As String
+    Dim soyad      As String
+    Dim eposta     As String
+
+    Set baglanti = New ADODB.Connection
+    Set kayit_seti = New ADODB.Recordset
+    
+    baglanti.Open "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+                  "Data Source=" & ThisWorkbook.Path & "\veri.accdb"
+    
+    ad = "'" & AnaUserForm.adTextBox.Text & "'"
+    soyad = "'" & AnaUserForm.soyadTextBox.Text & "'"
+    eposta = "'" & AnaUserForm.ePostaTextBox.Text & "'"
+    
+    sorgu = "INSERT INTO kisiler(ad, soyad, eposta) VALUES(" & ad & ", " & soyad & ", " & eposta & ")"
+    Set kayit_seti = baglanti.Execute(sorgu)
+End Sub
+
+'--------------------------------------------------
+'Güncelle
+'--------------------------------------------------
+Sub Guncelle()
+    Dim baglanti     As ADODB.Connection
+    Dim kayit_seti   As ADODB.Recordset
+    Dim sorgu        As String
+    Dim ad_giris     As String
+    Dim soyad_giris  As String
+    Dim eposta_giris As String
+    Dim id_degeri    As String
+    Dim i            As Integer
+    
+    Set baglanti = New ADODB.Connection
+    Set kayit_seti = New ADODB.Recordset
+    
+    baglanti.Open "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+                  "Data Source=" & ThisWorkbook.Path & "\veri.accdb"
+    
+    With AnaUserForm
+        ad_giris = "ad='" & .adTextBox.Text & "', "
+        soyad_giris = "soyad='" & .soyadTextBox.Text & "', "
+        eposta_giris = "eposta='" & .ePostaTextBox.Text & "'"
+    
+        For i = 0 To .icerikListBox.ListCount - 1
+            If .icerikListBox.Selected(i) = True Then
+                sorgu = "UPDATE kisiler SET " & ad_giris & soyad_giris & eposta_giris & _
+                        " WHERE id=" & .icerikListBox.List(i, 0)
+                Set kayit_seti = baglanti.Execute(sorgu)
+            End If
+        Next
+    End With
+    
+    Set kayit_seti = Nothing
+    Set baglanti = Nothing
+End Sub
+
+'--------------------------------------------------
+'Sil
+'--------------------------------------------------
+Sub Sil()
+    Dim baglanti   As ADODB.Connection
+    Dim kayit_seti As ADODB.Recordset
+    Dim sorgu      As String
+    Dim id_degeri  As String
+    Dim i          As Integer
+    
+    Set baglanti = New ADODB.Connection
+    Set kayit_seti = New ADODB.Recordset
+    
+    baglanti.Open "Provider=Microsoft.ACE.OLEDB.12.0; " & _
+                  "Data Source=" & ThisWorkbook.Path & "\veri.accdb"
+    
+    With AnaUserForm
+        For i = 0 To .icerikListBox.ListCount - 1
+            If .icerikListBox.Selected(i) = True Then
+                sorgu = "DELETE FROM kisiler WHERE id=" & .icerikListBox.List(i, 0)
+                Set kayit_seti = baglanti.Execute(sorgu)
+            End If
+        Next
+    End With
+    
+    Set kayit_seti = Nothing
+    Set baglanti = Nothing
+End Sub
+
+Sub Ayarlar()
+    AnaUserForm.Caption = "Access Veri Tabanı - ListBox İle CRUD İşlemleri"
+End Sub
+
+Sub FormAc()
+    AnaUserForm.Show
+End Sub
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>AnaUserForm (UserForm) Kodları</strong></p>
+<p><pre><code class="language-vb">
+Option Explicit
+
+Private Sub ekleCommandButton_Click()
+    Ekle
+    Listele
+End Sub
+
+Private Sub guncelleCommandButton_Click()
+    Guncelle
+    Listele
+End Sub
+
+Private Sub silCommandButton_Click()
+    Sil
+    Listele
+End Sub
+
+Private Sub listeleCommandButton_Click()
+    Listele
+End Sub
+
+Private Sub ismeGoreSuzTextBox_Change()
+    Suz
+End Sub
+
+Private Sub UserForm_Initialize()
+    Ayarlar
+End Sub
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz: <a class="badge bg-danger text-decoration-none fw-bold" target="_blank" href="yukleme/access-veri-tabani-ile-crud-islemleri-microsoft-excel.zip" rel="noopener">İndir</a></p><div class="alert alert-info"><strong>Etiketler: </strong>microsoft excel, microsoft excel vba, microsoft excel vba userform işlemleri, microsoft excel vba veri tabanı işlemleri, microsoft excel vba access veri tabanı işlemleri, microsoft excel vba crud işlemleri</div>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>
