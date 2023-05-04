@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>fadeIn Metodu Kullanımı - jQuery</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">fadeIn Metodu Kullanımı - jQuery</h1><hr class="mt-1 mb-1"><p class="lead">fadeIn metodu kullanımı ile ilgili bir örnek içeren jquery yazısıdır.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Kod</strong></div>
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>index.html</strong></p>
+<p><pre><code class="language-html">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;title&gt;fadeIn Metodu Kullanımı - jQuery&lt;/title&gt;
+	&lt;script type="text/javascript" 
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"&gt;&lt;/script&gt;	
+	&lt;script type="text/javascript" src="script.js"&gt;&lt;/script&gt;
+	&lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="content"&gt;
+		&lt;p id="yazi"&gt;Buraya Tıkla&lt;/p&gt;
+		&lt;div id="kare"&gt;
+		
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js</strong></p>
+<p><pre><code class="language-javascript">
+$("document").ready(function() {
+	$('#yazi').click(function() {
+		$('#kare').fadeIn();
+		//$('#kare').fadeIn(5000);
+		//$('#kare').fadeIn('slow');		
+	});
+});
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>script.js (Açıklamalı)</strong></p>
+<p><pre><code class="language-javascript">
+//--------------------------------------------------
+//Sayfa tamamen yüklendiğinde fonksiyon çalışsın.
+//--------------------------------------------------
+$("document").ready(function() {
+
+	//--------------------------------------------------
+	//yazi id değerine sahip elemente
+	//tıklandığında fonksiyon çalışsın.
+	//--------------------------------------------------
+	$('#yazi').click(function() {
+
+		//--------------------------------------------------
+		//"yazi" id değerine sahip elemente tıklandığında 
+		//"kare" id değerine sahip element fadeIn metodu 
+		//ile ortaya çıksın.
+		//--------------------------------------------------
+		$('#kare').fadeIn();
+		//$('#kare').fadeIn(5000);
+		//$('#kare').fadeIn('slow');		
+	});
+});
+</code></pre></p>
+
+<p class="mb-2 pb-1 text-danger border-danger border-bottom border-2"><strong>style.css</strong></p>
+<p><pre><code class="language-css">
+#kare {
+	width:100px;
+	height:100px;
+	background-color:yellow;
+	border:1px solid #222;
+	
+	/*--------------------------------------------------
+	fadeIn metodunun çalıştığını görebilmek için 
+	başta elementin görünmemesini sağladık.
+	--------------------------------------------------*/
+	display:none;
+}
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="yararlanilan-kaynaklar list-group mb-3">
+	<a href="https://www.youtube.com/watch?v=KexgsUKekvk&list=PL1-boLQD9cuIJxsAj0QsAAA0nEpVt8I4_&index=3" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">https://www.youtube.com/watch?v=KexgsUKekvk&list=PL1-boLQD9cuIJxsAj0QsAAA0nEpVt8I4_&index=3</a>
+</div>
+
+<div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>jquery</span> <span class='btn btn-light bg-gri'>açıklamalı içerik</span><hr>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

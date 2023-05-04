@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Bir Doğrusal Programlama (Karışım) Probleminin Çözümü - Microsoft Excel</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="../doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../css/prism.css" rel="stylesheet" />
+    <link href="../css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+<h1 class="mt-3">Bir Doğrusal Programlama (Karışım) Probleminin Çözümü - Microsoft Excel</h1><hr class="mt-1 mb-1"><p class="lead">Karışımla ilgili bir doğrusal programlama probleminin excel solver ile çözümünü içeren bir yazıdır.</p>
+<!-- bol -->
+<div class="alert alert-dark"><strong>Problem</strong></div>
+<p>Bir işletme aşağıdaki özellikleri taşıyan ürün üretmektedir.</p>
+<table class="table table-border">
+<tbody>
+<tr>
+<th>Özellik</th>
+<th>Eşitlik</th>
+<th>Değer</th>
+</tr>
+<tr>
+<td>Yanma Noktası</td>
+<td>&gt;=</td>
+<td>2800</td>
+</tr>
+<tr>
+<td>Özgül Ağırlığı</td>
+<td>&gt;=</td>
+<td>1</td>
+</tr>
+<tr>
+<td>alfa Muhtevası</td>
+<td>&lt;=</td>
+<td>%9 (hacim olarak)</td>
+</tr>
+<tr>
+<td>beta Muhtevası</td>
+<td>&lt;=</td>
+<td>%5 (hacim olarak)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Ürün, litresi sırası ile 16TL, 20TL ve 25TL olan A, B ve C yarı mamullerinden elde edilebilmektedir. Bu üç yarı mamulün özellikleri aşağıdaki gibidir.</p>
+<table class="table table-border">
+<tbody>
+<tr>
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+<tr>
+<td>Yanma Noktası</td>
+<td>2800</td>
+<td>2700</td>
+<td>2900</td>
+</tr>
+<tr>
+<td>Özgül Ağırlığı</td>
+<td>0,95</td>
+<td>1,20</td>
+<td>1,10</td>
+</tr>
+<tr>
+<td>alfa Muhtevası</td>
+<td>7</td>
+<td>8</td>
+<td>11</td>
+</tr>
+<tr>
+<td>beta Muhtevası</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<p>Üretici, yukarıdaki koşullara uygun olarak ürününü en düşük maliyetle üretmek istemektedir. Buna göre problemin doğrusal programlama modeli nasıl olur? Excel solver ile çözümü nasıl yapılır?</p>
+
+<div class="alert alert-dark"><strong>Çözüm</strong></div>
+<p class="text-danger"><strong>Problem İçin Doğrusal Programlama Modeli</strong></p>
+<p><pre><code class="language-plain-text">
+min Z = 16x1 + 20x2 + 25x3
+
+7x1    + 8x2   + 11x3  &lt;= 9
+4x1    + 5x2   + 3x3   &lt;= 5
+0,95x1 + 1,2x2 + 1,1x3 &gt;= 1
+280x1  + 270x2 + 290x3 &gt;= 280
+x1     + x2    + x3     = 1
+x1                     &gt;= 0
+         x2            &gt;= 0
+                 x3    &gt;= 0
+</code></pre></p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Excel Solver İçin Hazırlık Yap</strong></p>
+<p><a href="yukleme/bir-dogrusal-programlama-karisim-probleminin-cozumu-microsoft-excel-1.png"><img class="img-fluid d-block" src="yukleme/bir-dogrusal-programlama-karisim-probleminin-cozumu-microsoft-excel-1.png" alt="Bir Doğrusal Programlama (Karışım) Probleminin Çözümü - Microsoft Excel 1"></a><p>
+
+<p>Yukarıdaki resimden de görebileceğiniz gibi dosyada üç temel kısım var.</p>
+<ol>
+	<li>1. tabloda soru ile ilgili bilgileri yazıyoruz.</li>
+	<li>2. tabloda Hangi üründen ne kadar kullanılacak? sorusuna yanıt arıyoruz.
+Hemen yanındaki küçük tabloda "En küçük maliyet bizim için ne olacak? sorusuna cevap arıyoruz.</li>
+	<li>Üçüncü tabloda ise kısıtlarımızı ayarlıyoruz.</li>
+</ol>
+
+<p>Dikkat ettiyseniz sayılara hiç x1, x2 gibi değişken isimlerini karıştırmadık, sadece katsayıları girdik.</p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Kullanılan Formüller</strong></p>
+<p>Maliyeti en küçük yapan değerleri excel solver bulacak ve H2:J2 alanına yazacak. Biz de bu değerlerle A, B ve C yarı mamullerinin bir litresinin fiyatları ile çarpıp en düşük maliyetin ne olduğunu bulacağız.</p>
+<p><pre><code class="language-excel-formula">
+=TOPLA.ÇARPIM(H2:$J$2;H3:$J$3)
+</code></pre></p>
+
+<p>F14 hücresine yazılıp F21 hücresine kadar kopyalanan formül. Yine aynı şekilde maliyeti en küçük yapan değerleri  excel solver bulacak ve H2:J2 alanına yazacak. Bu değerlerle kısıtlara ait katsayıları çarpıyoruz ve her kısıt için değer buluyoruz.</p>
+<p><pre><code class="language-excel-formula">
+=TOPLA.ÇARPIM($H$2:$J$2;$B14:$D14)
+</code></pre></p>
+
+<hr class="bolum">
+
+<p class="text-danger"><strong>Excel Solver İçin Değerleri Tanımla</strong></p>
+<p><a href="yukleme/bir-dogrusal-programlama-karisim-probleminin-cozumu-microsoft-excel-2.png"><img class="img-fluid d-block" src="yukleme/bir-dogrusal-programlama-karisim-probleminin-cozumu-microsoft-excel-2.png" alt="Bir Doğrusal Programlama (Karışım) Probleminin Çözümü - Microsoft Excel 2"></a><p>
+
+<div class="alert alert-dark"><strong>Yararlanılan Kaynaklar</strong></div>
+<div class="yararlanilan-kaynaklar yararlanilan-kaynaklar list-group mb-3">
+	<a href="w3.balikesir.edu.tr/~ikucukkoc/dokumanlar/mixture.pdf" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary cursor-pointer">w3.balikesir.edu.tr/~ikucukkoc/dokumanlar/mixture.pdf</a>
+</div>
+
+<div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>microsoft excel</span> <span class='btn btn-light bg-gri'>microsoft excel solver işlemleri</span> <span class='btn btn-light bg-gri'>microsoft excel doğrusal programlama işlemleri</span><hr>
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="../index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/prism.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>
