@@ -1,0 +1,25 @@
+Sub ReadSheetNames(TheCompleteFilePath As String)
+ Dim cnn As New ADODB.Connection
+ Dim cat As New ADOX.Catalog
+ Dim tbl As ADOX.Table
+ 
+ cnn.Open "Provider=MSDASQL.1;Data Source=" _
+ & "Excel Files;Initial Catalog=" & TheCompleteFilePath
+ cat.ActiveConnection = cnn
+ For Each tbl In cat.Tables
+ MsgBox Left$(tbl.Name, Len(tbl.Name) - 1)
+ Next tbl 
+ Set cat = Nothing
+ cnn.Close
+ Set cnn = Nothing
+End Sub
+
+
+
+
+'---------------------------------------
+VBA - Bunu yapmanın en iyi yolu Exce2000 - ADO kullanımıdır. Bu kodu kullanarak; "Microsoft ActiveX Data Objects 2.1 Library" ve "Microsoft ADO Ext. 2.1 for DDL ve Security" de düzenleme yapabilirsiniz.
+
+
+'---------------------------------------
+0132 -- 01.08.2008
