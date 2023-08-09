@@ -9,7 +9,7 @@
     <!-- Meta Bolumu Bitis -->
     
     <!-- Title Alani Baslangic -->
-	<title>Gönderi Biçimini Otomatik Olarak Tespit Et - WordPress</title>
+	<title>Dosyadaki Sorguları Satır Satır Çalıştır - PHP</title>
 	<!-- Title Alani Bitis -->
 
     <!-- Favicon Baslangic -->
@@ -54,71 +54,89 @@
 
 <!-- ################################################## -->
 <!-- Icerik Metin Baslangic -->
-<h1 class="mt-3">Gönderi Biçimini Otomatik Olarak Tespit Et - WordPress</h1><hr class="mt-1 mb-1"><p class="lead">WordPress varsayılan olarak standard gönderi biçimiyle çalışsa da eğer isterseniz (ve temada da tanımlıysa) ses, video, link, galeri, alıntı, durum vs. türlerde de içerikler paylaşabilirsiniz. Hatta bunlar için özel dosyalar da hazırlayabilirsiniz. Bunları otomatik olarak tespit etme işini yapan alternatif bir kod aşağıda verilmiştir.</p>
+<h1 class="mt-3">Dosyadaki Sorguları Satır Satır Çalıştır - PHP</h1><hr class="mt-1 mb-1"><p class="lead">Tam veya dinamik dosya yolu verilen bir dosyadaki alt alta listelenmiş SQL sorgularını döngü aracılığıyla satır satır çalıştıran PHP kodudur.</p>
 <!-- bol -->
 <div class="alert alert-dark"><strong>Kod</strong></div>
 <p><pre><code class="language-php">
 &lt;?php
-	if(have_posts()) :
-		while(have_posts()) : the_post();
+	//--------------------------------------------- 
+	//MySQL veri tabanı bağlantısı oluştur.
+	//---------------------------------------------
+	$sunucu    = "localhost";
+	$kullanici = "root";
+	$parola    = "";
+	$db        = "test";
 
-		//get_template_part('content', 'page');
-		get_template_part('content', get_post_format());
-		endwhile;
+	ini_set('max_execution_time', 0);
 
-		echo paginate_links();
+	try {
+		$db = new PDO("mysql:host=" . $sunucu . ";" .
+					  "dbname=" . $db, 
+					  $kullanici, 
+					  $parola);
+	} catch ( PDOException $e ){
+		 print $e-&gt;getMessage();
+	}
+	$db-&gt;query("SET CHARACTER SET utf-8");
+	
+	$dosya_yolu = 'sorgu.sql';	
 
-	else :
-?&gt;
-
-&lt;!-- HTML - PHP Kodları --&gt;
-
-&lt;?php endif; ?&gt;
-</code></pre></p>
-
-<div class="alert alert-dark"><strong>Kod (Açıklamalı)</strong></div>
-<p><pre><code class="language-php">
-&lt;?php
-	//--------------------------------------------------
-	//Wordpress klasik döngü kod kalıbının başlangıcı
-	//şarta göre listeleme yapmaya çalışacak.
-	//--------------------------------------------------
-	if(have_posts()) :
-		while(have_posts()) : the_post();
+	//---------------------------------------------
+	//Dosyayı aç.
+	//---------------------------------------------
+	$dosya = fopen($dosya_yolu, "r");
+	
+	//---------------------------------------------
+	//Dosya açılsın, bu yüzden 0.5 saniye 
+	//bekle, hemen alt satıra geçme.
+	//---------------------------------------------
+	sleep(0.5);
+	
+	//---------------------------------------------
+	//Dosya içeriğini oku.
+	//---------------------------------------------
+	$sql_icerik = fread($dosya, filesize($dosya_yolu));
+	
+	//---------------------------------------------
+	//Dosyadan satır satır veri çekmek 
+	//için yeni nesne oluşturduk.
+	//Çünkü her satırda bir sorgu var.
+	//---------------------------------------------
+	$ds = new SplFileObject($dosya_yolu);
+	
+	try {
 		
-		//--------------------------------------------------
-		//Doğrudan isim vererek dosyayı çağırabiliriz.
-		//get_template_part('content', 'page');
+		//---------------------------------------------
+		//Satırlar bitene kadar çalışsın.
+		//---------------------------------------------
+		while (!$ds-&gt;eof()) {
 
-		//İşin daha dinamik olmasını istiyorsak yine
-		//wordpress fonksiyonu ile halledebiliriz.
-		//--------------------------------------------------
-		get_template_part('content', get_post_format());
-		endwhile;
-
-		//--------------------------------------------------
-		//Sayfalama için bir kod.
-		//--------------------------------------------------
-		echo paginate_links();
-
-	else :
+			//---------------------------------------------
+			//$veri_ekle değişkenini her satırdaki sorgu için
+			//prepare() edip çalıştıracağız, böylece veri eklenecek.
+			//---------------------------------------------
+			$veri_ekle = $db-&gt;prepare($ds-&gt;fgets());
+			$veri_ekle-&gt;execute();
+		}
+		
+		//---------------------------------------------
+		//Satırlar bittiğinde aşağıdaki nesneleri
+		//sıfırlıyoruz, böylece yeni dosya için
+		//hazırlamış oluyoruz.
+		//---------------------------------------------
+		$ds    = null;
+		$dosya = null;
+	} catch ( PDOException $e ){
+		 print $e-&gt;getMessage();
+	}
 ?&gt;
-
-&lt;!----------------------------------------------------
-HTML - PHP Kodları
-Eğer if kısmı çalışmazsa burada duruma göre 
-mesaj verme, yönlendirme vs. yapılabilir.
-----------------------------------------------------&gt;
-
-&lt;?php endif; ?&gt;
 </code></pre></p>
 
-<div class="alert alert-dark"><strong>Yararlanılan Kaynaklar</strong></div>
-<div class="yararlanilan-kaynaklar list-group mb-3">
-    <a href="https://www.youtube.com/watch?v=5WnhIMqPLoY&index=12&list=PLpcSpRrAaOaqMA4RdhSnnNcaqOVpX7qi5" rel="nofollow noopener" target="_blank" class="list-group-item bg-light text-secondary">https://www.youtube.com/watch?v=5WnhIMqPLoY&index=12&list=PLpcSpRrAaOaqMA4RdhSnnNcaqOVpX7qi5</a>
-</div>
+<div class="alert alert-dark"><strong>İndirme Bağlantısı</strong></div>
+<p>Konu ile ilgili örnek dosyayı bu bağlantıdan indirebilirsiniz.</p>
+<p><a class="btn btn-danger pl-5 pr-5 text-decoration-none fw-bold" target="_blank" href="yukleme/dosyadaki-sorgulari-satir-satir-calistir-php.zip" rel="noopener">İndir</a></p>
 
-<div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>wordpress</span> <span class='btn btn-light bg-gri'>açıklamalı içerik</span> <span class='btn btn-light bg-gri'>wordpress php</span><hr>
+<div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>php</span> <span class='btn btn-light bg-gri'>php dosya işlemleri</span> <span class='btn btn-light bg-gri'>php veri tabanı işlemleri</span> <span class='btn btn-light bg-gri'>php döngü işlemleri</span><hr>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 

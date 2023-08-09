@@ -116,7 +116,8 @@ WHERE tur In ('bkz','boş','türkçe','dzn');
 ----------------------------------------------------
 SELECT TOP 15 *
 FROM kelimeler
-WHERE (((kelimeler.tur)="tr") AND ((kelimeler.anlam) Is Null))
+WHERE (((kelimeler.tur)="tr") 
+AND ((kelimeler.anlam) Is Null))
 ORDER BY Rnd(-(100000*kelimeler.oto_sayi)*Time());
 
 ----------------------------------------------------
@@ -142,6 +143,15 @@ WHERE kelime='put in';
 UPDATE kelimeler 
 SET tur = 'tr'
 WHERE tur='türkçe';
+
+----------------------------------------------------
+--İçinde tire işareti geçen içerikleri bul.
+--Verilen kelime ile başlayanlar dahil edilmesin.
+----------------------------------------------------
+SELECT baslik 
+FROM ayetler 
+WHERE baslik LIKE '*-*' 
+AND baslik NOT LIKE 'Âl-i İmran*';
 </code></pre></p>
 
 <div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>microsoft access</span><hr>

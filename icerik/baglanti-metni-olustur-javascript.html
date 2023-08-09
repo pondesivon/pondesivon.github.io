@@ -66,7 +66,7 @@ function baglantiMetniOlustur(metin) {
 		"'", "^", "+", "%", "&", "/", "(", ")", "=", "?", 
 		"_", "&lt;", "&gt;", "£", "$", "#", "½", "{", "}", "[", 
 		"]", "\\", "|", ";", ":", "¨", "~", "\`", "\´", 
-		".", ",", " ", "!"];
+		".", ",", " ", "!", "\""];
 
 	var metin = metin.toLocaleLowerCase('tr-TR');
 	metin = metin.trim();
@@ -101,7 +101,9 @@ function baglantiMetniniYazdir() {
 	var baglanti = document.getElementById('baglanti');
 	baglanti.value = karakterTrim(baglantiMetniOlustur(baslik.value), "-");
 }
-</code></pre></p><div class="alert alert-info"><strong>Etiketler: </strong>javascript, javascript metin işlemleri, javascript düzenli ifade işlemleri</div>
+</code></pre></p>
+
+<div class="alert alert-dark"><strong>Etiketler</strong></div><span class='btn btn-light bg-gri'>javascript</span> <span class='btn btn-light bg-gri'>javascript metin işlemleri</span> <span class='btn btn-light bg-gri'>javascript düzenli ifade işlemleri</span><hr>
 <!-- Icerik Metin Bitis -->
 <!-- ################################################## -->
 
