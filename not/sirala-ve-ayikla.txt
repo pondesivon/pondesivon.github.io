@@ -1,0 +1,53 @@
+Option Explicit
+
+Sub Calistir()
+    MetninIcindenBulVeYaz "A", "J"
+End Sub
+
+Sub VerilenMetniBaskaBirMetinleDegistir(hedefSutun, yazdirilacakSutun)
+    Dim i As Long
+    
+    For i = 2 To Range(hedefSutun & "1048576").End(xlUp).Row
+        If Range(hedefSutun & i) Like "*-*" Then
+            Range(hedefSutun & i) = Replace(Range(hedefSutun & i), "-", " ")
+        End If
+    Next
+End Sub
+
+Sub MetninIcindenBulVeYaz(hedefSutun, yazdirilacakSutun)
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    
+    Dim dizi() As String
+    Dim kelime() As String
+    Dim duzeltme() As String
+    Dim sonSatir As Long
+    
+    VerilenMetniBaskaBirMetinleDegistir hedefSutun, yazdirilacakSutun
+    
+    Range(yazdirilacakSutun & "2:" & yazdirilacakSutun & "1048576").Clear
+    
+    kelime = Split("1;2;3;4;5;6;7;8;9;10;11;12;TYT;AYT", ";")
+    
+    Range(yazdirilacakSutun & "1") = "SIRA"
+    For i = 2 To Range(hedefSutun & "1048576").End(xlUp).Row
+        dizi = Split(Range(hedefSutun & i), " ")
+        
+        For j = LBound(dizi) To UBound(dizi)
+            For k = LBound(kelime) To UBound(kelime)
+                If (dizi(j) = kelime(k)) Then
+                    Range(yazdirilacakSutun & i) = dizi(j)
+                End If
+            Next
+        Next
+    Next
+    
+    sonSatir = Range("A1048576").End(xlUp).Row
+    Range(hedefSutun & "1:" & yazdirilacakSutun & sonSatir).Select
+    
+    Range(hedefSutun & "1:" & yazdirilacakSutun & sonSatir).Sort _
+        Key1:=Range(yazdirilacakSutun & "1"), Order1:=xlAscending, _
+        Key2:=Range(hedefSutun & "1"), Order2:=xlAscending, _
+        Orientation:=xlTopToBottom, Header:=xlYes
+End Sub
