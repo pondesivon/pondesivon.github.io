@@ -1,0 +1,14 @@
+'--------------------------------------------------
+'Google Chrome ile web bağlantısı aç.
+'--------------------------------------------------
+Sub GoogleChromeIleWebBaglantisiAc(metin)
+    Dim tarayiciYol As String
+    
+    tarayiciYol = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    
+    metin = metin & " isbn"
+    metin = Replace(metin, "'", "%27")
+    metin = Replace(metin, " ", "%20")
+    
+    Shell (tarayiciYol & " -url https://www.google.com/search?q=" & metin)
+End Sub

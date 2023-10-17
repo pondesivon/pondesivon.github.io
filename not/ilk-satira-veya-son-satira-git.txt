@@ -1,0 +1,18 @@
+'--------------------------------------------------
+'İlk satıra git.
+'--------------------------------------------------
+Sub IlkSatiraGit()
+    Range("A1").Select
+    ActiveWindow.ScrollRow = Selection.Row
+End Sub
+
+'--------------------------------------------------
+'Son satıra git.
+'--------------------------------------------------
+Sub SonSatiraGit()
+    Dim bs As Long
+    bs = Range("A1048576").End(xlUp).Row + 1
+    
+    Range("A" & bs).Select
+    ActiveWindow.ScrollRow = Selection.Row - 8
+End Sub

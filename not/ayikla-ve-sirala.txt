@@ -4,6 +4,9 @@ Sub Calistir()
     MetninIcindenBulVeYaz "A", "J"
 End Sub
 
+'--------------------------------------------------
+'Verilen Metni Başka Bir Metinle Değiştir
+'--------------------------------------------------
 Sub VerilenMetniBaskaBirMetinleDegistir(hedefSutun, yazdirilacakSutun)
     Dim i As Long
     
@@ -14,7 +17,10 @@ Sub VerilenMetniBaskaBirMetinleDegistir(hedefSutun, yazdirilacakSutun)
     Next
 End Sub
 
-Sub MetninIcindenBulVeYaz(hedefSutun, yazdirilacakSutun)
+'--------------------------------------------------
+'Metnin İçinden Bul Ve Verilen Sütuna Yazdır
+'--------------------------------------------------
+Sub MetninIcindenBulVeVerilenSutunaYazdir(hedefSutun, yazdirilacakSutun)
     Dim i As Long
     Dim j As Long
     Dim k As Long

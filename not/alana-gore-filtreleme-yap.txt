@@ -1,0 +1,14 @@
+'--------------------------------------------------
+'Alana göre filtreleme yap.
+'--------------------------------------------------
+Sub AlanaGoreFiltrelemeYap(alan As Range)
+    Dim sonSatir As Long
+    sonSatir = Range("A1048576").End(xlUp).Row
+    
+    ActiveSheet.Range("$A$3:$G$" & sonSatir).AutoFilter _
+    Field:=alan.Column, _
+    Criteria1:="=*" & alan & "*", _
+    Operator:=xlAnd
+    
+    alan.Select
+End Sub
