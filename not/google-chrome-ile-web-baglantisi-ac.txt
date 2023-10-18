@@ -12,3 +12,22 @@ Sub GoogleChromeIleWebBaglantisiAc(metin)
     
     Shell (tarayiciYol & " -url https://www.google.com/search?q=" & metin)
 End Sub
+
+Sub GoogleChromeIleWebBaglantisiAc2(kitap, yazar, yayinEvi)
+    Dim tarayiciYol As String
+    
+    tarayiciYol = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+    
+    If (Not IsEmpty(yazar)) Then
+        kitap = kitap + " " + yazar
+    End If
+    
+    If (Not IsEmpty(yayinEvi)) Then
+        kitap = kitap + " " + yayinEvi
+    End If
+    
+    kitap = Replace(kitap, "'", "%27")
+    kitap = Replace(kitap, " ", "%20")
+    
+    Shell (tarayiciYol & " -url https://www.google.com/search?q=" & kitap)
+End Sub
