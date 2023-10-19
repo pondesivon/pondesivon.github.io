@@ -1,9 +1,5 @@
 Option Explicit
 
-Sub Calistir()
-    MetninIcindenBulVeYaz "A", "J"
-End Sub
-
 '--------------------------------------------------
 'Verilen Metni Başka Bir Metinle Değiştir
 '--------------------------------------------------
@@ -35,6 +31,7 @@ Sub MetninIcindenBulVeVerilenSutunaYazdir(hedefSutun, yazdirilacakSutun)
     Range(yazdirilacakSutun & "2:" & yazdirilacakSutun & "1048576").Clear
     
     kelime = Split("1;2;3;4;5;6;7;8;9;10;11;12;TYT;AYT", ";")
+    'kelime = Split("AYT;TYT;12;11;10;9;8;7;6;5;4;3;2;1", ";")
     
     Range(yazdirilacakSutun & "1") = "SIRA"
     For i = 2 To Range(hedefSutun & "1048576").End(xlUp).Row
@@ -56,4 +53,8 @@ Sub MetninIcindenBulVeVerilenSutunaYazdir(hedefSutun, yazdirilacakSutun)
         Key1:=Range(yazdirilacakSutun & "1"), Order1:=xlAscending, _
         Key2:=Range(hedefSutun & "1"), Order2:=xlAscending, _
         Orientation:=xlTopToBottom, Header:=xlYes
+End Sub
+
+Sub Calistir()
+    MetninIcindenBulVeVerilenSutunaYazdir "A", "J"
 End Sub

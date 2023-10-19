@@ -1,0 +1,81 @@
+Option Explicit
+
+'--------------------------------------------------
+'Verilen Metni Başka Bir Metinle Değiştir
+'--------------------------------------------------
+Sub VerilenMetniBaskaBirMetinleDegistir(hedefSutun, yazdirilacakSutun)
+    Dim i As Long
+    
+    For i = 2 To Range(hedefSutun & "1048576").End(xlUp).Row
+        If Range(hedefSutun & i) Like "*-*" Then
+            Range(hedefSutun & i) = Replace(Range(hedefSutun & i), "-", " ")
+        End If
+    Next
+End Sub
+
+'--------------------------------------------------
+'Metnin İçinden Bul Ve Verilen Sütuna Yazdır
+'--------------------------------------------------
+Sub MetninIcindenBulVeVerilenSutunaYazdir(hedefSutun, yazdirilacakSutun)
+    Dim i As Long
+    Dim k As Long
+    
+    Dim kelime() As String
+    Dim duzeltme() As String
+    Dim sonSatir As Long
+    
+    '--------------------------------------------------
+    'Tire işaretlerini temizle.
+    '--------------------------------------------------
+    VerilenMetniBaskaBirMetinleDegistir hedefSutun, yazdirilacakSutun
+    
+    '--------------------------------------------------
+    'Ayıklanacak verilerin yazdırılacağı alanı temizle.
+    '--------------------------------------------------
+    Range(yazdirilacakSutun & "2:" & yazdirilacakSutun & "1048576").Clear
+    
+    'kelime = Split("1;2;3;4;5;6;7;8;9;10;11;12;TYT;AYT", ";")
+    'kelime = Split("AYT;TYT;12;11;10;9;8;7;6;5;4;3;2;1", ";")
+    kelime = Split(" AYT ; TYT ; 12 ; 11 ; 10 ; 9 ; 8 ; 7 ; 6 ; 5 ; 4 ; 3 ; 2 ; 1 ", ";")
+    
+    Range(yazdirilacakSutun & "1") = "SIRA"
+        
+    '--------------------------------------------------
+    'Kitap isimlerinin olduğu sütunda döngü çalıştır.
+    '--------------------------------------------------
+    For i = 2 To Range(hedefSutun & "1048576").End(xlUp).Row
+        
+        '--------------------------------------------------
+        'Kitap isimlerinin bulunduğu her satırda kelime
+        'dizisindeki tüm kelimeler için kontrol yap.
+        'İlk bulunan için işlem yap ve sonraki
+        'satırdan devam et.
+        '--------------------------------------------------
+        For k = LBound(kelime) To UBound(kelime)
+            If InStr(Range(hedefSutun & i), kelime(k)) > 0 Then
+                Range(yazdirilacakSutun & i) = Trim(kelime(k))
+                GoTo devam:
+            End If
+        Next
+devam:
+    Next
+    
+    '--------------------------------------------------
+    'Sıralama alanınının tamamını seç.
+    '--------------------------------------------------
+    sonSatir = Range("A1048576").End(xlUp).Row
+    Range(hedefSutun & "1:" & yazdirilacakSutun & sonSatir).Select
+    
+    '--------------------------------------------------
+    'Birinci düzey, ayıklama sütunu, ikinci düzey de
+    'kitap sütunu olacak şekilde A-Z sıralama yap.
+    '--------------------------------------------------
+    Range(hedefSutun & "1:" & yazdirilacakSutun & sonSatir).Sort _
+        Key1:=Range(yazdirilacakSutun & "1"), Order1:=xlAscending, _
+        Key2:=Range(hedefSutun & "1"), Order2:=xlAscending, _
+        Orientation:=xlTopToBottom, Header:=xlYes
+End Sub
+
+Sub Calistir()
+    MetninIcindenBulVeVerilenSutunaYazdir "A", "J"
+End Sub
