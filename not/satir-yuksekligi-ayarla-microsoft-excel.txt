@@ -1,0 +1,3 @@
+Sub SatirYuksekligiAyarla()
+	Rows("3:3").RowHeight = 24.75
+End Sub

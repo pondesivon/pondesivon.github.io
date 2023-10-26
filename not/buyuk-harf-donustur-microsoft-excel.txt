@@ -1,6 +1,6 @@
 '--------------------------------------------------
-'Büyük harf yap.
+'Büyük harf dönüştür.
 '--------------------------------------------------
-Function BuyukHarfYap(alan As Range)
+Function BuyukHarfDonustur(alan As Range)
     BuyukHarfYap = UCase(Replace(Replace(alan, "i", "İ"), "ı", "I"))
 End Function

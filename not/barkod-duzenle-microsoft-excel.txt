@@ -1,0 +1,28 @@
+'--------------------------------------------------
+'Barkod düzenle.
+'--------------------------------------------------
+Sub BarkodDuzenle()
+    Dim i As Long
+    
+    For i = 4 To [D1048576].End(xlUp).Row
+        If InStr(Range("D" & i), "-") > 0 Then
+            Range("D" & i) = Replace(Range("D" & i), "-", "")
+        End If
+    Next
+End Sub
+
+'--------------------------------------------------
+'Barkod düzenle alan.
+'--------------------------------------------------
+
+Sub BarkodDuzenleAlan(alan As Range)
+    alan = Replace(alan, "-", "")
+    alan.NumberFormat = "0"
+End Sub
+
+'--------------------------------------------------
+'Barkod düzenle metin.
+'--------------------------------------------------
+Function BarkodDuzenleMetin(metin As String)
+    BarkodDuzenleMetin = Replace(metin, "-", "")
+End Function

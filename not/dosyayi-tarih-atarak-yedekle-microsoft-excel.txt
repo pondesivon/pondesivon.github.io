@@ -1,0 +1,17 @@
+Sub DosyayiTarihAtarakYedekle(dosyaAdi As String)
+    'Reference: Microsoft Scripting Runtime
+    Dim zaman As Variant
+    Dim isim  As String
+    Dim fso As Object
+    Dim tamYol As String
+    
+    Set fso = New FileSystemObject
+    tamYol = ThisWorkbook.Path & "\yedekler"
+    If Not fso.FolderExists(tamYol) Then
+        fso.CreateFolder tamYol
+    End If
+    
+    zaman = Application.Text(Now(), "yyyy-mm-dd--hh-mm-ss")
+    isim = ThisWorkbook.Path & "\yedekler\" & dosyaAdi & "--" & zaman & ".xlsm"
+    ActiveWorkbook.SaveCopyAs isim
+End Sub
