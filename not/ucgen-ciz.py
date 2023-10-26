@@ -1,0 +1,6 @@
+print("     o")
+print("    /|\\")
+print("   / | \\")
+print("  /  |  \\")
+print(" /   |   \\")
+print("/____|____\\")
