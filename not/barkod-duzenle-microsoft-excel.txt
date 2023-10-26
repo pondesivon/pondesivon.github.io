@@ -14,7 +14,6 @@ End Sub
 '--------------------------------------------------
 'Barkod düzenle alan.
 '--------------------------------------------------
-
 Sub BarkodDuzenleAlan(alan As Range)
     alan = Replace(alan, "-", "")
     alan.NumberFormat = "0"
