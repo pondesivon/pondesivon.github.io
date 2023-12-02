@@ -1,0 +1,21 @@
+//--------------------------------------------------
+//while Döngüsü İşlemleri
+//--------------------------------------------------
+
+#while örneği
+i=1
+metin = ""
+
+while i<20:
+    metin = metin + "*"
+    print(metin)
+    i += 1
+
+#doğru kelimeyi gir
+metin = "hadsafhada"
+giris = ""
+
+while giris != metin:
+    giris=input("Doğru kelimeyi girin: ")
+
+print("Tebrikler! Doğru kelimeyi girdiniz.")

@@ -1,0 +1,20 @@
+//--------------------------------------------------
+//Tuple Veri Tipi İle İlgili İşlemler
+//--------------------------------------------------
+#Tuple - List Farkı
+#List köşeli parantezle, Tuple normal parantezle oluşturulur.
+#Tuple bir kere oluşturulduktan sonra değiştirilemez.
+#Tuple değiştirilemez veriler söz konusu olduğunda kullanılıyor.
+koordinatlar = (4,5)
+
+print(koordinatlar[0])
+print(koordinatlar[1])
+print(koordinatlar[0:1])
+print(koordinatlar[0:3])
+
+gunler = ("Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar")
+print(gunler[2:5])
+
+#İçinde Tuple olan List Oluşturmak
+koordinatlar2 = [(1,2), (3,5), (80,34)]
+print(koordinatlar2)

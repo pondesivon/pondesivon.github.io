@@ -1,0 +1,5 @@
+//--------------------------------------------------
+//Kullanıcıdan Gelen Veriyi Al Ve İşlem Yap
+//--------------------------------------------------
+sonuc = input("Karesi alınacak sayıyı girin: ")
+print(pow(int(sonuc), 2))

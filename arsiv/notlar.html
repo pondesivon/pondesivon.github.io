@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Meta Bolumu Baslangic -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Kişisel veri tabanı." />
+    <meta name="author" content="pondesivon" />
+    <!-- Meta Bolumu Bitis -->
+    
+    <!-- Title Alani Baslangic -->
+	<title>Notlar - Pondesivon</title>
+	<!-- Title Alani Bitis -->
+
+    <!-- Favicon Baslangic -->
+    <link rel="icon" type="image/x-icon" href="doc/favicon.ico" />
+    <!-- Favicon Bitis -->
+
+    <!-- CSS Alani Baslangic -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- CSS Alani Bitis -->
+</head>
+<body>
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="notlar.html">Notlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Kapsayici Icerik Alani Baslangic -->
+    <div class="container min-vh-100 mb-2">
+
+        <!-- Icerik Ana Satir Baslangic -->
+        <div class="row">
+
+            <!-- Icerik Ana Sutun Baslangic -->
+            <div class="col">
+
+<!-- ################################################## -->
+<!-- Icerik Metin Baslangic -->
+
+<h1 class="mt-2">Notlar</h1><hr class="mt-1 mb-1">
+<p class="lead">Tüm notların bağlantılarının listelendiği alan. Aşağıda bulunan arama kutusundan arama yapabileceğiniz gibi, <kbd>Ctrl</kbd> + <kbd>F</kbd> klavye kısayolunu kullanarak tarayıcı üzerinden de arama yapabilirsiniz.</p>
+<!-- bol -->
+<!-- Arama Kutusu Ust Baslangic -->
+<div class="input-group mb-3 border-secondary">
+  <input class="form-control _form-control-lg bg-e8e8e8" type="text" id="konu1" onkeypress="konuFiltreKey('konu1')" placeholder="Listede Ara..." aria-describedby="basic-addon3">
+  <input type="button" class="btn btn-danger" name="" onclick="valueTemizle('konu1')" value="_">
+  <input type="button" class="btn btn-info" name="" onclick="window.scrollTo(0, document.body.scrollHeight);" value="▼">
+  <input type="button" class="btn btn-primary" name="" onclick="konuFiltre('konu1')" value="Ara">
+</div>
+<!-- Arama Kutusu Ust Bitis -->
+
+<!-- Liste Alani Baslangic -->
+<ol id="liste">
+    <li class="str"><a class="bgl" href="not/alana-gore-filtreleme-yap-microsoft-excel.txt">Alana Göre Filtreleme Yap - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/ayikla-ve-sirala-v1-microsoft-excel.txt">Ayıkla Ve Sırala V1 - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/ayikla-ve-sirala-v2-microsoft-excel.txt">Ayıkla Ve Sırala V2 - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/ayikla-ve-sirala-v3-microsoft-excel.txt">Ayıkla Ve Sırala V3 - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/barkod-duzenle-microsoft-excel.txt">Barkod Düzenle - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/bos-satir-sil-microsoft-excel.txt">Boş Satır Sil - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/buyuk-harf-donustur-microsoft-excel.txt">Büyük Harf Dönüştür - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/dosyayi-tarih-atarak-yedekle-microsoft-excel.txt">Dosyayı Tarih Atarak Yedekle - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/google-chrome-ile-web-baglantisi-ac-microsoft-excel.txt">Google Chrome İle Web Bağlantısı Aç - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/ilk-satira-veya-son-satira-git-microsoft-excel.txt">İlk Satıra Veya Son Satıra Git - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/kucuk-harf-donustur-microsoft-excel.txt">Küçük Harf Dönüştür - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/satir-yuksekligi-ayarla-microsoft-excel.txt">Satır Yüksekliğini Ayarla - Microsoft Excel</a></li>
+    <li class="str"><a class="bgl" href="not/30-days-of-python-not.txt">30 Days Of Python - Not</a></li>
+</ol>
+<!-- Liste Alani Bitis -->
+
+<!-- Arama Kutusu Alt Baslangic -->
+<div class="input-group mb-3 border-secondary">
+  <input class="form-control _form-control-lg bg-e8e8e8" type="text" id="konu2" onkeypress="konuFiltreKey('konu2')" placeholder="Listede Ara..." aria-describedby="basic-addon3">
+  <input type="button" class="btn btn-danger" name="" onclick="valueTemizle('konu2')" value="_">
+  <input type="button" class="btn btn-info" name="" onclick="window.scrollTo(0, 0);" value="▲">
+  <input type="button" class="btn btn-primary" name="" onclick="konuFiltre('konu2')" value="Ara">
+</div>
+<!-- Arama Kutusu Alt Bitis -->
+
+<!-- Icerik Metin Bitis -->
+<!-- ################################################## -->
+
+            </div>
+            <!-- Icerik Ana Sutun Bitis -->
+
+        </div>
+        <!-- Icerik Ana Satir Bitis -->
+
+    </div>
+    <!-- Kapsayici Icerik Alani Bitis -->
+
+    <!-- Responsive NavBar Baslangic -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand btn btn-secondary" href="index.html">Pondesivon</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="arsiv.html">Arşiv</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sayfalar.html">Sayfalar</a></li>
+                    <li class="nav-item">
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninBasinaGit();">▲</span>
+                        <span class="btn btn-secondary mr-2" onclick="sayfaninSonunaGit();">▼</span>
+                    </li>                
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Responsive NavBar Bitis -->
+
+    <!-- Javascript Alani Alt Baslangic -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/script.js"></script>
+    <!-- Javascript Alani Alt Bitis -->
+</body>
+</html>

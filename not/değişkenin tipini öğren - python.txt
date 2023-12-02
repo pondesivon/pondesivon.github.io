@@ -1,0 +1,68 @@
+//--------------------------------------------------
+//Değişkenin Tipini Öğren - Python
+//--------------------------------------------------
+
+type("Metin")
+type("0.6")
+type(10+2j)
+
+//--------------------------------------------------
+//Değişkenin Tipini Öğren
+//--------------------------------------------------
+print(type(10))                  # Int
+print(type(3.14))                # Float
+print(type(1 + 3j))              # Complex
+print(type('Ezgi'))              # String
+print(type([1, 2, 3]))           # List
+print(type({'name':'Sezgin'}))   # Dictionary
+print(type({9.8, 3.14, 2.7}))    # Set
+print(type((9.8, 3.14, 2.7)))    # Tuple
+
+ad = 'Asabeneh'    # str
+soyad = 'Yetayeh'  # str
+ulke = 'Finland'   # str
+sehir = 'Helsinki' # str
+yas = 250          # int
+
+print(type('Hale'))         # str
+print(type(ad))             # str
+print(type(10))             # int
+print(type(3.14))           # float
+print(type(1 + 1j))         # complex
+print(type(True))           # bool
+print(type([1, 2, 3, 4]))   # list
+print(type({'name':'Gökhan','age':28, 'evli_mi':True})) # dict
+print(type((1,2)))                                      # tuple
+print(type(zip([1,2],[3,4])))                           # set
+
+//--------------------------------------------------
+//Değişken Türleri Ve İşlemleri
+//--------------------------------------------------
+isim = 'Ali'
+soyisim = 'Veli'
+ulke = 'Türkiye'
+sehir = 'Edirne'
+yas = 20
+evli_mi = True
+bilgisayar_bilgi = ['HTML', 'CSS', 'JS', 'React', 'Python']
+kisi_bilgi = {
+   'ad':'Eda',
+   'soyad':'Seda',
+   'ulke':'Türkiye',
+   'sehir':'Van'
+}
+
+# Yazdır
+print(sehir)
+print(kisi_bilgi["ad"])
+
+#Uzunluk Bul
+print(len(ulke))
+
+#Çoklu Değişken Tanımla
+isim, soyisim, ulke, yas, evli_mi = "Adem", "Badem", "Türkiye", 25, True
+print(isim)
+print(soyisim)
+print(ulke)
+print(yas)
+print(evli_mi)

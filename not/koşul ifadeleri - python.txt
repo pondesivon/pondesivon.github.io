@@ -1,0 +1,40 @@
+//--------------------------------------------------
+//Koşul İfadeleri
+//--------------------------------------------------
+#if örnek 1
+if 5 > 3:
+    print("doğru")
+else:
+    print("yanlış")
+
+#or ifadesi
+if 5 >= 3 or 7 < 4:
+    print("doğru")
+else:
+    print("yanlış")
+
+#and ifadesi
+if 5 > 3 and 7 < 4:
+    print("doğru")
+else:
+    print("yanlış")
+
+#elif ifadesi
+if 5 > 3 or 7 < 4:
+    print("doğru")
+elif "ad" == "ad":
+    print("String ifadeler eşit.")
+else:
+    print("yanlış")
+
+#eşit ve eşit değil
+if "ad" == "df":
+    print("String ifadeler eşit değil.")
+
+if "ad" != "df":
+    print("String ifadeler eşit değil.")
+
+def EnBuyukSayi(*sayilar):
+    return max(sayilar)
+
+print(EnBuyukSayi(3,6,1,2))

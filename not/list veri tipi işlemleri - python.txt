@@ -1,0 +1,73 @@
+//--------------------------------------------------
+//List Veri Tipi İle İşlemler
+//--------------------------------------------------
+meyveler = [
+    'elma', 'armut', 'kiraz', 'kivi',
+    'muz', 'çilek', 'vişne', 'ahududu']
+
+sayilar  = [1, 3, 5, 12, 8, 1, 13, 25]
+
+#Sırala
+print(meyveler.sort())
+print(meyveler.reverse())
+
+#Liste Aktar
+meyveler2 = meyveler.copy()
+print(meyveler2)
+
+#Yazdır
+print(meyveler)
+print(meyveler[3])
+print(meyveler[4:6])
+print(meyveler[5:])
+print(meyveler[:3])
+print(meyveler[-2])
+print(meyveler[0])
+
+
+#Değiştir
+print(meyveler[1])
+
+meyveler[1] = "karpuz"
+print(meyveler[1])
+
+#Listeyi Genişlet
+meyveler.extend(sayilar)
+print(meyveler)
+
+#Listenin Sonuna Veri Ekle
+meyveler.append("nar")
+meyveler.append("ananas")
+print(meyveler)
+
+#Listenin İstenilen Yerine Veri Ekle
+meyveler.insert(1, "ejder meyvesi")
+print(meyveler)
+
+#Verinin İndeks Numarasını Bul
+print(meyveler.index("kiraz"))
+
+
+#Listeden Veri Sil
+meyveler.remove("ejder meyvesi")
+print(meyveler)
+
+#Listeyi Sıfırla
+meyveler.clear()
+print(meyveler)
+
+sayilar.pop()
+sayilar.pop()
+sayilar.pop()
+print(sayilar)
+
+#Listedeki Elemanları Say
+liste = ["a", "a", "a", "b", "b", "dd", "dd"]
+print(liste.count("a"))
+
+#Farklı Tiplerde Veri İçeren List Tipinde Değişken Oluştur Ve Birleştirerek Yazdır
+#Meyve|Kilo|Geldi mi
+elma_list = ['Elma', 3, True]
+armut_list = ['Armut', 5, False]
+
+print(elma_list + armut_list)

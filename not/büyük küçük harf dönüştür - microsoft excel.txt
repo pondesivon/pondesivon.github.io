@@ -1,0 +1,21 @@
+'--------------------------------------------------
+'Büyük harf dönüştür.
+'--------------------------------------------------
+Function BuyukHarfDonustur(alan As Range)
+    BuyukHarfYap = UCase(Replace(Replace(alan, "i", "İ"), "ı", "I"))
+End Function
+
+'--------------------------------------------------
+'Küçük harf dönüştür.
+'--------------------------------------------------
+Sub KucukHarfDonustur(alan As Range)
+    Dim c As Range
+    
+    For Each c In alan.Cells
+        c.Value = LCase(Replace(Replace(c, "I", "ı"), "İ", "i"))
+    Next
+End Sub
+
+Sub Calistir()
+    KucukHarfDonustur Selection
+End Sub

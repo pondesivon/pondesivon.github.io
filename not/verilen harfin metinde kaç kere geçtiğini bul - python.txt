@@ -1,0 +1,15 @@
+//--------------------------------------------------
+//Harf Sayısını Bul
+//--------------------------------------------------
+metin = "Çekoslovakyalılaştıramadıklarımızdan mıymışsınız?"
+
+print("Arama Yapılacak Metin: \"" + metin + "\"")
+aranan = input("Aranacak Harf: ")
+
+sayac = 0
+
+for str in metin:
+    if str == aranan:
+        sayac+=1
+
+print(sayac)

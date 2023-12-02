@@ -1,0 +1,5 @@
+//--------------------------------------------------
+//Verilen Başlangıç Ve Bitiş Sırasındaki Karakterleri Al
+//--------------------------------------------------
+metin = "Deneme"
+print(metin[2:5])

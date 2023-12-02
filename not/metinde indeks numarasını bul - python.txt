@@ -1,0 +1,8 @@
+//--------------------------------------------------
+//Verilen Başlangıçtan İtibaren Verilen İlk Metnin İndeks Numarasını Bul
+//--------------------------------------------------
+metin = "Deneme"
+print(metin.index("e", 3))
+print(metin.index("en", 1))
+print(metin.index("D", 0))
+print(metin.index("D"))

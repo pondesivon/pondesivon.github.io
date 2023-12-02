@@ -1,0 +1,8 @@
+//--------------------------------------------------
+//İki Metni Birleştir
+//--------------------------------------------------
+def IkiMetniBirlestir(metin1, metin2):
+    sonuc = metin1 + " " + metin2
+    print(sonuc)
+    
+IkiMetniBirlestir("Ali", "Veli")

@@ -1,0 +1,2 @@
+def ZarAt(sayi):
+    return random.randint(1,num)

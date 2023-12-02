@@ -1,0 +1,10 @@
+//--------------------------------------------------
+//return İfadesi
+//--------------------------------------------------
+def KupAlan(uzunluk):
+    return pow(uzunluk, 3)
+
+print(KupAlan(3))
+
+sonuc = KupAlan(4)
+print(sonuc)

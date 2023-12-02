@@ -1,0 +1,9 @@
+Private Sub ilkSatirCommandButton_Click()
+    hucreIcerikTextBox.SetFocus
+    hucreIcerikTextBox.SelStart = 0
+End Sub
+
+Private Sub sonSatirCommandButton_Click()
+    hucreIcerikTextBox.SetFocus
+    hucreIcerikTextBox.SelStart = Len(hucreIcerikTextBox.Text)
+End Sub

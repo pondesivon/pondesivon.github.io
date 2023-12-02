@@ -1,0 +1,8 @@
+//--------------------------------------------------
+//Kullanıcıdan Gelen Veriyi Yazdır
+//--------------------------------------------------
+first_name = input('İsim: ')
+age = input('Yaş: ')
+
+print(first_name)
+print(age)

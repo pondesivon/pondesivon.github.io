@@ -1,0 +1,10 @@
+//--------------------------------------------------
+//Python İle İşlemler
+//--------------------------------------------------
+print(2 + 3)   # Toplama   (+)
+print(3 - 1)   # Çıkarma   (-)
+print(2 * 3)   # Çarpma    (*)
+print(3 / 2)   # Bölme     (/)
+print(3 ** 2)  # Üs Alma   (**)
+print(3 % 2)   # Mod Alma  (%)
+print(3 // 2)  # Tam Bölme (//)

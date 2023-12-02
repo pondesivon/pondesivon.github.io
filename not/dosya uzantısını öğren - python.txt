@@ -1,0 +1,2 @@
+def DosyaUzantisi(tamYol):
+    return tamYol[tamYol.index(".") + 1:]

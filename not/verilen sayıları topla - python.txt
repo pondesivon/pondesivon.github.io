@@ -1,0 +1,10 @@
+//--------------------------------------------------
+//Verilen Sayıları Topla
+//--------------------------------------------------
+def VerilenSayilariTopla(*sayilar):
+    toplam = 0
+    for sayi in sayilar:
+        toplam += sayi
+    return toplam
+
+print(VerilenSayilariTopla(2, 3, 5))

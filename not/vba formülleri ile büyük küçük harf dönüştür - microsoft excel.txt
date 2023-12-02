@@ -1,0 +1,9 @@
+Option Explicit
+
+Function KUCUKHARF(alan As Range)
+    KUCUKHARF = Evaluate("=LOWER(""" & alan & """)")
+End Function
+
+Function BUYUKHARF(alan As Range)
+    BUYUKHARF = Evaluate("=UPPER(""" & alan & """)")
+End Function

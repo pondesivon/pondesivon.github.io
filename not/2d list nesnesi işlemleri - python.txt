@@ -1,0 +1,35 @@
+//--------------------------------------------------
+//2d list nesnesi ile işlemler
+//--------------------------------------------------
+odevGrup = [
+        ["Ali", "Veli", "Ayhan"],
+        ["Ayşe", "Fatma", "Ceyhan"],
+        ["Hayri", "Hayriye", "Hayrettin"],
+        ["Eda", "Seda"],
+        [300, 500]
+    ]
+
+
+print(odevGrup[2][1])      #Hayriye
+print(odevGrup[2][0:2])    #['Hayri', 'Hayriye']
+print(odevGrup[1][1][2:5]) #tma
+
+
+#tablo yazdır
+for satir in odevGrup:
+    for sutun in satir:
+        print(sutun)
+
+#harf değiştirme fonksiyonu
+def HarfDegistir(metin, degistirilecek, yerine_getirilecek):
+    sonuc = ""
+
+    for harf in metin:
+        if harf in degistirilecek:
+            sonuc = sonuc + yerine_getirilecek
+        else:
+            sonuc = sonuc + harf
+
+    return sonuc
+
+print(HarfDegistir("Galatasaray", "a", "*"))

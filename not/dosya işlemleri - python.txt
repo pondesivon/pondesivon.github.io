@@ -1,0 +1,67 @@
+//--------------------------------------------------
+//Dosya Okuma İşlemleri
+//--------------------------------------------------
+#open("belgeler.txt", "r") #read
+#open("belgeler.txt", "w") #write
+#open("belgeler.txt", "a") #append
+#open("belgeler.txt", "r+") #read and write
+
+belge = open("belge.txt", "r", encoding="utf8")
+print(belge)
+print(belge.readable())
+print(belge.read())
+belge.close()
+
+#ilk iki satırı yazdır
+belge = open("belge.txt", "r", encoding="utf8")
+print(belge.readline())
+print(belge.readline())
+belge.close()
+
+#tüm satırları list olarak yazdır
+belge = open("belge.txt", "r", encoding="utf8")
+print(belge.readlines())
+belge.close()
+
+#spesifik bir satırı yazdır
+belge = open("belge.txt", "r", encoding="utf8")
+print(belge.readlines()[2])
+print(belge.readlines()[2:4])
+belge.close()
+
+#döngü kullan
+belge = open("belge.txt", "r", encoding="utf8")
+for calisan in belge.readlines():
+    print(calisan + "---")
+belge.close()
+
+
+//--------------------------------------------------
+//Dosya Yazdırma İşlemleri
+//--------------------------------------------------
+#dosyaya veri ekle
+belge = open("belge.txt", "a", encoding="utf8")
+#belge.write("Pınar - İnsan Kaynakları")
+belge.write("\nSeda - Muhasebe")
+belge.close()
+
+#dosyanın üzerine yaz
+belge = open("belge.txt", "w", encoding="utf8")
+belge.write("Yeni İçerik")
+belge.close()
+
+#belgedeki değişiklikleri kaydet
+belge = open("belge.txt", "a+", encoding="utf8")
+print(belge.read())
+belge.write(belge.read() + "\nYeni İçerik")
+belge.close()
+#belgeYaz.close()
+
+#yeni dosya oluştur
+dosya = open("veriler.txt", "w")
+dosya.write("Veri 1")
+dosya.close()
+
+dosya = open("index.html", "w")
+dosya.write("<h1>Merhaba!</h1>")
+dosya.close()

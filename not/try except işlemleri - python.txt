@@ -1,0 +1,18 @@
+//--------------------------------------------------
+// try except İşlemleri
+//--------------------------------------------------
+try:
+    sayi = int(input("Bir sayı girin: "))
+    print(sayi)
+except:
+    print("Hatalı giriş yapıldı.")
+
+try:
+    deger = 10/0
+    sayi = int(input("Bir sayı girin: "))
+    print(sayi)
+except ZeroDivisionError as err:
+    print("Sıfıra bölme işlemi yapıldı.")
+    print(err)
+except ValueError:
+    print("Hatalı giriş yapıldı.")

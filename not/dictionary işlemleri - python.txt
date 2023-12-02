@@ -1,0 +1,28 @@
+//--------------------------------------------------
+//Dictionary
+//--------------------------------------------------
+AyDonustur = {
+        "Oca":"Ocak",
+        "Şub":"Şubat",
+        "Mar":"Mart",
+        "Nis":"Nisan",
+        "May":"Mayıs",
+        "Haz":"Haziran",
+        "Tem":"Temmuz",
+        "Ağu":"Ağustos",
+        "Eyl":"Eylül",
+        "Ekm":"Ekim",
+        "Kas":"Kasım",
+        "Ara":"Aralık"
+    }
+
+print(AyDonustur["May"])
+print(AyDonustur.get("Ara"))
+
+IlkUc = {
+    1: "A",
+    2: "B",
+    3: "C"
+    }
+
+print(IlkUc[1])

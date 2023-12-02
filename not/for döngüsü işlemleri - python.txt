@@ -1,0 +1,40 @@
+//--------------------------------------------------
+//for Döngüsü İle İşlemler
+//--------------------------------------------------
+for harf in "kelime":
+    print(harf)
+
+meyveler = ["Elma", "Armut", "Kivi"]
+
+for meyve in meyveler:
+    print(meyve)
+    for harf in meyve:
+        print(harf)
+
+#0'dan 9'a kadar yazdır.
+for indeks in range(10):
+    print(indeks)
+
+#8'den 20'ye kadar yazdır.
+for indeks in range(8, 20):
+    print(indeks)
+
+#meyveler dizisinin uzunluğu kadar döngü yap.
+meyveler = ["Elma", "Armut", "Kivi"]
+for meyve in range(len(meyveler)):
+    print(meyve)
+
+meyveler = ["Elma", "Armut", "Kivi"]
+for meyve in range(len(meyveler)):
+    print(meyveler[meyve])
+
+#sayının üssünü bul
+def SayininUssunuBul(sayi, us):
+    sonuc = 1
+
+    for i in range(us):
+        sonuc *= sayi
+
+    return sonuc
+
+print(str(SayininUssunuBul(2,3)))

@@ -1,0 +1,19 @@
+//--------------------------------------------------
+//Basit Hesap Makinesi
+//--------------------------------------------------
+sayi1 = input("Birinci sayıyı girin: ")
+islem = input("İşlem türünü girin: ")
+sayi2 = input("İkinci sayıyı girin: ")
+
+if islem == "+":
+    sonuc = float(sayi1) + float(sayi2)
+elif islem == "-":
+    sonuc = float(sayi1) - float(sayi2)
+elif islem == "*":
+    sonuc = float(sayi1) * float(sayi2)
+elif islem == "/":
+    sonuc = float(sayi1) / float(sayi2)
+else:
+    print("İşlem türü geçersiz veya kod içinde tanımlı değil.")
+
+print(str(sayi1) + " " + islem + " " + str(sayi2) + " = " + str(sonuc))
