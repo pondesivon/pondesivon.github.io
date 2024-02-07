@@ -1,0 +1,8 @@
+Function TrimChr160(metin As String) As String
+    metin = Replace(metin, Chr(160), " ")
+    metin = Trim(metin)
+    
+    TrimChr160 = metin
+    
+    'https://stackoverflow.com/a/55445958
+End Function

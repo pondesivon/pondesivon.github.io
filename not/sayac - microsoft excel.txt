@@ -1,0 +1,4 @@
+Function sayac(sayi As Long, artisMiktari As Long) As Long
+    sayi = sayi + artisMiktari
+    sayac = sayi
+End Function

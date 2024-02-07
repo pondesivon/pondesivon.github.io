@@ -1,0 +1,23 @@
+Function BarkodDuzenle(deger As Variant, stil As String, Optional ayirici As String = "-") As String
+    If Len(deger) = 13 Then
+        If stil = "000000000-0000" Then
+            BarkodDuzenle = Mid(deger, 1, Len(deger) - 4) & ayirici & Right(deger, 4)
+        End If
+        
+        If stil = "0-000000-000000" Then
+            BarkodDuzenle = Mid(deger, 1, 1) & ayirici & Mid(deger, 2, 6) & ayirici & Right(deger, 6)
+        End If
+        
+        If stil = "000-000-000-0000" Then
+            BarkodDuzenle = Mid(deger, 1, 3) & ayirici _
+                & Mid(deger, 4, 3) & ayirici _
+                & Mid(deger, 7, 3) & ayirici _
+                & Mid(deger, 10, 4)
+        End If
+        If stil = "0000000000000" Then
+            BarkodDuzenle = deger
+        End If
+    Else
+        BarkodDuzenle = deger
+    End If
+End Function

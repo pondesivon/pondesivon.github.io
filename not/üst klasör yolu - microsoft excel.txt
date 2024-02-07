@@ -1,0 +1,7 @@
+Function UstKlasorYol(tamYol As String) As String
+    Dim FSO As New FileSystemObject
+    Dim ustKlasor As String
+    
+    ustKlasor = FSO.GetParentFolderName(tamYol)
+    UstKlasorYol = ustKlasor
+End Function

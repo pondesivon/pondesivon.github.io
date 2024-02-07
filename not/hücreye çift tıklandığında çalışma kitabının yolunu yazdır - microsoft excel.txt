@@ -1,0 +1,8 @@
+Option Explicit
+
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+    If Target = Range("konum") Then
+        Range("konum") = ThisWorkbook.FullName
+        Cancel = True
+    End If
+End Sub

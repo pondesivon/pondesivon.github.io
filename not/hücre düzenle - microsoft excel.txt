@@ -1,0 +1,6 @@
+Sub HucreDuzenle()
+    Application.EnableEvents = False
+    Selection.Select
+    Application.SendKeys "{F2}", True
+    Application.EnableEvents = True
+End Sub

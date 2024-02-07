@@ -1,0 +1,4 @@
+Sub SatirSecVeKopyala()
+    Range("B" & Selection.Row & ":K" & Selection.Row).Select
+    Selection.Copy
+End Sub

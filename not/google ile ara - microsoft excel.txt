@@ -1,0 +1,6 @@
+Sub GoogleIleAra(metin As String, webTarayiciYol As String)
+    metin = Replace(metin, "'", "%27")
+    metin = Replace(metin, " ", "%20")
+    
+    Shell (webTarayiciYol & " -url https://www.google.com/search?q=" & metin)
+End Sub

@@ -1,0 +1,10 @@
+Function ClipboardUzerindenVeriAl()
+    'Tools -> References -> Microsoft Forms 2.0 Object Library
+    'of you will get a "Compile error: user-defined type not defined"
+    Dim DataObj As New MSForms.DataObject
+    Dim S As String
+    DataObj.GetFromClipboard
+    ClipboardUzerindenVeriAl = DataObj.GetText
+    
+    'https://excelhelphq.com/how-to-read-or-access-the-clipboard-with-excel-vba/
+End Function

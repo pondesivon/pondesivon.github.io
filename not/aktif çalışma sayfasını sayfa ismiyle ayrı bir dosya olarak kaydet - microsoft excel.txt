@@ -1,0 +1,39 @@
+Sub AktifCalismaSayfasiniSayfaIsmiyleAyriBirDosyaOlarakKaydet()
+    Dim kaynakCalismaKitabiAd       As String
+    Dim kaynakCalismaKitabiSayfaAdi As String
+    Dim kaynakCalismaKitabiYol      As String
+
+    Dim hedefCalismaKitabiAd        As String
+    Dim hedefCalismaKitabiYol       As String
+
+    Dim hedefSayfa                  As Object
+    Dim a                           As Long
+
+    kaynakCalismaKitabiAd = ActiveWorkbook.Name
+    kaynakCalismaKitabiSayfaAdi = ActiveWorkbook.ActiveSheet.Name
+    kaynakCalismaKitabiYol = ActiveWorkbook.Path
+
+    Workbooks.Add
+
+    hedefCalismaKitabiAd = ActiveWorkbook.Name
+    Set hedefSayfa = Workbooks(hedefCalismaKitabiAd)
+
+    Workbooks(kaynakCalismaKitabiAd).Activate
+    ActiveSheet.Copy After:=hedefSayfa.Sheets(hedefSayfa.Sheets.Count)
+
+'    For a = 1 To hedefSayfa.Sheets.Count - 1
+'        Application.DisplayAlerts = False
+'        hedefSayfa.Sheets(1).Delete
+'    Next
+
+    hedefCalismaKitabiYol = _
+        kaynakCalismaKitabiYol & "\yedekler\" & _
+        kaynakCalismaKitabiSayfaAdi
+
+    On Error Resume Next
+    hedefSayfa.SaveAs Filename:=hedefCalismaKitabiYol
+
+    If Err.Number = 1004 Then
+        hedefSayfa.Close
+    End If
+End Sub

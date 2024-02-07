@@ -1,0 +1,6 @@
+Sub EklentilerKlasorunuAc()
+    Dim eklentiYol As String
+    
+    eklentiYol = "C:\Users\" & Environ("USERNAME") & "\AppData\Roaming\Microsoft\AddIns"
+    KlasorAc eklentiYol
+End Sub

@@ -1,0 +1,7 @@
+Function AlanYukseklik(alan As Range) As Double
+    AlanGenislik = alan.Height
+End Function
+
+Function AlanGenislik(alan As Range) As Double
+    AlanGenislik = alan.Width
+End Function

@@ -1,0 +1,73 @@
+1. Module oluştur.
+2. Module içine public değişkenleri tanımla.
+3. Sub yordam ile bu değişkenlere değer ata.
+4. Çalışma kitabı başlatıldığında bu sub yordamı çalıştır.
+
+Böylelikle bu değişkenler çalışma kitabı açıldığında tanımlanmış oluyorlar. Biz de onları projede istediğimiz yerlerde kullanabiliyoruz.
+
+Option Explicit
+
+Public yedekDosyasiAd As String
+Public webTarayiciYol As String
+Public resimKlasorYol As String
+Public sistemKlasorYol As String
+Public veriKlasorYol As String
+Public yedeklerKlasorYol As String
+Public kasadaKalacakPara As Double
+
+Sub PublicDegiskenTanimla()
+    'Yedekleme
+    yedekDosyasiAd = VeriSayfa.Range("yedekDosyasiAd")
+    
+    'Web
+    webTarayiciYol = VeriSayfa.Range("webTarayiciYol")
+    
+    'Resim Klasörü
+    resimKlasorYol = ThisWorkbook.Path & Application.PathSeparator & Range("resimKlasorYol")
+    
+    'Yedekler Klasörü
+    yedeklerKlasorYol = ThisWorkbook.Path & Application.PathSeparator & Range("yedeklerKlasorYol")
+    
+    'Sistem Klasörü
+    sistemKlasorYol = ThisWorkbook.Path & Application.PathSeparator & Range("sistemKlasorYol")
+    
+    'Veri Klasörü
+    veriKlasorYol = ThisWorkbook.Path & Application.PathSeparator & Range("veriKlasorYol")
+    
+    'Kasa
+    kasadaKalacakPara = CDbl(Range("kasadaKalacakPara"))
+End Sub
+
+Option Explicit
+
+Sub BaslangicAyarlariniUygula()
+    Application.ScreenUpdating = False
+    
+    '--------------------------------------------------
+    'Public değişkenleri tanımla.
+    '--------------------------------------------------
+    Parametre.PublicDegiskenTanimla
+    
+    '--------------------------------------------------
+    'Yedek al.
+    '--------------------------------------------------
+    'Arac.DosyayiTarihAtarakYedekle yedekDosyasiAd, ".xlsm"
+    
+    '--------------------------------------------------
+    'Ekranı kaplayacak şekilde başlat.
+    '--------------------------------------------------
+    Application.WindowState = xlMaximized
+    
+    KitapSayfa.Range("J3") = "PROFİL__: " & VeriSayfa.Range("profilAdi") & vbCrLf _
+        & "REVİZYON: " & VeriSayfa.Range("revizyon")
+    KitapSayfa.Range("J3").Font.Name = "Consolas"
+    KitapSayfa.Range("J3").HorizontalAlignment = xlLeft
+'    Application.StatusBar = "PROFİL: " & VeriSayfa.Range("profilAdi") _
+'        & " | REVİZYON: " & VeriSayfa.Range("revizyon")
+    
+    Application.ScreenUpdating = True
+End Sub
+
+Private Sub Workbook_Open()
+    BaslangicAyarlariniUygula
+End Sub

@@ -1,0 +1,3 @@
+Sub KlasorAc(klasorAdi As String)
+    Shell "C:\WINDOWS\explorer.exe /select,""" & klasorAdi & "", vbNormalFocus
+End Sub

@@ -1,0 +1,11 @@
+Sub UstBilgiYazdir()
+    With ActiveSheet.PageSetup
+        .LeftHeader = "SEVK:" & vbCrLf & "KONTROL:"
+        .CenterHeader = DateTime.Date
+        .RightHeader = Pagenu
+        .LeftFooter = ""
+        .CenterFooter = ""
+        .RightFooter = ""
+    End With
+    End Sub
+End Sub

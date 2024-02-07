@@ -1,0 +1,92 @@
+Sub StilUygula()
+    Dim a, i As Long
+    
+    Application.ScreenUpdating = False
+    For a = 1 To 3
+        'Rows(i & ":" & i).RowHeight = CDbl(15)
+        'Range("A" & i & ":K" & i).RowHeight = 15
+    Next
+    
+    'Range("A4:K4").RowHeight = 40
+    
+    For i = 5 To Range("B1048576").End(xlUp).Row
+        If Range("A" & i) = "" Then
+            Range("A" & i) = "00:00"
+        End If
+        Range("B" & i) = Format(Range("B" & i), "dd.MM.yyyy")
+        Range("F" & i) = Format(Range("F" & i), "0### ### ## ##")
+        
+        'A-G Arası Biçimlendirme
+        With Range("A" & i & ":G" & i)
+            .Font.Name = "Cambria"
+            .Font.Size = 10
+            
+            .Interior.Color = xlNone
+            
+            .Borders(1).LineStyle = 1
+            .Borders(2).LineStyle = 1
+            .Borders(3).LineStyle = 1
+            .Borders(4).LineStyle = 1
+        
+            .Borders(1).ColorIndex = vbBlack
+            .Borders(2).ColorIndex = vbBlack
+            .Borders(3).ColorIndex = vbBlack
+            .Interior.ColorIndex = vbBlack
+            
+            .RowHeight = 15
+        End With
+        
+        'A-K Arası Biçimlendirme
+        With Range("A" & i & ":K" & i)
+            .Font.Name = "Cambria"
+            .Font.Size = 10
+            
+            .Borders(1).LineStyle = 1
+            .Borders(2).LineStyle = 1
+            .Borders(3).LineStyle = 1
+            .Borders(4).LineStyle = 1
+        
+            .Borders(1).ColorIndex = vbBlack
+            .Borders(2).ColorIndex = vbBlack
+            .Borders(3).ColorIndex = vbBlack
+            '.Interior.ColorIndex = vbBlack
+            
+            .RowHeight = 15
+            
+            .WrapText = True
+            .VerticalAlignment = xlTop
+        End With
+    Next
+    Application.ScreenUpdating = True
+End Sub
+
+Sub Renklendir()
+    Dim i As Long
+    
+    For i = 5 To Selection.Count
+        If Range("H" & i) = "" And Range("I" & i) = "" And Range("J" & i) = "" Then
+            Range("H" & i).Interior.Color = RGB(255, 119, 87) 'RGB(84, 130, 53)
+            Range("I" & i).Interior.Color = RGB(255, 119, 87) 'RGB(84, 130, 53)
+            Range("J" & i).Interior.Color = RGB(255, 119, 87) 'RGB(84, 130, 53)
+
+            Range("H" & i) = "BOŞ"
+            Range("I" & i) = "BOŞ"
+            Range("J" & i) = "BOŞ"
+        Else
+            If Range("H" & i) = "" Then
+                Range("H" & i).Interior.Color = RGB(169, 208, 142)
+                Range("H" & i) = "HAYIR"
+            End If
+            
+            If Range("I" & i) = "" Then
+                Range("I" & i).Interior.Color = RGB(169, 208, 142)
+                Range("I" & i) = "HAYIR"
+            End If
+            
+            If Range("J" & i) = "" Then
+                Range("J" & i).Interior.Color = RGB(169, 208, 142)
+                Range("J" & i) = "HAYIR"
+            End If
+        End If
+    Next
+End Sub

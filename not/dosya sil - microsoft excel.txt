@@ -1,0 +1,14 @@
+Sub DosyaSil(tamYol As String)
+    Dim FSO As Object
+    Dim mesaj As Variant
+    
+    mesaj = MsgBox(tamYol & vbCrLf & vbCrLf & "Dosya silinecektir, onaylıyor musunuz?")
+    
+    If mesaj = vbYes Then
+        Set FSO = CreateObject("Scripting.FileSystemObject")
+        FSO.DeleteFile tamYol, True
+    End If
+    
+    Set FSO = Nothing
+    Set mesaj = Nothing
+End Sub

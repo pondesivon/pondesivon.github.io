@@ -1,0 +1,5 @@
+Sub ImageNesnesindeResimGoster(nesne As Image, resimYol As String)
+    nesne.Picture = LoadPicture("")
+    nesne.Picture = LoadPicture(resimYol)
+    nesne.PictureSizeMode = fmPictureSizeModeZoom
+End Sub

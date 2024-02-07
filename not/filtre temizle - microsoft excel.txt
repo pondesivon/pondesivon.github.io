@@ -1,0 +1,5 @@
+Sub FiltreTemizle()
+  If ActiveSheet.AutoFilterMode Then
+     ActiveSheet.AutoFilterMode = False
+  End If
+End Sub

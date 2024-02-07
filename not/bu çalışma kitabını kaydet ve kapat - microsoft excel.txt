@@ -1,0 +1,11 @@
+Sub BuCalismaKitabiniKaydetVeKapat()
+    Dim mesaj As Variant
+    
+    mesaj = MsgBox("Çalışma kitabı kaydedilip kapatılacak ve tam yedek alınacak." _
+        & vbCrLf & "Devam edilsin mi?", vbYesNoCancel, "Bilgi")
+        
+    If mesaj = vbYes Then
+        ThisWorkbook.Close SaveChanges:=True
+        MsgBox "deneme"
+    End If
+End Sub

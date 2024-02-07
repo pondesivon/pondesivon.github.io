@@ -1,0 +1,34 @@
+Sub BosSatirSil(sutunAdi, ilkSatirNo, sonSatirNo, bilgiMesaj As Boolean)
+    Dim i As Long
+    Dim metin As String
+    Dim mesaj As Variant
+    Dim sayac As Long
+    
+    sayac = 0
+    metin = sutunAdi & ilkSatirNo & ":" & sutunAdi & sonSatirNo & _
+        " alanındaki bütün boş satırlar (tüm satır) silinecek, devam edilsin mi?"
+    
+    On Error GoTo devam:
+    mesaj = MsgBox(metin, vbYesNoCancel)
+    
+    Application.EnableEvents = False
+    Application.ScreenUpdating = False
+    
+    If mesaj = vbYes Then
+        For i = sonSatirNo To ilkSatirNo Step -1
+            If Range(sutunAdi & i) = "" Then
+                Rows(i & ":" & i).Delete Shift:=xlUp
+                sayac = sayac + 1
+            End If
+        Next
+    Else
+devam:
+    End If
+    
+    If bilgiMesaj = True Then
+        MsgBox sayac & " adet boş satır silindi.", vbOKOnly
+    End If
+    
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+End Sub

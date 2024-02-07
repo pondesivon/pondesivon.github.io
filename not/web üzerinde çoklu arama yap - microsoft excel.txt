@@ -1,0 +1,13 @@
+Sub CokluAra()
+    Dim i As Long
+    Dim c As Range
+    
+    For Each c In Selection.Cells
+        If Selection.Rows.Count <= 30 Then
+            GoogleIleAra CStr(c.Value), webTarayici
+        Else
+            MsgBox "30 satırdan fazla arama yapılamaz."
+            Exit Sub
+        End If
+    Next
+End Sub

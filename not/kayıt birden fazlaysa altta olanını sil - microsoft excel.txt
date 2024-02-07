@@ -1,0 +1,5 @@
+Sub KayitBirdenFazlaysaAlttaOlaniniSil(alan As Range, kriterAlan As Range)
+    If WorksheetFunction.CountIf(alan, kriterAlan) > 1 Then
+        kriterAlan = ""
+    End If
+End Sub

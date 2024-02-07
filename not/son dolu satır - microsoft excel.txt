@@ -1,0 +1,3 @@
+Function SonDoluSatir(sutunAdi As String) As Long
+    SonDoluSatir = Range(sutunAdi & "1048576").End(xlUp).Row
+End Function

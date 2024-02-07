@@ -1,0 +1,12 @@
+Function SadeceRakam(str As String) As String
+    Dim RE As Object
+    
+    Set RE = CreateObject("vbscript.regexp")
+    With RE
+        .Pattern = "\D+"
+        .Global = True
+        SadeceRakam = .Replace(str, "")
+    End With
+    
+    'https://stackoverflow.com/a/72394856/21435802
+End Function

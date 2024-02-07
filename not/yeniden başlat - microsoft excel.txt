@@ -1,0 +1,39 @@
+Sub YenidenBaslatV2()
+    Dim mesaj As Variant
+    
+    mesaj = MsgBox("Dosya kaydedilip yeniden başlatılacak." _
+        & vbCrLf & "Devam edilsin mi?", vbYesNoCancel, "Bilgi")
+    
+    If mesaj = vbYes Then
+        Arac.DosyaVeyaKlasorAc ThisWorkbook.Path
+        SendKeys "%{TAB}", True
+        SendKeys "%{F4}", True
+    End If
+End Sub
+
+Sub YenidenBaslat()
+    Dim mesaj As Variant
+    
+    mesaj = MsgBox("Dosya kaydedilip yeniden başlatılacak." _
+        & vbCrLf & "Devam edilsin mi?", vbYesNoCancel, "Bilgi")
+    
+    If mesaj = vbYes Then
+        Shell sistemKlasorYol & Application.PathSeparator & "DosyayiAc.bat"
+        ActiveWorkbook.Close SaveChanges:=True
+    End If
+    
+    'Yeniden Başlatma Mantığı
+    'Dosya kapandıktan sonra bat dosyası açma kodu eklemek
+    'ulaşılamaz kod durumuna sebep oluyor.
+    '
+    'Bunu şu şekilde önlüyoruz:
+    '1. Dosyayı kaydet.
+    '2. bat dosyasını çalıştır.
+    '3. Dosyayı kapat.
+    '
+    'Peki, aynı dosya iki kez açılamıyorken bu nasıl çalışıyor?
+    'bat dosyası açılır açılmaz onu bir süre bekletiyoruz.
+    'Bu esnada dosyanın kapanması için fırsat bulmuş oluyoruz.
+    'Süre geçtikten sonra (dosya bu zamana kadar kapanmış oluyor)
+    'bat dosyası ilgili dosyayı tekrardan açma işlemi yapıyor.
+End Sub

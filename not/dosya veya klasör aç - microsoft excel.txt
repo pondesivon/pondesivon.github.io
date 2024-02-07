@@ -1,0 +1,4 @@
+Sub DosyaVeyaKlasorAc(tamYol As String)
+    Dim a As Variant
+    a = Shell("C:\Windows\explorer.exe " & tamYol, vbNormalFocus)
+End Sub

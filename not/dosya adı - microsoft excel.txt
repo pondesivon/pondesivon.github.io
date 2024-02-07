@@ -1,0 +1,5 @@
+Function DosyaAdi(tamYol As String) As String
+    Dim fso As New FileSystemObject
+    
+    DosyaAdi = fso.GetFileName(tamYol)
+End Function

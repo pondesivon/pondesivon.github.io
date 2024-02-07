@@ -1,0 +1,6 @@
+Function DosyaUzantisi(tamYol As String) As String
+    Dim fso As Object
+    
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    DosyaUzantisi = fso.GetExtensionName(tamYol)
+End Function

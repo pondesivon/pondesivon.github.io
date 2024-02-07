@@ -1,0 +1,18 @@
+Sub IlkSatiraGit(sutunAdi As String)
+    Range(sutunAdi & "1").Select
+    ActiveWindow.ScrollRow = Selection.Row
+End Sub
+
+Sub SonSatiraGit(sutunAdi As String, scrollDeger As Long)
+    Dim bs As Long
+    Dim scrollSatir As Long
+    
+    bs = Range(sutunAdi & "1048576").End(xlUp).Row + 1
+    
+    Range(sutunAdi & bs).Select
+    
+    scrollSatir = Selection.Row - scrollDeger
+    If scrollSatir > 0 Then
+        ActiveWindow.ScrollRow = scrollSatir
+    End If
+End Sub

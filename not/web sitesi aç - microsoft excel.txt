@@ -1,0 +1,6 @@
+Sub WebSitesiAc(metin As String, webTarayiciYol As String)
+    metin = Replace(metin, "'", "%27")
+    metin = Replace(metin, " ", "%20")
+    
+    Shell (webTarayiciYol & " -url " & metin)
+End Sub

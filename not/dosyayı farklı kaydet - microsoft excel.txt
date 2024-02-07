@@ -1,0 +1,13 @@
+Sub DosyayiFarkliKaydet(tamYol As String)
+    'Reference: Microsoft Scripting Runtime
+    Dim fso As Object
+    Dim sayac As Integer
+    
+    Set fso = New FileSystemObject
+'
+'    If Not fso.FolderExists(tamYol) Then
+'        fso.CreateFolder tamYol
+'    End If
+    
+    ActiveWorkbook.SaveCopyAs Filename:=tamYol
+End Sub

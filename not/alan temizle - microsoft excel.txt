@@ -1,0 +1,5 @@
+Sub FormAlaniniTemizle(alan As Range)
+    Application.EnableEvents = False
+    alan.ClearContents
+    Application.EnableEvents = True
+End Sub

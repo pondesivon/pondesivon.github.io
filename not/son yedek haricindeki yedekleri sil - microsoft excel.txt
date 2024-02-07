@@ -1,0 +1,5 @@
+Sub SonYedekHaricindekiYedekleriSil(klasorYolu)
+    Dim FSO As Object
+    Set FSO = CreateObject("Scripting.FileSystemObject")
+    ds.DeleteFile "C:\SXS\Deneme.txt", True
+End Sub

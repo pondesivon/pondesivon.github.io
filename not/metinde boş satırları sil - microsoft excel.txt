@@ -1,0 +1,18 @@
+Function MetindeBosSatirlariSil(metin As String)
+    Dim RE As Object
+    Dim resultString As String
+    
+    Set RE = CreateObject("VBScript.RegExp")
+    
+    With RE
+        .MultiLine = True
+        .Global = True
+        .Pattern = "(\r\n)+"
+    
+        resultString = .Replace(metin, vbCrLf)
+    
+        MetindeBosSatirlariSil = resultString
+    End With
+    
+    'https://stackoverflow.com/a/55182928/21435802
+End Function

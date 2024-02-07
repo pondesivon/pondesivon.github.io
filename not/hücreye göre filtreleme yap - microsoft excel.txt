@@ -1,0 +1,29 @@
+Option Explicit
+
+Sub AlanaGoreFiltrelemeYap(alan As Range)
+    Dim SonSatir As Long
+    SonSatir = Range("B1048576").End(xlUp).Row
+    
+    ActiveSheet.Range("$A$4:$E$" & SonSatir).AutoFilter _
+    Field:=alan.Column, _
+    Criteria1:="=*" & alan & "*", _
+    Operator:=xlAnd
+    
+    Rows("4:4").RowHeight = 44
+    alan.Select
+End Sub
+
+Sub HucreyeGoreFiltrelemeYap(ByVal Target As Range, alan As Range)
+'    On Error GoTo hata
+    
+    If Target = alan Then
+        If Not Intersect(Target, alan) Is Nothing Then
+            Application.EnableEvents = False
+            AlanaGoreFiltrelemeYap alan
+            Application.EnableEvents = True
+        End If
+    End If
+
+'hata:
+'    MsgBox Err.Number
+End Sub

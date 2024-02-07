@@ -1,0 +1,7 @@
+Sub TopluGuncelle(alan As Range, eklenecek As String)
+    Dim hucre As Long
+    
+    For Each hucre In alan
+        hucre = hucre & eklenecek
+    Next
+End Sub

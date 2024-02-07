@@ -1,0 +1,15 @@
+Sub AlandaKucukHarfDonustur(alan As Range)
+    Dim c As Range
+    
+    For Each c In alan.Cells
+        c.Value = LCase(Replace(Replace(c, "I", "ı"), "İ", "i"))
+    Next
+End Sub
+
+Function BuyukHarfYap(alan As Range)
+    BuyukHarfYap = UCase(Replace(Replace(alan, "i", "İ"), "ı", "I"))
+End Function
+
+Function KucukHarfYap(alan As Range)
+    KucukHarfYap = LCase(Replace(Replace(alan, "İ", "i"), "I", "ı"))
+End Function

@@ -1,0 +1,19 @@
+Function DosyaYolunuAl() As String
+    Dim objFSO As New FileSystemObject
+    Dim myFile As Object
+    Dim FileSelected As Variant
+    Set myFile = Application.FileDialog(msoFileDialogOpen)
+    With myFile
+        .Title = "Choose File"
+        .AllowMultiSelect = False
+        
+        If .Show <> -1 Then
+            Exit Function
+        End If
+        
+        FileSelected = .SelectedItems(1)
+    End With
+    
+    DosyaYolunuAl = FileSelected 'The file path
+    'ActiveSheet.Range("dosyaYol") = objFSO.GetFileName(FileSelected) 'The file name
+End Function

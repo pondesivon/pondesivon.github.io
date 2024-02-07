@@ -1,0 +1,8 @@
+Option Explicit
+
+Private Sub Worksheet_BeforeDoubleClick(ByVal Target As Range, Cancel As Boolean)
+    'https://stackoverflow.com/a/9408817
+    IT_HucreIcerikUserForm.hucreIcerikTextBox.Text = Selection.Cells(1).Value
+    IT_HucreIcerikUserForm.Show
+    Cancel = True
+End Sub

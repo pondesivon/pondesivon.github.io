@@ -1,0 +1,11 @@
+Sub MetniBolVeComboBoxNesnesineAktar(cmb As ComboBox, metin As String, Optional ayirici As String = ";")
+    Dim dizi As Variant
+    Dim i    As Long
+    
+    cmb.Clear
+    dizi = Split(metin, ayirici)
+    
+    For i = LBound(dizi) To UBound(dizi)
+        cmb.AddItem dizi(i)
+    Next
+End Sub

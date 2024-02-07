@@ -1,0 +1,21 @@
+Sub KitapSayfasindakiVerileriAyriBirDosyayaKopyala()
+    Dim WkSht_Src   As Worksheet
+    Dim WkBk_Dest   As Workbook
+    Dim WkSht_Dest  As Worksheet
+    Dim Rng As Range
+
+    Set WkSht_Src = ActiveSheet
+        Set Rng = WkSht_Src.Range("A4:I" & Range("A1048576").End(xlUp).Row)
+            Set WkBk_Dest = Application.Workbooks.Add
+                Set WkSht_Dest = WkBk_Dest.Worksheets(1)
+                    Rng.Copy WkSht_Dest.Range("A1")
+                'Set WkSht_Dest = Nothing
+                'WkBk_Dest.SaveAs Filename:="dd.xlsm"
+                'WkBk_Dest.Close 0
+            'Set WkBk_Dest = Nothing
+            
+       Rng.WrapText = True
+        Set Rng = Nothing
+    Set WkSht_Src = Nothing
+    'https://stackoverflow.com/a/44494395
+End Sub

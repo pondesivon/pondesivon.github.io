@@ -1,0 +1,17 @@
+Function TurkceKarakterleriIngilizceKarakterlereDonustur(metin As String)
+    metin = Replace(metin, "ı", "i")
+    metin = Replace(metin, "ö", "o")
+    metin = Replace(metin, "ü", "u")
+    metin = Replace(metin, "ş", "s")
+    metin = Replace(metin, "ğ", "g")
+    metin = Replace(metin, "ç", "c")
+    metin = Replace(metin, "Ü", "U")
+    metin = Replace(metin, "İ", "I")
+    metin = Replace(metin, "Ö", "O")
+    metin = Replace(metin, "Ü", "U")
+    metin = Replace(metin, "Ş", "S")
+    metin = Replace(metin, "Ğ", "G")
+    metin = Replace(metin, "Ç", "C")
+    
+    TurkceKarakterleriIngilizceKarakterlereDonustur = metin
+End Function
