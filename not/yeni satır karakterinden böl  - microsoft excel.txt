@@ -1,0 +1,9 @@
+Option Explicit
+
+Function YeniSatirKarakterindenBol(ByVal str As String) As Variant
+    str = Replace(str, vbCrLf, vbCr)
+    str = Replace(str, vbLf, vbCr)
+    YeniSatirKarakterindenBol = Split(str, vbCr)
+    
+    'https://stackoverflow.com/a/48178570
+End Function

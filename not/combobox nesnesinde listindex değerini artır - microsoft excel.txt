@@ -1,0 +1,11 @@
+Option Explicit
+
+Sub ListIndexArtirComboBox(cmb As ComboBox)
+    On Error GoTo Hata
+    If cmb.ListIndex < cmb.ListCount - 1 Then
+        cmb.ListIndex = cmb.ListIndex + 1
+    Else
+        cmb.ListIndex = 0
+    End If
+Hata:
+End Sub

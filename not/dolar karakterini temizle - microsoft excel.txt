@@ -1,0 +1,5 @@
+Option Explicit
+
+Function DolarKarakteriTemizle(metin As String) As String
+    DolarKarakteriTemizle = Replace(metin, "$", "")
+End Function

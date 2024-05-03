@@ -1,0 +1,36 @@
+Option Explicit
+
+Sub DonguIleMetinDosyasindakiVerileriListele(dosyaYoluSutunAdi As String, hedefSutunAdi As String)
+    Const ForReading = 1, ForWriting = 2, ForAppending = 3
+    
+    Dim ds, f
+    Dim i As Long
+    
+    For i = 1 To Range(dosyaYoluSutunAdi & "1048576").End(xlUp).Row
+        Set ds = CreateObject("Scripting.FileSystemObject")
+        Set f = ds.OpenTextFile(Range("L" & i), ForReading, False)
+        Range(hedefSutunAdi & i) = f.ReadAll
+        
+        'Dikkat!
+        'Ğ ve Ş harflerinde de diğer karakterlerde olduğu
+        'gibi ikinci bir karakter var. Bu karakterler
+        'Sublime Text programında <0x9e>
+        'Notepad++ programında [PM] olarak görünüyor.
+        'RichTextBox nesnesinde boşluk karakteriymiş gibi
+        'görünüyor. Bu yüzden müdahalede bulunmayınız.
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "ÄŸ", "ğ")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ã¼", "ü")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "ÅŸ", "ş")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ä±", "ı")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ã¶", "ö")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ã§", "ç")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ä", "Ğ")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ãœ", "Ü")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Å", "Ş")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ä°", "İ")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ã–", "Ö")
+        Range(hedefSutunAdi & i) = Replace(Range(hedefSutunAdi & i), "Ã‡", "Ç")
+    
+        Range(hedefSutunAdi & i).WrapText = False
+    Next
+End Sub

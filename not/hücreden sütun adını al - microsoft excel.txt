@@ -1,0 +1,10 @@
+Option Explicit
+
+Function HucredenSutunAdiniAl() As String
+    Dim deger As String
+    
+    If Selection.Count > 1 Then Exit Function
+    
+    deger = Split(ActiveCell.Address, "$")(1)
+    HucredenSutunAdiniAl = deger
+End Function

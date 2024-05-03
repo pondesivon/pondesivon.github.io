@@ -1,0 +1,5 @@
+Option Explicit
+
+Sub YazdirmaAlaniniSec()
+    ActiveSheet.PageSetup.PrintArea = Selection.Address
+End Sub
